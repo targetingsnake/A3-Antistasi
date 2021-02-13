@@ -226,7 +226,7 @@ if (_side isEqualTo west) then {
 	nameOccupants = _faction getVariable "name";
 
 	//Militia faction (complete with weird mod compat)
-	if ((gameMode != 4) and (!hasFFAA)) then {factionFIA = ""};
+	if ((gameMode != 4) and (!A3A_hasFFAA)) then {factionFIA = ""};
 
 	//Flag images
 	NATOFlag = _faction getVariable "flag";
@@ -253,7 +253,7 @@ if (_side isEqualTo west) then {
 	staticCrewOccupants = "loadouts_occ_military_Rifleman";
 	NATOPilot = "loadouts_occ_other_Pilot";
 
-	if ((gameMode != 4) and (!hasFFAA)) then {
+	if ((gameMode != 4) and (!A3A_hasFFAA)) then {
 		FIARifleman = "loadouts_occ_militia_Rifleman";
 		FIAMarksman = "loadouts_occ_militia_Marksman";
 	};
@@ -310,7 +310,7 @@ if (_side isEqualTo west) then {
 		"loadouts_occ_SF_Medic"
 	];
 
-	if ((gameMode != 4) and (!hasFFAA)) then {
+	if ((gameMode != 4) and (!A3A_hasFFAA)) then {
 		groupsFIASmall = [
 			["loadouts_occ_military_Grenadier", "loadouts_occ_militia_Rifleman"],
 			["loadouts_occ_militia_Marksman", "loadouts_occ_militia_Rifleman"],
@@ -394,7 +394,7 @@ if (_side isEqualTo west) then {
 		+ [vehNATOPlane, vehNATOPlaneAA]
 		+ vehNATOTransportPlanes;
 
-	if ((gameMode != 4) and (!hasFFAA)) then {
+	if ((gameMode != 4) and (!A3A_hasFFAA)) then {
 		vehFIAArmedCar = _faction getVariable "vehiclesMilitiaLightArmed" select 0;
 		vehFIATruck = _faction getVariable "vehiclesMilitiaTrucks" select 0;
 		vehFIACar = _faction getVariable "vehiclesMilitiaCars" select 0;

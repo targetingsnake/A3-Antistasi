@@ -672,6 +672,7 @@ class A3A
         class createDataObject {};
         class createNamespace {};
         class dateToTimeString {};
+        class deleteNamespace {};
         class generateRoadsDB {};
         class log {};
         class vehicleWillCollideAtPosition {};

@@ -24,21 +24,21 @@ if(teamplayer != independent) then {//This section is for Altis Blufor ONLY!
       ["Templates\NewTemplates\3CB\3CB_Reb_TPGM_Arid.sqf", independent] call A3A_fnc_compatabilityLoadFaction;
       ["Templates\NewTemplates\3CB\3CB_AI_BAF_Arid.sqf", west] call A3A_fnc_compatabilityLoadFaction;
       ["Templates\NewTemplates\3CB\3CB_AI_TKA_Arid.sqf", east] call A3A_fnc_compatabilityLoadFaction;
-      ["Templates\NewTemplates\3CB\3CB_Civ.sqf", civilian]] call A3A_fnc_compatabilityLoadFaction;
+      ["Templates\NewTemplates\3CB\3CB_Civ.sqf", civilian] call A3A_fnc_compatabilityLoadFaction;
       [2, "Using arid_b TGPM, TKA, TKM, 3CB Civ Templates", _filename] call A3A_fnc_log;
     };
     case (A3A_hasRHS): {
       ["Templates\NewTemplates\RHS\RHS_Reb_NAPA_Arid.sqf", independent] call A3A_fnc_compatabilityLoadFaction;
       ["Templates\NewTemplates\RHS\RHS_AI_USAF_Army_Arid.sqf", west] call A3A_fnc_compatabilityLoadFaction;
       ["Templates\NewTemplates\RHS\RHS_AI_AFRF_Arid.sqf", east] call A3A_fnc_compatabilityLoadFaction;
-      ["Templates\NewTemplates\RHS\RHS_Civ.sqf", civilian]] call A3A_fnc_compatabilityLoadFaction;
+      ["Templates\NewTemplates\RHS\RHS_Civ.sqf", civilian] call A3A_fnc_compatabilityLoadFaction;
       [2, "Using arid_b CDF, CDF, AFRF, RHS Civ Templates", _filename] call A3A_fnc_log;
     };
     default {
       ["Templates\NewTemplates\Vanilla\Vanilla_Reb_FIA_Arid.sqf", independent] call A3A_fnc_compatabilityLoadFaction;
       ["Templates\NewTemplates\Vanilla\Vanilla_AI_NATO_Arid.sqf", west] call A3A_fnc_compatabilityLoadFaction;
       ["Templates\NewTemplates\Vanilla\Vanilla_AI_CSAT_Arid.sqf", east] call A3A_fnc_compatabilityLoadFaction;
-      ["Templates\NewTemplates\Vanilla\Vanilla_Civ.sqf", civilian]] call A3A_fnc_compatabilityLoadFaction;
+      ["Templates\NewTemplates\Vanilla\Vanilla_Civ.sqf", civilian] call A3A_fnc_compatabilityLoadFaction;
       [2, "Using arid_b FIA_B, AAF, CSAT, Vanilla Civ Templates", _filename] call A3A_fnc_log;
     };
   };
@@ -229,7 +229,7 @@ if(teamplayer != independent) then {//This section is for Altis Blufor ONLY!
           [2, "Using arid NATO Template", _filename] call A3A_fnc_log;
         };
       };
-      ["Templates\NewTemplates\Vanilla\Vanilla_Civ.sqf", civilian]] call A3A_fnc_compatabilityLoadFaction;
+      ["Templates\NewTemplates\Vanilla\Vanilla_Civ.sqf", civilian] call A3A_fnc_compatabilityLoadFaction;
     };
   };
   //Inv Templates
@@ -316,11 +316,11 @@ if(teamplayer != independent) then {//This section is for Altis Blufor ONLY!
   //Civ Templates
   switch(true) do{
     case (A3A_has3CB): {
-      ["Templates\NewTemplates\3CB\3CB_Civ.sqf", civilian]] call A3A_fnc_compatabilityLoadFaction;
+      ["Templates\NewTemplates\3CB\3CB_Civ.sqf", civilian] call A3A_fnc_compatabilityLoadFaction;
       [2, "Using 3CB Civ Template", _filename] call A3A_fnc_log;
     };
     case (A3A_hasRHS): {
-      ["Templates\NewTemplates\RHS\RHS_Civ.sqf", civilian]] call A3A_fnc_compatabilityLoadFaction;
+      ["Templates\NewTemplates\RHS\RHS_Civ.sqf", civilian] call A3A_fnc_compatabilityLoadFaction;
       [2, "Using RHS Civ Template", _filename] call A3A_fnc_log;
     };
 	/* disabled until imtegrated
@@ -330,7 +330,7 @@ if(teamplayer != independent) then {//This section is for Altis Blufor ONLY!
     };
 */
     default {
-      ["Templates\NewTemplates\Vanilla\Vanilla_Civ.sqf", civilian]] call A3A_fnc_compatabilityLoadFaction;
+      ["Templates\NewTemplates\Vanilla\Vanilla_Civ.sqf", civilian] call A3A_fnc_compatabilityLoadFaction;
       [2, "Using Vanilla Civ Template", _filename] call A3A_fnc_log;
     };
   };
