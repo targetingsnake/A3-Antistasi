@@ -22,6 +22,8 @@ private _fnc_distCheck = {
 if (hasACE) then {
 	{ deleteVehicle _x } forEach (allMissionObjects "ACE_bodyBagObject");
 	{ deleteVehicle _x } forEach (allMissionObjects "UserTexture1m_F");						// ACE spraycan tags
+	{ deleteVehicle _x } forEach (allMissionObjects "ace_cookoff_Turret_MBT_01");			//MBT turret wrecks
+	{ deleteVehicle _x } forEach (allMissionObjects "ace_cookoff_Turret_MBT_02");
 	{ [_x, 200] call _fnc_distCheck } forEach (allMissionObjects "ACE_envelope_big");		// ACE trench objects
 	{ [_x, 200] call _fnc_distCheck } forEach (allMissionObjects "ACE_envelope_small");
 };
@@ -34,10 +36,11 @@ if (isClass (configFile >> "CfgVehicles" >> "GRAD_envelope_short")) then {
 	{ [_x, 200] call _fnc_distCheck } forEach (allMissionObjects "GRAD_envelope_long");
 };
 
-if (hasRHS) then {
+if (A3A_hasRHS) then {
 	{ deleteVehicle _x } forEach (allMissionObjects "rhs_a10_acesII_seat");		// Ejection seat for A-10 and F-22
 	{ deleteVehicle _x } forEach (allMissionObjects "rhs_a10_canopy");			// other canopies delete on ground contact
 	{ deleteVehicle _x } forEach (allMissionObjects "rhs_k36d5_seat");			// AFRF ejection seat
+	{ deleteVehicle _x } forEach (allMissionObjects "rhs_vs1_seat");			// another dumb ejection seat
 };
 
 [petros,"hint","Garbage deleted", "Garbage Cleaner"] remoteExec ["A3A_fnc_commsMP", 0];
