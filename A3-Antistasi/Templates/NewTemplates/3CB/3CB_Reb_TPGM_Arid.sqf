@@ -98,7 +98,7 @@ _loadoutData setVariable ["gpses", ["ItemGPS"]];
 _loadoutData setVariable ["NVGs", []]; //this line determines NVGs -- Array, can contain multiple assets
 _loadoutData setVariable ["binoculars", ["Binocular"]];
 
-_loadoutData setVariable ["uniforms", []];
+_loadoutData setVariable ["uniforms", ["UK3CB_TKM_B_U_01","UK3CB_TKM_B_U_01_B","UK3CB_TKM_B_U_01_C","UK3CB_TKM_B_U_03","UK3CB_TKM_B_U_03_B","UK3CB_TKM_B_U_03_C","UK3CB_TKM_B_U_04","UK3CB_TKM_B_U_04_B","UK3CB_TKM_B_U_04_C","UK3CB_TKM_B_U_05","UK3CB_TKM_B_U_05_B","UK3CB_TKM_B_U_05_C","UK3CB_TKM_B_U_06","UK3CB_TKM_B_U_06_B","UK3CB_TKM_B_U_06_C"]];
 _loadoutData setVariable ["vests", []];
 _loadoutData setVariable ["backpacks", []];
 _loadoutData setVariable ["longRangeRadios", []];
