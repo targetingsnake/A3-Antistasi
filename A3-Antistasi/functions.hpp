@@ -228,6 +228,7 @@ class A3A
 		class createUnit {};
 		class createVehicleCrew {};
         class createVehicleQRFBehaviour {};
+        class crewTypeForVehicle {};
 		class cycleSpawn {};
 		class FIAinitBases {};
 		class findSpawnPosition {};

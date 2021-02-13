@@ -23,10 +23,6 @@ params ["_pos", "_azi", "_type", "_group", ["_precise", true], "_unitType"];
 
 private _side = if (_group isEqualType sideUnknown) then { _group } else { side _group };
 
-if (isNil "_unitType") then {
-	_unitType = [NATOCrew, CSATCrew, staticCrewTeamPlayer, "C_Man_1"] select ([west, east, independent, civilian] find _side);
-};
-
 private _sim = getText(configFile >> "CfgVehicles" >> _type >> "simulation");
 
 private _veh = switch (tolower _sim) do {
@@ -55,6 +51,10 @@ if (_precise) then
 //Set a good velocity in the correct direction.
 if (_sim == "airplanex") then {
 	_veh setVelocityModelSpace [0, 100, 0];
+};
+
+if (isNil "_unitType") then {
+	_unitType = [_side, veh] call A3A_fnc_crewTypeForVehicle;
 };
 
 //Spawn the crew

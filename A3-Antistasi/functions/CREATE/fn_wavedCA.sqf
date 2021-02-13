@@ -503,7 +503,7 @@ while {(_waves > 0)} do
 		_airSupport pushBack _uav;
 		//[_uav,"UAV"] spawn A3A_fnc_inmuneConvoy;
 		[_uav,_mrkDestination,_sideX] spawn A3A_fnc_VANTinfo;
-		createVehicleCrew _uav;
+		[_sideX, _uav] call A3A_fnc_createVehicleCrew;
 		_pilots append (crew _uav);
 		_groupVeh = group driver _uav;
 		_groups pushBack _groupVeh;

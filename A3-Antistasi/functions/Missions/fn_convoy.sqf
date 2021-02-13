@@ -157,7 +157,7 @@ private _fnc_spawnConvoyVehicle = {
 	_veh allowDamage false;
 	_veh limitSpeed _speedLimit;
 
-	private _group = createVehicleCrew _veh;
+	private _group = [_sideX, _veh] call A3A_fnc_createVehicleCrew;
 	_group addVehicle _veh;
 	{
 		// probably don't want civilian drivers here, but it's a pain atm

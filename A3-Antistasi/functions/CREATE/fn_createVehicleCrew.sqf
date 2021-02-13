@@ -28,9 +28,13 @@ if (_group isEqualType sideUnknown) then {
 	_newGroup = true;
 };
 
+if (isNil "_unitType") then {
+	_unitType = [side _group, _vehicle] call A3A_fnc_crewTypeForVehicle;
+};
+
 private _type = typeOf _vehicle;
 private _config = configFile >> "CfgVehicles" >> _type;
-if (getNumber (_config >> "hasDriver") > 0) then {
+if (getNumber (_config >> "hasDriver") > 0 && isNull driver _vehicle) then {
 	private _driver = [_group, _unitType, getPos _vehicle, [], 10] call A3A_fnc_createUnit;
 	_driver assignAsDriver _vehicle;
 	_driver moveInDriver _vehicle;
@@ -42,9 +46,11 @@ private _fnc_addCrewToTurrets = {
 	{
 		private _turretConfig = _x;
 		private _turretPath = _path + [_forEachIndex];
-		private _gunner = [_group, _unitType, getPos _vehicle, [], 10] call A3A_fnc_createUnit;
-		_gunner assignAsTurret [_vehicle, _turretPath];
-		_gunner moveInTurret [_vehicle, _turretPath];
+		if (isNull (_vehicle turretUnit _turretPath)) then {
+			private _gunner = [_group, _unitType, getPos _vehicle, [], 10] call A3A_fnc_createUnit;
+			_gunner assignAsTurret [_vehicle, _turretPath];
+			_gunner moveInTurret [_vehicle, _turretPath];
+		};
 		//Handle nested turrets
 		[_turretConfig, _turretPath] call _fnc_addCrewToTurrets;
 	} forEach _turrets;
