@@ -46,6 +46,7 @@ if (_side isEqualTo east) then {
 	CSATFlag = _faction getVariable "flag";
 	CSATFlagTexture = _faction getVariable "flagTexture";
 	flagCSATmrk = _faction getVariable "flagMarkerType";
+	if (isServer) then {"CSAT_carrier" setMarkerText (_faction getVariable "spawnMarkerName")};
 
 	//Loot crate
 	CSATAmmoBox = _faction getVariable "ammobox";
