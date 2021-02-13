@@ -18,71 +18,25 @@ temperatemaps = ["Enoch","chernarus_summer","vt7","Tembelan"];
 arcticmaps = ["Chernarus_Winter"];
 //Mod selector
 
-if(teamplayer != independent) then {//This section is for Altis Blufor ONLY!
-  switch(true) do {
-    case (A3A_has3CB): {
-      ["Templates\NewTemplates\3CB\3CB_Reb_TTF_Arid.sqf", independent] call A3A_fnc_compatabilityLoadFaction;
-      ["Templates\NewTemplates\3CB\3CB_AI_BAF_Arid.sqf", west] call A3A_fnc_compatabilityLoadFaction;
-      ["Templates\NewTemplates\3CB\3CB_AI_TKA_Arid.sqf", east] call A3A_fnc_compatabilityLoadFaction;
-      ["Templates\NewTemplates\3CB\3CB_Civ.sqf", civilian] call A3A_fnc_compatabilityLoadFaction;
-      [2, "Using arid_b TGPM, TKA, TKM, 3CB Civ Templates", _filename] call A3A_fnc_log;
-    };
-    case (A3A_hasRHS): {
-      ["Templates\NewTemplates\RHS\RHS_Reb_NAPA_Arid.sqf", independent] call A3A_fnc_compatabilityLoadFaction;
-      ["Templates\NewTemplates\RHS\RHS_AI_USAF_Army_Arid.sqf", west] call A3A_fnc_compatabilityLoadFaction;
-      ["Templates\NewTemplates\RHS\RHS_AI_AFRF_Arid.sqf", east] call A3A_fnc_compatabilityLoadFaction;
-      ["Templates\NewTemplates\RHS\RHS_Civ.sqf", civilian] call A3A_fnc_compatabilityLoadFaction;
-      [2, "Using arid_b CDF, CDF, AFRF, RHS Civ Templates", _filename] call A3A_fnc_log;
-    };
-    default {
-      ["Templates\NewTemplates\Vanilla\Vanilla_Reb_FIA_Arid.sqf", independent] call A3A_fnc_compatabilityLoadFaction;
-      ["Templates\NewTemplates\Vanilla\Vanilla_AI_NATO_Arid.sqf", west] call A3A_fnc_compatabilityLoadFaction;
-      ["Templates\NewTemplates\Vanilla\Vanilla_AI_CSAT_Arid.sqf", east] call A3A_fnc_compatabilityLoadFaction;
-      ["Templates\NewTemplates\Vanilla\Vanilla_Civ.sqf", civilian] call A3A_fnc_compatabilityLoadFaction;
-      [2, "Using arid_b FIA_B, AAF, CSAT, Vanilla Civ Templates", _filename] call A3A_fnc_log;
-    };
-  };
-}else{//This is for non-blufor (THE ONE THAT MATTERS!!)
-  //Reb Templates
-  switch(true) do{
-    case (A3A_has3CB): {
-      switch(true) do {
-        case (worldName in arcticmaps): {
-          ["Templates\NewTemplates\3CB\3CB_Reb_CNM_Temperate.sqf", independent] call A3A_fnc_compatabilityLoadFaction;
-          [2, "Using arctic CNM Template", _filename] call A3A_fnc_log;
-        };
-        case (worldName in temperatemaps): {
-          ["Templates\NewTemplates\3CB\3CB_Reb_CNM_Temperate.sqf", independent] call A3A_fnc_compatabilityLoadFaction;
-          [2, "Using temperate CNM Template", _filename] call A3A_fnc_log;
-        };
-        case (worldName in tropicalmaps): {
-          ["Templates\NewTemplates\3CB\3CB_AI_CNM_Tropical.sqf", independent] call A3A_fnc_compatabilityLoadFaction;
-          [2, "Using tropical CNM Template", _filename] call A3A_fnc_log;
-        };
-        default {
-          ["Templates\NewTemplates\3CB\3CB_Reb_TTF_Arid.sqf", independent] call A3A_fnc_compatabilityLoadFaction;
-          [2, "Using arid TTF Templates", _filename] call A3A_fnc_log;
-        };
+//Reb Templates
+switch(true) do{
+  case (A3A_has3CB): {
+    switch(true) do {
+      case (worldName in arcticmaps): {
+        ["Templates\NewTemplates\3CB\3CB_Reb_CNM_Temperate.sqf", independent] call A3A_fnc_compatabilityLoadFaction;
+        [2, "Using arctic CNM Template", _filename] call A3A_fnc_log;
       };
-    };
-    case (A3A_hasRHS): {
-      switch(true) do {
-        case (worldName in arcticmaps): {
-          ["Templates\NewTemplates\RHS\RHS_Reb_NAPA_Temperate.sqf", independent] call A3A_fnc_compatabilityLoadFaction;
-          [2, "Using arctic NAPA Template", _filename] call A3A_fnc_log;
-        };
-        case (worldName in temperatemaps): {
-          ["Templates\NewTemplates\RHS\RHS_Reb_NAPA_Temperate.sqf", independent] call A3A_fnc_compatabilityLoadFaction;
-          [2, "Using temperate NAPA Template", _filename] call A3A_fnc_log;
-        };
-        case (worldName in tropicalmaps): {
-          ["Templates\NewTemplates\RHS\RHS_Reb_NAPA_Temperate.sqf", independent] call A3A_fnc_compatabilityLoadFaction;
-          [2, "Using tropical NAPA Template", _filename] call A3A_fnc_log;
-        };
-        default {
-          ["Templates\NewTemplates\RHS\RHS_Reb_NAPA_Arid.sqf", independent] call A3A_fnc_compatabilityLoadFaction;
-          [2, "Using arid NAPA Template", _filename] call A3A_fnc_log;
-        };
+      case (worldName in temperatemaps): {
+        ["Templates\NewTemplates\3CB\3CB_Reb_CNM_Temperate.sqf", independent] call A3A_fnc_compatabilityLoadFaction;
+        [2, "Using temperate CNM Template", _filename] call A3A_fnc_log;
+      };
+      case (worldName in tropicalmaps): {
+        ["Templates\NewTemplates\3CB\3CB_AI_CNM_Tropical.sqf", independent] call A3A_fnc_compatabilityLoadFaction;
+        [2, "Using tropical CNM Template", _filename] call A3A_fnc_log;
+      };
+      default {
+        ["Templates\NewTemplates\3CB\3CB_Reb_TTF_Arid.sqf", independent] call A3A_fnc_compatabilityLoadFaction;
+        [2, "Using arid TTF Templates", _filename] call A3A_fnc_log;
       };
     };
 /* disabled until imtegrated
@@ -237,8 +191,8 @@ if(teamplayer != independent) then {//This section is for Altis Blufor ONLY!
     case (A3A_has3CB): {
       switch(true) do {
         case (worldName in arcticmaps): {
-          ["Templates\NewTemplates\3CB\3CB_AI_SOV_Temperate.sqf", east] call A3A_fnc_compatabilityLoadFaction;
           [2, "Using arctic SOV Template", _filename] call A3A_fnc_log;
+          ["Templates\NewTemplates\3CB\3CB_AI_SOV_Temperate.sqf", east] call A3A_fnc_compatabilityLoadFaction;
         };
         case (worldName in temperatemaps): {
           ["Templates\NewTemplates\3CB\3CB_AI_SOV_Temperate.sqf", east] call A3A_fnc_compatabilityLoadFaction;
@@ -249,7 +203,7 @@ if(teamplayer != independent) then {//This section is for Altis Blufor ONLY!
           [2, "Using tropical SOV Template", _filename] call A3A_fnc_log;
         };
         default {
-          ["Templates\NewTemplates\3CB\3CB_AI_TKA_Arid.sqf", east] call A3A_fnc_compatabilityLoadFaction;
+          ["Templates\NewTemplates\3CB\3CB_AI_TKM_Arid.sqf", east] call A3A_fnc_compatabilityLoadFaction;
           [2, "Using arid TKM Template", _filename] call A3A_fnc_log;
         };
       };
