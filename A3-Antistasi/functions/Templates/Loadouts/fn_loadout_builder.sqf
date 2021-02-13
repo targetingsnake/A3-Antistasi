@@ -112,11 +112,22 @@ private _fnc_addItemSet = {
 //Adds a random item from the given category of loadout data.
 //Item can be a string class "myItem" or an array in unit loadout format ["myItem", 5]
 private _fnc_addItem = {
-	params ["_key"];
+	params ["_key", ["_amount", 1]];
 	private _data = _loadoutDataForTemplate getVariable [_key, []];
+
 	if (_data isEqualTo []) exitWith {};
+
 	private _item =	selectRandom _data;
-	_itemSets pushBack [_item];
+	if (_item isEqualType []) then {
+		_item set [1, _amount];
+		_itemSets pushBack [_item];
+	} else {
+		private _items = [];
+		for "_i" from 1 to _amount do {
+			_items pushBack _item;
+		};
+		_itemSets pushBack _items;
+	};
 };
 
 private _equipment = [];
