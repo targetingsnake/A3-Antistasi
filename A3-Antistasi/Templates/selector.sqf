@@ -21,7 +21,7 @@ arcticmaps = ["Chernarus_Winter"];
 if(teamplayer != independent) then {//This section is for Altis Blufor ONLY!
   switch(true) do {
     case (A3A_has3CB): {
-      ["Templates\NewTemplates\3CB\3CB_Reb_TPGM_Arid.sqf", independent] call A3A_fnc_compatabilityLoadFaction;
+      ["Templates\NewTemplates\3CB\3CB_Reb_TTF_Arid.sqf", independent] call A3A_fnc_compatabilityLoadFaction;
       ["Templates\NewTemplates\3CB\3CB_AI_BAF_Arid.sqf", west] call A3A_fnc_compatabilityLoadFaction;
       ["Templates\NewTemplates\3CB\3CB_AI_TKA_Arid.sqf", east] call A3A_fnc_compatabilityLoadFaction;
       ["Templates\NewTemplates\3CB\3CB_Civ.sqf", civilian] call A3A_fnc_compatabilityLoadFaction;
@@ -237,8 +237,8 @@ if(teamplayer != independent) then {//This section is for Altis Blufor ONLY!
     case (A3A_has3CB): {
       switch(true) do {
         case (worldName in arcticmaps): {
-          [2, "Using arctic SOV Template", _filename] call A3A_fnc_log;
           ["Templates\NewTemplates\3CB\3CB_AI_SOV_Temperate.sqf", east] call A3A_fnc_compatabilityLoadFaction;
+          [2, "Using arctic SOV Template", _filename] call A3A_fnc_log;
         };
         case (worldName in temperatemaps): {
           ["Templates\NewTemplates\3CB\3CB_AI_SOV_Temperate.sqf", east] call A3A_fnc_compatabilityLoadFaction;
@@ -249,7 +249,7 @@ if(teamplayer != independent) then {//This section is for Altis Blufor ONLY!
           [2, "Using tropical SOV Template", _filename] call A3A_fnc_log;
         };
         default {
-          ["Templates\NewTemplates\3CB\3CB_AI_TKM_Arid.sqf", east] call A3A_fnc_compatabilityLoadFaction;
+          ["Templates\NewTemplates\3CB\3CB_AI_TKA_Arid.sqf", east] call A3A_fnc_compatabilityLoadFaction;
           [2, "Using arid TKM Template", _filename] call A3A_fnc_log;
         };
       };
