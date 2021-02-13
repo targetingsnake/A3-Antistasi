@@ -840,7 +840,7 @@ private _unitTypes = [
 	["Marksman", _marksmanTemplate]
 ];
 
-[_prefix, _unitTypes, _policeLoadoutData] call _fnc_saveUnitLoadoutsToTemplate;
+[_prefix, _unitTypes, _militiaLoadoutData] call _fnc_saveUnitLoadoutsToTemplate;
 
 //////////////////////
 //    Misc Units    //
