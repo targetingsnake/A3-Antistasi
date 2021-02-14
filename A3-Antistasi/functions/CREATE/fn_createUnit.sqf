@@ -22,9 +22,9 @@ private _loadout = customUnitTypes getVariable [_type, []];
 
 if !(_loadout isEqualTo []) exitWith {
 	private _unitClass = switch (side _group) do {
-		case west: { "B_Survivor_F" };
-		case east: { "O_Survivor_F" };
-		case independent: { "I_Survivor_F" };
+		case west: { "B_G_Soldier_universal_F" };
+		case east: { "O_G_Soldier_universal_F" };
+		case independent: { "I_G_Soldier_universal_F" };
 		case civilian: { "C_Man_1" };
 	};
 	private _unit = _group createUnit  [_unitClass, _position, _markers, _placement, _special];
