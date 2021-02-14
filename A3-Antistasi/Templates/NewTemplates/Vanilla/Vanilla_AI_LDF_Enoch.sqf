@@ -159,7 +159,6 @@ _loadoutData setVariable ["items_crew_extras", []];
 _loadoutData setVariable ["items_unarmed_extras", []];
 
 //TODO - ACE overrides for misc essentials, medical and engineer gear
-//TODO - TFAR overrides for radios
 
 ///////////////////////////////////////
 //    Special Forces Loadout Data    //

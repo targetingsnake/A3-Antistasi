@@ -157,7 +157,6 @@ _loadoutData setVariable ["items_crew_extras", []];			//this line defines specif
 _loadoutData setVariable ["items_unarmed_extras", []];		//this line defines specific items for the class unarmed
 
 //TODO - ACE overrides for misc essentials, medical and engineer gear
-//TODO - TFAR overrides for radios
 
 ///////////////////////////////////////
 //    Special Forces Loadout Data    //
