@@ -32,7 +32,7 @@ private _fnc_addHelmet = {
 	private _data = _loadoutDataForTemplate getVariable [_key, []];
 	if (_data isEqualTo []) exitWith {};
 	private _helmet = selectRandom _data;
-	[_finalLoadout, _helmet] call A3A_fnc_loadout_addHelmet;
+	[_finalLoadout, _helmet] call A3A_fnc_loadout_setHelmet;
 };
 
 //Adds a vest to the loadout, selected at random from the category in loadout data.
@@ -41,7 +41,7 @@ private _fnc_addVest = {
 	private _data = _loadoutDataForTemplate getVariable [_key, []];
 	if (_data isEqualTo []) exitWith {};
 	private _vest = selectRandom _data;
-	[_finalLoadout, _vest] call A3A_fnc_loadout_addVest
+	[_finalLoadout, _vest] call A3A_fnc_loadout_setVest
 };
 
 //Adds a uniform to the loadout, selected at random from the category in loadout data.
@@ -50,7 +50,7 @@ private _fnc_addUniform = {
 	private _data = _loadoutDataForTemplate getVariable [_key, []];
 	if (_data isEqualTo []) exitWith {};
 	private _uniform = selectRandom _data;
-	[_finalLoadout, _uniform] call A3A_fnc_loadout_addUniform
+	[_finalLoadout, _uniform] call A3A_fnc_loadout_setUniform
 };
 
 //Adds a backpack to the loadout, selected at random from the category in loadout data.
@@ -59,7 +59,7 @@ private _fnc_addBackpack = {
 	private _data = _loadoutDataForTemplate getVariable [_key, []];
 	if (_data isEqualTo []) exitWith {};
 	private _backpack = selectRandom _data;
-	[_finalLoadout, _backpack] call A3A_fnc_loadout_addBackpack
+	[_finalLoadout, _backpack] call A3A_fnc_loadout_setBackpack
 };
 
 //Adds a primary weapon to the loadout, selected at random from the category in loadout data.
@@ -68,7 +68,7 @@ private _fnc_addPrimary = {
 	private _data = _loadoutDataForTemplate getVariable [_key, []];
 	if (_data isEqualTo []) exitWith {};
 	private _weapon = selectRandom _data;
-	[_finalLoadout, "PRIMARY", _weapon] call A3A_fnc_loadout_addWeapon;
+	[_finalLoadout, "PRIMARY", _weapon] call A3A_fnc_loadout_setWeapon;
 };
 
 //Adds a launcher to the loadout, selected at random from the category in loadout data.
@@ -77,7 +77,7 @@ private _fnc_addLauncher = {
 	private _data = _loadoutDataForTemplate getVariable [_key, []];
 	if (_data isEqualTo []) exitWith {};
 	private _weapon = selectRandom _data;
-	[_finalLoadout, "LAUNCHER", _weapon] call A3A_fnc_loadout_addWeapon;
+	[_finalLoadout, "LAUNCHER", _weapon] call A3A_fnc_loadout_setWeapon;
 };
 
 //Adds a handgun to the loadout, selected at random from the category in loadout data.
@@ -86,7 +86,7 @@ private _fnc_addHandgun = {
 	private _data = _loadoutDataForTemplate getVariable [_key, []];
 	if (_data isEqualTo []) exitWith {};
 	private _weapon = selectRandom _data;
-	[_finalLoadout, "HANDGUN", _weapon] call A3A_fnc_loadout_addWeapon;
+	[_finalLoadout, "HANDGUN", _weapon] call A3A_fnc_loadout_setWeapon;
 };
 
 //We resolve the magazine requests later, in case the loadout templates have weapons added after magazines.

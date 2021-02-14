@@ -1,5 +1,5 @@
 /*
- * File: fn_loadout_addBackpack.sqf
+ * File: fn_loadout_setBackpack.sqf
  * Author: Spoffy
  * Description:
  *    Adds a backpack to a unit loadout

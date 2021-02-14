@@ -348,14 +348,14 @@ class A3A
     class Loadouts 
 	{
 		file = "functions\Templates\Loadouts";
-		class loadout_addBackpack {};
+		class loadout_setBackpack {};
 		class loadout_addEquipment {};
-		class loadout_addHelmet {};
+		class loadout_setHelmet {};
 		class loadout_addItems {};
 		class loadout_additionalMuzzleMags {};
-		class loadout_addUniform {};
-		class loadout_addVest {};
-		class loadout_addWeapon {};
+		class loadout_setUniform {};
+		class loadout_setVest {};
+		class loadout_setWeapon {};
 		class loadout_builder {};
 		class loadout_createBase {};
 		class loadout_defaultWeaponMag {};

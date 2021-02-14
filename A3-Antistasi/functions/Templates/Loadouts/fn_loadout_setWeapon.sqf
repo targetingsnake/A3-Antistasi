@@ -1,5 +1,5 @@
 /*
- * File: fn_loadout_addWeapon.sqf
+ * File: fn_loadout_setWeapon.sqf
  * Author: Spoffy
  * Description:
  *    Adds a weapon to a unit loadout

@@ -1,5 +1,5 @@
 /*
- * File: fn_loadout_addHelmet.sqf
+ * File: fn_loadout_setHelmet.sqf
  * Author: Spoffy
  * Description:
  *    Adds a helmet to a unit loadout

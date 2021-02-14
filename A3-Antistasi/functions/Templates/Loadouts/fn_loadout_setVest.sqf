@@ -1,5 +1,5 @@
 /*
- * File: fn_loadout_addVest.sqf
+ * File: fn_loadout_setVest.sqf
  * Author: Spoffy
  * Description:
  *    Adds a vest to a unit loadout
