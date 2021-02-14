@@ -135,16 +135,18 @@ _loadoutData setVariable ["radios", ["ItemRadio"]];			//this line determines rad
 _loadoutData setVariable ["gpses", ["ItemGPS"]];			//this line determines GPS
 _loadoutData setVariable ["NVGs", ["rhs_1PN138"]];						//this line determines NVGs -- Array, can contain multiple assets
 _loadoutData setVariable ["binoculars", ["Binocular"]];		//this line determines the binoculars
-_loadoutData setVariable ["rangefinder", ["rhs_pdu4"]];		//this line determines the rangefinders
 
-_loadoutData setVariable ["uniforms", []];					//don't fill this line - this is only to set the variable
-_loadoutData setVariable ["vests", []];						//don't fill this line - this is only to set the variable
-_loadoutData setVariable ["backpacks", ["rhs_sidor", "rhs_assault_umbts", "rhs_sidor"]];					//don't fill this line - this is only to set the variable
-_loadoutData setVariable ["medbackpacks", ["rhs_medic_bag"]];					//don't fill this line - this is only to set the variable
-_loadoutData setVariable ["atbackpacks", ["rhs_rpg_empty"]];					//don't fill this line - this is only to set the variable
-_loadoutData setVariable ["engbackpacks", ["rhs_assault_umbts_engineer_empty"]];					//don't fill this line - this is only to set the variable
-_loadoutData setVariable ["longRangeRadios", []];			//don't fill this line - this is only to set the variable
-_loadoutData setVariable ["helmets", []];					//don't fill this line - this is only to set the variable
+_loadoutData setVariable ["uniforms", []];
+_loadoutData setVariable ["vests", []];
+_loadoutData setVariable ["SLvests", []];
+_loadoutData setVariable ["Medvests", []];
+_loadoutData setVariable ["GLvests", []];
+_loadoutData setVariable ["backpacks", []];
+_loadoutData setVariable ["medbackpacks", []];
+_loadoutData setVariable ["atbackpacks", []];
+_loadoutData setVariable ["engbackpacks", []];
+_loadoutData setVariable ["longRangeRadios", []];
+_loadoutData setVariable ["helmets", []];
 
 //Item *set* definitions. These are added in their entirety to unit loadouts. No randomisation is applied.
 _loadoutData setVariable ["items_medical_basic", ["BASIC"] call A3A_fnc_itemset_medicalSupplies]; //this line defines the basic medical loadout for vanilla
@@ -177,9 +179,13 @@ _loadoutData setVariable ["items_unarmed_extras", []];		//this line defines spec
 
 private _sfLoadoutData = _loadoutData call _fnc_copyLoadoutData; // touch and shit breaks
 _sfLoadoutData setVariable ["uniforms", ["rhs_uniform_gorka_r_g"]];			//this line determines uniforms for special forces -- Example: ["U_B_CombatUniform_mcam", "U_B_CombatUniform_mcam_tshirt"] -- Array, can contain multiple assets
-_sfLoadoutData setVariable ["vests", [
-"rhs_6b23_digi_6sh92_Vog_Radio_Spetsnaz", "rhs_6b23_digi_6sh92_Vog_Spetsnaz", "rhs_6b23_digi_6sh92_Spetsnaz",
-"rhs_6b23_digi_6sh92_headset_spetsnaz", "rhs_6b23_digi_6sh92_spetsnaz2"]];
+_sfLoadoutData setVariable ["vests", ["rhs_6b23_digi_6sh92_Spetsnaz", "rhs_6b23_digi_6sh92_spetsnaz2"]];
+_sfLoadoutData setVariable ["SLvests", ["rhs_6b23_digi_6sh92_headset_spetsnaz", "rhs_6b23_digi_6sh92_Vog_Radio_Spetsnaz"]];
+_sfLoadoutData setVariable ["GLvests", ["rhs_6b23_digi_6sh92_Vog_Spetsnaz", "rhs_6b23_digi_6sh92_Vog_Radio_Spetsnaz"]];
+_sfLoadoutData setVariable ["backpacks", ["rhs_sidor", "rhs_assault_umbts", "rhs_sidor"]];
+_sfLoadoutData setVariable ["medbackpacks", ["rhs_medic_bag"]];
+_sfLoadoutData setVariable ["atbackpacks", ["rhs_rpg_empty"]];
+_sfLoadoutData setVariable ["engbackpacks", ["rhs_assault_umbts_engineer_empty"]];
 _sfLoadoutData setVariable ["helmets", ["rhs_Booniehat_digi", "rhs_altyn", "rhs_altyn_novisor", "rhs_altyn_novisor_ess", "rhs_gssh18"]];				//this line determines helmets for special forces -- Example: ["H_HelmetB_camo", "H_HelmetB_desert"] -- Array, can contain multiple assets
 _sfLoadoutData setVariable ["binoculars", ["rhs_pdu4"]];
 _sfLoadoutData setVariable ["rifles", [
@@ -265,7 +271,7 @@ _sfLoadoutData setVariable ["marksmanRifles", [
 ["rhs_weap_svds_npz", "rhs_acc_tgpv2", "", "rhs_acc_dh520x56", ["rhs_10Rnd_762x54mmR_7N14"], [], ""]
 ]];
 _sfLoadoutData setVariable ["sniperRifles", [
-["rhs_weap_t5000", "", "", "", [], [], "rhs_acc_harris_swivel"]
+["rhs_weap_t5000", "", "", "rhs_acc_dh520x56", [], [], "rhs_acc_harris_swivel"]
 ]];
 _sfLoadoutData setVariable ["sidearms", [
 ["rhs_weap_pb_6p9", "rhs_acc_6p9_suppressor", "", "", [], [], ""]
@@ -277,12 +283,18 @@ _sfLoadoutData setVariable ["sidearms", [
 private _militaryLoadoutData = _loadoutData call _fnc_copyLoadoutData; // touch and shit breaks
 _militaryLoadoutData setVariable ["uniforms", ["rhs_uniform_msv_emr"]];
 _militaryLoadoutData setVariable ["vests", [
-"rhs_6b23_digi_6sh92", "rhs_6b23_digi_6sh92_headset", "rhs_6b23_digi_6sh92_headset_mapcase",
-"rhs_6b23_digi_6sh92_vog", "rhs_6b23_digi_rifleman", "rhs_6b23_digi_vydra_3m"]];
+"rhs_6b23_digi_6sh92", "rhs_6b23_digi_rifleman", "rhs_6b23_digi_vydra_3m"]];
+_militaryLoadoutData setVariable ["SLvests", ["rhs_6b23_digi_6sh92_headset_mapcase", "rhs_6b23_digi_6sh92_headset"]];
+_militaryLoadoutData setVariable ["GLvests", ["rhs_6b23_digi_6sh92_vog"]];
+_militaryLoadoutData setVariable ["backpacks", ["rhs_sidor", "rhs_assault_umbts", "rhs_sidor"]];
+_militaryLoadoutData setVariable ["medbackpacks", ["rhs_medic_bag"]];
+_militaryLoadoutData setVariable ["atbackpacks", ["rhs_rpg_empty"]];
+_militaryLoadoutData setVariable ["engbackpacks", ["rhs_assault_umbts_engineer_empty"]];
 _militaryLoadoutData setVariable ["helmets", [
 "rhs_6b27m_digi", "rhs_6b27m_digi_bala", "rhs_6b27m_digi_ess", "rhs_6b27m_digi_ess_bala",
 "rhs_6b7_1m_emr", "rhs_6b7_1m_bala1_emr", "rhs_6b7_1m_bala2_emr", "rhs_6b7_1m_emr_ess", "rhs_6b7_1m_emr_ess_bala"
 ]];
+_militaryLoadoutData setVariable ["binoculars", ["rhs_pdu4"]];
 _militaryLoadoutData setVariable ["rifles", [
 ["rhs_weap_ak103", "", "rhs_acc_perst1ik", "rhs_acc_pkas", [], [], ""],
 ["rhs_weap_ak103", "", "rhs_acc_perst1ik", "rhs_acc_1p63", [], [], ""],
@@ -342,7 +354,7 @@ _militaryLoadoutData setVariable ["marksmanRifles", [
 ["rhs_weap_svds", "", "", "rhs_acc_pso1m2", [], [], ""]
 ]];
 _militaryLoadoutData setVariable ["sniperRifles", [
-["rhs_weap_t5000", "", "", "", [], [], "rhs_acc_harris_swivel"]
+["rhs_weap_t5000", "", "", "rhs_acc_dh520x56", [], [], "rhs_acc_harris_swivel"]
 ]];
 
 ///////////////////////////////
@@ -355,7 +367,7 @@ _policeLoadoutData setVariable ["rifles", ["rhs_weap_ak103_1", "rhs_weap_ak103_2
 _policeLoadoutData setVariable ["smgs", ["rhs_weap_pp2000"]];			//this line determines the smgs for police loadouts -- Example: ["SMG_01_F", "SMG_01_Holo_F"] -- Array, can contain multiple assets
 _policeLoadoutData setVariable ["carbines", ["rhs_weap_aks74u"]];
 _policeLoadoutData setVariable ["uniforms", ["U_B_GEN_Commander_F", "U_B_GEN_Soldier_F"]];
-_policeLoadoutData setVariable ["vests", ["V_TacVest_gen_F", "V_TacVest_blk_POLICE"]];
+_policeLoadoutData setVariable ["vests", ["V_TacVest_blk_POLICE"]];
 _policeLoadoutData setVariable ["backpacks", []];
 _policeLoadoutData setVariable ["helmets", ["rhsgref_un_beret", "H_Cap_police"]];			//this line determines helmets for police loadouts -- Example: ["H_Beret_gen_F"] -- Array, can contain multiple assets
 _policeLoadoutData setVariable ["antiInfantryGrenades", ["rhs_mag_fakel", "rhs_mag_fakels", "rhs_mag_plamyam"]];
@@ -366,8 +378,13 @@ _policeLoadoutData setVariable ["antiInfantryGrenades", ["rhs_mag_fakel", "rhs_m
 
 private _militiaLoadoutData = _loadoutData call _fnc_copyLoadoutData;
 _militiaLoadoutData setVariable ["uniforms", ["rhs_uniform_msv_emr"]];
-_militiaLoadoutData setVariable ["vests", ["rhs_6sh92_digi", "rhs_6sh92_digi_headset", "rhs_6sh92_digi_radio", "rhs_6sh92_digi_vog", "rhs_6sh92_digi_vog_headset"]];			//this line determines vests for militia loadouts -- Example: ["V_PlateCarrierSpec_mtp", "V_PlateCarrierGL_mtp"] -- Array, can contain multiple assets
-//_militiaLoadoutData setVariable ["backpacks", []];
+_militiaLoadoutData setVariable ["vests", ["rhs_6sh92_digi"]];			//this line determines vests for militia loadouts -- Example: ["V_PlateCarrierSpec_mtp", "V_PlateCarrierGL_mtp"] -- Array, can contain multiple assets
+_militiaLoadoutData setVariable ["SLvests", ["rhs_6sh92_digi_headset", "rhs_6sh92_digi_radio"]];
+_militiaLoadoutData setVariable ["GLvests", ["rhs_6sh92_digi_vog", "rhs_6sh92_digi_vog_headset"]];
+_militiaLoadoutData setVariable ["backpacks", ["rhs_sidor", "rhs_assault_umbts", "rhs_sidor"]];
+_militiaLoadoutData setVariable ["medbackpacks", ["rhs_medic_bag"]];
+_militiaLoadoutData setVariable ["atbackpacks", ["rhs_rpg_empty"]];
+_militiaLoadoutData setVariable ["engbackpacks", ["rhs_assault_umbts_engineer_empty"]];
 _militiaLoadoutData setVariable ["helmets", ["rhs_fieldcap_digi", "rhs_beanie_green"]];
 _militiaLoadoutData setVariable ["rifles", [
 "rhs_weap_ak74", "rhs_weap_ak74n", "rhs_weap_akm",
@@ -383,7 +400,9 @@ _militiaLoadoutData setVariable ["grenadeLaunchers", [
 ]];
 _militiaLoadoutData setVariable ["SMGs", ["rhs_weap_pp2000"]];
 _militiaLoadoutData setVariable ["machineGuns", ["rhs_weap_pkm"]];
-_militiaLoadoutData setVariable ["marksmanRifles", ["rhs_weap_svds_pso1"]];
+_militiaLoadoutData setVariable ["marksmanRifles", [
+["rhs_weap_svdp", "", "", "rhs_acc_pso1m2", ["rhs_10Rnd_762x54mmR_7N1"], [], ""]
+]];
 _militiaLoadoutData setVariable ["sniperRifles", ["rhs_weap_m38"]];
 
 //////////////////////////
@@ -415,7 +434,7 @@ _pilotLoadoutData setVariable ["helmets", ["rhs_zsh7a_mike_alt", "rhs_zsh7a_mike
 
 private _squadLeaderTemplate = {
 	["helmets"] call _fnc_setHelmet;
-	["vests"] call _fnc_setVest;
+	[["SLvests", "vests"] call _fnc_fallback] call _fnc_setVest;
 	["uniforms"] call _fnc_setUniform;
 	//TODO - Long range radios
 	[["longRangeRadios", "backpacks"] call _fnc_fallback] call _fnc_setBackpack;
@@ -472,9 +491,9 @@ private _riflemanTemplate = {
 
 private _medicTemplate = {
 	["helmets"] call _fnc_setHelmet;
-	["vests"] call _fnc_setVest;
+	[["Medvests", "vests"] call _fnc_fallback] call _fnc_setVest;
 	["uniforms"] call _fnc_setUniform;
-	["medbackpacks"] call _fnc_setBackpack;
+	[["medbackpacks", "backpacks"] call _fnc_fallback] call _fnc_setBackpack;
 
 	["carbines"] call _fnc_setPrimary;
 	["primary", 5] call _fnc_addMagazines;
@@ -497,7 +516,7 @@ private _medicTemplate = {
 
 private _grenadierTemplate = {
 	["helmets"] call _fnc_setHelmet;
-	["vests"] call _fnc_setVest;
+	[["GLvests", "vests"] call _fnc_fallback] call _fnc_setVest;
 	["uniforms"] call _fnc_setUniform;
 	["backpacks"] call _fnc_setBackpack;
 
@@ -526,7 +545,7 @@ private _explosivesExpertTemplate = {
 	["helmets"] call _fnc_setHelmet;
 	["vests"] call _fnc_setVest;
 	["uniforms"] call _fnc_setUniform;
-	["engbackpacks"] call _fnc_setBackpack;
+	[["engbackpacks", "backpacks"] call _fnc_fallback] call _fnc_setBackpack;
 
 	["rifles"] call _fnc_setPrimary;
 	["primary", 5] call _fnc_addMagazines;
@@ -558,7 +577,7 @@ private _engineerTemplate = {
 	["helmets"] call _fnc_setHelmet;
 	["vests"] call _fnc_setVest;
 	["uniforms"] call _fnc_setUniform;
-	["engbackpacks"] call _fnc_setBackpack;
+	[["engbackpacks", "backpacks"] call _fnc_fallback] call _fnc_setBackpack;
 
 	["carbines"] call _fnc_setPrimary;
 	["primary", 5] call _fnc_addMagazines;
@@ -586,7 +605,7 @@ private _latTemplate = {
 	["helmets"] call _fnc_setHelmet;
 	["vests"] call _fnc_setVest;
 	["uniforms"] call _fnc_setUniform;
-	["atbackpacks"] call _fnc_setBackpack;
+	[["atbackpacks", "backpacks"] call _fnc_fallback] call _fnc_setBackpack;
 
 	["rifles"] call _fnc_setPrimary;
 	["primary", 5] call _fnc_addMagazines;
@@ -616,7 +635,7 @@ private _atTemplate = {
 	["helmets"] call _fnc_setHelmet;
 	["vests"] call _fnc_setVest;
 	["uniforms"] call _fnc_setUniform;
-	["backpacks"] call _fnc_setBackpack;
+	[["atbackpacks", "backpacks"] call _fnc_fallback] call _fnc_setBackpack;
 
 	["rifles"] call _fnc_setPrimary;
 	["primary", 5] call _fnc_addMagazines;
@@ -718,6 +737,7 @@ private _marksmanTemplate = {
 	["watches"] call _fnc_addWatch;
 	["compasses"] call _fnc_addCompass;
 	["radios"] call _fnc_addRadio;
+	["binoculars"] call _fnc_addBinoculars;
 	["NVGs"] call _fnc_addNVGs;
 };
 
@@ -743,6 +763,7 @@ private _sniperTemplate = {
 	["watches"] call _fnc_addWatch;
 	["compasses"] call _fnc_addCompass;
 	["radios"] call _fnc_addRadio;
+	["binoculars"] call _fnc_addBinoculars;
 	["NVGs"] call _fnc_addNVGs;
 };
 
