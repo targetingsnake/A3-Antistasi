@@ -49,8 +49,7 @@
 //  Rebel Starting Gear  //
 ///////////////////////////
 allRebelUniforms append ["U_IG_Guerilla1_1","U_IG_Guerilla2_1","U_IG_Guerilla2_2","U_IG_Guerilla2_3","U_IG_Guerilla3_1",
-"U_I_L_Uniform_01_camo_F","U_I_L_Uniform_01_deserter_F","U_I_L_Uniform_01_tshirt_black_F","U_I_L_Uniform_01_tshirt_olive_F","U_I_L_Uniform_01_tshirt_skull_F",
-"U_I_L_Uniform_01_tshirt_sport_F"];
+"U_IG_leader","U_IG_Guerrilla_6_1"];
 
 private _initialRebelEquipment = [
 "hgun_Pistol_heavy_02_F","hgun_P07_F",
