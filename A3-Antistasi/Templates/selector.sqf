@@ -40,6 +40,26 @@ switch(true) do{
             };
         };
     };
+    case (A3A_hasRHS): {
+        switch(true) do {
+            case (worldName in arcticmaps): {
+                ["Templates\NewTemplates\RHS\RHS_Reb_NAPA_Temperate.sqf", independent] call A3A_fnc_compatabilityLoadFaction;
+                [2, "Using arctic Napa Template", _filename] call A3A_fnc_log;
+            };
+            case (worldName in temperatemaps): {
+                ["Templates\NewTemplates\RHS\RHS_Reb_NAPA_Temperate.sqf", independent] call A3A_fnc_compatabilityLoadFaction;
+                [2, "Using temperate Napa Template", _filename] call A3A_fnc_log;
+            };
+            case (worldName in tropicalmaps): {
+                ["Templates\NewTemplates\RHS\RHS_Reb_NAPA_Temperate.sqf", independent] call A3A_fnc_compatabilityLoadFaction;
+                [2, "Using tropical Napa Template", _filename] call A3A_fnc_log;
+            };
+            default {
+                ["Templates\NewTemplates\RHS\RHS_Reb_NAPA_Arid.sqf", independent] call A3A_fnc_compatabilityLoadFaction;
+                [2, "Using arid Napa Templates", _filename] call A3A_fnc_log;
+            };
+        };
+    };
 /* disabled until imtegrated
     case (A3A_hasIFA): {
       switch(true) do {
