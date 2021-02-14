@@ -10,8 +10,8 @@
  * Returns:
  *    Modified loadout array
  * Example Usage:
- *    [_loadout, "B_AssaultPack_mcamo_AT", [["30rnd_65x39_caseless_mag", 30, 3]]] call A3A_fnc_addBackpack
- *    [_loadout, "B_AssaultPack_mcamo_AT"] call A3A_fnc_addBackpack
+ *    [_loadout, "B_AssaultPack_mcamo_AT", [["30rnd_65x39_caseless_mag", 30, 3]]] call A3A_fnc_setBackpack
+ *    [_loadout, "B_AssaultPack_mcamo_AT"] call A3A_fnc_setBackpack
  */
 
 params ["_loadout", "_backpack", ["_items", []]];

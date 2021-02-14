@@ -27,7 +27,7 @@ private _finalLoadout = [] call A3A_fnc_loadout_createBase;
 /////////////////////////////////////////////////////////////////
 
 //Adds a helmet to the loadout, selected at random from the category in loadout data.
-private _fnc_addHelmet = {
+private _fnc_setHelmet = {
 	params ["_key"];
 	private _data = _loadoutDataForTemplate getVariable [_key, []];
 	if (_data isEqualTo []) exitWith {};
@@ -36,7 +36,7 @@ private _fnc_addHelmet = {
 };
 
 //Adds a vest to the loadout, selected at random from the category in loadout data.
-private _fnc_addVest = {
+private _fnc_setVest = {
 	params ["_key"];
 	private _data = _loadoutDataForTemplate getVariable [_key, []];
 	if (_data isEqualTo []) exitWith {};
@@ -45,7 +45,7 @@ private _fnc_addVest = {
 };
 
 //Adds a uniform to the loadout, selected at random from the category in loadout data.
-private _fnc_addUniform = {
+private _fnc_setUniform = {
 	params ["_key"];
 	private _data = _loadoutDataForTemplate getVariable [_key, []];
 	if (_data isEqualTo []) exitWith {};
@@ -54,7 +54,7 @@ private _fnc_addUniform = {
 };
 
 //Adds a backpack to the loadout, selected at random from the category in loadout data.
-private _fnc_addBackpack = {
+private _fnc_setBackpack = {
 	params ["_key"];
 	private _data = _loadoutDataForTemplate getVariable [_key, []];
 	if (_data isEqualTo []) exitWith {};
@@ -63,7 +63,7 @@ private _fnc_addBackpack = {
 };
 
 //Adds a primary weapon to the loadout, selected at random from the category in loadout data.
-private _fnc_addPrimary = {
+private _fnc_setPrimary = {
 	params ["_key"];
 	private _data = _loadoutDataForTemplate getVariable [_key, []];
 	if (_data isEqualTo []) exitWith {};
@@ -72,7 +72,7 @@ private _fnc_addPrimary = {
 };
 
 //Adds a launcher to the loadout, selected at random from the category in loadout data.
-private _fnc_addLauncher = {
+private _fnc_setLauncher = {
 	params ["_key"];
 	private _data = _loadoutDataForTemplate getVariable [_key, []];
 	if (_data isEqualTo []) exitWith {};
@@ -81,7 +81,7 @@ private _fnc_addLauncher = {
 };
 
 //Adds a handgun to the loadout, selected at random from the category in loadout data.
-private _fnc_addHandgun = {
+private _fnc_setHandgun = {
 	params ["_key"];
 	private _data = _loadoutDataForTemplate getVariable [_key, []];
 	if (_data isEqualTo []) exitWith {};

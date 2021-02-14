@@ -10,8 +10,8 @@
  * Returns:
  *    Modified loadout array
  * Example Usage:
- *    [_loadout, "V_PlateCarrierGL_rgr", [["30rnd_65x39_caseless_mag", 30, 3]]] call A3A_fnc_addUniform
- *    [_loadout, "V_PlateCarrierGL_rgr"] call A3A_fnc_addUniform
+ *    [_loadout, "V_PlateCarrierGL_rgr", [["30rnd_65x39_caseless_mag", 30, 3]]] call A3A_fnc_setUniform
+ *    [_loadout, "V_PlateCarrierGL_rgr"] call A3A_fnc_setUniform
  */
 
 params ["_loadout", "_uniform", ["_items", []]];

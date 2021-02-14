@@ -9,7 +9,7 @@
  * Returns:
  *    Modified loadout array
  * Example Usage:
- *    [_loadout, "H_HelmetSpecB_blk"] call A3A_fnc_addVest
+ *    [_loadout, "H_HelmetSpecB_blk"] call A3A_fnc_setVest
  */
 
 params ["_loadout", "_helmet"];

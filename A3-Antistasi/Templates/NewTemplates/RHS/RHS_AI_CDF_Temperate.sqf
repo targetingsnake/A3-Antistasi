@@ -398,17 +398,17 @@ _pilotLoadoutData setVariable ["helmets", ["rhs_zsh7a_mike"]];			//this line det
 //However, these exist in case you really do want to do a lot of custom alterations.
 
 private _squadLeaderTemplate = {
-	["helmets"] call _fnc_addHelmet;
-	["vests"] call _fnc_addVest;
-	["uniforms"] call _fnc_addUniform;
+	["helmets"] call _fnc_setHelmet;
+	["vests"] call _fnc_setVest;
+	["uniforms"] call _fnc_setUniform;
 	//TODO - Long range radios
-	[["longRangeRadios", "backpacks"] call _fnc_fallback] call _fnc_addBackpack;
+	[["longRangeRadios", "backpacks"] call _fnc_fallback] call _fnc_setBackpack;
 
-	[["grenadeLaunchers", "rifles"] call _fnc_fallback] call _fnc_addPrimary;
+	[["grenadeLaunchers", "rifles"] call _fnc_fallback] call _fnc_setPrimary;
 	["primary", 5] call _fnc_addMagazines;
 	//TODO: How to add underslung grenade mags.
 
-	["sidearms"] call _fnc_addHandgun;
+	["sidearms"] call _fnc_setHandgun;
 	["handgun", 2] call _fnc_addMagazines;
 
 	["items_medical_standard"] call _fnc_addItemSet;
@@ -429,15 +429,15 @@ private _squadLeaderTemplate = {
 };
 
 private _riflemanTemplate = {
-	["helmets"] call _fnc_addHelmet;
-	["vests"] call _fnc_addVest;
-	["uniforms"] call _fnc_addUniform;
-	["backpacks"] call _fnc_addBackpack;
+	["helmets"] call _fnc_setHelmet;
+	["vests"] call _fnc_setVest;
+	["uniforms"] call _fnc_setUniform;
+	["backpacks"] call _fnc_setBackpack;
 
-	["rifles"] call _fnc_addPrimary;
+	["rifles"] call _fnc_setPrimary;
 	["primary", 8] call _fnc_addMagazines;
 
-	["sidearms"] call _fnc_addHandgun;
+	["sidearms"] call _fnc_setHandgun;
 	["handgun", 2] call _fnc_addMagazines;
 
 	["items_medical_standard"] call _fnc_addItemSet;
@@ -455,15 +455,15 @@ private _riflemanTemplate = {
 };
 
 private _medicTemplate = {
-	["helmets"] call _fnc_addHelmet;
-	["vests"] call _fnc_addVest;
-	["uniforms"] call _fnc_addUniform;
-	["medbackpacks"] call _fnc_addBackpack;
+	["helmets"] call _fnc_setHelmet;
+	["vests"] call _fnc_setVest;
+	["uniforms"] call _fnc_setUniform;
+	["medbackpacks"] call _fnc_setBackpack;
 
-	["carbines"] call _fnc_addPrimary;
+	["carbines"] call _fnc_setPrimary;
 	["primary", 5] call _fnc_addMagazines;
 
-	["sidearms"] call _fnc_addHandgun;
+	["sidearms"] call _fnc_setHandgun;
 	["handgun", 2] call _fnc_addMagazines;
 
 	["items_medical_medic"] call _fnc_addItemSet;
@@ -480,15 +480,15 @@ private _medicTemplate = {
 };
 
 private _grenadierTemplate = {
-	["helmets"] call _fnc_addHelmet;
-	["vests"] call _fnc_addVest;
-	["uniforms"] call _fnc_addUniform;
-	["backpacks"] call _fnc_addBackpack;
+	["helmets"] call _fnc_setHelmet;
+	["vests"] call _fnc_setVest;
+	["uniforms"] call _fnc_setUniform;
+	["backpacks"] call _fnc_setBackpack;
 
-	["grenadeLaunchers"] call _fnc_addPrimary;
+	["grenadeLaunchers"] call _fnc_setPrimary;
 	["primary", 5] call _fnc_addMagazines;
 	//TODO: How to add underslung grenade mags.
-  [["GLsidearms","sidearms"] call _fnc_fallback] call _fnc_addHandgun;
+  [["GLsidearms","sidearms"] call _fnc_fallback] call _fnc_setHandgun;
 	["handgun", 2] call _fnc_addMagazines;
 
 	["items_medical_standard"] call _fnc_addItemSet;
@@ -506,16 +506,16 @@ private _grenadierTemplate = {
 };
 
 private _explosivesExpertTemplate = {
-	["helmets"] call _fnc_addHelmet;
-	["vests"] call _fnc_addVest;
-	["uniforms"] call _fnc_addUniform;
-	["engbackpacks"] call _fnc_addBackpack;
+	["helmets"] call _fnc_setHelmet;
+	["vests"] call _fnc_setVest;
+	["uniforms"] call _fnc_setUniform;
+	["engbackpacks"] call _fnc_setBackpack;
 
-	["rifles"] call _fnc_addPrimary;
+	["rifles"] call _fnc_setPrimary;
 	["primary", 5] call _fnc_addMagazines;
 	//TODO: How to add underslung grenade mags.
 
-	["sidearms"] call _fnc_addHandgun;
+	["sidearms"] call _fnc_setHandgun;
 	["handgun", 2] call _fnc_addMagazines;
 
 	["items_medical_standard"] call _fnc_addItemSet;
@@ -538,15 +538,15 @@ private _explosivesExpertTemplate = {
 };
 
 private _engineerTemplate = {
-	["helmets"] call _fnc_addHelmet;
-	["vests"] call _fnc_addVest;
-	["uniforms"] call _fnc_addUniform;
-	["engbackpacks"] call _fnc_addBackpack;
+	["helmets"] call _fnc_setHelmet;
+	["vests"] call _fnc_setVest;
+	["uniforms"] call _fnc_setUniform;
+	["engbackpacks"] call _fnc_setBackpack;
 
-	["carbines"] call _fnc_addPrimary;
+	["carbines"] call _fnc_setPrimary;
 	["primary", 5] call _fnc_addMagazines;
 
-	["sidearms"] call _fnc_addHandgun;
+	["sidearms"] call _fnc_setHandgun;
 	["handgun", 2] call _fnc_addMagazines;
 
 	["items_medical_standard"] call _fnc_addItemSet;
@@ -566,19 +566,19 @@ private _engineerTemplate = {
 };
 
 private _latTemplate = {
-	["helmets"] call _fnc_addHelmet;
-	["vests"] call _fnc_addVest;
-	["uniforms"] call _fnc_addUniform;
-	["atbackpacks"] call _fnc_addBackpack;
+	["helmets"] call _fnc_setHelmet;
+	["vests"] call _fnc_setVest;
+	["uniforms"] call _fnc_setUniform;
+	["atbackpacks"] call _fnc_setBackpack;
 
-	["rifles"] call _fnc_addPrimary;
+	["rifles"] call _fnc_setPrimary;
 	["primary", 8] call _fnc_addMagazines;
 
-	[selectRandom ["ATLaunchers", "lightATLaunchers"]] call _fnc_addLauncher;
+	[selectRandom ["ATLaunchers", "lightATLaunchers"]] call _fnc_setLauncher;
 	//TODO - Add a check if it's disposable.
 	["launcher", 1] call _fnc_addMagazines;
 
-	["sidearms"] call _fnc_addHandgun;
+	["sidearms"] call _fnc_setHandgun;
 	["handgun", 2] call _fnc_addMagazines;
 
 	["items_medical_standard"] call _fnc_addItemSet;
@@ -596,19 +596,19 @@ private _latTemplate = {
 };
 
 private _atTemplate = {
-	["helmets"] call _fnc_addHelmet;
-	["vests"] call _fnc_addVest;
-	["uniforms"] call _fnc_addUniform;
-	["atbackpacks"] call _fnc_addBackpack;
+	["helmets"] call _fnc_setHelmet;
+	["vests"] call _fnc_setVest;
+	["uniforms"] call _fnc_setUniform;
+	["atbackpacks"] call _fnc_setBackpack;
 
-	["rifles"] call _fnc_addPrimary;
+	["rifles"] call _fnc_setPrimary;
 	["primary", 5] call _fnc_addMagazines;
 
-	[selectRandom ["ATLaunchers", "heavyATLaunchers"]] call _fnc_addLauncher;
+	[selectRandom ["ATLaunchers", "heavyATLaunchers"]] call _fnc_setLauncher;
 	//TODO - Add a check if it's disposable.
 	["launcher", 2] call _fnc_addMagazines;
 
-	["sidearms"] call _fnc_addHandgun;
+	["sidearms"] call _fnc_setHandgun;
 	["handgun", 2] call _fnc_addMagazines;
 
 	["items_medical_standard"] call _fnc_addItemSet;
@@ -626,19 +626,19 @@ private _atTemplate = {
 };
 
 private _aaTemplate = {
-	["helmets"] call _fnc_addHelmet;
-	["vests"] call _fnc_addVest;
-	["uniforms"] call _fnc_addUniform;
-	["backpacks"] call _fnc_addBackpack;
+	["helmets"] call _fnc_setHelmet;
+	["vests"] call _fnc_setVest;
+	["uniforms"] call _fnc_setUniform;
+	["backpacks"] call _fnc_setBackpack;
 
-	["rifles"] call _fnc_addPrimary;
+	["rifles"] call _fnc_setPrimary;
 	["primary", 5] call _fnc_addMagazines;
 
-	["AALaunchers"] call _fnc_addLauncher;
+	["AALaunchers"] call _fnc_setLauncher;
 	//TODO - Add a check if it's disposable.
 	["launcher", 2] call _fnc_addMagazines;
 
-	["sidearms"] call _fnc_addHandgun;
+	["sidearms"] call _fnc_setHandgun;
 	["handgun", 2] call _fnc_addMagazines;
 
 	["items_medical_standard"] call _fnc_addItemSet;
@@ -655,15 +655,15 @@ private _aaTemplate = {
 };
 
 private _machineGunnerTemplate = {
-	["helmets"] call _fnc_addHelmet;
-	["vests"] call _fnc_addVest;
-	["uniforms"] call _fnc_addUniform;
-	["backpacks"] call _fnc_addBackpack;
+	["helmets"] call _fnc_setHelmet;
+	["vests"] call _fnc_setVest;
+	["uniforms"] call _fnc_setUniform;
+	["backpacks"] call _fnc_setBackpack;
 
-	["machineGuns"] call _fnc_addPrimary;
+	["machineGuns"] call _fnc_setPrimary;
 	["primary", 4] call _fnc_addMagazines;
 
-	["sidearms"] call _fnc_addHandgun;
+	["sidearms"] call _fnc_setHandgun;
 	["handgun", 2] call _fnc_addMagazines;
 
 	["items_medical_standard"] call _fnc_addItemSet;
@@ -680,15 +680,15 @@ private _machineGunnerTemplate = {
 };
 
 private _marksmanTemplate = {
-	["helmets"] call _fnc_addHelmet;
-	["vests"] call _fnc_addVest;
-	["uniforms"] call _fnc_addUniform;
-	["backpacks"] call _fnc_addBackpack;
+	["helmets"] call _fnc_setHelmet;
+	["vests"] call _fnc_setVest;
+	["uniforms"] call _fnc_setUniform;
+	["backpacks"] call _fnc_setBackpack;
 
-	["marksmanRifles"] call _fnc_addPrimary;
+	["marksmanRifles"] call _fnc_setPrimary;
 	["primary", 8] call _fnc_addMagazines;
 
-	["sidearms"] call _fnc_addHandgun;
+	["sidearms"] call _fnc_setHandgun;
 	["handgun", 2] call _fnc_addMagazines;
 
 	["items_medical_standard"] call _fnc_addItemSet;
@@ -705,15 +705,15 @@ private _marksmanTemplate = {
 };
 
 private _sniperTemplate = {
-	["helmets"] call _fnc_addHelmet;
-	["vests"] call _fnc_addVest;
-	["uniforms"] call _fnc_addUniform;
-	["backpacks"] call _fnc_addBackpack;
+	["helmets"] call _fnc_setHelmet;
+	["vests"] call _fnc_setVest;
+	["uniforms"] call _fnc_setUniform;
+	["backpacks"] call _fnc_setBackpack;
 
-	["sniperRifles"] call _fnc_addPrimary;
+	["sniperRifles"] call _fnc_setPrimary;
 	["primary", 5] call _fnc_addMagazines;
 
-	["sidearms"] call _fnc_addHandgun;
+	["sidearms"] call _fnc_setHandgun;
 	["handgun", 2] call _fnc_addMagazines;
 
 	["items_medical_standard"] call _fnc_addItemSet;
@@ -730,15 +730,15 @@ private _sniperTemplate = {
 };
 
 private _policeTemplate = {
-	["helmets"] call _fnc_addHelmet;
-	["vests"] call _fnc_addVest;
-	["uniforms"] call _fnc_addUniform;
-	["backpacks"] call _fnc_addBackpack;
+	["helmets"] call _fnc_setHelmet;
+	["vests"] call _fnc_setVest;
+	["uniforms"] call _fnc_setUniform;
+	["backpacks"] call _fnc_setBackpack;
 
-	[selectRandom ["smgs", "shotgun"]] call _fnc_addPrimary;
+	[selectRandom ["smgs", "shotgun"]] call _fnc_setPrimary;
 	["primary", 5] call _fnc_addMagazines;
 
-	["sidearms"] call _fnc_addHandgun;
+	["sidearms"] call _fnc_setHandgun;
 	["handgun", 2] call _fnc_addMagazines;
 
 	["items_medical_standard"] call _fnc_addItemSet;
@@ -753,14 +753,14 @@ private _policeTemplate = {
 };
 
 private _crewTemplate = {
-	["helmets"] call _fnc_addHelmet;
-	["vests"] call _fnc_addVest;
-	["uniforms"] call _fnc_addUniform;
+	["helmets"] call _fnc_setHelmet;
+	["vests"] call _fnc_setVest;
+	["uniforms"] call _fnc_setUniform;
 
-	["smgs"] call _fnc_addPrimary;
+	["smgs"] call _fnc_setPrimary;
 	["primary", 3] call _fnc_addMagazines;
 
-	["sidearms"] call _fnc_addHandgun;
+	["sidearms"] call _fnc_setHandgun;
 	["handgun", 2] call _fnc_addMagazines;
 
 	["items_medical_basic"] call _fnc_addItemSet;
@@ -777,8 +777,8 @@ private _crewTemplate = {
 };
 
 private _unarmedTemplate = {
-	["vests"] call _fnc_addVest;
-	["uniforms"] call _fnc_addUniform;
+	["vests"] call _fnc_setVest;
+	["uniforms"] call _fnc_setUniform;
 
 	["items_medical_basic"] call _fnc_addItemSet;
 	["items_unarmed_extras"] call _fnc_addItemSet;
