@@ -14,6 +14,8 @@
 //////////////////////////
 
 ["ammobox", "B_supplyCrate_F"] call _fnc_saveToTemplate; 	//Don't touch or you die a sad and lonely death!
+["surrenderCrate", "Box_IND_Wps_F"] call _fnc_saveToTemplate; //Changeing this from default will require you to define logistics attachement offset for the box type
+["equipmentBox", "Box_NATO_Equip_F"] call _fnc_saveToTemplate; //Changeing this from default will require you to define logistics attachement offset for the box type
 
 ["vehiclesBasic", ["B_Quadbike_01_F"]] call _fnc_saveToTemplate; 			//this line determines basic vehicles, the lightest kind available. -- Example: ["vehiclesBasic", ["B_Quadbike_01_F"]] -- Array, can contain multiple assets
 ["vehiclesLightUnarmed", ["rhsusf_M1239_socom_wd", "rhsusf_M1238A1_socom_wd", "rhsusf_m1025_w_s", "rhsusf_m1043_w_s", "rhsusf_m998_w_s_2dr_fulltop", "rhsusf_m998_w_s_2dr_halftop", "rhsusf_m998_w_s_2dr", "rhsusf_m998_w_s_4dr_fulltop", "rhsusf_m998_w_s_4dr_halftop", "rhsusf_m998_w_s_4dr", "rhsusf_m1151_usmc_wd", "rhsusf_m1165_usmc_wd", "rhsusf_m1240a1_usmc_wd"]] call _fnc_saveToTemplate; 		//this line determines light and unarmed vehicles. -- Example: ["vehiclesLightUnarmed", ["B_MRAP_01_F"]] -- Array, can contain multiple assets
@@ -797,6 +799,7 @@ private _sniperTemplate = {
 };
 
 private _policeTemplate = {
+	["helmets"] call _fnc_addHelmet;
 	["vests"] call _fnc_addVest;
 	["uniforms"] call _fnc_addUniform;
 	["backpacks"] call _fnc_addBackpack;

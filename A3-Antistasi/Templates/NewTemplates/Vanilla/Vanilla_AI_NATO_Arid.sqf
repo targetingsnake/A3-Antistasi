@@ -706,6 +706,7 @@ private _sniperTemplate = {
 };
 
 private _policeTemplate = {
+	["helmets"] call _fnc_addHelmet;
 	["vests"] call _fnc_addVest;
 	["uniforms"] call _fnc_addUniform;
 	["backpacks"] call _fnc_addBackpack;

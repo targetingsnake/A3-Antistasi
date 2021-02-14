@@ -14,6 +14,8 @@
 //////////////////////////
 
 ["ammobox", "B_supplyCrate_F"] call _fnc_saveToTemplate; 	//Don't touch or you die a sad and lonely death!
+["surrenderCrate", "Box_IND_Wps_F"] call _fnc_saveToTemplate; //Changeing this from default will require you to define logistics attachement offset for the box type
+["equipmentBox", "Box_NATO_Equip_F"] call _fnc_saveToTemplate; //Changeing this from default will require you to define logistics attachement offset for the box type
 
 ["vehiclesBasic", ["B_Quadbike_01_F"]] call _fnc_saveToTemplate; 			//this line determines basic vehicles, the lightest kind available. -- Example: ["vehiclesBasic", ["B_Quadbike_01_F"]] -- Array, can contain multiple assets
 ["vehiclesLightUnarmed", ["rhs_tigr_msv","rhs_tigr_3camo_msv","rhs_tigr_m_vdv","rhs_tigr_m_3camo_vdv"]] call _fnc_saveToTemplate; 		//this line determines light and unarmed vehicles. -- Example: ["vehiclesLightUnarmed", ["B_MRAP_01_F"]] -- Array, can contain multiple assets
@@ -326,9 +328,9 @@ _policeLoadoutData setVariable ["grenadelaunchers", [
 ["rhs_weap_ak103_gp25", "rhs_acc_dtk", "", "", ["rhs_30Rnd_762x39mm"], ["rhs_VG40SZ"], ""]
 ]];//this line determines the grenadelaunchers for police loadouts -- Example: ["arifle_MX_GL_ACO_F","arifle_MX_GL_ACO_pointer_F"] -- Array, can contain multiple assets
 _policeLoadoutData setVariable ["smgs", [
-["rhs_weap_savz61", "", "", "", ["rhsgref_20rnd_765x17_vz61"], ""]
+["rhs_weap_savz61", "", "", "", ["rhsgref_20rnd_765x17_vz61"], [], ""]
 ]];			//this line determines the smgs for police loadouts -- Example: ["SMG_01_F","SMG_01_Holo_F"] -- Array, can contain multiple assets
-_policeLoadoutData setVariable ["carbines",
+_policeLoadoutData setVariable ["carbines", [
 ["rhs_weap_ak104", "rhs_acc_dtk", "", "", ["rhs_30Rnd_762x39mm"], [], ""]
 ]];		//this line determines the carbines for police loadouts -- Example: ["arifle_MXC_F","arifle_MXC_Holo_F"] -- Array, can contain multiple assets
 _policeLoadoutData setVariable ["uniforms", ["rhs_uniform_m88_patchless"]];		//this line determines uniforms for police loadouts -- Example: ["U_B_GEN_Commander_F"] -- Array, can contain multiple assets
@@ -746,6 +748,7 @@ private _sniperTemplate = {
 };
 
 private _policeTemplate = {
+	["helmets"] call _fnc_addHelmet;
 	["vests"] call _fnc_addVest;
 	["uniforms"] call _fnc_addUniform;
 	["backpacks"] call _fnc_addBackpack;
