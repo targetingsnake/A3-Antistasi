@@ -54,7 +54,7 @@ if (_sim == "airplanex") then {
 };
 
 if (isNil "_unitType") then {
-	_unitType = [_side, veh] call A3A_fnc_crewTypeForVehicle;
+	_unitType = [_side, _veh] call A3A_fnc_crewTypeForVehicle;
 };
 
 //Spawn the crew
