@@ -105,10 +105,10 @@ _loadoutData setVariable ["longRangeRadios", []];
 _loadoutData setVariable ["helmets", []];
 
 //Item *set* definitions. These are added in their entirety to unit loadouts. No randomisation is applied.
-_loadoutData setVariable ["items_medical_basic", [["FirstAidKit", 2]]];
-_loadoutData setVariable ["items_medical_standard", [["FirstAidKit", 3]]];
-_loadoutData setVariable ["items_medical_medic", ["Medikit", ["FirstAidKit", 10]]];
-_loadoutData setVariable ["items_miscEssentials", []];
+_loadoutData setVariable ["items_medical_basic", ["BASIC"] call A3A_fnc_itemset_medicalSupplies]; 
+_loadoutData setVariable ["items_medical_standard", ["STANDARD"] call A3A_fnc_itemset_medicalSupplies]; 
+_loadoutData setVariable ["items_medical_medic", ["MEDIC"] call A3A_fnc_itemset_medicalSupplies]; 
+_loadoutData setVariable ["items_miscEssentials", [] call A3A_fnc_itemset_miscEssentials]; 
 
 //Unit type specific item sets. Add or remove these, depending on the unit types in use.
 _loadoutData setVariable ["items_squadleader_extras", []];

@@ -122,10 +122,10 @@ _loadoutData setVariable ["longRangeRadios", []];			//don't fill this line - thi
 _loadoutData setVariable ["helmets", []];					//don't fill this line - this is only to set the variable
 
 //Item *set* definitions. These are added in their entirety to unit loadouts. No randomisation is applied.
-_loadoutData setVariable ["items_medical_basic", [["FirstAidKit", 2]]];		//this line defines the basic medical loadout for vanilla
-_loadoutData setVariable ["items_medical_standard", [["FirstAidKit", 3]]];		//this line defines the standard medical loadout for vanilla
-_loadoutData setVariable ["items_medical_medic", ["Medikit", ["FirstAidKit", 10]]];		//this line defines the medic medical loadout for vanilla
-_loadoutData setVariable ["items_miscEssentials", []];
+_loadoutData setVariable ["items_medical_basic", ["BASIC"] call A3A_fnc_itemset_medicalSupplies]; //this line defines the basic medical loadout for vanilla
+_loadoutData setVariable ["items_medical_standard", ["STANDARD"] call A3A_fnc_itemset_medicalSupplies]; //this line defines the standard medical loadout for vanilla
+_loadoutData setVariable ["items_medical_medic", ["MEDIC"] call A3A_fnc_itemset_medicalSupplies]; //this line defines the medic medical loadout for vanilla
+_loadoutData setVariable ["items_miscEssentials", [] call A3A_fnc_itemset_miscEssentials]; 
 
 //Unit type specific item sets. Add or remove these, depending on the unit types in use.
 _loadoutData setVariable ["items_squadleader_extras", []];	//this line defines specific items for the class squadleader

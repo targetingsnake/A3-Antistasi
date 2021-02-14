@@ -344,6 +344,13 @@ class A3A
         class selectIntel {};
         class showIntel {};
     };
+
+    class ItemSets
+    {
+        file = "functions\Templates\Itemsets";
+        class itemset_medicalSupplies {};
+        class itemset_miscEssentials {};
+    };
     
     class Loadouts 
 	{
