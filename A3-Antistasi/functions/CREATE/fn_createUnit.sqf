@@ -18,9 +18,10 @@
 
 params ["_group", "_type", "_position", ["_markers", []], ["_placement", 0], ["_special", "NONE"]];
 
-private _loadout = customUnitTypes getVariable [_type, []];
+private _unitDefinition = customUnitTypes getVariable [_type, []];
 
-if !(_loadout isEqualTo []) exitWith {
+if !(_unitDefinition isEqualTo []) exitWith {
+	_unitDefinition params ["_loadouts", "_traits"];
 	private _unitClass = switch (side _group) do {
 		case west: { "B_G_Soldier_universal_F" };
 		case east: { "O_G_Soldier_universal_F" };
@@ -28,8 +29,11 @@ if !(_loadout isEqualTo []) exitWith {
 		case civilian: { "C_Man_1" };
 	};
 	private _unit = _group createUnit  [_unitClass, _position, _markers, _placement, _special];
-	_unit setUnitLoadout selectRandom _loadout;
+	_unit setUnitLoadout selectRandom _loadouts;
 	_unit setVariable ["unitType", _type, true];
+	{
+		_unit setUnitTrait _x;
+	} forEach _traits;	
 	_unit
 };
 

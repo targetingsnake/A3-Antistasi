@@ -44,17 +44,28 @@ private _fnc_copyLoadoutData = {
 	_newNamespace
 };
 
-private _loadouts = true call A3A_fnc_createNamespace;
-_dataStore setVariable ["loadouts", _loadouts];
+private _allLoadouts = true call A3A_fnc_createNamespace;
+_dataStore setVariable ["loadouts", _allLoadouts];
 
-private _fnc_saveUnitLoadoutsToTemplate = {
-	params ["_prefix", "_loadoutTemplates", "_loadoutData"];
+private _fnc_saveUnitToTemplate = {
+	params ["_typeName", "_loadouts", ["_traits", []]];
+	private _unitDefinition = [_loadouts, _traits];
+	_allLoadouts setVariable [_typeName, _unitDefinition];
+};
+
+private _fnc_generateAndSaveUnitToTemplate = {
+	params ["_name", "_template", "_loadoutData", ["_traits", []]];
+	private _loadout = [_template, _loadoutData] call A3A_fnc_loadout_builder;
+	[_finalName, [_loadout], _traits] call _fnc_saveUnitToTemplate;
+};
+
+private _fnc_generateAndSaveUnitsToTemplate = {
+	params ["_prefix", "_unitTemplates", "_loadoutData"];
 	{
-		_x params ["_name", "_template"];
+		_x params ["_name", "_template", ["_traits", []]];
 		private _finalName = format ["%1_%2", _prefix, _name];
-		private _loadout = [_template, _loadoutData] call A3A_fnc_loadout_builder;
-		_loadouts setVariable [_finalName, [_loadout]];
-	} forEach _loadoutTemplates;
+		[_finalName, _template, _loadoutData, _traits] call _fnc_generateAndSaveUnitToTemplate;
+	} forEach _unitTemplates;
 };
 
 call compile preprocessFileLineNumbers _file;

@@ -784,7 +784,7 @@ private _unitTypes = [
 	["Sniper", _sniperTemplate]
 ];
 
-[_prefix, _unitTypes, _sfLoadoutData] call _fnc_saveUnitLoadoutsToTemplate;
+[_prefix, _unitTypes, _sfLoadoutData] call _fnc_generateAndSaveUnitsToTemplate;
 
 /*{
 	params ["_name", "_loadoutTemplate"];
@@ -813,7 +813,7 @@ private _unitTypes = [
 	["Sniper", _sniperTemplate]
 ];
 
-[_prefix, _unitTypes, _militaryLoadoutData] call _fnc_saveUnitLoadoutsToTemplate;
+[_prefix, _unitTypes, _militaryLoadoutData] call _fnc_generateAndSaveUnitsToTemplate;
 
 ////////////////////////
 //    Police Units    //
@@ -824,7 +824,7 @@ private _unitTypes = [
 	["Standard", _policeTemplate]
 ];
 
-[_prefix, _unitTypes, _policeLoadoutData] call _fnc_saveUnitLoadoutsToTemplate;
+[_prefix, _unitTypes, _policeLoadoutData] call _fnc_generateAndSaveUnitsToTemplate;
 
 ////////////////////////
 //    Militia Units    //
@@ -835,17 +835,17 @@ private _unitTypes = [
 	["Marksman", _marksmanTemplate]
 ];
 
-[_prefix, _unitTypes, _militiaLoadoutData] call _fnc_saveUnitLoadoutsToTemplate;
+[_prefix, _unitTypes, _militiaLoadoutData] call _fnc_generateAndSaveUnitsToTemplate;
 
 //////////////////////
 //    Misc Units    //
 //////////////////////
 
 //The following lines are determining the loadout of vehicle crew
-["other", [["Crew", _crewTemplate]], _crewLoadoutData] call _fnc_saveUnitLoadoutsToTemplate;
+["other", [["Crew", _crewTemplate]], _crewLoadoutData] call _fnc_generateAndSaveUnitsToTemplate;
 //The following lines are determining the loadout of the pilots
-["other", [["Pilot", _crewTemplate]], _pilotLoadoutData] call _fnc_saveUnitLoadoutsToTemplate;
+["other", [["Pilot", _crewTemplate]], _pilotLoadoutData] call _fnc_generateAndSaveUnitsToTemplate;
 //The following lines are determining the loadout for the unit used in the "kill the official" mission
-["other", [["Official", _policeTemplate]], _militaryLoadoutData] call _fnc_saveUnitLoadoutsToTemplate;
+["other", [["Official", _policeTemplate]], _militaryLoadoutData] call _fnc_generateAndSaveUnitsToTemplate;
 //The following lines are determining the loadout for the AI used in the "kill the traitor" mission
-["other", [["Traitor", _unarmedTemplate]], _militaryLoadoutData] call _fnc_saveUnitLoadoutsToTemplate;
+["other", [["Traitor", _unarmedTemplate]], _militaryLoadoutData] call _fnc_generateAndSaveUnitsToTemplate;

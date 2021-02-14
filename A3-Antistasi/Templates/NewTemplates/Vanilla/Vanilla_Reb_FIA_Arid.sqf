@@ -542,4 +542,4 @@ private _unitTypes = [
 	["Unarmed", _unarmedTemplate]
 ];
 
-[_prefix, _unitTypes, _loadoutData] call _fnc_saveUnitLoadoutsToTemplate;
+[_prefix, _unitTypes, _loadoutData] call _fnc_generateAndSaveUnitsToTemplate;
