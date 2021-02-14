@@ -18,9 +18,9 @@ params ["_file", "_side"];
 
 private _faction = [_file] call A3A_fnc_loadFaction;
 
-private _factionPrefix = 
-	["occ", "inv", "rebel", "civ"] 
-	select 
+private _factionPrefix =
+	["occ", "inv", "rebel", "civ"]
+	select
 	([west, east, independent, civilian] find _side);
 
 missionNamespace setVariable ["faction_" + _factionPrefix, _faction, true];
@@ -227,7 +227,7 @@ if (_side isEqualTo west) then {
 	nameOccupants = _faction getVariable "name";
 
 	//Militia faction (complete with weird mod compat)
-	if ((gameMode != 4) and (!A3A_hasFFAA)) then {factionFIA = ""};
+	if (gameMode != 4) then {factionFIA = ""};
 
 	//Flag images
 	NATOFlag = _faction getVariable "flag";
@@ -254,7 +254,7 @@ if (_side isEqualTo west) then {
 	staticCrewOccupants = "loadouts_occ_military_Rifleman";
 	NATOPilot = "loadouts_occ_other_Pilot";
 
-	if ((gameMode != 4) and (!A3A_hasFFAA)) then {
+	if (gameMode != 4) then {
 		FIARifleman = "loadouts_occ_militia_Rifleman";
 		FIAMarksman = "loadouts_occ_militia_Marksman";
 	};
@@ -311,7 +311,7 @@ if (_side isEqualTo west) then {
 		"loadouts_occ_SF_Medic"
 	];
 
-	if ((gameMode != 4) and (!A3A_hasFFAA)) then {
+	if (gameMode != 4) then {
 		groupsFIASmall = [
 			["loadouts_occ_military_Grenadier", "loadouts_occ_militia_Rifleman"],
 			["loadouts_occ_militia_Marksman", "loadouts_occ_militia_Rifleman"],
@@ -395,7 +395,7 @@ if (_side isEqualTo west) then {
 		+ [vehNATOPlane, vehNATOPlaneAA]
 		+ vehNATOTransportPlanes;
 
-	if ((gameMode != 4) and (!A3A_hasFFAA)) then {
+	if (gameMode != 4) then {
 		vehFIAArmedCar = _faction getVariable "vehiclesMilitiaLightArmed" select 0;
 		vehFIATruck = _faction getVariable "vehiclesMilitiaTrucks" select 0;
 		vehFIACar = _faction getVariable "vehiclesMilitiaCars" select 0;
@@ -428,7 +428,7 @@ if (_side isEqualTo independent) then {
 
 	staticCrewTeamPlayer = "loadouts_rebel_militia_Rifleman";
 	SDKUnarmed = "loadouts_rebel_militia_Unarmed";
-	SDKSniper = ["loadouts_rebel_militia_Unarmed", "loadouts_rebel_militia_unarmed"];
+	SDKSniper = ["loadouts_rebel_militia_sniper", "loadouts_rebel_militia_sniper"];
 	SDKATman = ["loadouts_rebel_militia_lat", "loadouts_rebel_militia_lat"];
 	SDKMedic = ["loadouts_rebel_militia_medic", "loadouts_rebel_militia_medic"];
 	SDKMG = ["loadouts_rebel_militia_MachineGunner", "loadouts_rebel_militia_MachineGunner"];
@@ -455,6 +455,7 @@ if (_side isEqualTo independent) then {
 	vehSDKBike = _faction getVariable "vehicleBasic";
 	vehSDKLightArmed = _faction getVariable "vehicleLightUnarmed";
 	vehSDKAT = _faction getVariable "vehicleAT";
+	vehSDKAA = _faction getVariable "vehicleAA";
 	vehSDKLightUnarmed = _faction getVariable "vehicleLightUnarmed";
 	vehSDKTruck = _faction getVariable "vehicleTruck";
 	vehSDKPlane = _faction getVariable "vehiclePlane";
