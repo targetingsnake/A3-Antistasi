@@ -303,13 +303,13 @@ _militiaLoadoutData setVariable ["vests", ["V_CarrierRigKBT_01_light_Olive_F"]];
 _militiaLoadoutData setVariable ["backpacks", ["B_AssaultPack_eaf_F", "B_AssaultPack_rgr", "B_AssaultPack_sgg"]];
 _militiaLoadoutData setVariable ["helmets", ["H_MilCap_eaf", "H_Cap_oli_hs"]];
 
-_militaryLoadoutData setVariable ["rifles", ["arifle_Mk20_F", "arifle_MSBS65_F"]];
-_militaryLoadoutData setVariable ["carbines", ["arifle_Mk20C_F"]];
-_militaryLoadoutData setVariable ["grenadeLaunchers", ["arifle_Mk20_GL_F", "arifle_MSBS65_GL_F"]];
-_militaryLoadoutData setVariable ["smgs", ["SMG_01_F", "SMG_02_F", "SMG_03_black", "SMG_03C_black"]];
-_militaryLoadoutData setVariable ["machineGuns", ["LMG_Mk200_black_F"]];
-_militaryLoadoutData setVariable ["marksmanRifles", ["arifle_MSBS65_Mark_F", "srifle_EBR_F"]];
-_militaryLoadoutData setVariable ["sidearms", ["hgun_P07_khk_F"]];
+_militiaLoadoutData setVariable ["rifles", ["arifle_Mk20_F", "arifle_MSBS65_F"]];
+_militiaLoadoutData setVariable ["carbines", ["arifle_Mk20C_F"]];
+_militiaLoadoutData setVariable ["grenadeLaunchers", ["arifle_Mk20_GL_F", "arifle_MSBS65_GL_F"]];
+_militiaLoadoutData setVariable ["smgs", ["SMG_01_F", "SMG_02_F", "SMG_03_black", "SMG_03C_black"]];
+_militiaLoadoutData setVariable ["machineGuns", ["LMG_Mk200_black_F"]];
+_militiaLoadoutData setVariable ["marksmanRifles", ["arifle_MSBS65_Mark_F", "srifle_EBR_F"]];
+_militiaLoadoutData setVariable ["sidearms", ["hgun_P07_khk_F"]];
 
 //////////////////////////
 //    Misc Loadouts     //

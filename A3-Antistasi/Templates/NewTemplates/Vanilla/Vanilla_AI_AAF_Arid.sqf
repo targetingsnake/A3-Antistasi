@@ -209,7 +209,7 @@ _sfLoadoutData setVariable ["sniperRifles", [
 ["srifle_GM6_F", "", "", "optic_SOS", [], [], ""],
 ["srifle_GM6_F", "", "", "optic_lrps", [], [], ""]
 ]];
-_militaryLoadoutData setVariable ["sidearms", [
+_sfLoadoutData setVariable ["sidearms", [
 ["hgun_Pistol_heavy_01_F", "muzzle_snds_acp", "acc_flashlight_pistol", "", [], [], ""],
 ["hgun_ACPC2_F", "muzzle_snds_acp", "acc_flashlight_pistol", "", [], [], ""]
 ]];
@@ -286,13 +286,13 @@ _militiaLoadoutData setVariable ["vests", ["V_PlateCarrierIA1_dgtl", "V_TacVest_
 _militiaLoadoutData setVariable ["backpacks", []];		//this line determines backpacks for militia loadouts -- Example: ["B_AssaultPack_mcamo", "B_Kitbag_mcamo"] -- Array, can contain multiple assets
 _militiaLoadoutData setVariable ["helmets", ["H_MilCap_dgtl", "H_HelmetIA"]];		//this line determines helmets for police loadouts -- Example: ["H_HelmetB_camo", "H_HelmetB_desert"] -- Array, can contain multiple assets
 
-_militaryLoadoutData setVariable ["rifles", ["arifle_Mk20_F", "arifle_TRG21_F"]];
-_militaryLoadoutData setVariable ["carbines", ["arifle_Mk20C_F", "arifle_TRG20_F"]];
-_militaryLoadoutData setVariable ["grenadeLaunchers", ["arifle_Mk20_GL_F", "arifle_TRG21_GL_F"]];
-_militaryLoadoutData setVariable ["smgs", ["SMG_01_F", "SMG_02_F", "SMG_03_black", "SMG_03C_black"]];
-_militaryLoadoutData setVariable ["machineGuns", ["LMG_Mk200_F"]];
-_militaryLoadoutData setVariable ["marksmanRifles", ["srifle_EBR_F"]];
-_militaryLoadoutData setVariable ["sidearms", ["hgun_ACPC2_F"]];
+_militiaLoadoutData setVariable ["rifles", ["arifle_Mk20_F", "arifle_TRG21_F"]];
+_militiaLoadoutData setVariable ["carbines", ["arifle_Mk20C_F", "arifle_TRG20_F"]];
+_militiaLoadoutData setVariable ["grenadeLaunchers", ["arifle_Mk20_GL_F", "arifle_TRG21_GL_F"]];
+_militiaLoadoutData setVariable ["smgs", ["SMG_01_F", "SMG_02_F", "SMG_03_black", "SMG_03C_black"]];
+_militiaLoadoutData setVariable ["machineGuns", ["LMG_Mk200_F"]];
+_militiaLoadoutData setVariable ["marksmanRifles", ["srifle_EBR_F"]];
+_militiaLoadoutData setVariable ["sidearms", ["hgun_ACPC2_F"]];
 
 //////////////////////////
 //    Misc Loadouts     //
