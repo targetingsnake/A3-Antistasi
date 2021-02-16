@@ -55,8 +55,11 @@ private _fnc_saveUnitToTemplate = {
 
 private _fnc_generateAndSaveUnitToTemplate = {
 	params ["_name", "_template", "_loadoutData", ["_traits", []]];
-	private _loadout = [_template, _loadoutData] call A3A_fnc_loadout_builder;
-	[_finalName, [_loadout], _traits] call _fnc_saveUnitToTemplate;
+	private _loadouts = [];
+	for "_i" from 1 to 5 do {
+		_loadouts pushBack ([_template, _loadoutData] call A3A_fnc_loadout_builder);
+	};
+	[_name, _loadouts, _traits] call _fnc_saveUnitToTemplate;
 };
 
 private _fnc_generateAndSaveUnitsToTemplate = {
