@@ -836,8 +836,18 @@ private _unitTypes = [
 ////////////////////////
 private _prefix = "militia";
 private _unitTypes = [
+	["SquadLeader", _squadLeaderTemplate],
 	["Rifleman", _riflemanTemplate],
-	["Marksman", _marksmanTemplate]
+	["Medic", _medicTemplate],
+	["Engineer", _engineerTemplate],
+	["ExplosivesExpert", _explosivesExpertTemplate],
+	["Grenadier", _grenadierTemplate],
+	["LAT", _latTemplate],
+	["AT", _atTemplate],
+	["AA", _aaTemplate],
+	["MachineGunner", _machineGunnerTemplate],
+	["Marksman", _marksmanTemplate],
+	["Sniper", _sniperTemplate]
 ];
 
 [_prefix, _unitTypes, _militiaLoadoutData] call _fnc_generateAndSaveUnitsToTemplate;

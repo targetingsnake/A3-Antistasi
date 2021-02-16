@@ -120,20 +120,20 @@ if (_side isEqualTo east) then {
 
 	if (gamemode == 4) then {
 		groupsFIASmall = [
-			["loadouts_inv_military_Grenadier", "loadouts_inv_militia_Rifleman"],
+			["loadouts_inv_militia_Grenadier", "loadouts_inv_militia_Rifleman"],
 			["loadouts_inv_militia_Marksman", "loadouts_inv_militia_Rifleman"],
-			["loadouts_inv_militia_Marksman", "loadouts_inv_military_Grenadier"]
+			["loadouts_inv_militia_Marksman", "loadouts_inv_militia_Grenadier"]
 		];
 		groupsFIAMid = [];
 		for "_i" from 1 to 6 do {
 			groupsFIAMid pushBack [
-				"loadouts_inv_military_SquadLeader",
-				"loadouts_inv_military_Grenadier",
-				"loadouts_inv_military_MachineGunner",
+				"loadouts_inv_militia_SquadLeader",
+				"loadouts_inv_militia_Grenadier",
+				"loadouts_inv_militia_MachineGunner",
 				selectRandomWeighted [
-					"loadouts_inv_military_LAT", 1,
+					"loadouts_inv_militia_LAT", 1,
 					"loadouts_inv_militia_Marksman", 1,
-					"loadouts_inv_military_Engineer", 1
+					"loadouts_inv_militia_Engineer", 1
 				]
 			];
 		};
@@ -141,15 +141,15 @@ if (_side isEqualTo east) then {
 		groupsFIASquad = [];
 		for "_i" from 1 to 5 do {
 			groupsFIASquad pushBack [
-				"loadouts_inv_military_SquadLeader",
-				"loadouts_inv_military_MachineGunner",
-				"loadouts_inv_military_Grenadier",
+				"loadouts_inv_militia_SquadLeader",
+				"loadouts_inv_militia_MachineGunner",
+				"loadouts_inv_militia_Grenadier",
 				"loadouts_inv_militia_Rifleman",
 				selectRandomWeighted ["loadouts_inv_militia_Rifleman", 1, "loadouts_inv_militia_Marksman", 1],
 				selectRandomWeighted ["loadouts_inv_militia_Rifleman", 2, "loadouts_inv_militia_Marksman", 1],
-				selectRandomWeighted ["loadouts_inv_militia_Rifleman", 1, "loadouts_inv_military_ExplosivesExpert", 1],
-				"loadouts_inv_military_LAT",
-				"loadouts_inv_military_Medic"
+				selectRandomWeighted ["loadouts_inv_militia_Rifleman", 1, "loadouts_inv_militia_ExplosivesExpert", 1],
+				"loadouts_inv_militia_LAT",
+				"loadouts_inv_militia_Medic"
 			];
 		};
 
@@ -313,20 +313,20 @@ if (_side isEqualTo west) then {
 
 	if (gameMode != 4) then {
 		groupsFIASmall = [
-			["loadouts_occ_military_Grenadier", "loadouts_occ_militia_Rifleman"],
+			["loadouts_occ_militia_Grenadier", "loadouts_occ_militia_Rifleman"],
 			["loadouts_occ_militia_Marksman", "loadouts_occ_militia_Rifleman"],
-			["loadouts_occ_militia_Marksman", "loadouts_occ_military_Grenadier"]
+			["loadouts_occ_militia_Marksman", "loadouts_occ_militia_Grenadier"]
 		];
 		groupsFIAMid = [];
 		for "_i" from 1 to 6 do {
 			groupsFIAMid pushBack [
-				"loadouts_occ_military_SquadLeader",
-				"loadouts_occ_military_Grenadier",
-				"loadouts_occ_military_MachineGunner",
+				"loadouts_occ_militia_SquadLeader",
+				"loadouts_occ_militia_Grenadier",
+				"loadouts_occ_militia_MachineGunner",
 				selectRandomWeighted [
-					"loadouts_occ_military_LAT", 1,
+					"loadouts_occ_militia_LAT", 1,
 					"loadouts_occ_militia_Marksman", 1,
-					"loadouts_occ_military_Engineer", 1
+					"loadouts_occ_militia_Engineer", 1
 				]
 			];
 		};
@@ -334,15 +334,15 @@ if (_side isEqualTo west) then {
 		groupsFIASquad = [];
 		for "_i" from 1 to 5 do {
 			groupsFIASquad pushBack [
-				"loadouts_occ_military_SquadLeader",
-				"loadouts_occ_military_MachineGunner",
-				"loadouts_occ_military_Grenadier",
+				"loadouts_occ_militia_SquadLeader",
+				"loadouts_occ_militia_MachineGunner",
+				"loadouts_occ_militia_Grenadier",
 				"loadouts_occ_militia_Rifleman",
 				selectRandomWeighted ["loadouts_occ_militia_Rifleman", 1, "loadouts_occ_militia_Marksman", 1],
 				selectRandomWeighted ["loadouts_occ_militia_Rifleman", 2, "loadouts_occ_militia_Marksman", 1],
-				selectRandomWeighted ["loadouts_occ_militia_Rifleman", 1, "loadouts_occ_military_ExplosivesExpert", 1],
-				"loadouts_occ_military_LAT",
-				"loadouts_occ_military_Medic"
+				selectRandomWeighted ["loadouts_occ_militia_Rifleman", 1, "loadouts_occ_militia_ExplosivesExpert", 1],
+				"loadouts_occ_militia_LAT",
+				"loadouts_occ_militia_Medic"
 			];
 		};
 
