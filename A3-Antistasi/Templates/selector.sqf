@@ -309,7 +309,7 @@ switch(true) do{
     };
 };
 
-/* This will be adapted at a later step
+// This will be adapted at a later step
 [2,"Reading Addon mod files.",_fileName] call A3A_fnc_log;
 //Addon pack loading goes here.
 if (A3A_hasIvory) then {
@@ -328,7 +328,6 @@ if (A3A_hasRDS) then {
   call compile preProcessFileLineNumbers "Templates\AddonVics\rds_Civ.sqf";
   [2, "Using Addon RDS Cars Template", _filename] call A3A_fnc_log;
 };
-*/
 
 //Logistics node loading is done here
 [2,"Reading Logistics Node files.",_fileName] call A3A_fnc_log;
