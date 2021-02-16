@@ -97,6 +97,14 @@ private _fnc_addMagazines = {
 	_magazinesToAdd pushBack [_weaponSlot, _quantity];
 };
 
+//We resolve the magazine requests later, in case the loadout templates have weapons added after magazines.
+private _additionalMuzzleMagazinesToAdd = [];
+//Adds magazines to the loadout for the alternate firemode/muzzles of the weapon in given slot (E.g Underslung grenades)
+private _fnc_addAdditionalMuzzleMagazines = {
+	params ["_weaponSlot", "_quantity", ["_filter", { true }]];
+	_additionalMuzzleMagazinesToAdd pushBack [_weaponSlot, _quantity, _filter];
+};
+
 //We resolve these along with the rest of the items later, so we do it all in one call.
 //Much more efficient to insert them all at once.
 private _itemSets = [];
@@ -235,6 +243,31 @@ private _magazineItems = [];
 		};
 	};
 } forEach _magazinesToAdd;
+
+{
+	_x params ["_weaponSlot", "_quantity", "_filter"];
+	diag_log format ["Adding: %1", _x];
+	private _weaponIndex = [0,1,2] select (["primary", "launcher", "handgun"] find (toLower _weaponSlot));
+	private _weaponData = _finalLoadout select _weaponIndex;
+	if !(_weaponData isEqualTo []) then {
+		private _weaponClass = _weaponData select 0;
+		private _validMagsPerMuzzle = 
+			[_weaponClass] call A3A_fnc_loadout_additionalMuzzleMags 
+			apply {_x select {(_x # 0) call _filter}} 
+			select {!(_x isEqualTo [])};
+		diag_log format ["Valid: %1", _validMagsPerMuzzle];
+		if !(_validMagsPerMuzzle isEqualTo []) then {
+			//Default to first - hack to make sure most units start with HE.
+			private _magInfo = _validMagsPerMuzzle select 0 select 0;
+			while {_quantity > 0} do {
+				private _specificAmount = ceil (_quantity / 2);
+				_quantity = _quantity - _specificAmount;
+				_magazineItems pushBack [_magInfo select 0, _specificAmount, _magInfo select 1];
+				_magInfo = selectRandom selectRandom _validMagsPerMuzzle;
+			};
+		};
+	};
+} forEach _additionalMuzzleMagazinesToAdd;
 
 //Now magazines are resolved, we can add all the items.
 //Item batches are added in order, with least important last.

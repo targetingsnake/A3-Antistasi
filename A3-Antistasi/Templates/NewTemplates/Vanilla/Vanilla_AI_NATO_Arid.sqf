@@ -380,7 +380,7 @@ private _squadLeaderTemplate = {
 
 	[["grenadeLaunchers", "rifles"] call _fnc_fallback] call _fnc_setPrimary;
 	["primary", 5] call _fnc_addMagazines;
-	//TODO: How to add underslung grenade mags.
+	["primary", 4] call _fnc_addAdditionalMuzzleMagazines;
 
 	["sidearms"] call _fnc_setHandgun;
 	["handgun", 2] call _fnc_addMagazines;
@@ -461,7 +461,7 @@ private _grenadierTemplate = {
 
 	["grenadeLaunchers"] call _fnc_setPrimary;
 	["primary", 5] call _fnc_addMagazines;
-	//TODO: How to add underslung grenade mags.
+	["primary", 10] call _fnc_addAdditionalMuzzleMagazines;
 
 	["sidearms"] call _fnc_setHandgun;
 	["handgun", 2] call _fnc_addMagazines;
