@@ -679,6 +679,9 @@ DECLARE_SERVER_VAR(vehFIA, _vehFIA);
 private _vehCargoTrucks = (vehTrucks + vehNATOCargoTrucks) select { [_x] call A3A_fnc_logistics_getVehCapacity > 1 };
 DECLARE_SERVER_VAR(vehCargoTrucks, _vehCargoTrucks);
 
+private _vehClassToCrew = call A3A_fnc_initVehClassToCrew;
+DECLARE_SERVER_VAR(A3A_vehClassToCrew,_vehClassToCrew);
+
 ///////////////////////////
 //     MOD TEMPLATES    ///
 ///////////////////////////

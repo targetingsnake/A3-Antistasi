@@ -19,6 +19,7 @@ class A3A
         class initVarCommon {};
         class initVarServer {};
 
+        class initVehClassToCrew {};
         class initZones {};
         class modBlacklist {};
         class playerMarkers {};
@@ -351,8 +352,8 @@ class A3A
         class itemset_medicalSupplies {};
         class itemset_miscEssentials {};
     };
-    
-    class Loadouts 
+
+    class Loadouts
 	{
 		file = "functions\Templates\Loadouts";
 		class loadout_setBackpack {};
