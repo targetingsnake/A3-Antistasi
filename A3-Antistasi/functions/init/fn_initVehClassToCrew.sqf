@@ -45,11 +45,11 @@ private _allVehClassToCrew = [
 // So if "Tank_F" is in both NATOLand and NATOTanks, NATOTanks should be ABOVE NATOLand, as NATOTanks is a specialised child.
 
     [vehFixedWing,[NATOPilot, CSATPilot, staticCrewTeamPlayer, "C_Man_1"]],
-    [vehArmor, [NATOCrew, CSATCrew, staticCrewTeamPlayer, "C_Man_1"]],                  // <- this shit is broken/not following a "standard", it has nested arrays.
+    [flatten vehArmor, [NATOCrew, CSATCrew, staticCrewTeamPlayer, "C_Man_1"]],          // <- vehArmor has nested arrays; therefore, it needs to be flattened.
     [vehHelis, [NATOPilot, CSATPilot, staticCrewTeamPlayer, "C_Man_1"]],
     [vehUAVs, ["B_UAV_AI", "O_UAV_AI", "I_UAV_AI", "C_UAV_AI"]],
     [vehFIA, [FIARifleman, FIARifleman, staticCrewTeamPlayer, "C_Man_1"]],
-    [vehPoliceCar, [policeGrunt, policeGrunt, staticCrewTeamPlayer, "C_Man_1"]]         // <- this shit is broken/not following a "standard", it is a single classname.
+    [[vehPoliceCar], [policeGrunt, policeGrunt, staticCrewTeamPlayer, "C_Man_1"]]       // < vehPoliceCar is a single classname; therefore, it needs to be put into an array.
 ];
 // ⬆ STOP EDITING HERE 👋 THANK YOU, COME AGAIN ⬆
 
