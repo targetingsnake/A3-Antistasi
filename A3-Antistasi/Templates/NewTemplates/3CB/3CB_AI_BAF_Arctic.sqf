@@ -193,6 +193,8 @@ _sfLoadoutData setVariable ["Expbackpacks", ["UK3CB_BAF_B_Bergen_MTP_Sapper_L_A"
 _sfLoadoutData setVariable ["helmets", ["UK3CB_BAF_H_Mk7_Camo_A", "UK3CB_BAF_H_Mk7_Camo_B", "UK3CB_BAF_H_Mk7_Camo_C", "UK3CB_BAF_H_Boonie_MTP",
 "UK3CB_BAF_H_Boonie_MTP_PRR", "UK3CB_BAF_H_Mk7_Camo_ESS_D"]];				//this line determines helmets for special forces -- Example: ["H_HelmetB_camo", "H_HelmetB_desert"] -- Array, can contain multiple assets
 
+_sfLoadoutData setVariable ["binoculars", ["UK3CB_BAF_Soflam_Laserdesignator"]];
+
 _sfLoadoutData setVariable ["rifles", [
 ["UK3CB_BAF_L85A3", "UK3CB_BAF_Silencer_L85", "", "RKSL_optic_LDS", ["UK3CB_BAF_556_30Rnd",30], [], "UK3CB_underbarrel_acc_grippod_t"],
 ["UK3CB_BAF_L85A3", "UK3CB_BAF_Silencer_L85", "", "rhsusf_acc_ACOG_RMR", ["UK3CB_BAF_556_30Rnd",30], [], "UK3CB_underbarrel_acc_grippod_t"],
@@ -537,7 +539,7 @@ private _explosivesExpertTemplate = {
 	["handgun", 2] call _fnc_addMagazines;
 
 	["items_medical_standard"] call _fnc_addItemSet;
-	["items_grenadier_extras"] call _fnc_addItemSet;
+	["items_explosivesExpert_extras"] call _fnc_addItemSet;
 	["items_miscEssentials"] call _fnc_addItemSet;
 
 	["lightExplosives", 2] call _fnc_addItem;
