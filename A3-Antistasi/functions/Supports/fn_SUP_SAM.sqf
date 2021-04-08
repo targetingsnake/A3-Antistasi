@@ -15,8 +15,8 @@ params ["_side", "_timerIndex", "_supportObj", "_supportName"];
     Returns:
         The name of the marker, covering the whole support area
 */
-
-private _fileName = "SUP_SAM";
+#include "..\..\Includes\common.inc"
+FIX_LINE_NUMBERS()
 
 private _supportPos = getPos _supportObj;
 private _spawnPos = [];
@@ -30,7 +30,7 @@ private _availableAirports = airportsX select
 
 if(count _availableAirports == 0) exitWith
 {
-    [2, "No airport suitable to place SAM on it", _fileName] call A3A_fnc_log;
+    Info("No airport suitable to place SAM on it");
     "";
 };
 
@@ -99,7 +99,7 @@ else
 {
     _launcher = ["O_SAM_System_04_F", _spawnPos, 50, 5, true] call A3A_fnc_safeVehicleSpawn;
 };
-createVehicleCrew _launcher;
+[_side, _launcher] call A3A_fnc_createVehicleCrew;
 _launcher setVariable ["side", _side];
 
 _launcher addEventHandler ["Fired",

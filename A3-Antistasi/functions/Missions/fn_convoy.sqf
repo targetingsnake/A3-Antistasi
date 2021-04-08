@@ -1,6 +1,8 @@
 //Mission: Capture/destroy the convoy
 if (!isServer and hasInterface) exitWith {};
 params ["_mrkDest", "_mrkOrigin", ["_convoyType", ""]];
+#include "..\..\Includes\common.inc"
+FIX_LINE_NUMBERS()
 
 private _difficult = if (random 10 < tierWar) then {true} else {false};
 private _sideX = if (sidesX getVariable [_mrkOrigin,sideUnknown] == Occupants) then {Occupants} else {Invaders};
@@ -129,13 +131,13 @@ else
 };
 
 // Shift to nearest nav point so that we don't drive backwards
-_posOrig = [[_posOrig] call A3A_fnc_findNearestNavPoint] call A3A_fnc_getNavPos;
+_posOrig = navGrid select ([_posOrig] call A3A_fnc_getNearestNavPoint) select 0;
 
 private _route = [_posOrig, _posDest] call A3A_fnc_findPath;
-if (_route isEqualTo []) then {
-	_route = [_posOrig, _posDest]
-} else {
-	_route deleteAt 0;		// origin will be doubled
+_route = [_route] call A3A_fnc_trimPath;
+if (_route isEqualTo []) then
+{
+	_route = [_posOrig, _posDest];
 };
 
 private _vecdir = (_route select 0) vectorFromTo (_route select 1);
@@ -157,7 +159,7 @@ private _fnc_spawnConvoyVehicle = {
 	_veh allowDamage false;
 	_veh limitSpeed _speedLimit;
 
-	private _group = createVehicleCrew _veh;
+	private _group = [_sideX, _veh] call A3A_fnc_createVehicleCrew;
 	_group addVehicle _veh;
 	{
 		// probably don't want civilian drivers here, but it's a pain atm
@@ -294,11 +296,7 @@ private _fnc_applyResults =
 	[_adjustCA, _sideX] remoteExec ["A3A_fnc_timingCA", 2];
 	[_adjustBoss, theBoss] call A3A_fnc_playerScoreAdd;
 
-	if (_sideX == Occupants) then {
-		[[_aggroMod, _aggroTime], [0, 0]] remoteExec ["A3A_fnc_prestige", 2]
-	} else {
-		[[0, 0], [_aggroMod, _aggroTime]] remoteExec ["A3A_fnc_prestige", 2]
-	};
+    [_sideX, _aggroMod, _aggroTime] remoteExec["A3A_fnc_addAggression", 2];
 
 	if !(_success1) then {
 		_killZones = killZones getVariable [_mrkOrigin,[]];
@@ -306,8 +304,7 @@ private _fnc_applyResults =
 		killZones setVariable [_mrkOrigin,_killZones,true];
 	};
 
-	private _eventText = format ["Rebels %1 a %2 convoy mission", ["lost", "won"] select _success, _type];
-	[3, _eventText, "aggroEvent"] call A3A_fnc_log;
+    Debug_2("Rebels %1 a %2 convoy mission", ["lost", "won"] select _success, _type);
 };
 
 if (_convoyType == "Ammunition") then
@@ -404,7 +401,7 @@ if (_convoyType == "Reinforcements") then
 		if (sidesX getVariable [_mrkDest,sideUnknown] != teamPlayer) then
 		{
 			_typesX = [];
-			{_typesX pushBack (typeOf _x)} forEach (_reinforcementsX select {alive _x});
+			{_typesX pushBack (_x getVariable "unitType")} forEach (_reinforcementsX select {alive _x});
 			[_typesX,_sideX,_mrkDest,0] remoteExec ["A3A_fnc_garrisonUpdate",2];
 		};
 	};

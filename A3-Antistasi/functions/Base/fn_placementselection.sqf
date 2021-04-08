@@ -1,4 +1,5 @@
-private _fileName = "fn_placementSelection";
+#include "..\..\Includes\common.inc"
+FIX_LINE_NUMBERS()
 scriptName "fn_placementSelection.sqf";
 private _newGame = isNil "placementDone";
 private _disabledPlayerDamage = false;
@@ -117,7 +118,6 @@ if (visiblemap) then {
 		[_positionClicked] remoteExec ["A3A_fnc_createPetros", 2];
 	};
 	[_positionClicked] call A3A_fnc_relocateHQObjects;
-
 	openmap [false,false];
 };
 

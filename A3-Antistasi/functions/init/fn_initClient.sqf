@@ -1,11 +1,12 @@
 #include "..\Garage\defineGarage.inc"
-private _fileName = "initClient.sqf";
+#include "..\..\Includes\common.inc"
+FIX_LINE_NUMBERS()
 
 //Make sure logLevel is always initialised.
 //This should be overridden by the server, as appropriate. Hence the nil check.
 if (isNil "logLevel") then { logLevel = 2 };scriptName "initClient.sqf";
 
-[2,"initClient started",_fileName] call A3A_fnc_log;
+Info("initClient started");
 
 call A3A_fnc_installSchrodingersBuildingFix;
 
@@ -26,7 +27,7 @@ if (!hasInterface) exitWith {
 	call A3A_fnc_initFuncs;
 	call A3A_fnc_initVar;
 	call A3A_fnc_loadNavGrid;
-	[2,format ["Headless client version: %1",localize "STR_antistasi_credits_generic_version_text"],_fileName] call A3A_fnc_log;
+    Info_1("Headless client version: %1",localize "STR_antistasi_credits_generic_version_text");
 	[clientOwner] remoteExec ["A3A_fnc_addHC",2];
 };
 
@@ -40,7 +41,7 @@ if (!isServer) then {
 	waitUntil {!isNil "initParamsDone"};
 	call A3A_fnc_initFuncs;
 	call A3A_fnc_initVar;
-	[2,format ["MP client version: %1",localize "STR_antistasi_credits_generic_version_text"],_fileName] call A3A_fnc_log;
+    Info_1("MP client version: %1",localize "STR_antistasi_credits_generic_version_text");
 }
 else {
 	// SP or hosted, initFuncs/var run in serverInit
@@ -56,12 +57,12 @@ if (isMultiplayer) then {
 	musicON = false;
 	disableUserInput true;
 	cutText ["Waiting for Players and Server Init","BLACK",0];
-	[2,"Waiting for server...",_fileName] call A3A_fnc_log;
+    Info("Waiting for server...");
 	waitUntil {(!isNil "serverInitDone")};
 	cutText ["Starting Mission","BLACK IN",0];
-	[2,"Server loaded!",_fileName] call A3A_fnc_log;
-	[2,format ["JIP client: %1",_isJIP],_fileName] call A3A_fnc_log;
-	if (hasTFAR) then {
+	Info("Server loaded!");
+    Info_1("JIP client: %1",_isJIP);
+	if (A3A_hasTFAR || A3A_hasTFARBeta) then {
 		[] execVM "orgPlayers\radioJam.sqf";
 	};
 	if (!isNil "placementDone") then {_isJip = true};//workaround for BIS fail on JIP detection
@@ -91,7 +92,7 @@ if (isMultiplayer && {playerMarkersEnabled}) then {
 [player] spawn A3A_fnc_initRevive;		// with ACE medical, only used for helmet popping & TK checks
 [] spawn A3A_fnc_outOfBounds;
 
-if (!hasACE) then {
+if (!A3A_hasACE) then {
 	[] spawn A3A_fnc_tags;
 };
 
@@ -99,7 +100,7 @@ if (player getVariable ["pvp",false]) exitWith {
 	lastVehicleSpawned = objNull;
 	[player] call A3A_fnc_pvpCheck;
 	[player] call A3A_fnc_dress;
-	if (hasACE) then {[] call A3A_fnc_ACEpvpReDress};
+	if (A3A_hasACE) then {[] call A3A_fnc_ACEpvpReDress};
 	respawnTeamPlayer setMarkerAlphaLocal 0;
 
 	player addEventHandler ["GetInMan", {_this call A3A_fnc_ejectPvPPlayerIfInvalidVehicle}];
@@ -115,7 +116,7 @@ if (player getVariable ["pvp",false]) exitWith {
 	gameMenu = (findDisplay 46) displayAddEventHandler ["KeyDown", {
 		_handled = FALSE;
 		if (_this select 1 == 207) then {
-			if (!hasACEhearing) then {
+			if (!A3A_hasACEhearing) then {
 				if (soundVolume <= 0.5) then {
 					0.5 fadeSound 1;
 					["Ear Plugs", "You've taken out your ear plugs.", true] call A3A_fnc_customHint;
@@ -343,7 +344,7 @@ if !(isPlayer leader group player) then {
 [] remoteExec ["A3A_fnc_assignBossIfNone", 2];
 
 if (_isJip) then {
-	[2,"Joining In Progress (JIP)",_filename] call A3A_fnc_log;
+    Info("Joining In Progress (JIP)");
 
 	waitUntil {!(isNil "missionsX")};
 	if (count missionsX > 0) then {
@@ -364,7 +365,7 @@ if (_isJip) then {
 }
 else
 {
-	[2,"Not Joining in Progress (JIP)",_filename] call A3A_fnc_log;
+    Info("Not Joining in Progress (JIP)");
 };
 
 [] spawn A3A_fnc_modBlacklist;
@@ -376,12 +377,13 @@ A3A_customHintEnable = true; // Was false in initVarCommon to allow debug progre
 
 if (isServer || player isEqualTo theBoss || (call BIS_fnc_admin) > 0) then {  // Local Host || Commander || Dedicated Admin
 	private _modsAndLoadText = [
-		[hasTFAR,"TFAR","Players will use TFAR radios. Unconscious players' radios will be muted."],
-		[hasACRE,"ACRE","Players will use ACRE radios. Unconscious players' radios will be muted."],
-		[hasACE,"ACE 3","ACE items added to arsenal and ammo-boxes."],
-		[hasACEMedical,"ACE 3 Medical","Default revive system will be disabled"],
+		[A3A_hasTFAR || A3A_hasTFARBeta,"TFAR","Players will use TFAR radios. Unconscious players' radios will be muted."],
+		[A3A_hasACRE,"ACRE","Players will use ACRE radios. Unconscious players' radios will be muted."],
+		[A3A_hasACE,"ACE 3","ACE items added to arsenal and ammo-boxes."],
+		[A3A_hasACEMedical,"ACE 3 Medical","Default revive system will be disabled"],
 		[A3A_hasRHS,"RHS","All factions will be replaced by RHS (AFRF &amp; USAF &amp; GREF)."],
-		[A3A_has3CB,"3CB","All factions will be replaced by 3CB and RHS."],
+		[A3A_has3CBFactions,"3CB Factions","All Factions will be Replaced by 3CB Factions."],
+		[A3A_has3CBBAF,"3CB BAF","Occupant Faction will be Replaced by British Armed forces."],
 		[A3A_hasFFAA,"FFAA","Occupant faction will be replaced by Spanish Armed Forces"],
 		[A3A_hasIvory,"Ivory Cars","Mod cars will be added to civilian car spawns."]
 	] select {_x#0};
@@ -401,10 +403,10 @@ gameMenu = (findDisplay 46) displayAddEventHandler ["KeyDown",A3A_fnc_keys];
 //if ((!isServer) and (isMultiplayer)) then {boxX call jn_fnc_arsenal_init};
 
 
-if (hasACE) then
+if (A3A_hasACE) then
 {
 	if (isNil "ace_interact_menu_fnc_compileMenu" || isNil "ace_interact_menu_fnc_compileMenuSelfAction") exitWith {
-		[1, "ACE non-public functions have changed, rebel group join/leave actions will not be removed", _filename] call A3A_fnc_log;
+        Error("ACE non-public functions have changed, rebel group join/leave actions will not be removed");
 	};
 	// Remove group join action from all rebel unit types
 	// Need to compile the menus first, because ACE delays creating menus until a unit of that class is created
@@ -437,7 +439,7 @@ _flagLight setLightAttenuation [7, 0, 0.5, 0.5];
 vehicleBox allowDamage false;
 vehicleBox addAction ["Heal, Repair and Rearm", A3A_fnc_healAndRepair,nil,0,false,true,"","(isPlayer _this) and (_this == _this getVariable ['owner',objNull]) and (side (group _this) == teamPlayer)", 4];
 vehicleBox addAction ["Vehicle Arsenal", JN_fnc_arsenal_handleAction, [], 0, true, false, "", "alive _target && vehicle _this != _this", 10];
-if (hasACE) then { [vehicleBox, VehicleBox] call ace_common_fnc_claim;};	//Disables ALL Ace Interactions
+if (A3A_hasACE) then { [vehicleBox, VehicleBox] call ace_common_fnc_claim;};	//Disables ALL Ace Interactions
 if (isMultiplayer) then {
 	vehicleBox addAction ["Personal Garage", { [GARAGE_PERSONAL] spawn A3A_fnc_garage },nil,0,false,true,"","(isPlayer _this) and (_this == _this getVariable ['owner',objNull]) and (side (group _this) == teamPlayer)", 4];
 };
@@ -454,7 +456,20 @@ fireX allowDamage false;
 [fireX, "fireX"] call A3A_fnc_flagaction;
 
 mapX allowDamage false;
-mapX addAction ["Game Options", {["Game Options", format ["Antistasi - %2<br/><br/>Version: %1<br/><br/>Difficulty: %3<br/>Unlock Weapon Number: %4<br/>Limited Fast Travel: %5",antistasiVersion,worldName,if (skillMult == 2) then {"Normal"} else {if (skillMult == 1) then {"Easy"} else {"Hard"}},minWeaps,if (limitedFT) then {"Yes"} else {"No"}]] call A3A_fnc_customHint; nul=CreateDialog "game_options";},nil,0,false,true,"","(isPlayer _this) and (_this == _this getVariable ['owner',objNull]) and (side (group _this) == teamPlayer)", 4];
+mapX addAction ["Game Options", {
+	[
+		"Game Options",
+		"Version: "+ antistasiVersion +
+		"<br/><br/>Difficulty: "+ ( ["Easy","Normal","Hard"] select ((skillMult-1) min 2) ) +
+		"<br/>Unlock Weapon Number: "+ str minWeaps +
+		"<br/>Limited Fast Travel: "+ (["No","Yes"] select limitedFT) +
+		"<br/>AI Limit: "+ str maxUnits +
+		"<br/>Spawn Distance: "+ str distanceSPWN + "m" +
+		"<br/>Civilian Limit: "+ str civPerc
+	] call A3A_fnc_customHint;
+	CreateDialog "game_options";
+	nil;
+},nil,0,false,true,"","(isPlayer _this) and (_this == _this getVariable ['owner',objNull]) and (side (group _this) == teamPlayer)", 4];
 mapX addAction ["Map Info", A3A_fnc_cityinfo,nil,0,false,true,"","(isPlayer _this) and (_this == _this getVariable ['owner',objNull]) and (side (group _this) == teamPlayer)", 4];
 mapX addAction ["Move this asset", A3A_fnc_moveHQObject,nil,0,false,true,"","(_this == theBoss)", 4];
 if (isMultiplayer) then {mapX addAction ["AI Load Info", { [] remoteExec ["A3A_fnc_AILoadInfo",2];},nil,0,false,true,"","((_this == theBoss) || (serverCommandAvailable ""#logout""))"]};
@@ -504,7 +519,7 @@ player setPos (getMarkerPos respawnTeamPlayer);
 //Can re-enable them if we find the source of the bug.
 enableEnvironment [false, true];
 
-[2,"initClient completed",_fileName] call A3A_fnc_log;
+Info("initClient completed");
 
 if(!isMultiplayer) then
 {

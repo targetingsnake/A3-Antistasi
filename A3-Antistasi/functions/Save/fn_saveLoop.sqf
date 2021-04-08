@@ -1,11 +1,12 @@
-private _filename = "fn_saveLoop";
+#include "..\..\Includes\common.inc"
+FIX_LINE_NUMBERS()
 if (!isServer) exitWith {
-	[1, "Miscalled server-only function", _filename] call A3A_fnc_log;
+    Error("Miscalled server-only function");
 };
 
 if (savingServer) exitWith {["Save Game", "Server data save is still in progress"] remoteExecCall ["A3A_fnc_customHint",theBoss]};
 savingServer = true;
-[2, "Starting persistent save", _filename] call A3A_fnc_log;
+Info("Starting persistent save");
 ["Persistent Save Starting","Starting persistent save..."] remoteExec ["A3A_fnc_customHint",0,false];
 
 // Set next autosave time, so that we won't run another shortly after a manual save
@@ -34,8 +35,8 @@ if (_saveIndex == -1) then {
 profileNamespace setVariable ["ss_campaignID", campaignID];
 
 // Save persistent global variables defined in initParam
-private _savedParams = paramTable apply { [_x#0, missionNameSpace getVariable _x#0] };
-[3, format ["Saving params: %1", _savedParams], _filename] call A3A_fnc_log;
+private _savedParams = A3A_paramTable apply { [_x#0, missionNameSpace getVariable _x#0] };
+Debug_1("Saving params: %1", _savedParams);
 ["params", _savedParams] call A3A_fnc_setStatVariable;
 
 private ["_garrison"];
@@ -80,7 +81,7 @@ _vehInGarage = _vehInGarage + vehInGarage;
 	if ((_friendX getVariable ["spawner",false]) and (side group _friendX == teamPlayer))then {
 		if ((alive _friendX) and (!isPlayer _friendX)) then {
 			if (((isPlayer leader _friendX) and (!isMultiplayer)) or (group _friendX in (hcAllGroups theBoss)) and (not((group _friendX) getVariable ["esNATO",false]))) then {
-				_resourcesBackground = _resourcesBackground + (server getVariable [(typeOf _friendX),0]);
+				_resourcesBackground = _resourcesBackground + (server getVariable [(_friendX getVariable "unitType"),0]);
 				_backpck = backpack _friendX;
 				if (_backpck != "") then {
 					switch (_backpck) do {
@@ -246,4 +247,4 @@ saveProfileNamespace;
 savingServer = false;
 _saveHintText = ["<t size='1.5'>",nameTeamPlayer," Assets:<br/><t color='#f0d498'>HR: ",str _hrBackground,"<br/>Money: ",str _resourcesBackground," €</t></t><br/><br/>Further infomation is provided in <t color='#f0d498'>Map Screen > Game Options > Persistent Save-game</t>."] joinString "";
 ["Persistent Save Completed",_saveHintText] remoteExec ["A3A_fnc_customHint",0,false];
-[2, "Persistent Save Completed", _filename] call A3A_fnc_log;
+Info("Persistent Save Completed");

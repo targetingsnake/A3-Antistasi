@@ -25,7 +25,7 @@ if (count _typesVeh > 0) then
 	{
 	_typeVehX = selectRandom _typesVeh;
 	//_pos = [_positionX, distanceSPWN * 3, random 360] call BIS_Fnc_relPos;
-	_vehicle=[_posOrigin, 0, _typeVehX, _sideX] call bis_fnc_spawnvehicle;
+	_vehicle=[_posOrigin, 0, _typeVehX, _sideX] call A3A_fnc_spawnVehicle;
 	_heli = _vehicle select 0;
 	_heliCrew = _vehicle select 1;
 	_groupHeli = _vehicle select 2;
@@ -47,7 +47,7 @@ for "_i" from 0 to (round random 2) do
 	{
 	_typeVehX = selectRandom _typesVeh;
 	//_pos = [_positionX, distanceSPWN * 3, random 360] call BIS_Fnc_relPos;
-	_vehicle=[_posOrigin, 0, _typeVehX, _sideX] call bis_fnc_spawnvehicle;
+	_vehicle=[_posOrigin, 0, _typeVehX, _sideX] call A3A_fnc_spawnVehicle;
 	_heli = _vehicle select 0;
 	_heliCrew = _vehicle select 1;
 	_groupHeli = _vehicle select 2;
@@ -61,7 +61,7 @@ for "_i" from 0 to (round random 2) do
 	_groups pushBack _groupX;
 	//[_heli,"Air Transport"] spawn A3A_fnc_inmuneConvoy;
 	if (_typeVehX isKindOf "Plane") then {
-		[_heli,_groupX,_positionX,_posOrigin] spawn A3A_fnc_airdrop;
+		[_heli,_groupX,_positionX,_posOrigin] spawn A3A_fnc_paradrop;
 	} else {
 		[_heli,_groupX,_positionX,_posOrigin,_groupHeli] spawn A3A_fnc_fastrope;
 	};
@@ -90,11 +90,13 @@ else
 		["DEF_HQ1",[format ["We know %2 HQ coordinates. We have sent a SpecOp Squad in order to kill his leader %1. Help the SpecOp team",name petros,nameTeamPlayer],format ["Kill %1",name petros],respawnTeamPlayer],_positionX,"FAILED"] call A3A_fnc_taskUpdate;
         if(_sideX == Occupants) then
         {
-            [[10, 60], [5, 60]] remoteExec ["A3A_fnc_prestige",2];
+            [Occupants, 10, 60] remoteExec ["A3A_fnc_addAggression",2];
+            [Invaders, 5, 60] remoteExec ["A3A_fnc_addAggression",2];
         }
         else
         {
-            [[5, 60], [10, 60]] remoteExec ["A3A_fnc_prestige",2];
+            [Occupants, 5, 60] remoteExec ["A3A_fnc_addAggression",2];
+            [Invaders, 10, 60] remoteExec ["A3A_fnc_addAggression",2];
         };
 		[0,300] remoteExec ["A3A_fnc_resourcesFIA",2];
 		//[-5,5,_positionX] remoteExec ["A3A_fnc_citySupportChange",2];
