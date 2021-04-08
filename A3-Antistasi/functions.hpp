@@ -277,6 +277,7 @@ class A3A
         class createDialog_setParams {};
         class createDialog_shouldLoadPersonalSave {};
         class dialogHQ {};
+        class dismantleUI {};
         class fastTravelRadio {};
         class HQGameOptions {};
         class loadPreviousSession {};

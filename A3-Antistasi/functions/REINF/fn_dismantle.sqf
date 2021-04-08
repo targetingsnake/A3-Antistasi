@@ -15,6 +15,8 @@ Return Value:
 Scope: Any, Global Arguments, Global Effect
 Environment: Scheduled
 Public: No
+Dependancies:
+    <HASHMAP< <STRING>ClassName, <<SCALAR>Time,<SCALAR>Cost>> > A3A_dismantle_structureTimeCostHM (Initialised in A3-Antistasi\functions\REINF\fn_dismantle.sqf)
 
 Example:
     [cursorObject, player, 0.5, 1] spawn A3A_fnc_dismantle;
@@ -26,22 +28,6 @@ params [
     ["_worker",objNull,[ objNull ]],
     ["_timeMultiplier",1,[ 1 ]],
     ["_costReturnMultiplier",0,[ 0 ]]
-];
-
-private _structureTimeCostTable = [
-    ["Land_GarbageWashingMachine_F",60,0],
-    ["Land_JunkPile_F",60,0],
-    ["Land_Barricade_01_4m_F",60,0],
-    ["Land_WoodPile_F",60,0],
-    ["CraterLong_small",60,0],
-    ["Land_Barricade_01_10m_F",60,0],
-    ["Land_WoodPile_large_F",60,0],
-    ["Land_BagFence_01_long_green_F",60,0],
-    ["Land_SandbagBarricade_01_half_F",60,0],
-    ["Land_Tyres_F",100,0],
-    ["Land_TimberPile_01_F",100,0],
-    ["Land_BagBunker_01_small_green_F",60,100],
-    ["Land_PillboxBunker_01_big_F",120,300]
 ];
 
 if (isNull _structure) exitWith {
@@ -98,15 +84,9 @@ if (_useWorker) then {
     };
 };
 
-private _index = _structureTimeCostTable findIf {_x#0 == _classname};
-private _structureTime = 60;
-private _structureCost = 0;
-if (_index != -1) then {
-    _structureTime = _structureTimeCostTable #_index #1;
-    _structureCost = _structureTimeCostTable #_index #2;
-};
-_structureTime = (_structureTime * _timeMultiplier) max 0.1;
-_structureCost = _structureCost * _costReturnMultiplier;
+private _structureTimeCost = A3A_dismantle_structureTimeCostHM getOrDefault [_classname,[60,0]];
+private _structureTime = (_structureTimeCost#0 * _timeMultiplier) max 0.1;
+private _structureCost = _structureTimeCost#1 * _costReturnMultiplier;
 
 private _timeOut = serverTime + _structureTime;
 private _animation_cancellationToken = [false];
