@@ -21,7 +21,7 @@ FIX_LINE_NUMBERS()
 private _hintTitle = "Dismantle Info";
 
 private _isAuthoriser = player == theBoss || admin owner player > 0;
-if !(_isAuthoriser || player getVariable ["allowedDeconstruct",""] isEqualTo getPlayerUID player) exitWith {
+if !(_isAuthoriser || player getVariable ["allowedToDeconstruct",""] isEqualTo getPlayerUID player) exitWith {
     [_hintTitle, "You need to get deconstruction ability from a commander or admin."] call A3A_fnc_customHint;
     nil;
 };
@@ -43,8 +43,8 @@ if (isNil {A3A_dismantle_structureTimeCostHM}) then {
         ["Land_PillboxBunker_01_big_F",[120,300]]
     ];
 };
-if (isNil {A3A_dismantle_cubeEdges}) then {
-    A3A_dismantle_cubeEdges = [
+if (isNil {A3A_dismantleUI_cubeEdges}) then {
+    A3A_dismantleUI_cubeEdges = [
         [[0,0,0],[1,0,0]],
         [[0,0,0],[0,1,0]],
         [[0,0,0],[0,0,1]],
@@ -75,37 +75,30 @@ addMissionEventHandler [
         };
         private _structure = cursorObject;
         if (_structure != _lastStructure) then {
-            if (isNull _structure) exitWith {_drawData resize 0};
-            if (_thisArgs#0#1 && isPlayer _structure) then { // Give deconstruction permission
+            _drawData resize 0;
+            if (isNull _structure) exitWith {};
+            if (_isAuthoriser && isPlayer _structure) exitWith { // Give deconstruction permission
                 _drawData pushBack "icon";
             };
             private _className = typeOf _structure;
-            if !(_className in A3A_dismantle_structureTimeCostHM) exitWith {_drawData resize 0};
+            //if !(_className in A3A_dismantle_structureTimeCostHM) exitWith {};
             _drawData pushBack "frame";
 
-            private _boundingBox = 0 boundingBoxReal _structure select [0,2];
-            private _positionAGLS = getPos _structure;
-            _boundingBox set [0, _boundingBox#0 vectorAdd _positionAGLS];
-            _boundingBox set [1, _boundingBox#1 vectorAdd _positionAGLS];
-            private _boundingBoxMix = [];
-            for "_i" from 0 to 2 do {
-                _boundingBoxMix pushBack [_boundingBox#0#_i,_boundingBox#1#_i];
-            };
-
-            _drawData = [
-                "frame",
-                A3A_dismantle_cubeEdges apply {
-                    _x apply { [_boundingBoxMix#0#(_x#0),_boundingBoxMix#1#(_x#1),_boundingBoxMix#2#(_x#2)] };
+            private _boundingBoxMix = matrixTranspose (0 boundingBoxReal _structure select [0,2]);
+            _drawData pushBack (
+                A3A_dismantleUI_cubeEdges apply {
+                    _x apply { _structure modelToWorldVisual [_boundingBoxMix#0#(_x#0),_boundingBoxMix#1#(_x#1),_boundingBoxMix#2#(_x#2)] };
                 }
-            ];
+            );
         };
+        _thisArgs set [2,_structure]; // _lastStructure
         if (count _drawData == 0) exitWith {};
         if (_drawData#0 isEqualTo "icon") exitWith {
             drawIcon3D ["\a3\ui_f\data\IGUI\Cfg\holdactions\holdAction_search_ca.paa", [1,1,1,1], getPos _structure, 1,1,0,"Grant Deconstruction Ability", 0, 0.05, "PuristaMedium"];
         };
-        private _brightOrange = [0.98,0.57,0.12,1];     // #fc911e // Is outside forEach to avoid 11 more allocations.
+        private _brightOrange = [1,1,0,1]; //[0.98,0.57,0.12,1]; // #fc911e // Is outside forEach to avoid 11 more allocations.
         {
-            drawLine3D [_x#0, _x#1, _brightOrange];
+            drawLine3D [ _x#0, _x#1, _brightOrange];
         } forEach (_drawData#1);
 
     }/*,    // Uncomment when Arma 2.04 drops
