@@ -55,7 +55,7 @@ if (side (group _killer) == teamPlayer) then
         ] call A3A_fnc_log;
 		if (_victimSide == Occupants) then
 		{
-			[0,-2,getPos _victim] remoteExec ["A3A_fnc_citySupportChange",2];
+			//[0,-2,getPos _victim] remoteExec ["A3A_fnc_citySupportChange",2];
 			[[20, 30], [0, 0]] remoteExec ["A3A_fnc_prestige",2];
 		}
 		else
@@ -65,7 +65,7 @@ if (side (group _killer) == teamPlayer) then
 	}
 	else
 	{
-		[-1,1,getPos _victim] remoteExec ["A3A_fnc_citySupportChange",2];
+		//[-1,1,getPos _victim] remoteExec ["A3A_fnc_citySupportChange",2];
 		if (_victimSide == Occupants) then
 		{
 			[[0.5, 45], [0, 0]] remoteExec ["A3A_fnc_prestige",2];
@@ -80,11 +80,11 @@ else
 {
 	if (_victimSide == Occupants) then
 	{
-		[-0.25,0,getPos _victim] remoteExec ["A3A_fnc_citySupportChange",2];
+		//[-0.25,0,getPos _victim] remoteExec ["A3A_fnc_citySupportChange",2];
 	}
 	else
 	{
-		[0.25,0,getPos _victim] remoteExec ["A3A_fnc_citySupportChange",2];
+		//[0.25,0,getPos _victim] remoteExec ["A3A_fnc_citySupportChange",2];
 	};
 };
 

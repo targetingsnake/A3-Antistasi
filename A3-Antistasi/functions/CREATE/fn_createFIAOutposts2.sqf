@@ -63,7 +63,7 @@ if ({alive _x} count units _groupX == 0) then
 	outpostsFIA = outpostsFIA - [_markerX]; publicVariable "outpostsFIA";
 	markersX = markersX - [_markerX]; publicVariable "markersX";
 	sidesX setVariable [_markerX,nil,true];
-	_nul = [5,-5,_positionX] remoteExec ["A3A_fnc_citySupportChange",2];
+	//_nul = [5,-5,_positionX] remoteExec ["A3A_fnc_citySupportChange",2];
 	deleteMarker _markerX;
 	if (_isRoad) then
 		{

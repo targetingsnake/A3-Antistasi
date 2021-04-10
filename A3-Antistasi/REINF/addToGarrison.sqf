@@ -134,7 +134,7 @@ else
 				{
 				if (side _killer == Occupants) then
 					{
-					_nul = [0.25,0,getPos _victim] remoteExec ["A3A_fnc_citySupportChange",2];
+					//_nul = [0.25,0,getPos _victim] remoteExec ["A3A_fnc_citySupportChange",2];
 					[[-1, 30], [0, 0]] remoteExec ["A3A_fnc_prestige",2];
 					}
 				else

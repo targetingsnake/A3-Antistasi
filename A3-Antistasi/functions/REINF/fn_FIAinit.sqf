@@ -40,7 +40,7 @@ if (player == leader _unit) then {
 		_killer = _this select 1;
 		if !(A3A_hasIFA) then {arrayids pushBackUnique (name _victim)};
 		if (side _killer == Occupants) then {
-			_nul = [0.25,0,getPos _victim] remoteExec ["A3A_fnc_citySupportChange",2];
+			//_nul = [0.25,0,getPos _victim] remoteExec ["A3A_fnc_citySupportChange",2];
 			[[-1, 30], [0, 0]] remoteExec ["A3A_fnc_prestige",2];
 		} else {
 			if (side _killer == Invaders) then {
@@ -91,7 +91,7 @@ if (player == leader _unit) then {
 			};
 		} else {
 			if (side _killer == Occupants) then {
-				_nul = [0.25,0,getPos _victim] remoteExec ["A3A_fnc_citySupportChange",2];
+				//_nul = [0.25,0,getPos _victim] remoteExec ["A3A_fnc_citySupportChange",2];
 				[[-1, 30], [0, 0]] remoteExec ["A3A_fnc_prestige",2];
 			} else {
 				if (side _killer == Invaders) then {

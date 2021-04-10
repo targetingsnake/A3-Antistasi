@@ -57,7 +57,7 @@ _EHkilledIdx = _unit addEventHandler ["killed", {
 		};
 	if (side _killer == Occupants) then
 	{
-		[0,-0.25,getPos _victim] remoteExec ["A3A_fnc_citySupportChange",2];
+		//[0,-0.25,getPos _victim] remoteExec ["A3A_fnc_citySupportChange",2];
 		[[-1, 30], [0, 0]] remoteExec ["A3A_fnc_prestige",2];
 	}
 	else

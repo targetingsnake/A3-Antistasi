@@ -37,7 +37,7 @@ if (_side == Occupants or _side == Invaders) then
 	};
 
 	if (_side == Occupants) then {
-		[-_value/3, _value/3, position _veh] remoteExec ["A3A_fnc_citySupportChange", 2];
+		//[-_value/3, _value/3, position _veh] remoteExec ["A3A_fnc_citySupportChange", 2];
 		[[_value, 45], [0, 0]] remoteExec ["A3A_fnc_prestige", 2];
 	}
 	else {
@@ -51,7 +51,7 @@ if (_side == civilian) then
 
 	// Punish players slightly for stealing cars. Code used to be in vehDespawner.
 	private _pos = position _veh;
-	[0, -1, _pos] remoteExec ["A3A_fnc_citySupportChange", 2];
+	//[0, -1, _pos] remoteExec ["A3A_fnc_citySupportChange", 2];
 
 	private _city = [citiesX, _pos] call BIS_fnc_nearestPosition;
 	private _dataX = server getVariable _city;
