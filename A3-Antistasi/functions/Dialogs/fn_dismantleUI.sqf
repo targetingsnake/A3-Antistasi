@@ -20,11 +20,13 @@ FIX_LINE_NUMBERS()
 
 private _hintTitle = "Dismantle Info";
 
-private _isAuthoriser = player == theBoss || admin owner player > 0;
-if !(_isAuthoriser || player getVariable ["allowedToDeconstruct",""] isEqualTo getPlayerUID player) exitWith {
-    [_hintTitle, "You need to get deconstruction ability from a commander or admin."] call A3A_fnc_customHint;
+private _canGiveAbility = player == theBoss || admin owner player > 0;
+if !(_canGiveAbility || player getVariable ["allowedToDeconstruct",""] isEqualTo getPlayerUID player) exitWith {
+    [_hintTitle, "You need to get dismantle ability from a commander or admin."] call A3A_fnc_customHint;
     nil;
 };
+if (!isNil {A3A_dismantleUI_isActive}) exitWith {};
+A3A_dismantleUI_isActive = true;
 
 if (isNil {A3A_dismantle_structureTimeCostHM}) then {
     A3A_dismantle_structureTimeCostHM = createHashMapFromArray [
@@ -63,53 +65,124 @@ if (isNil {A3A_dismantleUI_cubeEdges}) then {
     ];
 };
 
-private _highlight_cancellationToken = [false];
-A3A_dismantleUI_highlight_args = [_highlight_cancellationToken,_isAuthoriser,objNull,[]]; // Delete when Arma 2.04 drops
+private _actionID = player addAction [
+    "<t font='PuristaMedium' color='#ff4040' shadow='2' size='2'><img image='\a3\ui_f\data\IGUI\Cfg\Actions\ico_OFF_ca.paa'/><br/>Exit Dismantle</t>",
+    {
+        scriptName "fn_dismantleUI.sqf:addAction";
+        _this params ["_target", "_caller", "_actionId", "_arguments"];
+        _arguments params ["_canGiveAbility"];
+        private _structure = cursorObject;
+
+        private _fnc_exit = {
+            A3A_dismantleUI_highlight_args = nil;
+            player removeAction _actionId;
+            A3A_dismantleUI_isActive = nil;
+        };
+
+        if (isNull _structure) exitWith _fnc_exit;
+        if (netId _structure isEqualTo "1:0") exitWith {};// If it is an held weapon or other decal.
+        if (_canGiveAbility && isPlayer _structure) exitWith { // Grant/Revoke deconstruction permission
+            private _UID = getPlayerUID _structure;
+            private _doesTargetHaveAbility = _structure getVariable ["allowedToDeconstruct",""] isEqualTo _UID;
+            _structure setVariable ["allowedToDeconstruct",[_UID,nil] select _doesTargetHaveAbility];   // Toggles ability
+        };
+        if (typeOf _structure in A3A_dismantle_structureTimeCostHM) exitWith {
+            private _worker = player;
+            if (count groupSelectedUnits player > 0) then {
+                _worker = groupSelectedUnits player #0;
+            };
+            private _workerCantWorkReason = [
+                [!([_worker] call A3A_fnc_canFight),"Unit cannot perform rebel activities."],
+                [(_worker getVariable ["helping",false]),"Helping someone."],
+                [(_worker getVariable ["rearming",false]),"Rearming."],
+                [(_worker getVariable ["constructing",false]),"performing construction."]
+            ] select {_x#0} apply {_x#1} joinString "<br/>";
+            if (count _workerCantWorkReason > 0) exitWith {
+                ["Dismantle Info","Unit is busy:<br/>" + _workerCantWorkReason] call A3A_fnc_customHint;
+            };
+            //_worker setVariable ["constructing",true];
+
+            private _isEngineer = _worker getUnitTrait "engineer";
+            private _timeMultiplier = [0.75,0.25] select _isEngineer;
+            private _costReturnMultiplier = [0.05,0.25] select _isEngineer;
+
+            if (_worker == player) then {   // Since the player will proceed to dismantle.
+                //call _fnc_exit;
+                [_structure, _timeMultiplier, _costReturnMultiplier] spawn A3A_fnc_dismantle;
+                //[] spawn A3A_fnc_dismantleUI;   // Reopen UI after exit, makes it seems asif it never closed!
+            } else {
+                [_structure, _timeMultiplier, _costReturnMultiplier] remoteExec ["A3A_fnc_dismantle",_worker];
+            };
+
+
+        };
+    },
+    [_canGiveAbility],
+    69,
+    true,
+    false
+];
+
+A3A_dismantleUI_highlight_args = [_canGiveAbility,[objNull],[],_actionID]; // Delete when Arma 2.04 drops
 addMissionEventHandler [
     "Draw3D",
     {
+        scriptName "fn_dismantleUI.sqf:Draw3D";
         private _thisArgs = A3A_dismantleUI_highlight_args;      // Delete when Arma 2.04 drops
-        _thisArgs params ["_highlight_cancellationToken","_isAuthoriser","_lastStructure","_drawData"];
-        if (_highlight_cancellationToken#0) exitWith {
+        _thisArgs params ["_canGiveAbility","_lastStructure","_drawData","_actionID"];
+
+        if (isNil{A3A_dismantleUI_isActive}) exitWith {
             removeMissionEventHandler ["Draw3D", _thisEventHandler];
         };
         private _structure = cursorObject;
-        if (_structure != _lastStructure) then {
+        if (_structure != _lastStructure#0) then {
             _drawData resize 0;
-            if (isNull _structure) exitWith {};
-            if (_isAuthoriser && isPlayer _structure) exitWith { // Give deconstruction permission
-                _drawData pushBack "icon";
+            player setUserActionText [_actionID, "Exit Dismantle", "<t font='PuristaMedium' color='#ff4040' shadow='2' size='2'><img image='\a3\ui_f\data\IGUI\Cfg\Actions\ico_OFF_ca.paa'/><br/>Exit Dismantle</t>"];
+            if (isNull _structure || {_structure distance player > 50}) exitWith {};
+            if (netId _structure isEqualTo "1:0") exitWith {};// If it is an held weapon or other decal.
+            if (_canGiveAbility && isPlayer _structure || _structure isKindOf "CAManBase") exitWith { // Grant/Revoke deconstruction permission
+                private _operationMode = "";
+                if (_structure getVariable ["allowedToDeconstruct",""] isEqualTo getPlayerUID _structure) then {
+                    _operationMode = "revoke";
+                    player setUserActionText [_actionID, "Revoke Dismantle Ability", "<t font='PuristaMedium' color='#ff4040' shadow='2' size='2'><img image='\a3\ui_f\data\IGUI\Cfg\HoldActions\holdAction_passLeadership_ca.paa'/><br/>Revoke Dismantle Ability</t>"];
+                } else {
+                    _operationMode = "grant";
+                    player setUserActionText [_actionID, "Grant Dismantle Ability", "<t font='PuristaMedium' color='#99ff99' shadow='2' size='2'><img image='\a3\ui_f\data\IGUI\Cfg\HoldActions\holdAction_requestLeadership_ca.paa'/><br/>Grant Dismantle Ability</t>"];
+                };
+                private _boundingBox = 0 boundingBoxReal _structure;
+                private _iconPos = (_structure modelToWorld [0,0,_boundingBox#1#2 * 0.75]);  // Chest position of soldier
+                _drawData append [_operationMode,_iconPos];
             };
-            private _className = typeOf _structure;
-            //if !(_className in A3A_dismantle_structureTimeCostHM) exitWith {};
-            _drawData pushBack "frame";
-
-            private _boundingBoxMix = matrixTranspose (0 boundingBoxReal _structure select [0,2]);
-            _drawData pushBack (
-                A3A_dismantleUI_cubeEdges apply {
+            if (typeOf _structure in A3A_dismantle_structureTimeCostHM) exitWith {
+                private _operationMode = "deconstruct";
+                private _boundingBoxMix = matrixTranspose (0 boundingBoxReal _structure select [0,2]);
+                private _cubeEdges = A3A_dismantleUI_cubeEdges apply {
                     _x apply { _structure modelToWorldVisual [_boundingBoxMix#0#(_x#0),_boundingBoxMix#1#(_x#1),_boundingBoxMix#2#(_x#2)] };
-                }
-            );
+                };
+                private _structurePosAGLS = getPos _structure;
+                private _iconPos = [_structurePosAGLS#0,_structurePosAGLS#1,1.72];  // 1.72 is eye height for most humans (Sorry Netherlanders, you gonna have to crook your neck)
+                private _iconText = ["Dismantle","Order Unit to Dismantle"] select (count groupSelectedUnits player > 0);
+                player setUserActionText [_actionID, _iconText, "<t font='PuristaMedium' color='#fc911e' shadow='2' size='2'><img image='\a3\ui_f_oldman\Data\IGUI\Cfg\HoldActions\holdAction_market_ca.paa'/><br/>"+_iconText+"</t>"];
+                _drawData append [_operationMode,_cubeEdges,_iconPos];
+            };
+
+
         };
-        _thisArgs set [2,_structure]; // _lastStructure
+        _lastStructure set [0,_structure];
         if (count _drawData == 0) exitWith {};
-        if (_drawData#0 isEqualTo "icon") exitWith {
-            drawIcon3D ["\a3\ui_f\data\IGUI\Cfg\holdactions\holdAction_search_ca.paa", [1,1,1,1], getPos _structure, 1,1,0,"Grant Deconstruction Ability", 0, 0.05, "PuristaMedium"];
+        switch (_drawData#0) do {
+            case "grant": { drawIcon3D ["\a3\ui_f\data\IGUI\Cfg\HoldActions\holdAction_requestLeadership_ca.paa", [0.26,1,0.26,1], _drawData#1, 1,1,0,"", 2, 0.05, "PuristaMedium"]; };
+            case "revoke": { drawIcon3D ["\a3\ui_f\data\IGUI\Cfg\HoldActions\holdAction_passLeadership_ca.paa", [1,0.25,0.25,1], _drawData#1, 1,1,0,"", 2, 0.05, "PuristaMedium"]; };
+            case "deconstruct": {
+                drawIcon3D ["\a3\ui_f_oldman\Data\IGUI\Cfg\HoldActions\holdAction_market_ca.paa", [0.98,0.57,0.12,1], _drawData#2, 1,1,0,"" , 2, 0.05, "PuristaMedium"]; // #fc911e
+                private _brightOrange = [1,1,0,1]; //[0.98,0.57,0.12,1]; // #fc911e // Is outside forEach to avoid 11 more allocations.
+                {
+                    drawLine3D [ _x#0, _x#1, _brightOrange];
+                } forEach (_drawData#1);
+            };
         };
-        private _brightOrange = [1,1,0,1]; //[0.98,0.57,0.12,1]; // #fc911e // Is outside forEach to avoid 11 more allocations.
-        {
-            drawLine3D [ _x#0, _x#1, _brightOrange];
-        } forEach (_drawData#1);
 
     }/*,    // Uncomment when Arma 2.04 drops
-    [_highlight_cancellationToken,_isAuthoriser,objNull,[]]*/
+    [_canGiveAbility,objNull,[],_actionID]*/
 ];
-
-private _timeOut = serverTime + 30;
-waitUntil {
-    sleep 1;
-    (serverTime > _timeOut);
-};
-_highlight_cancellationToken set [0,true];
-
 nil;

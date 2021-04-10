@@ -540,6 +540,7 @@ class A3A
         class buildCreateVehicleCallback {};
         class buildMinefield {};
         class dismantle {};
+        class dismantleAuto {};
         class enemyNearCheck {};
         class equipRebel {};
         class FIAinit {};
