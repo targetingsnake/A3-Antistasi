@@ -52,14 +52,16 @@ private _roughHeight = -(_boundingBox#0#2) + _boundingBox#1#2;
 private _dismantleRadius = (_boundingBox#2)/2 + 3; // The3 meters is allocated for unit movement.
 
 private _structureTimeCost = A3A_dismantle_structureTimeCostHM getOrDefault [_classname,[60,0]];
-private _structureTime = (_structureTimeCost#0 * _timeMultiplier) max 0.1;
-private _structureCost = _structureTimeCost#1 * _costReturnMultiplier;
+private _structureTime = ceil (_structureTimeCost#0 * _timeMultiplier);
+private _structureCost = ceil (_structureTimeCost#1 * _costReturnMultiplier);
 
 private _sharedDataMap = createHashMapFromArray [
     ["_actionID",-1],
     ["_complete",false],
     ["_damageState",true],
+    ["_dismantleRadius",_dismantleRadius],
     ["_holdActionID",-1],
+    ["_idleHintText",""],
     ["_roughHeight",_roughHeight],
     ["_nextSetPosTime",-1],
     ["_simulationState",true],
@@ -75,7 +77,7 @@ if (isNil {A3A_dismantle_holdAction_IDs}) then {
     A3A_dismantle_holdAction_IDs = createHashMap;
 };
 if (isNil {A3A_dismantle_holdAction_inProgress}) then {
-    A3A_dismantle_holdAction_inProgress = "";
+    A3A_dismantle_holdAction_inProgress = false;
 };
 
 if (isNil {A3A_dismantle_Draw3D_online}) then {
@@ -116,19 +118,82 @@ if (isNil {A3A_dismantle_Draw3D_online}) then {
         }
     ];
 };
+/*
+// The output text of these functions will be parsed as structured text for the icon. However, there are private variables that we can fiddle with.
+_iconIdle bis_fnc_holdAction_showIcon: (current scope)
+    _target, _actionID, _title, _icon, _texSet, TEXTURES_PROGRESS (compiles to bis_fnc_holdAction_texturesProgress), _frame, _hint
+*/
+/* For _iconIdle
+bis_fnc_holdAction_animationTimerCode: (1 scope up)
+    _eval, bis_fnc_holdAction_animationIdleTime, bis_fnc_holdAction_animationIdleFrame, bis_fnc_holdAction_running
+*/
+
+//preprocess data
+if (isnil {A3A_dismantle_idleHintText}) then {
+    private _keyNameRaw = actionKeysNames ["Action",1,"Keyboard"];
+    private _keyName = _keyNameRaw select [1,count _keyNameRaw - 2];
+    private _buttonHint = format[localize "STR_A3_HoldKeyTo","<t color='#fc911e'>"+_keyName+"</t>","Dismantle"];//STR_A3_HoldKeyTo: Hold %1 to %2
+    A3A_dismantle_idleHintText = "<t font='PuristaMedium' shadow='2' size='1.5'>" + _buttonHint + "</t><br/><t size='1.2' valign='top'>";
+};
+//prepare progress textures
+if (isNil {A3A_dismantle_holdAction_texturesProgress}) then {
+    A3A_dismantle_holdAction_texturesProgress = [];
+    for "_i" from 0 to 24 do {
+        A3A_dismantle_holdAction_texturesProgress pushBack ("<img size='3' shadow='0' color='#fc911e' image='\A3\Ui_f\data\IGUI\Cfg\HoldActions\progress\progress_"+str _i+"_ca.paa'/>");
+    };
+};
+
+private _iconIdle = {
+    if !(typeOf cursorObject in A3A_dismantle_structureTimeCostHM) exitWith {
+        "<img size='3' color='#ffffff' image='\a3\ui_f_oldman\Data\IGUI\Cfg\HoldActions\holdAction_market_ca.paa'/>"
+    };
+    (A3A_dismantle_structureTimeCostHM get (typeOf cursorObject)) params [["_time",1],["_cost",0]]; // Should already have an entry if this is displaying
+
+    private _isEngineer = player getUnitTrait "engineer";
+    _time = ceil (_time * ([0.75,0.25] select _isEngineer));
+    _cost = ceil (_cost * ([0.05,0.25] select _isEngineer));
+    private _engineerBonusText = ["","<t size='0.9' valign='middle'>  *Engineer Bonus</t>"] select _isEngineer;
+    _hint = A3A_dismantle_idleHintText + "<t color='#00000000'>"+_engineerBonusText+"</t>"+str _time+"s "+str _cost+"€<t color='#cccccc'>"+_engineerBonusText+"</t></t>"; // The invisible engineer text makes the numbers centers
+
+    "<img size='3' color='#ffffff' image='\a3\ui_f_oldman\Data\IGUI\Cfg\HoldActions\holdAction_market_ca.paa'/>";
+};
+/* For _iconProgress
+_codeInit:  (1st call, 1 scope up)
+    _target(argument target), _caller, _actionID,
+    _arguments(shared), _title, _iconIdle, _iconProgress _condProgress, _codeProgress, _codeCompleted, _codeInterrupted, _duration, _removeCompleted
+    _condProgressCode
+_codeInit:  (2nd call, 1 scope up) (Diff from top)
+    _target(argument target), _caller, _actionID,
+    _arguments(shared), _title, _iconIdle, _codeProgress, _codeCompleted, _codeInterrupted, _removeCompleted
+    _frame, _stepDuration
+_codeInit:  (3rd call, 1 scope up) (Diff from top)
+    (Same access as above, just a later single executions)
+*/
+private _iconProgress = {
+    private _sharedDataMap = _arguments#0;
+
+    private _startTime = _sharedDataMap get "_startTime";
+    private _structureTime = _sharedDataMap get "_structureTime";
+    private _completionPercent = ((serverTime - _startTime) / _structureTime) min 1;
+
+    _texSet = A3A_dismantle_holdAction_texturesProgress;
+
+    "<img size='3' color='#ffffff' image='\a3\ui_f_oldman\Data\IGUI\Cfg\HoldActions\holdAction_market_ca.paa'/><br/>"+
+    "<t font='PuristaMedium' shadow='2' size='2' color='#fc911e' valign='top'><t color='#00000000'>s</t>"+(((1 - _completionPercent)*_structureTime) toFixed 0)+"<t color='#ffffff'>s</t></t>"; // The invisible s makes the numbers centers
+};
 
 private _holdActionID = [
     player,                                            // Object the action is attached to
-    "<t font='PuristaMedium' color='#fc911e' shadow='2' size='2'>Dismantle ("+(_structureTime toFixed 0)+"s)</t>",                                        // Title of the action
-    "\a3\ui_f_oldman\Data\IGUI\Cfg\HoldActions\holdAction_market_ca.paa",    // Idle icon shown on screen
-    "\a3\ui_f_oldman\Data\IGUI\Cfg\HoldActions\holdAction_market_ca.paa",    // Progress icon shown on screen
-    "A3A_dismantle_holdAction_inProgress isEqualTo """+_structureName+""" || str cursorObject isEqualTo """+_structureName+"""",                        // Condition for the action to be shown
-    "A3A_dismantle_holdAction_inProgress isEqualTo """+_structureName+""" || _caller distance cursorObject < "+(_dismantleRadius toFixed 0),                        // Condition for the action to progress
+    "Dismantle",                                        // Title of the action
+    _iconIdle,    // Idle icon shown on screen
+    _iconProgress,    // Progress icon shown on screen
+    'A3A_dismantle_holdAction_inProgress || {typeOf cursorObject in A3A_dismantle_structureTimeCostHM}',                        // Condition for the action to be shown
+    'A3A_dismantle_holdAction_inProgress || {_caller distance cursorObject < '+(2 toFixed 0)+'}',                        // Condition for the action to progress //_dismantleRadius
     {                                                    // Code executed when action starts
         params ["_target", "_caller", "_actionId", "_arguments"];
         private _sharedDataMap = _arguments#0;
 
-        A3A_dismantle_holdAction_inProgress = _sharedDataMap get "_structureName";
+        A3A_dismantle_holdAction_inProgress = true;
         private _structure = _sharedDataMap get "_structure";
         player setVariable ["constructing",true];  // Re-using constructing Keeps compatibility with the rest of the system.
         player disableCollisionWith _structure;
@@ -146,17 +211,16 @@ private _holdActionID = [
         if (medicAnims findIf {animationState player == _x} == -1) then {
             player playMoveNow selectRandom medicAnims;
         };
-        private _startTime = _sharedDataMap get "_startTime";
-        private _structurePosAGLS = _sharedDataMap get "_structurePosAGLS";
-        private _structureTime = _sharedDataMap get "_structureTime";
 
-        private _completionPercent = ((serverTime - _startTime) / _structureTime) min 1;
         if (_sharedDataMap get "_nextSetPosTime" < serverTime) then {
+            private _startTime = _sharedDataMap get "_startTime";
+            private _structurePosAGLS = _sharedDataMap get "_structurePosAGLS";
+            private _structureTime = _sharedDataMap get "_structureTime";
+            private _completionPercent = ((serverTime - _startTime) / _structureTime) min 1;
             private _structure = _sharedDataMap get "_structure";
-            _sharedDataMap set ["_nextSetPosTime",serverTime + 2];
+            _sharedDataMap set ["_nextSetPosTime",serverTime + 4];
             _structure setPos ([0,0,-(_sharedDataMap get "_roughHeight")] vectorMultiply _completionPercent vectorAdd _structurePosAGLS);
         };
-        ["<t font='PuristaMedium' color='#fc911e' shadow='2' size='1'> "+(((1 - _completionPercent) * _structureTime) toFixed 0)+"s</t>",-1,0.65,20,0,0,789] spawn BIS_fnc_dynamicText;
 
 
     },
@@ -164,7 +228,7 @@ private _holdActionID = [
         params ["_target", "_caller", "_actionId", "_arguments"];
         private _sharedDataMap = _arguments#0;
 
-        A3A_dismantle_holdAction_inProgress = "";
+        A3A_dismantle_holdAction_inProgress = false;
         player switchMove "";
         player setVariable ["constructing",false];
 
@@ -180,13 +244,13 @@ private _holdActionID = [
             [0, _structureCost] remoteExec ["A3A_fnc_resourcesFIA",2];
         };
         A3A_dismantle_Draw3D_args deleteAt (_sharedDataMap get "_structureName");
-        ["",-1,0.5,1,0,0,789] spawn BIS_fnc_dynamicText;
+        ["<t font='PuristaMedium' color='#fc911e' shadow='2' size='1'> +"+(_structureCost toFixed 0)+"€</t>",-1,0.65,3,0.5,-1,789] spawn BIS_fnc_dynamicText;
     },
     {                                                    // Code executed on interrupted
         params ["_target", "_caller", "_actionId", "_arguments"];
         private _sharedDataMap = _arguments#0;
 
-        A3A_dismantle_holdAction_inProgress = "";
+        A3A_dismantle_holdAction_inProgress = false;
         private _structure = _sharedDataMap get "_structure";
         _structure setPos (_sharedDataMap get "_structurePosAGLS");    // Needs to reset due to move animation.
         _structure enableSimulation (_sharedDataMap get "_simulationState");
@@ -195,7 +259,6 @@ private _holdActionID = [
 
         player switchMove "";
         player setVariable ["constructing",false];
-        ["",-1,0.5,1,0,0,789] spawn BIS_fnc_dynamicText;
     },
     [_sharedDataMap],                                                    // Arguments passed to the scripts as _this select 3 params ["_a0","_a1","_a2","_a3","_a4","_a5","_a6","_a7","_a8","_a9","_target","_title","_iconIdle","_iconProgress","_condShow","_condProgress","_codeStart","_codeProgress","_codeCompleted","_codeInterrupted","_duration","_removeCompleted"];
     _structureTime,                                                    // Action duration [s]
