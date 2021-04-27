@@ -74,7 +74,6 @@ private _actionID = player addAction [
         private _structure = cursorObject;
 
         private _fnc_exit = {
-            A3A_dismantleUI_highlight_args = nil;
             player removeAction _actionId;
             A3A_dismantleUI_isActive = nil;
         };
@@ -123,12 +122,10 @@ private _actionID = player addAction [
     false
 ];
 
-A3A_dismantleUI_highlight_args = [_canGiveAbility,[objNull],[],_actionID]; // Delete when Arma 2.04 drops
 addMissionEventHandler [
     "Draw3D",
     {
         scriptName "fn_dismantleUI.sqf:Draw3D";
-        private _thisArgs = A3A_dismantleUI_highlight_args;      // Delete when Arma 2.04 drops
         _thisArgs params ["_canGiveAbility","_lastStructure","_drawData","_actionID"];
 
         if (isNil{A3A_dismantleUI_isActive}) exitWith {
@@ -182,7 +179,7 @@ addMissionEventHandler [
             };
         };
 
-    }/*,    // Uncomment when Arma 2.04 drops
-    [_canGiveAbility,objNull,[],_actionID]*/
+    },
+    [_canGiveAbility,[objNull],[],_actionID] // Object is in a array allowing EH code to overwrite it's value and save.
 ];
 nil;

@@ -59,17 +59,15 @@ if (_useWorker) then {
     };
 
     private _draw3D_cancellationToken = [false];
-    A3A_dismantleAuto_Draw3D_args = [_draw3D_cancellationToken,_structureMarkerPosAGLS]; // Delete when Arma 2.04 drops
     addMissionEventHandler [
         "Draw3D",
         {
-            private _thisArgs = A3A_dismantleAuto_Draw3D_args;      // Delete when Arma 2.04 drops
             if (_thisArgs#0#0) exitWith {
                 removeMissionEventHandler ["Draw3D", _thisEventHandler];
             };
             drawIcon3D ["\a3\ui_f_oldman\Data\IGUI\Cfg\HoldActions\holdAction_market_ca.paa", [0.98,0.57,0.12,1], _thisArgs#1, 1,1,0,"Dismantle", 2, 0.05, "PuristaMedium", "center", true];
-        }/*,    // Uncomment when Arma 2.04 drops
-        [_draw3D_cancellationToken,_structureMarkerPosAGLS]*/
+        }
+        [_draw3D_cancellationToken,_structureMarkerPosAGLS]
     ];
 
     private _timeOut = serverTime + 30;
@@ -100,19 +98,17 @@ if (_useWorker) then {
     _worker playMoveNow selectRandom medicAnims;
     _worker disableCollisionWith _structure;
 
-    A3A_dismantleAuto_workerAnim_args = [_animation_cancellationToken]; // Delete when Arma 2.04 drops
     _worker addEventHandler [
         "AnimDone",
         {
-            private _thisArgs = A3A_dismantleAuto_workerAnim_args;     // Delete when Arma 2.04 drops
             private _worker = _this#0;
             if (_thisArgs#0#0) exitWith {
                 _worker removeEventHandler ["AnimDone",_thisEventHandler];
                 _worker switchMove "";
             };
             _worker playMoveNow selectRandom medicAnims;
-        }/*,    // Uncomment when Arma 2.04 drops
-        [_animation_cancellationToken]*/
+        }
+        [_animation_cancellationToken]
     ];
 };
 private _simulationState = simulationEnabled _structure;
