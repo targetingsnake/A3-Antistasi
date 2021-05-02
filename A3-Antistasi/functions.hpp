@@ -667,6 +667,8 @@ class A3A
         class customHintDismiss {};
         class customHintInit {};
         class customHintRender {};
+        class holdAction {};
+        class holdActionInit { preInit=1; };
         class shader_ratioToHex {};
     };
 
