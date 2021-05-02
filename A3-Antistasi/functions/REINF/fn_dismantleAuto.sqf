@@ -66,7 +66,7 @@ if (_useWorker) then {
                 removeMissionEventHandler ["Draw3D", _thisEventHandler];
             };
             drawIcon3D ["\a3\ui_f_oldman\Data\IGUI\Cfg\HoldActions\holdAction_market_ca.paa", [0.98,0.57,0.12,1], _thisArgs#1, 1,1,0,"Dismantle", 2, 0.05, "PuristaMedium", "center", true];
-        }
+        },
         [_draw3D_cancellationToken,_structureMarkerPosAGLS]
     ];
 
@@ -107,7 +107,7 @@ if (_useWorker) then {
                 _worker switchMove "";
             };
             _worker playMoveNow selectRandom medicAnims;
-        }
+        },
         [_animation_cancellationToken]
     ];
 };
