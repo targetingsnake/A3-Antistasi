@@ -5,6 +5,7 @@
 
 //Other Includes
 #include "functions\Garage\defineGarage.inc"
+ // TODO UI-update: mostly everything below this line can be removed probably
 
 // Control types
 #define CT_STATIC           0

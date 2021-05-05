@@ -1,3 +1,5 @@
+// TODO UI-update: needs refactoring
+
 private ["_typeGroup","_esinf","_typeVehX","_costs","_costHR","_exit","_formatX","_pos","_hr","_resourcesFIA","_groupX","_roads","_road","_truckX","_vehicle","_mortarX","_morty"];
 
 if (player != theBoss) exitWith {["Recruit Squad", "Only the Commander has access to this function"] call A3A_fnc_customHint;};
@@ -179,7 +181,7 @@ if (count _formatX == 2) then {
 _costs = [_typeVehX] call A3A_fnc_vehiclePrice;
 if (_costs > server getVariable "resourcesFIA") exitWith {};
 
-createDialog "veh_query";
+// TODO UI-update: this used to create "veh_query" dialog, aka "add vehicle?", this has been moved to a checkbox in the squad recruit dialog instead
 
 sleep 1;
 disableSerialization;

@@ -96,46 +96,6 @@ if (!A3A_hasACE) then {
 	[] spawn A3A_fnc_tags;
 };
 
-if (player getVariable ["pvp",false]) exitWith {
-	lastVehicleSpawned = objNull;
-	[player] call A3A_fnc_pvpCheck;
-	[player] call A3A_fnc_dress;
-	if (A3A_hasACE) then {[] call A3A_fnc_ACEpvpReDress};
-	respawnTeamPlayer setMarkerAlphaLocal 0;
-
-	player addEventHandler ["GetInMan", {_this call A3A_fnc_ejectPvPPlayerIfInvalidVehicle}];
-	player addEventHandler ["SeatSwitchedMan", {[_this select 0, assignedVehicleRole (_this select 0) select 0, _this select 2] call A3A_fnc_ejectPvPPlayerIfInvalidVehicle}];
-	player addEventHandler ["InventoryOpened", {
-		_override = false;
-		_boxX = typeOf (_this select 1);
-		if ((_boxX == NATOAmmoBox) or (_boxX == CSATAmmoBox)) then {_override = true};
-		_override
-	}];
-	_nameX = if (side player == Occupants) then {nameOccupants} else {nameInvaders};
-	waituntil {!isnull (finddisplay 46)};
-	gameMenu = (findDisplay 46) displayAddEventHandler ["KeyDown", {
-		_handled = FALSE;
-		if (_this select 1 == 207) then {
-			if (!A3A_hasACEhearing) then {
-				if (soundVolume <= 0.5) then {
-					0.5 fadeSound 1;
-					["Ear Plugs", "You've taken out your ear plugs.", true] call A3A_fnc_customHint;
-				}
-				else {
-					0.5 fadeSound 0.1;
-					["Ear Plugs", "You've inserted your ear plugs.", true] call A3A_fnc_customHint;
-				};
-			};
-		}
-		else {
-			if (_this select 1 == 21) then {
-				closedialog 0;
-				_nul = createDialog "NATO_player";
-			};
-		};
-		_handled
-	}];
-};
 
 // Placeholders, should get replaced globally by the server
 player setVariable ["score",0];
@@ -422,7 +382,7 @@ if (isMultiplayer) then {
 	vehicleBox addAction ["Personal Garage", { [GARAGE_PERSONAL] spawn A3A_fnc_garage },nil,0,false,true,"","(isPlayer _this) and (_this == _this getVariable ['owner',objNull]) and (side (group _this) == teamPlayer)", 4];
 };
 vehicleBox addAction ["Faction Garage", { [GARAGE_FACTION] spawn A3A_fnc_garage; },nil,0,false,true,"","(isPlayer _this) and (_this == _this getVariable ['owner',objNull]) and (side (group _this) == teamPlayer)", 4];
-vehicleBox addAction ["Buy Vehicle", {if ([player,300] call A3A_fnc_enemyNearCheck) then {["Purchase Vehicle", "You cannot buy vehicles while there are enemies near you"] call A3A_fnc_customHint;} else {nul = createDialog "vehicle_option"}},nil,0,false,true,"","(isPlayer _this) and (_this == _this getVariable ['owner',objNull]) and (side (group _this) == teamPlayer)", 4];
+// TODO UI-update: vehicleBox addAction for buy vehicle
 vehicleBox addAction ["Move this asset", A3A_fnc_moveHQObject,nil,0,false,true,"","(_this == theBoss)", 4];
 
 if (LootToCrateEnabled) then {
@@ -434,7 +394,8 @@ fireX allowDamage false;
 [fireX, "fireX"] call A3A_fnc_flagaction;
 
 mapX allowDamage false;
-mapX addAction ["Game Options", {
+// TODO UI-update: This has been mostly moved to Admin dialog, but there's currently no other way for players to view options than this:
+mapX addAction ["View Game Options", {
 	[
 		"Game Options",
 		"Version: "+ antistasiVersion +
@@ -445,7 +406,6 @@ mapX addAction ["Game Options", {
 		"<br/>Spawn Distance: "+ str distanceSPWN + "m" +
 		"<br/>Civilian Limit: "+ str civPerc
 	] call A3A_fnc_customHint;
-	CreateDialog "game_options";
 	nil;
 },nil,0,false,true,"","(isPlayer _this) and (_this == _this getVariable ['owner',objNull]) and (side (group _this) == teamPlayer)", 4];
 mapX addAction ["Map Info", A3A_fnc_cityinfo,nil,0,false,true,"","(isPlayer _this) and (_this == _this getVariable ['owner',objNull]) and (side (group _this) == teamPlayer)", 4];
@@ -465,7 +425,7 @@ if (worldName == "Tanoa") then {petros setName "Maru"} else {petros setName "Pet
 disableSerialization;
 //1 cutRsc ["H8erHUD","PLAIN",0,false];
 _layer = ["statisticsX"] call bis_fnc_rscLayer;
-_layer cutRsc ["H8erHUD","PLAIN",0,false];
+_layer cutRsc ["H8erHUD","PLAIN",0,false]; // TODO UI-update: this is the top bar thingy, remember to put it back and give it a proper name!
 [] spawn A3A_fnc_statistics;
 
 //Check if we need to relocate HQ
@@ -479,7 +439,7 @@ if (isNil "placementDone") then {
 
 //Load the player's personal save.
 if (isMultiplayer) then {
-	[] spawn A3A_fnc_createDialog_shouldLoadPersonalSave;
+	[] spawn A3A_fnc_shouldLoadPersonalSave;
 }
 else
 {

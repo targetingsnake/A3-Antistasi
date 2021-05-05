@@ -125,7 +125,7 @@ class A3A
         class airbomb {};
         class AIreactOnKill {};
         class artillery {};
-        class artySupport {};
+        // class artySupport {}; // TODO UI-update: to be replaced with in-ui things
         class askHelp {};
         class assaultBuilding {};
         class attackDrillAI {};
@@ -268,26 +268,6 @@ class A3A
         class deleteEmptyGroupsOnSide {};
         class installSchrodingersBuildingFix {};
         class spawnDebuggingLoop {};
-    };
-
-    class Dialogs
-    {
-        class buyVehicle {};
-        class buyVehicleCiv {};
-        class clearForest {};
-        class createDialog_setParams {};
-        class createDialog_shouldLoadPersonalSave {};
-        class dialogHQ {};
-        class fastTravelRadio {};
-        class HQGameOptions {};
-        class loadPreviousSession {};
-        class mineDialog {};
-        class moveHQObject {};
-        class persistentSave {};
-        class skiptime {};
-        class squadOptions {};
-        class squadRecruit {};
-        class unit_recruit {};
     };
 
     class EventHandler
@@ -550,7 +530,6 @@ class A3A
         class FIAinit {};
         class FIAskillAdd {};
         class garrisonAdd {};
-        class garrisonDialog {};
         class NATObomb {};
         class NATOQuadbike {};
         class postmortem {};
@@ -652,6 +631,9 @@ class A3A
         class setStatVariable {};
         class varNameToSaveName {};
         class saveLoop {};
+        class shouldLoadPersonalSave {};
+        class loadPreviousSession {};
+        class persistentSave {};
     };
 
     class Templates
@@ -696,5 +678,6 @@ class A3A
         class vehicleTextureSync {};
         class vehicleWillCollideAtPosition {};
         class getRoadDirection {};
+        class clearForest {};
     };
 };
