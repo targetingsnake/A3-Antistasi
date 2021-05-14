@@ -80,6 +80,7 @@ class A3A
 		class logPerformance {};
 		class markerChange {};
 		class moveHQ {};
+        class moveHQObject {};
 		class mrkUpdate {};
 		class mrkWIN {};
 		class NATOFT {};
