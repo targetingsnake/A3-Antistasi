@@ -423,9 +423,9 @@ petros setIdentity "friendlyX";
 if (worldName == "Tanoa") then {petros setName "Maru"} else {petros setName "Petros"};
 
 disableSerialization;
-//1 cutRsc ["H8erHUD","PLAIN",0,false];
+//1 cutRsc ["A3A_StatusBar","PLAIN",0,false];
 _layer = ["statisticsX"] call bis_fnc_rscLayer;
-_layer cutRsc ["H8erHUD","PLAIN",0,false]; // TODO UI-update: this is the top bar thingy, remember to put it back and give it a proper name!
+_layer cutRsc ["A3A_StatusBar","PLAIN",0,false];
 [] spawn A3A_fnc_statistics;
 
 //Check if we need to relocate HQ

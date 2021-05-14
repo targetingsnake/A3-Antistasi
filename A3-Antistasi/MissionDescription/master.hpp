@@ -5,6 +5,7 @@
 #include "..\GUI\textures.inc"
 #include "..\GUI\controls.hpp"
 // #include "..\GUI\dialogs.hpp" // TODO UI-update: replace with new dialogs.hpp
+#include "..\GUI\statusBar.hpp"
 
 author = $STR_antistasi_credits_generic_author_text;
 loadScreen = "Pictures\Mission\pic.jpg"; // NB, this will resolve from root
