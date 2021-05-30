@@ -684,7 +684,7 @@ class A3A
         class initUndercover {};
     };
 
-    class Utility
+	class Utility
     {
         class basicBackpack {};
         class classNameToModel {};
@@ -701,5 +701,11 @@ class A3A
         class vehicleTextureSync {};
         class vehicleWillCollideAtPosition {};
         class getRoadDirection {};
+    };
+    class bombs
+    {
+        class thermobaric {};
+        class thermobaricDamage {};
+        class thermobaricParticles {};
     };
 };
