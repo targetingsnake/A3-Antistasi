@@ -31,6 +31,11 @@ switch (_bombType) do
         _ammo = "ammo_Bomb_SDB";
         _bombOffset = 170;
     };
+	case ("THERMOBARIC"):
+    {
+        _ammo = "ammo_Bomb_SDB";
+        _bombOffset = 250;
+    };
     default
     {
         Error_1("Invalid bomb type, given was %1", _bombType);
@@ -69,6 +74,21 @@ for "_i" from 1 to _bombCount do
                 [_pos] remoteExec ["A3A_fnc_napalm",2];
             };
         };
+		if (_bombType == "THERMOBARIC") then
+		{
+			[_bomb] spawn
+			{
+				private _bomba = _this select 0;
+				private _pos = [];
+				while {!isNull _bomba} do
+				{
+					_pos = getpos _bomba;
+					sleep 0.1;
+				};
+				[_pos] remoteExec ["A3A_fnc_thermobaric",2]
+			};
+
+		};
     };
 };
 //_bomba is used to track when napalm bombs hit the ground in order to call the napalm script on the correct position
