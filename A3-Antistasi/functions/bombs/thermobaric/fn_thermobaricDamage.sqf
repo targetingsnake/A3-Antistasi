@@ -46,13 +46,11 @@ if (isNil {
     1;
 }) exitWith {true};
 
-private _overKill = 2;  // In case the the unit starts getting healed.
-private _timeToLive = 1;  // Higher number causes damage to be dealt more slowly.
+private _timeToLive = 2;  // Higher number causes damage to be dealt more slowly.
 private _totalTicks = 2;  // Higher number gives more detail.
 
 private _timeBetweenTicks = _timeToLive/_totalTicks;
 private _damagePerTick = 1/_totalTicks;
-_totalTicks = _totalTicks * _overKill;
 
 private _fnc_init = 'params ["_victim"];';                  // params ["_victim"] No return required
 private _fnc_onTick = 'params ["_victim","_tickCount"];';   // params ["_victim","_tickCount"] No return required
@@ -76,7 +74,7 @@ switch (true) do {
     };
     case (_victim isKindOf "Building"): {'_victim setDamage 1;';};
     case (_victim isKindOf "ReammoBox_F"): {'_victim setDamage 1;';};
-	// ===== damage for _victimsfar aka within the doubled radius =====
+	// ===== damage for _victimfar aka within the doubled radius =====
 	case (_victimFar isKindOf "CAManBase"): {  // Man includes everything biological, even animals such as goats ect...
         if (A3A_hasACEMedical) then {
             _fnc_onTick = _fnc_onTick +
@@ -139,12 +137,8 @@ switch (true) do {
         _totalTicks = 1;
         _fnc_final = _fnc_final + 'deleteVehicle _victimFar;';  // Items would be burnt to ashes.
     };
-    case (_victimFar isKindOf "Building"): {
-        '_victimFar setDamage 0.5;';
-    };
-    case (_victimFar isKindOf "ReammoBox_F"): {
-		'_victimFar setDamage 0.5;';
-    };
+    case (_victimFar isKindOf "Building"): {'_victimFar setDamage 0.5;';};
+    case (_victimFar isKindOf "ReammoBox_F"): {_invalidVictim = true;};
     default {_invalidVictim = true;};  // Exclude everything else. Safest & least laggy option, gameplay comes before realism.
 };
 

@@ -72,8 +72,8 @@ while {_endTime > serverTime && !([_cancellationTokenUUID] call _fnc_cancelReque
 
 
     // Damage
-    private _victims = (_pos nearObjects ["All", _thermobaricRadius]);  // The particle system is hardcoded. Radius appears 20-40m depending on wind.
-	private _victimsFar = (_pos nearObjects ["All", _thermobaricRadius * 2])
+    private _victims = (_pos nearObjects ["All", _thermobaricRadius]);  // 2-level damage system. _victims get full damage
+	private _victimsFar = (_pos nearObjects ["All", _thermobaricRadius * 2])// 2-level damage system. _victimsFar get half damage
 	_victimsFar = _victimsFar - _victims
 	private _crew = [];
     { _crew append crew _x; } forEach _victims;
@@ -87,6 +87,19 @@ while {_endTime > serverTime && !([_cancellationTokenUUID] call _fnc_cancelReque
         if (_owner isEqualTo 0) then { _owner = 2; };
         [_x, true,_cancellationTokenUUID] remoteExecCall ["A3A_fnc_thermobaricDamage",_owner];
     } forEach _victims;
+
+
+	{ _crew append crew _x; } forEach _victimsFar;
+    _victimsFar append _crew;
+    isNil {  // Run in unscheduled scope to prevent parallel filtering.
+        _victimsFar = _victimsFar select { !isNull _x && {(_x getVariable ["A3A_thermobaric_processing",0]) < serverTime}};    // Global to avoid double damage.
+        { _x setVariable ["A3A_thermobaric_processing",serverTime + 30]; } forEach _victimsFar;
+    };
+    {
+        private _owner = owner _x;
+        if (_owner isEqualTo 0) then { _owner = 2; };
+        [_x, true,_cancellationTokenUUID] remoteExecCall ["A3A_fnc_thermobaricDamage",_owner];
+    } forEach _victimsFar;
 
     uiSleep 5;
 };
