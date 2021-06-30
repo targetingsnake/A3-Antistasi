@@ -12,7 +12,7 @@
     Scope: Clients
     Environment: Any
     Public: [No]
-    Dependencies:
+    Dependencies: A3A_hasAce
 
     Example: [true] call HR_GRG_fnc_reloadExtras;
 
@@ -192,7 +192,7 @@ if (isNil "_nodes") then {
 if (_nodes isEqualType 0) then {_nodes = []};
 private _cargoCapacity = count _nodes;
 private _availableCapacity = _cargoCapacity - HR_GRG_usedCapacity;
-private _aceCargo = if (hasAce) then {
+private _aceCargo = if (A3A_hasAce) then {
     composeText [lineBreak, "    ", localize "STR_HR_GRG_InfoPanel_AceCargo"," ", str cfgAceCargo(_class)]
 } else {""};
 
