@@ -3831,9 +3831,15 @@
             <Original>Cant mount static</Original>
             <English>Cant mount static</English>
         </Key>
+        <Key ID="STR_HR_GRG_Feedback_checkedOutToolTip">
+            <!-- name is appended on at the start with a spcae in between-->
+            <Original>is looking at this vehicle.</Original>
+            <English>is looking at this vehicle.</English>
+        </Key>
         <Key ID="STR_HR_GRG_Feedback_LockedToolTip">
-            <Original>This vehicle is locked by another player</Original>
-            <English>This vehicle is locked by another player</English>
+            <!-- name is appended on at the end with a spcae in between-->
+            <Original>Vehicle is locked by</Original>
+            <English>Vehicle is locked by</English>
         </Key>
         <Key ID="STR_HR_GRG_Feedback_CP_Rotation">
             <!--Keybinds are hardcoded to key DIK codes: DIK_E, DIK_Q, DIK_ESCAPE, DIK_RETURN, and DIK_SPACE-->
