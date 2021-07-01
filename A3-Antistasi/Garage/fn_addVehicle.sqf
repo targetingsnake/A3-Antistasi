@@ -92,10 +92,11 @@ private _lockName = if (_locking) then { name _player } else { "" };
     detach _x;
     if (_x isKindOf "StaticWeapon") then {
         private _stateData = [_x] call HR_GRG_fnc_getState;
+        private _customisation = [_x] call BIS_fnc_getVehicleCustomization;
         if (_x in staticsToSave) then {staticsToSave = staticsToSave - [_x]; publicVariable "staticsToSave"};
         deleteVehicle _x;
         private _vehUID = [] call HR_GRG_fnc_genVehUID;
-        (HR_GRG_Vehicles#4) set [_vehUID, [cfgDispName(typeOf _x), typeOf _x, _lockUID, "", _stateData, _lockName]];
+        (HR_GRG_Vehicles#4) set [_vehUID, [cfgDispName(typeOf _x), typeOf _x, _lockUID, "", _stateData, _lockName, _customisation]];
         Info_5("By: %1 [%2] | Type: %3 | Vehicle ID: %4 | Lock: %5", name _player, getPlayerUID _player, cfgDispName(typeOf _x), _vehUID, _locking );
     };
 } forEach attachedObjects _vehicle;
@@ -107,6 +108,7 @@ private _source = [
 ];
 private _sourceIndex = _source find true;
 private _stateData = [_vehicle] call HR_GRG_fnc_getState;
+private _customisation = [_vehicle] call BIS_fnc_getVehicleCustomization;
 
 [_vehicle,true] call A3A_fnc_empty;
 if (_vehicle in staticsToSave) then {staticsToSave = staticsToSave - [_vehicle]; publicVariable "staticsToSave"};
@@ -114,7 +116,7 @@ if (_vehicle in reportedVehs) then {reportedVehs = reportedVehs - [_vehicle]; pu
 
 deleteVehicle _vehicle;
 private _vehUID = [] call HR_GRG_fnc_genVehUID;
-(HR_GRG_Vehicles#_cat) set [_vehUID, [cfgDispName(_class), _class, _lockUID, "", _stateData, _lockName]];
+(HR_GRG_Vehicles#_cat) set [_vehUID, [cfgDispName(_class), _class, _lockUID, "", _stateData, _lockName, _customisation]];
 if (_sourceIndex != -1) then {
     (HR_GRG_Sources#_sourceIndex) pushBack _vehUID;
     [_sourceIndex] call HR_GRG_fnc_declairSources;

@@ -56,7 +56,7 @@ private _HR_GRG_SelectedVehicles = [-1,-1,""];
         _ctrl lbSetPictureRightColor [_index, _color];
         _tooltipText = _tooltipText + ( localize "STR_HR_GRG_Feedback_LockedToolTip" )+" "+ _lockName;
     };
-    _ctrl lbSetTooltip [_index, _tooltipText]; //for some reason dosnt apply
+    _ctrl lbSetTooltip [_index, _tooltipText];
     _ctrl lbSetPictureRightColorSelected [_index, [0.85,0.85,0.55,1]];
 
 } forEach (keys (HR_GRG_Vehicles#_catIndex));

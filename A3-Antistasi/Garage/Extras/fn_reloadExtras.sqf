@@ -92,7 +92,6 @@ lbSort _ctrl;
 
 //animations
 private _ctrl = _disp displayCtrl HR_GRG_IDC_ExtraAnim;
-private _anims = _customisation#1;
 lbClear _ctrl;
 {
     _configName = configname _x;
@@ -106,8 +105,8 @@ lbClear _ctrl;
     };
 } foreach (configProperties [(configfile >> "CfgVehicles" >> _class >> "animationSources"),"isclass _x",true]);
 lbSort _ctrl;
-HR_GRG_curAnims = _anims;
 
+HR_GRG_curAnims = _customisation#1;
 [HR_GRG_previewVeh, HR_GRG_curTexture, HR_GRG_curAnims] call BIS_fnc_initVehicle;
 
 //update source panel
