@@ -28,9 +28,7 @@ FIX_LINE_NUMBERS()
 if (isNil "HR_GRG_Vehicles") then {
     if (isServer) then {[] call HR_GRG_fnc_initServer} else {[] remoteExec ["HR_GRG_fnc_initServer", 2]};
 };
-
 private _class = typeOf _vehicle;
-private _cat = [_class] call HR_GRG_fnc_getCatIndex;
 
 //LTC refund
 if (_class in [NATOSurrenderCrate, CSATSurrenderCrate]) exitWith {
@@ -45,6 +43,7 @@ if (_class in [NATOSurrenderCrate, CSATSurrenderCrate]) exitWith {
 if (isNull _vehicle) exitWith { [localize "STR_HR_GRG_Feedback_addVehicle_Null"] remoteExec ["HR_GRG_fnc_Hint", _client]; false };
 if (!alive _vehicle) exitWith { [localize "STR_HR_GRG_Feedback_addVehicle_Destroyed"] remoteExec ["HR_GRG_fnc_Hint", _client]; false };
 if (locked _vehicle > 1) exitWith { [localize "STR_HR_GRG_Feedback_addVehicle_Locked"] remoteExec ["HR_GRG_fnc_Hint", _client]; false };
+private _cat = [_class] call HR_GRG_fnc_getCatIndex;
 if (_cat isEqualTo -1) exitWith { [localize "STR_HR_GRG_Feedback_addVehicle_GenericFail"] remoteExec ["HR_GRG_fnc_Hint", _client]; false };
 
     //Towing
