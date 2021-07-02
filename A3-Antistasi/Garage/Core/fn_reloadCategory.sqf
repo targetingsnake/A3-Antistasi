@@ -30,7 +30,7 @@ private _selected = -1;
 private _HR_GRG_SelectedVehicles = [-1,-1,""];
 {
     private _veh = (HR_GRG_Vehicles#_catIndex) get _x;
-    _veh params ["_displayName", "_class", "_lockedUID", "_checkedOut", "", ["_lockName", ""]]; //ToDo: remove default after test (only needed for backwards compat)
+    _veh params ["_displayName", "_class", "_lockedUID", "_checkedOut", "", ["_lockName", ""]];
     private _index = _ctrl lbAdd _displayName;
     _ctrl lbSetData [_index, str _x];
     _ctrl lbSetValue [_index, _x];

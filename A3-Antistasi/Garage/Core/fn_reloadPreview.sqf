@@ -48,8 +48,8 @@ HR_GRG_previewVehState = _veh#4;
 HR_GRG_previewVeh allowDamage false;
 
 //set customisation
-private _customisation = _veh param [6, [false,false]]; //ToDo: remove after test, for backwards compat
-([HR_GRG_previewVeh]+_customisation) call BIS_fnc_initVehicle; //if texture and anim is stored restore from it
+private _customisation = _veh param [6, [false,false]];
+([HR_GRG_previewVeh]+_customisation) call BIS_fnc_initVehicle;
 
 //set up camera
 HR_GRG_previewVeh setPosASL [0,0,100000];
