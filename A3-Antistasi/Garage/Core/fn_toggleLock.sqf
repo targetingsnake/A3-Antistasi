@@ -40,6 +40,7 @@ _succes = call {
 
 if (_succes) exitWith {
     _veh set [2, _UID];
+    _veh set [5, [name _player, ""] select (_UID isEqualTo "")];
     [_UID, nil, _catIndex, _vehUID, _player, false] call HR_GRG_fnc_broadcast;
     Info_3("Lock state toggled for VehUID: %1 | By: %2 | Locked: %3", _vehUID, name _player, (_UID isNotEqualTo ""));
 };
