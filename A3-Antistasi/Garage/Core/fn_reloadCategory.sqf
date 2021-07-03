@@ -29,8 +29,7 @@ lbClear _ctrl;
 private _selected = -1;
 private _HR_GRG_SelectedVehicles = [-1,-1,""];
 {
-    private _veh = (HR_GRG_Vehicles#_catIndex) get _x;
-    _veh params ["_displayName", "_class", "_lockedUID", "_checkedOut", "", ["_lockName", ""]];
+    _y params ["_displayName", "_class", "_lockedUID", "_checkedOut", "", ["_lockName", ""]];
     private _index = _ctrl lbAdd _displayName;
     _ctrl lbSetData [_index, str _x];
     _ctrl lbSetValue [_index, _x];
@@ -59,5 +58,5 @@ private _HR_GRG_SelectedVehicles = [-1,-1,""];
     _ctrl lbSetTooltip [_index, _tooltipText];
     _ctrl lbSetPictureRightColorSelected [_index, [0.85,0.85,0.55,1]];
 
-} forEach (keys (HR_GRG_Vehicles#_catIndex));
+} forEach (HR_GRG_Vehicles#_catIndex);
 _ctrl lbSetCurSel _selected;
