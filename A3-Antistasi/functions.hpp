@@ -185,6 +185,15 @@ class A3A
         class vehicleMarkers {};
     };
 
+    class ClientConData
+    {
+        class CCD_recieveDisconnect {};
+        class CCD_recieveUpdate {};
+        class CCD_sendDisconnect {};
+        class CCD_sendUpdate {};
+        class CDD_init {};
+    };
+
     class Collections
     {
         class getNestedObject {};

@@ -8,6 +8,7 @@ Info_3("Player disconnected with id %1 and unit %2 on side %3", _uid, _unit, sid
 if (side _unit == sideLogic || {_uid == ""}) exitWith {
     Error("Exiting onPlayerDisconnect due to no UID or sideLogic unit. Possible Headless Client disconnect?");
 };
+[_uid] call A3A_fnc_CCD_sendDisconnect;
 
 
 // find original player unit in case of remote control

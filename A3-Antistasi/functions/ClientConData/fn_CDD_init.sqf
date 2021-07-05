@@ -31,8 +31,7 @@ if (isServer) then {
         if (!A3A_CCDStatistics) exitWith {
             removeMissionEventHandler _thisEventHandler;
         };
-        private statistics = "CCDStatistics | (n/a) ("+_UID+") ("+str _clientID+") | Player joined ("+_name+") (n/a) | JIP ("+str _jip+")";
-        Info(statistics);
+        Info("CCDStatistics | (n/a) (%1) (%2) | Player joined (%3) (n/a) | JIP (%4)",_UID,_clientID,_name,_jip);
     }];
     addMissionEventHandler ["EntityRespawned", {
         params ["_entity", "_corpse"];
@@ -41,15 +40,34 @@ if (isServer) then {
         };
         private _clientID = owner _entity;
         private _UID = getPlayerUID _entity;
-        private statistics = "CCDStatistics | ("+str _entity+") ("+_UID+") ("+str _clientID+") (n/a) | Player respawned ("+str _corpse+")";
-        Info(statistics);
+        Info("CCDStatistics | (n/a) (%1) (%2) | Player respawned (%3) (n/a) | JIP (%4)",_UID,_clientID,_corpse,_jip);
     }];
     addMissionEventHandler ["PlayerDisconnected", {
-        params ["_id", "_uid", "_name", "_jip", "_owner", "_idstr"];
-        if (!A3A_CCDStatistics) exitWith {
-            removeMissionEventHandler _thisEventHandler;
+        params ["_id", "_UID", "_name", "_jip", "_owner", "_idstr"];
+
+        if (A3A_CCDStatistics) then {
+            Info("CCDStatistics | (n/a) (%1) (%2) | Player disconnected (%3) (n/a) | JIP (%4)",_UID,_clientID,_name,_jip);
         };
-        private statistics = "CCDStatistics | (n/a) ("+_UID+") ("+str _clientID+") (n/a) | Player disconnected ("+_name+") | JIP ("+str _jip+")";
-        Info(statistics);
+
+        [_UID] spawn {
+            params ["_UID"];
+            (A3A_CCD_byUID get _UID) params ["_","_clientID","_player","_name","_online"];
+            if !(_online) exitWith {};
+            if (A3A_CCDStatistics) then {
+                private _timeOut = serverTime + 15;
+                private _startTime = serverTime;
+                while {serverTime < _timeOut && !_online} do {
+                    Info_3("(n/a) (%1) (%2) (n/a) | Waiting on player disconnect broadcast, (%3) sec", _UID, str _clientID, str (serverTime - _startTime));
+                    uiSleep 5;
+                };
+            } else {
+                uiSleep 15;
+            };
+            if !(_online) exitWith {};
+
+            _timeout = "(n/a) ("+_UID+") ("+str _clientID+") (n/a) | Player disconnect not broadcast, likely crashed";
+            Error_2("(n/a) (%1) (%2) (n/a) | Player disconnect not broadcast, likely crashed", _UID, str _clientID);
+            [_UID] call A3A_fnc_CCD_sendDisconnect;
+        };
     }];
 };

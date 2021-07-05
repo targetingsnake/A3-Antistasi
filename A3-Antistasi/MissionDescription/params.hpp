@@ -323,7 +323,7 @@ class Params
     {
         title = "Client Connection Data Statistic Logging (optimisaion and security development)";
         values[] = {9999,1,0};
-        texts[] = {"Default (Active)", "Active", "Inactive"};
+        texts[] = {"Default (Inactive)", "Active", "Inactive"};
         default = 9999;
     };
     class SupportOptions

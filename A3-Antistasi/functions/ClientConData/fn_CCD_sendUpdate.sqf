@@ -4,11 +4,7 @@ Maintainer: Caleb Serafin
     Includes SteamUID and clientID as well.
     Is run on client join and player respawn.
     Will also update the local cache.
-
-Arguments:
-    <STRING> Steam UID.
-    <SCALAR> Client ID.
-    <OBJECT> Player object.
+    JIP ID is overwritten by sendDisconnect.
 
 Return Value:
     <ANY> undefined.

@@ -44,7 +44,7 @@ if (_newPlayer) then {
 };
 
 if (A3A_CCDStatistics) then {
-    (A3A_CCD_byUID getOrDefault [_UID, ["",-1,objNull]]) params ["_uid","_clientID","_player","_name","_online"];
+    (A3A_CCD_byUID getOrDefault [_UID, ["",-1,objNull]]) params ["_","_clientID","_player","_name","_online"];
     private _prefix = "CCDStatistics | ("+str _playerObject+") ("+_UID+") ("+str _clientID+") ("+str _online+") | ";
     private _irregularities = [];
 
