@@ -35,7 +35,6 @@ addMissionEventHandler ["PlayerDisconnected", {
     private _owner = param [4, -1];
     if (_owner isNotEqualTo -1) then {
         private _UID = param [1,""];
-        Error_2("User disconnected while in garage: %1 [%2]", _this select 2, _UID); //name, UID
         [_owner] call HR_GRG_fnc_removeUser;
 
         private _recipients = +HR_GRG_Users;
