@@ -17,8 +17,192 @@ aridmaps = ["altis","kunduz","malden","tem_anizay","takistan","sara"];
 tropicalmaps = ["tanoa","cam_lao_nam"];
 temperatemaps = ["enoch","chernarus_summer","vt7","tembelan"];
 arcticmaps = ["chernarus_winter"];
-//Mod selector
 
+//Template factions enums
+private _AIFactionEnums = [
+    ["NATO", true]
+    , ["CSAT", true]
+    , ["AAF", true]
+    , ["LDF" , true] //add contact dlc check
+    , ["USAF", A3A_hasRHS]
+    , ["AFRF", A3A_hasRHS]
+    , ["CDF", A3A_hasRHS]
+    , ["BAF", A3A_has3CBBAF]
+    , ["US Marines", A3A_has3CBFactions]
+    , ["Coldwar US", A3A_has3CBFactions]
+    , ["Coldwar Soviets", A3A_has3CBFactions]
+    , ["TKA west", A3A_has3CBFactions]
+    , ["TKA East", A3A_has3CBFactions]
+    , ["MACV", A3A_hasVN]
+    , ["PAVN", A3A_hasVN]
+];
+private _rebFactionEnums = [
+    ["FIA", true]
+    , ["SDK", true]
+    , ["NAPA", A3A_hasRHS]
+    , ["CNM", A3A_has3CBFactions]
+    , ["TKM", A3A_has3CBFactions]
+    , ["POF", A3A_hasVN]
+];
+private _civFactionEnums = [
+    ["Vanilla", true]
+    , ["RHS", A3A_hasRHS]
+    , ["Factions", A3A_has3CBFactions]
+    , ["VN", A3A_hasVN]
+];
+
+
+//Faction to template path
+private _pickRebTemplate = {
+    switch _this do {
+
+        //3cb Factions
+        case "CNM": { "Templates\NewTemplates\3CB\3CB_Reb_CNM_Temperate.sqf" };
+        case "TKM": { "Templates\NewTemplates\3CB\3CB_Reb_TKM_Arid.sqf" };
+
+        //RHS
+        case "NAPA": {
+            switch(true) do {
+                case (toLower worldName in arcticmaps);
+                case (toLower worldName in temperatemaps);
+                case (toLower worldName in tropicalmaps): { "Templates\NewTemplates\RHS\RHS_Reb_NAPA_Temperate.sqf" };
+                default { "Templates\NewTemplates\RHS\RHS_Reb_NAPA_Arid.sqf" };
+            };
+        };
+
+        //VN
+        case "POF": { "Templates\NewTemplates\VN\VN_Reb_POF.sqf" };
+
+        //Vanilla
+        case "FIA": {
+            switch (true) do {
+                case (toLower worldName == "enoch"): { "Templates\NewTemplates\Vanilla\Vanilla_Reb_FIA_Enoch.sqf" };
+                default { "Templates\NewTemplates\Vanilla\Vanilla_Reb_FIA_Arid.sqf" };
+            };
+        };
+        case "SDK": { "Templates\NewTemplates\Vanilla\Vanilla_Reb_SDK_Tanoa.sqf" };
+    };
+};
+
+private _pickAITemplate = {
+    switch _this do {
+        case "BAF": {
+            switch(true) do {
+                case (toLower worldName in arcticmaps): { "Templates\NewTemplates\3CB\3CB_AI_BAF_Arctic.sqf" };
+                case (toLower worldName in temperatemaps): { "Templates\NewTemplates\3CB\3CB_AI_BAF_Temperate.sqf" };
+                case (toLower worldName in tropicalmaps): { "Templates\NewTemplates\3CB\3CB_AI_BAF_Tropical.sqf" };
+                default { "Templates\NewTemplates\3CB\3CB_AI_BAF_Arid.sqf" };
+            };
+        };
+
+        //Factions
+        case "US Marines": { "Templates\NewTemplates\RHS\RHS_AI_USAF_Marines_Temperate.sqf" };
+        case "Coldwar US": { "Templates\NewTemplates\3CB\3CB_AI_CW_US.sqf" };
+        case "Coldwar Soviets": { "Templates\NewTemplates\3CB\3CB_AI_CW_SOV.sqf" };
+        case "TKA West": { "Templates\NewTemplates\3CB\3CB_AI_TKA_West.sqf" };
+        case "TKA East": { "Templates\NewTemplates\3CB\3CB_AI_TKA_East.sqf" };
+
+        //RHS
+        case "CDF": { "Templates\NewTemplates\RHS\RHS_AI_CDF_Temperate.sqf" };
+        case "USAF": {
+            switch(true) do {
+                case (toLower worldName in arcticmaps);
+                case (toLower worldName in temperatemaps);
+                case (toLower worldName in tropicalmaps): { "Templates\NewTemplates\RHS\RHS_AI_USAF_Army_Temperate.sqf" };
+                default { "Templates\NewTemplates\RHS\RHS_AI_USAF_Army_Arid.sqf" };
+            };
+        };
+        case "AFRF": {
+            switch(true) do {
+                case (toLower worldName in arcticmaps);
+                case (toLower worldName in temperatemaps);
+                case (toLower worldName in tropicalmaps): { "Templates\NewTemplates\RHS\RHS_AI_AFRF_Temperate.sqf" };
+                default { "Templates\NewTemplates\RHS\RHS_AI_AFRF_Arid.sqf" };
+            };
+        };
+
+        //VN
+        case "PAVN": { "Templates\NewTemplates\VN\VN_PAVN.sqf" };
+        case "MACV": { "Templates\NewTemplates\VN\VN_MACV.sqf" };
+
+        //Vanilla & DLC
+        case "LDF": { "Templates\NewTemplates\Vanilla\Vanilla_AI_LDF_Enoch.sqf" };
+        case "AAF": { "Templates\NewTemplates\Vanilla\Vanilla_AI_AAF_Arid.sqf" };
+        case "NATO": {
+            switch(true) do {
+                case (toLower worldName == "tanoa"): { "Templates\NewTemplates\Vanilla\Vanilla_AI_NATO_Tropical.sqf" };
+                case (toLower worldName in temperatemaps);
+                case (toLower worldName in tropicalmaps): { "Templates\NewTemplates\Vanilla\Vanilla_AI_NATO_Temperate.sqf" };
+                default { "Templates\NewTemplates\Vanilla\Vanilla_AI_NATO_Arid.sqf" };
+            };
+        };
+        case "CSAT": {
+            switch(true) do {
+                case (toLower worldName == "enoch"): { "Templates\NewTemplates\Vanilla\Vanilla_AI_CSAT_Enoch.sqf" };
+                case (toLower worldName == "tanoa"): { "Templates\NewTemplates\Vanilla\Vanilla_AI_CSAT_Tropical.sqf" };
+                default { "Templates\NewTemplates\Vanilla\Vanilla_AI_CSAT_Arid.sqf" };
+            };
+        };
+    };
+};
+
+private _pickCIVTemplate = {
+    switch _this do {
+        case "Factions": {
+            switch(true) do {
+                case (toLower worldName in arcticmaps);
+                case (toLower worldName in temperatemaps);
+                case (toLower worldName in tropicalmaps): { "Templates\NewTemplates\3CB\3CB_Civ_Temperate.sqf" };
+                default { "Templates\NewTemplates\3CB\3CB_Civ_Arid.sqf" };
+            };
+        };
+        case "RHS": { "Templates\NewTemplates\RHS\RHS_Civ.sqf" };
+        case "VN": { "Templates\NewTemplates\VN\VN_CIV.sqf" };
+        case "Vanilla": { "Templates\NewTemplates\Vanilla\Vanilla_Civ.sqf" };
+    };
+};
+
+//Pick template
+//reb
+_rebFactionEnums#A3A_rebTemplateFactionEnum params ["_template", "_condition"];
+if !(_condition) then { _template = (_rebFactionEnums#(_rebFactionEnums findIf {_x#1}))#0 };
+private _path = _template call _pickRebTemplate;
+
+[_path, resistance] call A3A_fnc_compatibilityLoadFaction;
+Info_2("Loaded Reb template: %1 | Path: %2", _template, _path);
+A3A_Reb_template = _template;
+
+//occ
+_AIFactionEnums#A3A_occTemplateFactionEnum params ["_template", "_condition"];
+if !(_condition) then { _template = (_AIFactionEnums#(_AIFactionEnums findIf {_x#1}))#0 };
+private _path = _template call _pickAITemplate;
+
+[_path, west] call A3A_fnc_compatibilityLoadFaction;
+Info_2("Loaded Occ template: %1 | Path: %2", _template, _path);
+A3A_Occ_template = _template;
+
+//inv
+_AIFactionEnums#A3A_invTemplateFactionEnum params ["_template", "_condition"];
+if !(_condition) then { _template = (_AIFactionEnums#(_AIFactionEnums findIf {_x#1}))#0 };
+private _path = _template call _pickAITemplate;
+
+[_path, east] call A3A_fnc_compatibilityLoadFaction;
+Info_2("Loaded Inv template: %1 | Path: %2", _template, _path);
+A3A_Inv_template = _template;
+
+//civ
+_civFactionEnums#A3A_civTemplateFactionEnum params ["_template", "_condition"];
+if !(_condition) then { _template = _civFactionEnums#((_civFactionEnums findIf {_x#1}))#0 };
+private _path = _template call _pickCIVTemplate;
+
+[_path, civilian] call A3A_fnc_compatibilityLoadFaction;
+Info_2("Loaded Civ template: %1 | Path: %2", _template, _path);
+A3A_Civ_template = _template;
+
+
+
+//current selection
+/*
 //Reb Templates
 A3A_Reb_template = switch(true) do {
     case (A3A_has3CBFactions): {
@@ -78,7 +262,7 @@ A3A_Reb_template = switch(true) do {
       };
       "IFA"
     };
-    */
+    *//*
     default {
         switch(true) do {//This one (vanilla) works differently so that we don't get DLC kit on modded maps.
             case (toLower worldName == "enoch"): {
@@ -121,7 +305,7 @@ A3A_Occ_template = switch(true) do {
         };
         "FFAA"
     };
-    */
+    *//*
     case (A3A_has3CBBAF): {
         switch(true) do {
             case (toLower worldName in arcticmaps): {
@@ -209,7 +393,7 @@ A3A_Occ_template = switch(true) do {
         };
         "IFA"
     };
-    */
+    *//*
     default {
         switch(true) do {//This one (vanilla) works differently so that we don't get DLC kit on modded maps.
             case (toLower worldName == "enoch"): {
@@ -299,7 +483,7 @@ A3A_Inv_template = switch(true) do {
         };
         "IFA"
     };
-    */
+    *//*
     default {
         switch(true) do {//This one (vanilla) works differently so that we don't get DLC kit on modded maps.
             case (toLower worldName == "enoch"): {
@@ -351,13 +535,14 @@ A3A_Civ_template = switch(true) do {
         Info("Using IFA Civ Template");
         "IFA"
     };
-    */
+    *//*
     default {
         ["Templates\NewTemplates\Vanilla\Vanilla_Civ.sqf", civilian] call A3A_fnc_compatibilityLoadFaction;
         Info("Using Vanilla Civ Template");
         "Vanilla"
     };
 };
+*/
 
 // This will be adapted at a later step
 Info("Reading Addon mod files.");

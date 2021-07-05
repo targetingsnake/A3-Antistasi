@@ -214,6 +214,56 @@ class Params
         texts[] = {""};
         default = "";
     };
+    class Spacer12
+    {
+        title = "";
+        values[] = {""};
+        texts[] = {""};
+        default = "";
+    };
+    class RebelFactionEnum
+    {
+        title = "Rebel faction";
+        values[] = {9999, 0,1,2,3,4,5};
+        texts[] = {"Default (FIA)", "FIA", "SDK", "NAPA (RHS)", "CNM (Factions)", "TKM (Factions)", "POF (SOG:PF)"};
+        default = 9999;
+    };
+    class OccupantsFactionEnum
+    {
+        title = "Occupants faction";
+        values[] = {9999, 0,1,2,3,4,5,6,7,8,9,10,11,12,13,14};
+        texts[] = {
+            "Default (NATO)", "NATO", "CSAT", "AAF", "LDF (Contact)", "USAF (RHS)", "AFRF (RHS)","CDF (RHS)"
+            , "BAF (BAF)", "US Marines (Factions)", "Coldwar US (Factions)", "Coldwar Soviets (Factions)"
+            , "TKA west (Factions)", "TKA East (Factions)", "MACV (SOG:PF)", "PAVN (SOG:PF)"
+        };
+        default = 9999;
+    };
+    class InvadersFactionEnum
+    {
+        title = "Invaders faction (Required content for faction in parentheses)";
+        values[] = {9999, 0,1,2,3,4,5,6,7,8,9,10,11,12,13,14};
+        texts[] = {
+            "Default (CSAT)", "NATO", "CSAT", "AAF", "LDF (Contact)", "USAF (RHS)", "AFRF (RHS)","CDF (RHS)"
+            , "BAF (BAF)", "US Marines (Factions)", "Coldwar US (Factions)", "Coldwar Soviets (Factions)"
+            , "TKA west (Factions)", "TKA East (Factions)", "MACV (SOG:PF)", "PAVN (SOG:PF)"
+        };
+        default = 9999;
+    };
+    class CivFactionEnum
+    {
+        title = "Civilian faction";
+        values[] = {9999, 0,1,2,3};
+        texts[] = {"Default (Vanilla)", "Vanilla", "RHS", "Factions", "VN"};
+        default = 9999;
+    };
+    class Spacer13
+    {
+        title = "";
+        values[] = {""};
+        texts[] = {""};
+        default = "";
+    };
     class Kart
     {
         title = "Allow Items and Vehicles from Karts DLC?";
