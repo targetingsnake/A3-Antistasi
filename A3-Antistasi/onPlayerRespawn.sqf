@@ -19,6 +19,7 @@ if (isServer) then {
 	} ];
 };
 
+[] call A3A_fnc_CCD_sendUpdate;
 _nul = [_oldUnit] spawn A3A_fnc_postmortem;
 
 _oldUnit setVariable ["incapacitated",false,true];

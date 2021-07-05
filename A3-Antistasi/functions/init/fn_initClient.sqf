@@ -4,6 +4,8 @@ FIX_LINE_NUMBERS()
 //Make sure logLevel is always initialised.
 //This should be overridden by the server, as appropriate. Hence the nil check.
 if (isNil "logLevel") then { logLevel = 2 };scriptName "initClient.sqf";
+// Will only be set from params on server, clients will do no reporting.
+if (isNil "A3A_CCDStatistics") then { A3A_CCDStatistics = false };
 
 Info("initClient started");
 

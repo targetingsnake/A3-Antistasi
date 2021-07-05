@@ -319,6 +319,13 @@ class Params
         texts[] = {"Default (Debug)", "Error", "Info", "Debug"};
         default = 9999;
     };
+    class CCDStatistics // Tempory
+    {
+        title = "Client Connection Data Statistic Logging (optimisaion and security development)";
+        values[] = {9999,1,0};
+        texts[] = {"Default (Active)", "Active", "Inactive"};
+        default = 9999;
+    };
     class SupportOptions
     {
         title = "SUPPORT OPTIONS";
