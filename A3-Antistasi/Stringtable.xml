@@ -3772,6 +3772,10 @@
             <Original>You are not looking at a vehicle</Original>
             <English>You are not looking at a vehicle</English>
         </Key>
+        <Key ID="STR_HR_GRG_Feedback_confirm_NullSelection">
+            <Original>No vehicle selected</Original>
+            <English>No vehicle selected</English>
+        </Key>
         <Key ID="STR_HR_GRG_Feedback_addVehicle_SATow">
             <Original>You can't garage a Vehicle with your Tow Rope out or a Vehicle attached</Original>
             <English>You can't garage a Vehicle with your Tow Rope out or a Vehicle attached</English>
