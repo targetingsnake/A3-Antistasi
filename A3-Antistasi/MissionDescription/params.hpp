@@ -245,7 +245,7 @@ class Params
         values[] = {9999, 1,2,3,4,5,6,7,8,9,10,11,12,13,14,15};
         texts[] = {
             "Default (Auto)", "NATO", "CSAT", "AAF", "LDF (Contact)", "USAF (RHS)", "AFRF (RHS)","CDF (RHS)"
-            , "BAF (BAF)", "US Marines (Factions)", "Coldwar US (Factions)", "Coldwar Soviets (Factions)"
+            , "US Marines (RHS)", "BAF (BAF)", "Coldwar US (Factions)", "Coldwar Soviets (Factions)"
             , "TKA west (Factions)", "TKA East (Factions)", "MACV (SOG:PF)", "PAVN (SOG:PF)"
         };
         default = 9999;

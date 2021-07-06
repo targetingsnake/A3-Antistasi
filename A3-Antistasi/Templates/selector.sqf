@@ -40,7 +40,7 @@ private _autoPickAI = {
             case (A3A_has3CBFactions): {
                 switch(true) do {
                     case (toLower worldName in arcticmaps);
-                    case (toLower worldName in temperatemaps): {"USAF"};
+                    case (toLower worldName in temperatemaps): {"US Marines"};
                     case (toLower worldName in tropicalmaps): {"Coldwar US"};
                     default {"TKA West"};
                 };
@@ -120,8 +120,8 @@ private _AIFactionEnums = [
     , ["USAF", A3A_hasRHS]
     , ["AFRF", A3A_hasRHS]
     , ["CDF", A3A_hasRHS]
+    , ["US Marines", A3A_hasRHS]
     , ["BAF", A3A_has3CBBAF]
-    , ["US Marines", A3A_has3CBFactions]
     , ["Coldwar US", A3A_has3CBFactions]
     , ["Coldwar Soviets", A3A_has3CBFactions]
     , ["TKA west", A3A_has3CBFactions]
@@ -162,13 +162,13 @@ private _pickAITemplate = {
         };
 
         //Factions
-        case "US Marines": { "Templates\NewTemplates\RHS\RHS_AI_USAF_Marines_Temperate.sqf" };
         case "Coldwar US": { "Templates\NewTemplates\3CB\3CB_AI_CW_US.sqf" };
         case "Coldwar Soviets": { "Templates\NewTemplates\3CB\3CB_AI_CW_SOV.sqf" };
         case "TKA West": { "Templates\NewTemplates\3CB\3CB_AI_TKA_West.sqf" };
         case "TKA East": { "Templates\NewTemplates\3CB\3CB_AI_TKA_East.sqf" };
 
         //RHS
+        case "US Marines": { "Templates\NewTemplates\RHS\RHS_AI_USAF_Marines_Temperate.sqf" };
         case "CDF": { "Templates\NewTemplates\RHS\RHS_AI_CDF_Temperate.sqf" };
         case "USAF": {
             switch(true) do {
