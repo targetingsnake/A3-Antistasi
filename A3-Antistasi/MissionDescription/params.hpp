@@ -216,24 +216,24 @@ class Params
     };
     class Spacer12
     {
-        title = "";
+        title = "Factions templates - Do NOT change this mid mission";
         values[] = {""};
-        texts[] = {""};
+        texts[] = {"Mixing modsets can cause broken behaviour"};
         default = "";
     };
     class RebelFactionEnum
     {
-        title = "Rebel faction";
-        values[] = {9999, 0,1,2,3,4,5};
-        texts[] = {"Default (FIA)", "FIA", "SDK", "NAPA (RHS)", "CNM (Factions)", "TKM (Factions)", "POF (SOG:PF)"};
+        title = "Rebel faction (Required content for faction in parentheses)";
+        values[] = {9999, 1,2,3,4,5,6};
+        texts[] = {"Default (Auto)", "FIA", "SDK", "NAPA (RHS)", "CNM (Factions)", "TKM (Factions)", "POF (SOG:PF)"};
         default = 9999;
     };
     class OccupantsFactionEnum
     {
-        title = "Occupants faction";
-        values[] = {9999, 0,1,2,3,4,5,6,7,8,9,10,11,12,13,14};
+        title = "Occupants faction (Required content for faction in parentheses)";
+        values[] = {9999, 1,2,3,4,5,6,7,8,9,10,11,12,13,14,15};
         texts[] = {
-            "Default (NATO)", "NATO", "CSAT", "AAF", "LDF (Contact)", "USAF (RHS)", "AFRF (RHS)","CDF (RHS)"
+            "Default (Auto)", "NATO", "CSAT", "AAF", "LDF (Contact)", "USAF (RHS)", "AFRF (RHS)","CDF (RHS)"
             , "BAF (BAF)", "US Marines (Factions)", "Coldwar US (Factions)", "Coldwar Soviets (Factions)"
             , "TKA west (Factions)", "TKA East (Factions)", "MACV (SOG:PF)", "PAVN (SOG:PF)"
         };
@@ -242,9 +242,9 @@ class Params
     class InvadersFactionEnum
     {
         title = "Invaders faction (Required content for faction in parentheses)";
-        values[] = {9999, 0,1,2,3,4,5,6,7,8,9,10,11,12,13,14};
+        values[] = {9999, 1,2,3,4,5,6,7,8,9,10,11,12,13,14,15};
         texts[] = {
-            "Default (CSAT)", "NATO", "CSAT", "AAF", "LDF (Contact)", "USAF (RHS)", "AFRF (RHS)","CDF (RHS)"
+            "Default (Auto)", "NATO", "CSAT", "AAF", "LDF (Contact)", "USAF (RHS)", "AFRF (RHS)","CDF (RHS)"
             , "BAF (BAF)", "US Marines (Factions)", "Coldwar US (Factions)", "Coldwar Soviets (Factions)"
             , "TKA west (Factions)", "TKA East (Factions)", "MACV (SOG:PF)", "PAVN (SOG:PF)"
         };
@@ -252,9 +252,9 @@ class Params
     };
     class CivFactionEnum
     {
-        title = "Civilian faction";
-        values[] = {9999, 0,1,2,3};
-        texts[] = {"Default (Vanilla)", "Vanilla", "RHS", "Factions", "VN"};
+        title = "Civilian faction (Required content for faction in parentheses)";
+        values[] = {9999, 1,2,3,4};
+        texts[] = {"Default (Auto)", "Vanilla", "RHS", "Factions", "VN"};
         default = 9999;
     };
     class Spacer13
