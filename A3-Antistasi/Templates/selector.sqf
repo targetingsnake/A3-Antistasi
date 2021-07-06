@@ -4,7 +4,7 @@ Author: Meerkat & Håkon
 
   - When porting new mods/maps be sure to add them to their respective sections!
 
-  - when adding a faction add it to the faction enums, the autopick functions, and the params (initParams.sqf & params.hpp)
+  - when adding a faction add it to the faction enums (ln 114), the autopick functions (ln 35), the _pick{Reb/AI/Civ}Template function (ln 153), and the params (initParams.sqf & params.hpp)
 
   - when new vehicles are added add a logistics node file and load it when the mod its dependant on is loaded
 
