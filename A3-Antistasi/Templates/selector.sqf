@@ -266,7 +266,10 @@ private _pickCIVTemplate = {
 //reb
 _rebFactionEnums#A3A_rebTemplateFactionEnum params ["_template", "_condition"];
 if !(_condition) then { _template = (_rebFactionEnums#(_rebFactionEnums findIf {_x#1}))#0 };
-if (_template isEqualType {}) then {_template = resistance call _template};
+if (_template isEqualType {}) then {
+    Info("Autopicking Reb template");
+    _template = resistance call _template
+};
 private _path = _template call _pickRebTemplate;
 
 [_path, resistance] call A3A_fnc_compatibilityLoadFaction;
@@ -276,7 +279,10 @@ A3A_Reb_template = _template;
 //occ
 _AIFactionEnums#A3A_occTemplateFactionEnum params ["_template", "_condition"];
 if !(_condition) then { _template = (_AIFactionEnums#(_AIFactionEnums findIf {_x#1}))#0 };
-if (_template isEqualType {}) then {_template = west call _template};
+if (_template isEqualType {}) then {
+    Info("Autopicking Occ template");
+    _template = west call _template
+};
 private _path = _template call _pickAITemplate;
 
 [_path, west] call A3A_fnc_compatibilityLoadFaction;
@@ -286,7 +292,10 @@ A3A_Occ_template = _template;
 //inv
 _AIFactionEnums#A3A_invTemplateFactionEnum params ["_template", "_condition"];
 if !(_condition) then { _template = (_AIFactionEnums#(_AIFactionEnums findIf {_x#1}))#0 };
-if (_template isEqualType {}) then {_template = east call _template};
+if (_template isEqualType {}) then {
+    Info("Autopicking Inv template");
+    _template = east call _template
+};
 private _path = _template call _pickAITemplate;
 
 [_path, east] call A3A_fnc_compatibilityLoadFaction;
@@ -296,7 +305,10 @@ A3A_Inv_template = _template;
 //civ
 _civFactionEnums#A3A_civTemplateFactionEnum params ["_template", "_condition"];
 if !(_condition) then { _template = _civFactionEnums#((_civFactionEnums findIf {_x#1}))#0 };
-if (_template isEqualType {}) then {_template = civilian call _template};
+if (_template isEqualType {}) then {
+    Info("Autopicking Civ template");
+    _template = civilian call _template
+};
 private _path = _template call _pickCIVTemplate;
 
 [_path, civilian] call A3A_fnc_compatibilityLoadFaction;
