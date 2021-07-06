@@ -116,7 +116,7 @@ private _AIFactionEnums = [
     ,["NATO", true]
     , ["CSAT", true]
     , ["AAF", true]
-    , ["LDF" , true] //add contact dlc check
+    , ["LDF" , true] //ToDo: add contact dlc check
     , ["USAF", A3A_hasRHS]
     , ["AFRF", A3A_hasRHS]
     , ["CDF", A3A_hasRHS]
@@ -265,7 +265,10 @@ private _pickCIVTemplate = {
 
 //reb
 _rebFactionEnums#A3A_rebTemplateFactionEnum params ["_template", "_condition"];
-if !(_condition) then { _template = (_rebFactionEnums#(_rebFactionEnums findIf {_x#1}))#0 };
+if !(_condition) then {
+    Error_1("Invalid mods loaded, failed to load choosen template: %1", _template);
+    _template = (_rebFactionEnums#(_rebFactionEnums findIf {_x#1}))#0
+};
 if (_template isEqualType {}) then {
     Info("Autopicking Reb template");
     _template = resistance call _template
@@ -278,7 +281,10 @@ A3A_Reb_template = _template;
 
 //occ
 _AIFactionEnums#A3A_occTemplateFactionEnum params ["_template", "_condition"];
-if !(_condition) then { _template = (_AIFactionEnums#(_AIFactionEnums findIf {_x#1}))#0 };
+if !(_condition) then {
+    Error_1("Invalid mods loaded, failed to load choosen template: %1", _template);
+    _template = (_AIFactionEnums#(_AIFactionEnums findIf {_x#1}))#0
+};
 if (_template isEqualType {}) then {
     Info("Autopicking Occ template");
     _template = west call _template
@@ -291,7 +297,10 @@ A3A_Occ_template = _template;
 
 //inv
 _AIFactionEnums#A3A_invTemplateFactionEnum params ["_template", "_condition"];
-if !(_condition) then { _template = (_AIFactionEnums#(_AIFactionEnums findIf {_x#1}))#0 };
+if !(_condition) then {
+    Error_1("Invalid mods loaded, failed to load choosen template: %1", _template);
+    _template = (_AIFactionEnums#(_AIFactionEnums findIf {_x#1}))#0
+};
 if (_template isEqualType {}) then {
     Info("Autopicking Inv template");
     _template = east call _template
@@ -304,7 +313,10 @@ A3A_Inv_template = _template;
 
 //civ
 _civFactionEnums#A3A_civTemplateFactionEnum params ["_template", "_condition"];
-if !(_condition) then { _template = _civFactionEnums#((_civFactionEnums findIf {_x#1}))#0 };
+if !(_condition) then {
+    Error_1("Invalid mods loaded, failed to load choosen template: %1", _template);
+    _template = _civFactionEnums#((_civFactionEnums findIf {_x#1}))#0
+};
 if (_template isEqualType {}) then {
     Info("Autopicking Civ template");
     _template = civilian call _template
