@@ -52,7 +52,8 @@ if (
 
 private _side = if (_group isEqualType sideUnknown) then { _group } else { side _group };
 
-private _sim = getText(configFile >> "CfgVehicles" >> _type >> "simulation");
+private _cfg = (configFile >> "CfgVehicles" >> _type);
+private _sim = getText(_cfg >> "simulation");
 
 private _velocity = 0;
 private _veh = objNull;
@@ -60,7 +61,8 @@ switch (toLower _sim) do {
     case "airplanex";
     case "helicopterrtd";
     case "helicopterx": {
-        _velocity = getNumber(configFile >> "CfgVehicles" >> _type >> "stallSpeed") / 3.6 * 1.1;  // kilometres per hour to metres per second * 110% of stall speed.
+        _velocity = if (isNumber (_cfg/"stallSpeed")) then {getNumber(_cfg >> "stallSpeed") / 3.6 * 1.1} else {150};// kilometres per hour to metres per second * 110% of stall speed. Default to 150 if no stallspeed entry
+        ;
         _veh = createVehicle [_type, _pos, [], 0, "FLY"];
         //Make sure aircraft will start at higher altitude if provided.
         if (count _pos == 3 && (_pos#2) > 100) then {
