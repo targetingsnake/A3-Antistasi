@@ -8,13 +8,14 @@ _mrkOrigin = _this select 0;
 _posOrigin = if (_mrkOrigin isEqualType "") then {getMarkerPos _mrkOrigin} else {_mrkOrigin};
 _mrkDestination = _this select 1;
 _attackingSide = _this select 2;
+private _faction = Faction(_attackingSide);
 _sideTargets = _attackingSide call BIS_fnc_enemySides;
 _posDestination = getMarkerPos _mrkDestination;
-_typeVehX = if (_attackingSide == Occupants) then {vehNATOMRLS} else {vehCSATMRLS};
+_typeVehX = (_faction get "vehiclesArtillery") apply {_x#0};
 
 if !([_typeVehX] call A3A_fnc_vehAvailable) exitWith {};
 
-_typeAmmunition = if (_attackingSide == Occupants) then {vehNATOMRLSMags} else {vehCSATMRLSMags};
+_typeAmmunition = selectRandom ((_faction get "vehiclesArtillery") apply {_x#1}); //arty format in templates to change
 
 _pos = [_posOrigin, 50,100, 10, 0, 0.3, 0] call BIS_Fnc_findSafePos;
 

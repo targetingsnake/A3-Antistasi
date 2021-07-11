@@ -1,5 +1,6 @@
 #include "..\..\Includes\common.inc"
 FIX_LINE_NUMBERS()
+#define OccAndInv(VAR) (FactionGet(occ, VAR) + FactionGet(inv, VAR))
 if (!isServer) exitWith {
     Error("Miscalled server-only function");
 };
@@ -85,12 +86,8 @@ _vehInGarage = _vehInGarage + vehInGarage;
 				_resourcesBackground = _resourcesBackground + (server getVariable [(_friendX getVariable "unitType"),0]);
 				_backpck = backpack _friendX;
 				if (_backpck != "") then {
-					switch (_backpck) do {
-						case MortStaticSDKB: {_resourcesBackground = _resourcesBackground + ([SDKMortar] call A3A_fnc_vehiclePrice)};
-						case AAStaticSDKB: {_resourcesBackground = _resourcesBackground + ([staticAAteamPlayer] call A3A_fnc_vehiclePrice)};
-						case MGStaticSDKB: {_resourcesBackground = _resourcesBackground + ([SDKMGStatic] call A3A_fnc_vehiclePrice)};
-						case ATStaticSDKB: {_resourcesBackground = _resourcesBackground + ([staticATteamPlayer] call A3A_fnc_vehiclePrice)};
-					};
+                    private _assemblesTo = getText (configFile/"CfgVehicles"/_backpck/"assembleInfo"/"assembleTo");
+                    if (_backpck isNotEqualTo "") then {_resourcesBackground = _resourcesBackground + ([_assemblesTo] call A3A_fnc_vehiclePrice)};
 				};
 				if (vehicle _friendX != _friendX) then {
 					_veh = vehicle _friendX;
@@ -226,7 +223,7 @@ _dataX = [];
 _dataX = [];
 {
 	_dataX pushBack [_x,timer getVariable _x];
-} forEach (vehAttack + vehNATOAttackHelis + vehPlanes + vehCSATAttackHelis);
+} forEach (vehAttack + vehPlanes + OccAndInv("vehiclesHelisAttack"));
 
 ["idleassets",_dataX] call A3A_fnc_setStatVariable;
 

@@ -1,3 +1,5 @@
+#include "..\..\Includes\common.inc"
+FIX_LINE_NUMBERS()
 if (!isServer) exitWith {};
 
 private ["_typeX","_costs","_groupX","_unit","_radiusX","_roads","_road","_pos","_truckX","_textX","_mrk","_hr","_unitsX","_formatX"];
@@ -9,13 +11,13 @@ if (_typeX == "delete") exitWith {["Create Outpost", "Deprecated option. Use Rem
 
 _isRoad = isOnRoad _positionTel;
 
-_textX = format ["%1 Observation Post",nameTeamPlayer];
+_textX = format ["%1 Observation Post",FactionGet(reb,"name")];
 _typeGroup = groupsSDKSniper;
 _typeVehX = vehSDKBike;
 private _tsk = "";
 if (_isRoad) then
 	{
-	_textX = format ["%1 Roadblock",nameTeamPlayer];
+	_textX = format ["%1 Roadblock",FactionGet(reb,"name")];
 	_typeGroup = groupsSDKAT;
 	_typeVehX = vehSDKTruck;
 	};

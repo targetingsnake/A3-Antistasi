@@ -46,7 +46,7 @@ if(_side == Occupants) then
 }
 else
 {
-    _sideName = nameInvaders
+    _sideName = FactionGet(inv,"name")
 };
 
 if(_intelType == "Small") then
@@ -70,7 +70,7 @@ if(_intelType == "Small") then
             {
                 _nextAttack = attackCountdownInvaders + (random 600) - 300;
             };
-            private _sideName = if (_side == Occupants) then {nameOccupants} else {nameInvaders};
+            private _sideName = if (_side == Occupants) then {nameOccupants} else {FactionGet(inv,"name")};
             if(_nextAttack < 300) then
             {
                 _text = format ["%1 attack is imminent!", _sideName];

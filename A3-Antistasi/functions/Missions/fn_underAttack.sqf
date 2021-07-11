@@ -1,3 +1,5 @@
+#include "..\..\Includes\common.inc"
+FIX_LINE_NUMBERS()
 private ["_markerX","_nameDest","_nameENY"];
 
 params ["_markerX", "_sideEny", "_sideX", ["_roadblockTemp", true]];
@@ -11,7 +13,7 @@ _nameENY = if (_sideEny == teamPlayer) then
 }
 else
 {
-	if (_sideEny == Invaders) then {nameInvaders} else {nameOccupants};
+	if (_sideEny == Invaders) then {FactionGet(inv,"name")} else {FactionGet(occ,"name")};
 };
 if (_sideX == teamPlayer) then {_sideX = [teamPlayer,civilian]};
 

@@ -650,6 +650,7 @@ class A3A
     {
         class aceModCompat {};
 		class compatibilityLoadFaction {};
+        class compileGroups {};
 		class getLoadout {};
 		class loadFaction {};
         class ifaModCompat {};

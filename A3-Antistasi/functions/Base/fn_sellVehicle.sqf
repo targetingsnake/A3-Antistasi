@@ -34,6 +34,8 @@ params [
 #include "..\..\Includes\common.inc"
 FIX_LINE_NUMBERS()
 
+#define OccAndInv(VAR) (FactionGet(occ, VAR) + FactionGet(inv, VAR))
+
 if (isNull _player) exitWith { Error("_player is null.") };
 if (isNull _veh) exitWith {["Sell Vehicle", "You are not looking at a vehicle."] remoteExecCall ["A3A_fnc_customHint",_player];};
 
@@ -55,10 +57,10 @@ private _costs = call {
     if (_typeX in vehFIA) exitWith { ([_typeX] call A3A_fnc_vehiclePrice) / 2 };
     if ((_typeX in arrayCivVeh) or (_typeX in civBoats) or (_typeX in [civBoat,civCar,civTruck])) exitWith {25};
     if ((_typeX in vehNormal) or (_typeX in vehBoats) or (_typeX in vehAmmoTrucks)) exitWith {100};
-    if (_typeX in [vehCSATPatrolHeli, vehNATOPatrolHeli, civHeli]) exitWith {500};
+    if (_typeX in (OccAndInv("vehiclesHelisLight") + [civHeli])) exitWith {500};
     if ((_typeX in vehAPCs) || (_typeX in vehTransportAir) || (_typeX in vehUAVs)) exitWith {1000};
     if ((_typeX in vehAttackHelis) or (_typeX in vehTanks) or (_typeX in vehAA) or (_typeX in vehMRLS)) exitWith {3000};
-    if (_typeX in [vehNATOPlane,vehNATOPlaneAA,vehCSATPlane,vehCSATPlaneAA]) exitWith {4000};
+    if (_typeX in (OccAndInv("vehiclesPlanesCAS") + OccAndInv("vehiclesPlanesAA"))) exitWith {4000};
     0;
 };
 

@@ -1,5 +1,7 @@
 _veh = cursortarget;
-
+#include "..\..\Includes\common.inc"
+FIX_LINE_NUMBERS()
+#define OccAndInv(VEH) (FactionGet(occ, VEH) + FactionGet(inv, VEH))
 if (isNull _veh) exitWith {["Airstrike", "You are not looking at a vehicle."] call A3A_fnc_customHint;};
 
 if (!alive _veh) exitWith {["Airstrike", "You can't convert destroyed Air vehicle to Airstrikes."] call A3A_fnc_customHint;};
@@ -43,7 +45,7 @@ if (_exit) exitWith {["Airstrike", "Backpack drones can't be used to increase Ai
 _pointsX = 2;
 
 if (_typeX in vehAttackHelis) then {_pointsX = 5};
-if ((_typeX == vehCSATPlane) or (_typeX == vehNATOPlane)) then {_pointsX = 10};
+if (_typeX in (OccAndInv("vehiclesPlanesCAS") + OccAndInv("vehiclesPlanesAA"))) then {_pointsX = 10};
 deleteVehicle _veh;
 ["Airstrike", format ["Air Support increased in %1 points",_pointsX]] call A3A_fnc_customHint;
 bombRuns = bombRuns + _pointsX;

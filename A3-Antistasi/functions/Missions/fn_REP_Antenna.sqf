@@ -1,5 +1,9 @@
 //Mission: Repair the antenna
 if (!isServer and hasInterface) exitWith{};
+#include "..\..\Includes\common.inc"
+FIX_LINE_NUMBERS()
+
+private _groupData = FactionGet(occ,"groups");
 
 private ["_markerX","_antennaDead","_dateLimit","_dateLimitNum","_nameDest","_truckCreated","_size","_pos","_veh","_groupX","_unit"];
 
@@ -38,7 +42,7 @@ if (spawner getVariable _markerX != 2) then
 	_road = [getPos _antennaDead] call A3A_fnc_findNearestGoodRoad;
 	_pos = position _road;
 	_pos = _pos findEmptyPosition [1,60,"B_T_Truck_01_repair_F"];
-	_veh = createVehicle [vehNATORepairTruck, _pos, [], 0, "NONE"];
+	_veh = createVehicle [FactionGet(occ,"vehiclesRepairTrucks"), _pos, [], 0, "NONE"];
 	_veh allowdamage false;
 	_veh setDir (getDir _road);
 	_nul = [_veh, Occupants] call A3A_fnc_AIVEHinit;
@@ -49,7 +53,7 @@ if (spawner getVariable _markerX != 2) then
 
 	for "_i" from 1 to 3 do
 		{
-		_unit = [_groupX, NATOCrew, _pos, [], 0, "NONE"] call A3A_fnc_createUnit;
+		_unit = [_groupX, _groupData get "crew", _pos, [], 0, "NONE"] call A3A_fnc_createUnit;
 		[_unit,""] call A3A_fnc_NATOinit;
 		sleep 2;
 		};

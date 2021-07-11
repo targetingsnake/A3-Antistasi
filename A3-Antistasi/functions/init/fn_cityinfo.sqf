@@ -1,4 +1,5 @@
-
+#include "..\..\Includes\common.inc"
+FIX_LINE_NUMBERS()
 private ["_textX","_dataX","_numCiv","_prestigeOPFOR","_prestigeBLUFOR","_power","_busy","_siteX","_positionTel","_garrison"];
 positionTel = [];
 
@@ -34,7 +35,7 @@ while {visibleMap} do
 		_positionTel = positionTel;
 		_siteX = [markersX, _positionTel] call BIS_Fnc_nearestPosition;
 		_textX = "Click on the zone";
-		_nameFaction = if (sidesX getVariable [_siteX,sideUnknown] == teamPlayer) then {nameTeamPlayer} else {if (sidesX getVariable [_siteX,sideUnknown] == Occupants) then {nameOccupants} else {nameInvaders}};
+		_nameFaction = if (sidesX getVariable [_siteX,sideUnknown] == teamPlayer) then {nameTeamPlayer} else {if (sidesX getVariable [_siteX,sideUnknown] == Occupants) then {nameOccupants} else {FactionGet(inv,"name")}};
 		if (_siteX == "Synd_HQ") then
 			{
 			_textX = format ["%2 HQ%1",[_siteX] call A3A_fnc_garrisonInfo,nameTeamPlayer];
@@ -54,7 +55,7 @@ while {visibleMap} do
 				{
 				case teamPlayer: {_result = format ["%1",nameTeamPlayer]};
 				case Occupants: {_result = format ["%1",nameOccupants]};
-				case Invaders: {_result = format ["%1",nameInvaders]};
+				case Invaders: {_result = format ["%1",FactionGet(inv,"name")]};
 				};
 			/*_ant1 = [antennas,_positionX] call BIS_fnc_nearestPosition;
 			_ant2 = [antennasDead, _positionX] call BIS_fnc_nearestPosition;

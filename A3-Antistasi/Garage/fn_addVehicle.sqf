@@ -31,7 +31,7 @@ if (isNil "HR_GRG_Vehicles") then {
 private _class = typeOf _vehicle;
 
 //LTC refund
-if (_class in [NATOSurrenderCrate, CSATSurrenderCrate]) exitWith {
+if (_class in [FactionGet(occ,"surrenderCrate"), FactionGet(inv,"surrenderCrate")]) exitWith {
     _vehicle addMagazineCargoGlobal [unlockedMagazines#0,1];// so fnc_empty will delete the crate
     [_vehicle] spawn A3A_fnc_empty;
     [10] call A3A_fnc_resourcesPlayer;

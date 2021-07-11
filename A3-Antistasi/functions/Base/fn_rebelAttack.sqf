@@ -14,6 +14,8 @@ FIX_LINE_NUMBERS()
         Nothing
 */
 
+private _groupData = FactionGetGroup(_side);
+
 Info_1("Starting large attack script for side %1", _side);
 
 if (A3A_hasIFA and (sunOrMoon < 1)) exitWith
@@ -256,14 +258,7 @@ private _fnc_flipMarker =
     private _soldiers = [];
     for "_i" from 0 to _squads do
     {
-        if (_side == Occupants) then
-        {
-            _soldiers append (selectRandom (groupsNATOSquad + groupsNATOmid));
-        }
-        else
-        {
-            _soldiers append (selectRandom (groupsCSATSquad + groupsCSATmid));
-        };
+        _soldiers append selectRandom ((_groupData get "squad") + _groupData get "medium");
     };
     [_soldiers,_side,_marker,0] remoteExec ["A3A_fnc_garrisonUpdate",2];
 };

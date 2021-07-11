@@ -111,7 +111,7 @@ if (player getVariable ["pvp",false]) exitWith {
 		if ((_boxX == NATOAmmoBox) or (_boxX == CSATAmmoBox)) then {_override = true};
 		_override
 	}];
-	_nameX = if (side player == Occupants) then {nameOccupants} else {nameInvaders};
+	_nameX = if (side player == Occupants) then {nameOccupants} else {FactionGet(inv,"name")};
 	waituntil {!isnull (finddisplay 46)};
 	gameMenu = (findDisplay 46) displayAddEventHandler ["KeyDown", {
 		_handled = FALSE;

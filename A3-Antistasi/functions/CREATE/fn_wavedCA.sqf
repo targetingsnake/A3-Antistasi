@@ -29,13 +29,15 @@ _nameDest = [_mrkDestination] call A3A_fnc_localizar;
 _nameOrigin = [_mrkOrigin] call A3A_fnc_localizar;
 
 _sideX = sidesX getVariable [_mrkOrigin,sideUnknown];
+private _faction = Faction(_sideX);
+private _groupData = FactionGetGroups(_sideX);
 _sideTsk = [teamPlayer,civilian,Invaders];
 _sideTsk1 = [Occupants];
 _nameENY = nameOccupants;
 //_config = cfgNATOInf;
 if (_sideX == Invaders) then
 	{
-	_nameENY = nameInvaders;
+	_nameENY = FactionGet(inv,"name");
 	//_config = cfgCSATInf;
 	_sideTsk = [teamPlayer,civilian,Occupants];
 	_sideTsk1 = [Invaders];
@@ -72,15 +74,15 @@ private _vehPoolAirSupport = [];
 private _vehPoolAirTransport = [];
 
 // unlimited vehicle types, for later use
-private _typePatrolHeli = if (_sideX == Occupants) then {vehNATOPatrolHeli} else {vehCSATPatrolHeli};
-private _typesTruck = if (_sideX == Occupants) then {vehNATOTrucks} else {vehCSATTrucks};
-private _typesMRAP = if (_sideX == Occupants) then {vehNATOLightArmed} else {vehCSATLightArmed};
+private _typePatrolHeli = _faction get "vehiclesHelisLight";
+private _typesTruck = _faction get "vehiclesTrucks";
+private _typesMRAP = _faction get "vehiclesLightArmed";
 
 // Just getting the variables out of scope
 call {
-	private _typesAPC = if (_sideX == Occupants) then {vehNATOAPC} else {vehCSATAPC};
-	private _typeTank = if (_sideX == Occupants) then {vehNATOTank} else {vehCSATTank};
-	private _typeAA = if (_sideX == Occupants) then {vehNATOAA} else {vehCSATAA};
+	private _typesAPC = _faction get "vehiclesAPCs";
+	private _typeTank = _faction get "vehiclesTanks";
+	private _typeAA = _faction get "vehiclesAA";
 
 	// Add up to 4 + tierWar APCs, selected randomly from available vehicles
 	{
@@ -105,11 +107,11 @@ call {
 
 	// Separate air support from transports because air support can't conquer
 
-	private _typePlane = if (_sideX == Occupants) then {vehNATOPlane} else {vehCSATPlane};
-	private _typePlaneAA = if (_sideX == Occupants) then {vehNATOPlaneAA} else {vehCSATPlaneAA};
-	private _typesAttackHelis = if (_sideX == Occupants) then {vehNATOAttackHelis} else {vehCSATAttackHelis};
-	private _typesTransportPlanes = if (_sideX == Occupants) then {vehNATOTransportPlanes} else {vehCSATTransportPlanes};
-	private _typesTransportHelis = if (_sideX == Occupants) then {vehNATOTransportHelis} else {vehCSATTransportHelis};
+	private _typePlane = _faction get "vehiclesPlanesCAS";
+	private _typePlaneAA = _faction get "vehiclesPlanesAA";
+	private _typesAttackHelis = _faction get "vehiclesHelisAttack";
+	private _typesTransportPlanes = _faction get "vehiclesPlanesTransport";
+	private _typesTransportHelis = (_faction get "vehiclesHelisLight") + (_faction get "vehiclesHelisTransport");
 
 	// Add up to 2 + tierWar attack helis, selected randomly from available vehicles
 	{
@@ -346,15 +348,15 @@ while {(_waves > 0)} do
 		_pos = getMarkerPos ([seaAttackSpawn,_posDestination] call BIS_fnc_nearestPosition);
 		if (count _pos > 0) then
 			{
-			_vehPool = if (_sideX == Occupants) then {vehNATOBoats} else {vehCSATBoats};
+			_vehPool = (_faction get "vehiclesGunboats") + (_faction get "vehiclesTransportBoats") + (_faction get "vehiclesAmphibious");
 			_vehPool = _vehPool select {[_x] call A3A_fnc_vehAvailable};
 			_countX = 0;
 			_spawnedSquad = false;
 			while {(_countX < 3) and (count _soldiers <= 80)} do
 				{
-				_typeVehX = if (_vehPool isEqualTo []) then {if (_sideX == Occupants) then {vehNATORBoat} else {vehCSATRBoat}} else {selectRandom _vehPool};
+				_typeVehX = if (_vehPool isEqualTo []) then {selectRandom (_faction get "vehiclesTransportBoats")} else {selectRandom _vehPool};
 				_proceed = true;
-				if ((_typeVehX == vehNATOBoat) or (_typeVehX == vehCSATBoat)) then
+				if (_typeVehX in (_faction get "vehiclesGunboats")) then
 					{
 					_landPos = [_posDestination, 10, 1000, 10, 2, 0.3, 0] call BIS_Fnc_findSafePos;
 					}
@@ -390,7 +392,7 @@ while {(_waves > 0)} do
 					_vehiclesX pushBack _veh;
 					{[_x] call A3A_fnc_NATOinit} forEach units _groupVeh;
 					[_veh, _sideX] call A3A_fnc_AIVEHinit;
-					if ((_typeVehX == vehNATOBoat) or (_typeVehX == vehCSATBoat)) then
+					if ((_typeVehX in (_faction get "vehiclesGunboats")) then
 						{
 						_wp0 = _groupVeh addWaypoint [_landpos, 0];
 						_wp0 setWaypointType "SAD";
@@ -495,7 +497,7 @@ while {(_waves > 0)} do
 	{
 		//75% chance to spawn a UAV, to give some variety.
 		if (random 1 < 0.25) exitWith {};
-		_typeVehX = if (_sideX == Occupants) then {vehNATOUAV} else {vehCSATUAV};
+		_typeVehX = selectRandom (_faction get "uavsAttack");
 		if (_typeVehX isEqualTo "not_supported") exitWith {};
 		_uav = createVehicle [_typeVehX, _posOrigin, [], 0, "FLY"];
 		_vehiclesX pushBack _uav;
@@ -634,7 +636,7 @@ while {(_waves > 0)} do
 
     Info_4("Spawn performed: %1 air vehicles inc. %2 supports, %3 land vehicles, %4 soldiers", _nVehAir, _countNewSupport, _nVehLand, count _soldiers);
 
-	_plane = if (_sideX == Occupants) then {vehNATOPlane} else {vehCSATPlane};
+	_plane = _faction get "vehiclesPlanesCAS";
 	if (_sideX == Occupants) then
 		{
 		if (((not(_mrkDestination in outposts)) and (not(_mrkDestination in seaports)) and (_mrkOrigin != "NATO_carrier")) or A3A_hasIFA) then

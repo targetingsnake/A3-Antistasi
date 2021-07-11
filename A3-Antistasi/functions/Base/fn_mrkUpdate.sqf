@@ -1,3 +1,5 @@
+#include "..\..\Includes\common.inc"
+FIX_LINE_NUMBERS()
 private ["_markerX","_mrkD"];
 
 _markerX = _this select 0;
@@ -9,8 +11,8 @@ if (sidesX getVariable [_markerX,sideUnknown] == teamPlayer) then
 	_mrkD setMarkerColor colorTeamPlayer;
 	if (_markerX in airportsX) then
 		{
-		_textX = format ["%2 Airbase%1",_textX,nameTeamPlayer];
-		[_mrkD,format ["%1 Airbase",nameTeamPlayer]] remoteExec ["setMarkerTextLocal",[Occupants,Invaders],true];
+		_textX = format ["%2 Airbase%1",_textX,FactionGet(reb,"name")];
+		[_mrkD,format ["%1 Airbase",FactionGet(reb,"name")]] remoteExec ["setMarkerTextLocal",[Occupants,Invaders],true];
 		//_mrkD setMarkerText format ["SDK Airbase%1",_textX];
 		if (markerType _mrkD != SDKFlagMarkerType) then {_mrkD setMarkerType SDKFlagMarkerType};
 		_mrkD setMarkerColor "Default";
@@ -19,8 +21,8 @@ if (sidesX getVariable [_markerX,sideUnknown] == teamPlayer) then
 		{
 		if (_markerX in outposts) then
 			{
-			_textX = format ["%2 Outpost%1",_textX,nameTeamPlayer];
-			[_mrkD,format ["%1 Outpost",nameTeamPlayer]] remoteExec ["setMarkerTextLocal",[Occupants,Invaders],true];
+			_textX = format ["%2 Outpost%1",_textX,FactionGet(reb,"name")];
+			[_mrkD,format ["%1 Outpost",FactionGet(reb,"name")]] remoteExec ["setMarkerTextLocal",[Occupants,Invaders],true];
 			}
 		else
 			{
@@ -49,7 +51,7 @@ else
 		{
 		if (_markerX in airportsX) then
 			{
-			_mrkD setMarkerText format ["%1 Airbase",nameOccupants];
+			_mrkD setMarkerText format ["%1 Airbase",FactionGet(occ,"name")];
 			_mrkD setMarkerType flagNATOmrk;
 			_mrkD setMarkerColor "Default";
 			}
@@ -57,7 +59,7 @@ else
 			{
 			if (_markerX in outposts) then
 				{
-				_mrkD setMarkerText format ["%1 Outpost",nameOccupants]
+				_mrkD setMarkerText format ["%1 Outpost",FactionGet(occ,"name")]
 				};
 			_mrkD setMarkerColor colorOccupants;
 			};
@@ -66,15 +68,15 @@ else
 		{
 		if (_markerX in airportsX) then
 			{
-			_mrkD setMarkerText format ["%1 Airbase",nameInvaders];
-			_mrkD setMarkerType flagCSATmrk;
+			_mrkD setMarkerText format ["%1 Airbase",FactionGet(inv,"name")];
+			_mrkD setMarkerType FactionGet(inv,"flagMarkerType");
 			_mrkD setMarkerColor "Default";
 			}
 		else
 			{
 			if (_markerX in outposts) then
 				{
-				_mrkD setMarkerText format ["%1 Outpost",nameInvaders];
+				_mrkD setMarkerText format ["%1 Outpost",FactionGet(inv,"name")];
 				};
 			_mrkD setMarkerColor colorInvaders;
 			};

@@ -597,9 +597,6 @@ DECLARE_SERVER_VAR(squadLeaders, _squadLeaders);
 //Identify Medic Units
 private _medics = SDKMedic + [(FIAsquad select ((count FIAsquad)-1)),(NATOSquad select ((count NATOSquad)-1)),(NATOSpecOp select ((count NATOSpecOp)-1)),(CSATSquad select ((count CSATSquad)-1)),(CSATSpecOp select ((count CSATSpecOp)-1))];
 DECLARE_SERVER_VAR(medics, _medics);
-//Define Sniper Groups and Units
-private _sniperGroups = [groupsNATOSniper,groupsCSATSniper];
-DECLARE_SERVER_VAR(sniperGroups, _sniperGroups);
 
 //////////////////////////////////////
 //        ITEM INITIALISATION      ///

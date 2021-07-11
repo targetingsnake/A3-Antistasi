@@ -26,9 +26,9 @@ private _taskId = "AS" + str A3A_taskCount;
 [_taskId, "AS", "CREATED"] remoteExecCall ["A3A_fnc_taskUpdate", 2];
 
 _grp = createGroup _sideX;
-_typeX = if (_sideX == Occupants) then {NATOOfficer} else {CSATOfficer};
+_typeX = if (_sideX == Occupants) then {NATOOfficer} else {"loadouts_inv_other_Official"};
 _official = [_grp, _typeX, _positionX, [], 0, "NONE"] call A3A_fnc_createUnit;
-_typeX = if (_sideX == Occupants) then {NATOBodyG} else {CSATBodyG};
+_typeX = if (_sideX == Occupants) then {NATOBodyG} else {"loadouts_inv_military_Rifleman"};
 _pilot = [_grp, _typeX, _positionX, [], 0, "NONE"] call A3A_fnc_createUnit;
 if (_difficultX) then
 	{

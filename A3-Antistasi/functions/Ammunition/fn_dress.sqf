@@ -1,3 +1,5 @@
+#include "..\..\Includes\common.inc"
+FIX_LINE_NUMBERS()
 private _unit = _this select 0;
 private _loadoutOverride = param [1];
 private _team = side group _unit;
@@ -9,7 +11,7 @@ _loadout = switch _team do {
 	};
 
 	case Invaders: {
-		if (count CSATPlayerLoadouts > _unitLoadoutNumber) then {CSATPlayerLoadouts select _unitLoadoutNumber} else { [] };
+		if (count FactionGet(inv,"pvpLoadouts") > _unitLoadoutNumber) then {FactionGet(inv,"pvpLoadouts") select _unitLoadoutNumber} else { [] };
 	};
 
 	case teamPlayer: {

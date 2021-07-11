@@ -66,7 +66,7 @@ if(!debug) then
   _patrolMarker setMarkerAlphaLocal 0;
 };
 
-_typeFlag = if (_side == Occupants) then {NATOFlag} else {CSATFlag};
+_typeFlag = if (_side == Occupants) then {NATOFlag} else {FactionGet(inv,"flag")};
 _flag = createVehicle [_typeFlag, _markerPos, [], 0, "NONE"];
 _flag allowDamage false;
 [_flag,"take"] remoteExec ["A3A_fnc_flagaction",[teamPlayer,civilian],_flag];

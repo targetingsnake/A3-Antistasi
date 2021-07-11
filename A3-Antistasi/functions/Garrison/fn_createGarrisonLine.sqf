@@ -16,7 +16,7 @@ _vehicle = [_vehicleType, _side] call A3A_fnc_selectVehicleType;
 _crew = [];
 if((_data select 1) != 0) then
 {
-  _crewMember = if(_side == Occupants) then {NATOCrew} else {CSATCrew};
+  _crewMember = if(_side == Occupants) then {NATOCrew} else {"loadouts_inv_other_Crew"};
   _crew = [_vehicle, _crewMember] call A3A_fnc_getVehicleCrew;
 };
 _cargoGroup = [_vehicle, _data select 2, _side] call A3A_fnc_selectGroupType;

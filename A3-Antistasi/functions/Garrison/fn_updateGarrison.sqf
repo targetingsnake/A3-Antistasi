@@ -31,7 +31,7 @@ for "_i" from 0 to (_garCount - 1) do
     _garData set [0, [_preData select 0, _side] call A3A_fnc_selectVehicleType];
     if(_preData select 1 != 0) then
     {
-      _crew = if(_side == Occupants) then {NATOCrew} else {CSATCrew};
+      _crew = if(_side == Occupants) then {NATOCrew} else {"loadouts_inv_other_Crew"};
       _garData set [1, [_garData select 0, _crew] call A3A_fnc_getVehicleCrew];
     }
     else
