@@ -276,6 +276,13 @@ class A3A
         class addArtilleryTrailEH {};
     };
 
+    class FastTravel
+    {
+        class canFastTravel {};
+        class canFastTravelToLocation {};
+        class fastTravel {};
+    };
+
     class Garage
     {
         class addToPersonalGarage {};
