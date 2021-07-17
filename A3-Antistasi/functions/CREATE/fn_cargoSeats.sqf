@@ -1,9 +1,11 @@
+#include "..\..\Includes\common.inc"
+FIX_LINE_NUMBERS()
 private _filename = "fn_cargoSeats";
 params ["_veh", "_sideX"];
 
 private _faction = Faction(_sideX);
 private _groupData = FactionGetGroups(_sideX);
-private _isMilitia = _veh in ((_faction get "vehiclesMilitiaLightArmed") + (_faction get "vehiclesMilitiaTrucks") + (_faction get "vehiclesMilitiaCars"))
+private _isMilitia = _veh in ((_faction get "vehiclesMilitiaLightArmed") + (_faction get "vehiclesMilitiaTrucks") + (_faction get "vehiclesMilitiaCars"));
 
 private _totalSeats = [_veh, true] call BIS_fnc_crewCount; // Number of total seats: crew + non-FFV cargo/passengers + FFV cargo/passengers
 private _crewSeats = [_veh, false] call BIS_fnc_crewCount; // Number of crew seats only
@@ -27,8 +29,8 @@ if (_cargoSeats < 7) exitWith			// fudge for Warrior
 };
 
 private _squad = call {
-	if (_isMilitia) exitWith { selectRandom (_groupData get "militia_Squad") };
-    selectRandom (_groupData get "squad")
+	if (_isMilitia) exitWith { selectRandom (_groupData get "militia_Squads") };
+    selectRandom (_groupData get "squads")
 };
 if (_cargoSeats == 7) then { _squad deleteAt 7 };
 _squad;

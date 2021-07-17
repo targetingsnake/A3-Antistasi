@@ -35,18 +35,18 @@ private _groupData = FactionGetGroups(_sideX);
 
 _typeCar = "";
 _typePatrol = "LAND";
-private _boats = (_faction get "vehiclesGunboats") select {[_x] call A3A_fnc_vehAvailable};
+private _boats = (_faction get "vehiclesGunBoats") select {[_x] call A3A_fnc_vehAvailable};
 if ((_base in seaports) && {count _boats > 0}) then {
     _typeCar = selectRandom _boats;
     _typePatrol = "SEA";
 } else {
     if ( _sideX isEqualTo Invaders || random 100 < aggressionOccupants ) then {
-        selectRandom (
-            _typeCar = if (_base in airportsX) then {
+        _typeCar = selectRandom (
+            if (_base in airportsX) then {
                 (_faction get "vehiclesLightArmed") + (_faction get "vehiclesLightUnarmed") + (_faction get "vehiclesHelisLight")
             } else {_faction get "vehiclesHelisLight"}
-            if (_typeCar in (_faction get "vehiclesHelisLight")) then {_typePatrol = "AIR"};
         );
+        if (_typeCar in (_faction get "vehiclesHelisLight")) then {_typePatrol = "AIR"};
     } else {
         _typeCar = selectRandom ( (_faction get "vehiclesPolice") + (_faction get "vehiclesMilitiaLightArmed") );
     };

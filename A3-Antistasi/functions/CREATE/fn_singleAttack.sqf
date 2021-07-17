@@ -37,6 +37,7 @@ if(_side == sideUnknown) exitWith
 {
     Error_1("Could not retrieve side for %1", _markerOrigin);
 };
+private _faction = Faction(_side);
 
 private _typeOfAttack = [_posDestination, _side] call A3A_fnc_chooseAttackType;
 if(_typeOfAttack == "") exitWith {};

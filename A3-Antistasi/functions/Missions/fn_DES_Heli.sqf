@@ -266,7 +266,7 @@ if (_vehR distance _heli < 50) then {
         {if ([_x] call A3A_fnc_canFight) exitWith {_notAlivePilots = false}}forEach units _pilots;
 
 
-        if ((_typeVehH in ((_faction get "vehiclesHelisLight") + (_faction get "vehiclesHelisTransport"))) then {
+        if (_typeVehH in ( (_faction get "vehiclesHelisLight") + (_faction get "vehiclesHelisTransport") )) then {
             if !(_typeVehH in (_faction get "vehiclesHelisLight")) then {
                 //guard move in back of heli, pilots wait for them to load
                 if (_notAlivePilots) then {_guard addVehicle _heli} else {{_x assignAsCargo _heli}forEach units _guard};

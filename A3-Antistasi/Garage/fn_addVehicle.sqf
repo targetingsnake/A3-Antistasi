@@ -15,7 +15,7 @@
     Scope: Server
     Environment: Any
     Public: [Yes]
-    Dependencies: TeamPlayer, nameTeamPlayer, Invaders, Occupants, HR_GRG_Sources, HR_GRG_Vehicles
+    Dependencies: TeamPlayer, FactionGet(reb,"name"), Invaders, Occupants, HR_GRG_Sources, HR_GRG_Vehicles
 
     Example: [cursorObject, clientOwner, call HR_GRG_dLock, _player] remoteExecCall ["HR_GRG_fnc_addVehicle",2];
 
@@ -61,7 +61,7 @@ if (_exit) exitWith { [localize "STR_HR_GRG_Feedback_addVehicle_Crewed"] remoteE
     //Valid area
 private _friendlyMarkers = markersX select {sidesX getVariable [_x,sideUnknown] == teamPlayer};
 private _inArea = _friendlyMarkers findIf { count ([_player, _vehicle] inAreaArray _x) > 1 };
-if !(_inArea > -1) exitWith {[format [localize "STR_HR_GRG_Feedback_addVehicle_badLocation",nameTeamPlayer]] remoteExec ["HR_GRG_fnc_Hint", _client]; false };
+if !(_inArea > -1) exitWith {[format [localize "STR_HR_GRG_Feedback_addVehicle_badLocation",FactionGet(reb,"name")]] remoteExec ["HR_GRG_fnc_Hint", _client]; false };
 
     //No hostiles near
 private _units = (_player nearEntities ["Man",300]) select {([_x] call A3A_fnc_CanFight) && (side _x isEqualTo Occupants || side _x isEqualTo Invaders)};
@@ -82,7 +82,7 @@ if ((call HR_GRG_VehCap - _capacity) < (_countStatics + 1)) exitWith { [localize
 if (
     (_class isKindOf "Air")
     && {count (airportsX select {(sidesX getVariable [_x,sideUnknown] == teamPlayer) and (_player inArea _x)}) < 1} //no airports
-) exitWith {[format [localize "STR_HR_GRG_Feedback_addVehicle_airBlocked",nameTeamPlayer]] remoteExec ["HR_GRG_fnc_Hint", _client]; false };
+) exitWith {[format [localize "STR_HR_GRG_Feedback_addVehicle_airBlocked",FactionGet(reb,"name")]] remoteExec ["HR_GRG_fnc_Hint", _client]; false };
 
 //add vehicle
 private _locking = if (_lockUID isEqualTo "") then {false} else {true};

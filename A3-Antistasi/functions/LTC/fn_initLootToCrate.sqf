@@ -38,7 +38,7 @@ player addAction [
     true,
     "",
     "(
-        ((typeof cursorObject) in [FactionGet(occ,'surrenderCrate'), FactionGet(inv,'surrenderCrate')])
+        ((typeof cursorObject) in [A3A_faction_occ get 'surrenderCrate', A3A_faction_inv get'surrenderCrate'])
         and (cursorObject distance _this < 3)
         and (attachedTo cursorObject isEqualTo objNull)
     )"
@@ -55,7 +55,7 @@ player addAction [
     true,
     "",
     "(
-        ((typeof cursorObject) in [FactionGet(occ,'surrenderCrate'), FactionGet(inv,'surrenderCrate')])
+        ((typeof cursorObject) in [A3A_faction_occ get 'surrenderCrate', A3A_faction_inv get'surrenderCrate'])
         and (cursorObject distance _this < 3)
         and (attachedTo cursorObject isEqualTo objNull)
     )"
@@ -73,7 +73,7 @@ player addAction [
     true,
     "",
     "(
-        ((typeof cursorObject) in [FactionGet(occ,'surrenderCrate'), FactionGet(inv,'surrenderCrate')])
+        ((typeof cursorObject) in [A3A_faction_occ get 'surrenderCrate', A3A_faction_inv get'surrenderCrate'])
         and (cursorObject distance _this < 3)
         and (([_this] call A3A_fnc_countAttachedObjects) isEqualTo 0)
         and (attachedTo cursorObject isEqualTo objNull)

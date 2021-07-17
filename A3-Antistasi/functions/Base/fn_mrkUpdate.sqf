@@ -14,7 +14,7 @@ if (sidesX getVariable [_markerX,sideUnknown] == teamPlayer) then
 		_textX = format ["%2 Airbase%1",_textX,FactionGet(reb,"name")];
 		[_mrkD,format ["%1 Airbase",FactionGet(reb,"name")]] remoteExec ["setMarkerTextLocal",[Occupants,Invaders],true];
 		//_mrkD setMarkerText format ["SDK Airbase%1",_textX];
-		if (markerType _mrkD != SDKFlagMarkerType) then {_mrkD setMarkerType SDKFlagMarkerType};
+		if (markerType _mrkD != FactionGet(reb,"flagMarkerType")) then {_mrkD setMarkerType FactionGet(reb,"flagMarkerType")};
 		_mrkD setMarkerColor "Default";
 		}
 	else
@@ -52,7 +52,7 @@ else
 		if (_markerX in airportsX) then
 			{
 			_mrkD setMarkerText format ["%1 Airbase",FactionGet(occ,"name")];
-			_mrkD setMarkerType flagNATOmrk;
+			_mrkD setMarkerType FactionGet(occ,"flagMarkerType");
 			_mrkD setMarkerColor "Default";
 			}
 		else

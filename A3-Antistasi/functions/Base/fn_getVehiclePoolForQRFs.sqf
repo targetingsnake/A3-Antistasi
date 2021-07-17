@@ -16,6 +16,7 @@ params ["_side", ["_filter", []]];
 #include "..\..\Includes\common.inc"
 FIX_LINE_NUMBERS()
 private _faction = Faction(_side);
+private _isOcc = _side isEqualTo Occupants;
 
 #define EntryCommon(VEH, Q_OCC, Q_INV) [VEH, if (_isOcc) then {Q_OCC} else {Q_INV}]
 #define VEH(VAR) (_faction get VAR)
@@ -99,7 +100,7 @@ private _vehicleSelection = switch (tierWar) do
             EntryCommon(VEH("vehiclesTanks"), 10, 20),
             EntryCommon(VEH("vehiclesHelisAttack"), 10, 15)
         ] + (if (_isOcc) then {[]} else {[
-            [VEH("vehiclesPlanesTransport"), 10],
+            [VEH("vehiclesPlanesTransport"), 10]
         ]});
     };
     //General idea: No light vehicles any more, Invaders start to bring attack helicopter
@@ -115,7 +116,7 @@ private _vehicleSelection = switch (tierWar) do
             EntryCommon(VEH("vehiclesPlanesTransport"), 10, 15),
             EntryCommon(VEH("vehiclesHelisAttack"), 10, 20)
         ] + (if (_isOcc) then {[]} else {[
-            [VEH("vehiclesAA"), 5],
+            [VEH("vehiclesAA"), 5]
         ]});
     };
     //General idea: Getting rid of light helis, Invaders start the endgame

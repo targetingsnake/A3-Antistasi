@@ -29,8 +29,7 @@ private _defenderFaction = Faction(_sideTarget);
 _missionExpireTime = time + 3600;
 
 private _invaderAirTransport = FactionGet(inv, "vehiclesHelisLight") + FactionGet(inv, "vehiclesHelisTransport") + FactionGet(inv, "vehiclesPlanesTransport");
-#define VEH_AIR ()_invaderAirTransport \
-+ FactionGet(inv, "vehiclesPlanesCAS") + FactionGet(inv, "vehiclesPlanesAA"))
+#define VEH_AIR (_invaderAirTransport + FactionGet(inv, "vehiclesPlanesCAS") + FactionGet(inv, "vehiclesPlanesAA"))
 
 for "_i" from 1 to 3 do {
 	_typeAirVehicle = if (_i != 3) then {selectRandom (VEH_AIR select {[_x] call A3A_fnc_vehAvailable})} else {selectRandom (_invaderAirTransport select {[_x] call A3A_fnc_vehAvailable})};

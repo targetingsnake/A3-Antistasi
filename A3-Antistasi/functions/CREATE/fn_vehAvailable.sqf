@@ -1,3 +1,5 @@
+#include "..\..\Includes\common.inc"
+FIX_LINE_NUMBERS()
 private ["_typeX","_cant"];
 _typeX = _this select 0;
 if (_typeX == "") exitWith {false};

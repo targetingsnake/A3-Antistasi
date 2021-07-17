@@ -1,3 +1,5 @@
+#include "..\..\Includes\common.inc"
+FIX_LINE_NUMBERS()
 //Mission: HQ is under attack
 if (!isServer and hasInterface) exitWith{};
 
@@ -8,7 +10,7 @@ _vehiclesX = [];
 _groups = [];
 _soldiers = [];
 
-if ({(_x distance _positionX < 500) and (typeOf _x == staticAAteamPlayer)} count staticsToSave > 4) exitWith {};
+if ({(_x distance _positionX < 500) and (typeOf _x == FactionGet(reb,"staticAA"))} count staticsToSave > 4) exitWith {};
 
 _airportsX = airportsX select {(sidesX getVariable [_x,sideUnknown] != teamPlayer) and (spawner getVariable _x == 2)};
 if (count _airportsX == 0) exitWith {};
@@ -20,7 +22,7 @@ private _groupData = FactionGetGroups(_sideX);
 
 private _taskId = "DEF_HQ" + str A3A_taskCount;
 [[teamPlayer,civilian],_taskId,[format ["Enemy knows our HQ coordinates. They have sent a SpecOp Squad in order to kill %1. Intercept them and kill them. Or you may move our HQ 1Km away so they will loose track",name petros],format ["Defend %1",name petros],respawnTeamPlayer],_positionX,true,10,true,"Defend",true] call BIS_fnc_taskCreate;
-[[_sideX],_taskId+"B",[format ["We know %2 HQ coordinates. We have sent a SpecOp Squad in order to kill his leader %1. Help the SpecOp team",name petros, nameTeamPlayer],format ["Kill %1",name petros],respawnTeamPlayer],_positionX,true,10,true,"Attack",true] call BIS_fnc_taskCreate;
+[[_sideX],_taskId+"B",[format ["We know %2 HQ coordinates. We have sent a SpecOp Squad in order to kill his leader %1. Help the SpecOp team",name petros, FactionGet(reb,"name")],format ["Kill %1",name petros],respawnTeamPlayer],_positionX,true,10,true,"Attack",true] call BIS_fnc_taskCreate;
 [_taskId, "DEF_HQ", "CREATED"] remoteExecCall ["A3A_fnc_taskUpdate", 2];
 
 _typesVeh = _faction get "vehiclesHelisAttack";

@@ -1,5 +1,7 @@
 #include "..\..\Includes\common.inc"
 FIX_LINE_NUMBERS()
+private _groupData = FactionGet(reb,"groups");
+#define GROUP(VAR) (_groupData get VAR)
 if (!isServer) exitWith {};
 
 private ["_typeX","_costs","_groupX","_unit","_radiusX","_roads","_road","_pos","_truckX","_textX","_mrk","_hr","_unitsX","_formatX"];
@@ -12,14 +14,14 @@ if (_typeX == "delete") exitWith {["Create Outpost", "Deprecated option. Use Rem
 _isRoad = isOnRoad _positionTel;
 
 _textX = format ["%1 Observation Post",FactionGet(reb,"name")];
-_typeGroup = groupsSDKSniper;
-_typeVehX = vehSDKBike;
+_typeGroup = _grouData get "groupsSnipers";
+_typeVehX = FactionGet(reb,"vehicleBasic");
 private _tsk = "";
 if (_isRoad) then
 	{
 	_textX = format ["%1 Roadblock",FactionGet(reb,"name")];
-	_typeGroup = groupsSDKAT;
-	_typeVehX = vehSDKTruck;
+	_typeGroup = _groupData get "AT";
+	_typeVehX = FactionGet(reb,"vehicleTruck");
 	};
 
 _mrk = createMarker [format ["FIAPost%1", random 1000], _positionTel];
@@ -73,10 +75,7 @@ if ({(alive _x) and (_x distance _positionTel < 10)} count units _groupX > 0) th
 	_mrk setMarkerText _textX;
 	if (_isRoad) then
 		{
-		_garrison = [staticCrewTeamPlayer];
-		{
-		if (random 20 <= skillFIA) then {_garrison pushBack (_x select 1)} else {_garrison pushBack (_x select 0)};
-		} forEach groupsSDKAT;
+		_garrison = [FactionGet(reb,"staticCrew")] + FactionGet(reb,"At") apply {_x#0};// same unit why it did a random with skill idk
 		garrison setVariable [_mrk,_garrison,true];
 		};
 	}

@@ -39,9 +39,10 @@ _dateLimit = numberToDate [date select 0, _dateLimitNum];//converts datenumber b
 _displayTime = [_dateLimit] call A3A_fnc_dateToTimeString;//Converts the time portion of the date array to a string for clarity in hints
 
 _sideX = if (sidesX getVariable [_markerX,sideUnknown] == Occupants) then {Occupants} else {Invaders};
+private _faction = Faction(_sideX);
 private _groupData = FactionGetGroups(_sideX);
 private _rebGroupData = FactionGet(reb, "groups");
-_textX = if (_sideX == Occupants) then {format ["A group of smugglers have been arrested in %1 and they are about to be sent to prison. Go there and free them in order to make them join our cause. Do this before %2",_nameDest,_displayTime]} else {format ["A group of %3 supportes are hidden in %1 awaiting for evacuation. We have to find them before %2 does it. If not, there will be a certain death for them. Bring them back to HQ",_nameDest,FactionGet(inv,"name"),nameTeamPlayer]};
+_textX = if (_sideX == Occupants) then {format ["A group of smugglers have been arrested in %1 and they are about to be sent to prison. Go there and free them in order to make them join our cause. Do this before %2",_nameDest,_displayTime]} else {format ["A group of %3 supportes are hidden in %1 awaiting for evacuation. We have to find them before %2 does it. If not, there will be a certain death for them. Bring them back to HQ",_nameDest,FactionGet(inv,"name"),FactionGet(reb,"name")]};
 _posTsk = if (_sideX == Occupants) then {(position _houseX) getPos [random 100, random 360]} else {position _houseX};
 
 private _taskId = "RES" + str A3A_taskCount;
@@ -114,7 +115,7 @@ else
 		_dirVeh = getDir _road;
 		};
 	_posVeh = [_posroad, 3, _dirveh + 90] call BIS_Fnc_relPos;
-	_veh = vehPoliceCar createVehicle _posVeh;
+	_veh = (selectRandom (_faction get "vehiclesPolice")) createVehicle _posVeh;
 	_veh allowDamage false;
 	_veh setDir _dirVeh;
 	sleep 15;

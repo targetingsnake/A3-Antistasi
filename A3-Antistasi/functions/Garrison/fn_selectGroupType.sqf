@@ -18,10 +18,10 @@ private _groupData = FactionGetGroups(_side);
 if(_preference == "Empty") exitWith {[]};
 
 //If tank, select AT team
-if(_vehicle in OccAndInv("vehiclesTanks")) exitWith {_groupData get "AT"};
+if(_vehicle in OccAndInv("vehiclesTanks")) exitWith {_groupData getOrDefault ["AT", []]};
 
 //If AA-tank, select AA team
-if(_vehicle in OccAndInv("vehiclesAA")) exitWith {_groupData get "AA"};
+if(_vehicle in OccAndInv("vehiclesAA")) exitWith {_groupData getOrDefault ["AA", []]};
 
 _result = "";
 //If no vehicle return preference
@@ -57,7 +57,7 @@ else
 
 if(_result != "EMPTY") exitWith
 {
-    if(_result == "SQUAD") then {selectRandom (_groupData get "Squad")} else {selectRandom (_groupData get "medium")};
+    if(_result == "SQUAD") then {selectRandom (_groupData getOrDefault ["squads", []])} else {selectRandom (_groupData getOrDefault ["medium", []])};
 };
 
 [];

@@ -43,7 +43,7 @@ _reinfPlaces = [];
 	if (_numReal + 4 <= _numGarr) then
 	{
         [
-            selectRandom (_groupData get (if (_numReal + 8 <= _numGarr) then {_numberX = 0; "squad"} else {_numberX = 4; "medium"}))
+            selectRandom (_groupData get (if (_numReal + 8 <= _numGarr) then {_numberX = 0; "squads"} else {_numberX = 4; "medium"}))
             ,_sideX,_airportX,0
         ] remoteExec ["A3A_fnc_garrisonUpdate",2];
 	};

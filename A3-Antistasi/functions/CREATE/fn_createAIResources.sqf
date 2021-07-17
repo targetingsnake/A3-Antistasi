@@ -164,7 +164,7 @@ if (_spawnParameter isEqualType []) then
 	_typeVehX = if (_sideX == Occupants) then
 	{
 		private _types = if (!_isFIA) then {(_faction get "vehiclesTrucks") + (_faction get "vehiclesCargoTrucks")} else {_faction get "vehiclesMilitiaTrucks"};
-		_types = _types select { _x in vehCargoTrucks };
+		_types = _types select { _x in FactionGet(all,"vehiclesCargoTrucks") };
 		if (count _types == 0) then { (_faction get "vehiclesCargoTrucks") } else { _types };
 	}
 	else

@@ -387,7 +387,7 @@ while {_timeAlive > 0} do
                     }
                     else
                     {
-                        if((typeOf _targetObj) in (FactionGet(occ,"vehiclesAPCs") + FactionGet(inv,"vehiclesAPCs")) then
+                        if((typeOf _targetObj) in (FactionGet(occ,"vehiclesAPCs") + FactionGet(inv,"vehiclesAPCs"))) then
                         {
                             if(_allowHeavyWeapon) then
                             {

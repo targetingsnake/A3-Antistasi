@@ -101,7 +101,7 @@ switch (_convoyType) do
     };
     case "Supplies":
     {
-        _textX = format ["A truck with medical supplies destination %3 it's about to depart at %2 from %1. Steal that truck bring it to %3 and let people in there know it is %4 who's giving those supplies.",_nameOrigin,_displayTime,_nameDest,nameTeamPlayer];
+        _textX = format ["A truck with medical supplies destination %3 it's about to depart at %2 from %1. Steal that truck bring it to %3 and let people in there know it is %4 who's giving those supplies.",_nameOrigin,_displayTime,_nameDest,FactionGet(reb,"name")];
         _taskTitle = "Supply Convoy";
         _taskIcon = "heal";
         _typeVehObj = "C_Van_01_box_F"; //ToDo: make this templated, no hard coded classnames
@@ -158,7 +158,7 @@ private _fnc_spawnConvoyVehicle = {
     deleteWaypoint [_group, 0];													// groups often start with a bogus waypoint
 
     [_veh, _sideX] call A3A_fnc_AIVEHinit;
-    if (_veh in vehArmor) then { _vehObj allowCrewInImmobile true };			// move this to AIVEHinit at some point?
+    if (_veh in FactionGet(all,"vehiclesArmor")) then { _vehObj allowCrewInImmobile true };			// move this to AIVEHinit at some point?
     _vehiclesX pushBack _veh;
     _markNames pushBack _markName;
     _veh;

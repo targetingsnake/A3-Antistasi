@@ -1,3 +1,5 @@
+#include "..\..\Includes\common.inc"
+FIX_LINE_NUMBERS()
 params ["_vehicle", "_preference"];
 
 /*  Checks if the given vehicle type is within the preferred category
@@ -17,25 +19,25 @@ params ["_vehicle", "_preference"];
     || {_vehicle in FactionGet(inv,"vehiclesLightUnarmed")}
 
 #define apc \
-    {_vehicle in (FactionGet(occ,"vehiclesAPCs")} \
-    || {_vehicle in (FactionGet(inv,"vehiclesAPCs")}
+    {_vehicle in FactionGet(occ,"vehiclesAPCs")} \
+    || {_vehicle in FactionGet(inv,"vehiclesAPCs")}
 
 #define tank \
-    {_vehicle in (FactionGet(occ,"vehiclesTanks")} \
-    || {_vehicle in (FactionGet(inv,"vehiclesTanks")}
+    {_vehicle in FactionGet(occ,"vehiclesTanks")} \
+    || {_vehicle in FactionGet(inv,"vehiclesTanks")}
 
 #define patrolHeli \
-    {_vehicle in (FactionGet(occ,"vehiclesHelisLight")} \
-    || {_vehicle in (FactionGet(inv,"vehiclesHelisLight")}
+    {_vehicle in FactionGet(occ,"vehiclesHelisLight")} \
+    || {_vehicle in FactionGet(inv,"vehiclesHelisLight")}
 
 #define transportHeli \
     patrolHeli \
-    || {_vehicle in (FactionGet(occ,"vehiclesHelisTransport")} \
-    || {_vehicle in (FactionGet(inv,"vehiclesHelisTransport")}
+    || {_vehicle in FactionGet(occ,"vehiclesHelisTransport")} \
+    || {_vehicle in FactionGet(inv,"vehiclesHelisTransport")}
 
 #define attackHeli \
-    {_vehicle in (FactionGet(occ,"vehiclesHelisAttack")} \
-    || {_vehicle in (FactionGet(inv,"vehiclesHelisAttack")}
+    {_vehicle in FactionGet(occ,"vehiclesHelisAttack")} \
+    || {_vehicle in FactionGet(inv,"vehiclesHelisAttack")}
 
 #define drone \
     {_vehicle in FactionGet(occ,"uavsAttack")} \

@@ -25,9 +25,8 @@ private _isMortar = true;
 //If war level between 6 and 8 there is a chance (25%/50%/75%) that it switches to a howitzer instead, above it howitzer is guaranteed
 if((25 * (tierWar - 5)) > random 100) then
 {
-    private _artyData = selectRandom (_faction get "vehiclesArtillery");
-    _mortarType = _artyData#0;
-    _shellType = selectRandom (_artyData#1);// arty handling in templates to be redone
+    _mortarType = selectRandom (_faction get "vehiclesArtillery");
+    _shellType = ((_faction get "magazines") get _mortarType) #0;
     _isMortar = false;
 };
 

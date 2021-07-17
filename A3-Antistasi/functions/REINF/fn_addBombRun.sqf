@@ -13,7 +13,7 @@ if (_units findIf{player distance _x < 100} != -1) exitWith {["Airstrike", "You 
 _near = (["Synd_HQ"] + airportsX) select {sidesX getVariable [_x,sideUnknown] isEqualTo teamplayer};
 _near = _near select {(player inArea _x) && (_veh inArea _x)};
 
-if (_near isEqualTo []) exitWith {["Airstrike", format ["You and the Air vehicle need to be in the Area of an %1 Airport or HQ in order to convert it to Airstrikes",nameTeamPlayer]] call A3A_fnc_customHint;};
+if (_near isEqualTo []) exitWith {["Airstrike", format ["You and the Air vehicle need to be in the Area of an %1 Airport or HQ in order to convert it to Airstrikes",FactionGet(reb,"name")]] call A3A_fnc_customHint;};
 
 if ({isPlayer _x} count crew _veh > 0) exitWith {["Airstrike", "In order to convert, Vehicle must be empty."] call A3A_fnc_customHint;};
 
@@ -44,7 +44,7 @@ if (_exit) exitWith {["Airstrike", "Backpack drones can't be used to increase Ai
 
 _pointsX = 2;
 
-if (_typeX in vehAttackHelis) then {_pointsX = 5};
+if (_typeX in FactionGet(all,"vehiclesAttackHelis")) then {_pointsX = 5};
 if (_typeX in (OccAndInv("vehiclesPlanesCAS") + OccAndInv("vehiclesPlanesAA"))) then {_pointsX = 10};
 deleteVehicle _veh;
 ["Airstrike", format ["Air Support increased in %1 points",_pointsX]] call A3A_fnc_customHint;

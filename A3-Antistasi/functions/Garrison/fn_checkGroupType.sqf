@@ -1,3 +1,5 @@
+#include "..\..\Includes\common.inc"
+FIX_LINE_NUMBERS()
 params ["_group", "_vehicle", "_preference"];
 
 /*  Checks if the given group matches the given vehicle and preference

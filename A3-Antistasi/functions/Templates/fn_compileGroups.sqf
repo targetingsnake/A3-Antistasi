@@ -24,7 +24,7 @@ License: MIT License
 params ["_faction", "_prefix"];
 
 //Defines
-#define unit(SECTION, TYPE) ("loadouts_"+_prefix+"_"+ #SECTION + "_" #TYPE)
+#define unit(SECTION, TYPE) ("loadouts_"+_prefix+"_"+ #SECTION +"_"+ TYPE)
 #define double(X) [X, X]
 #define SaveGroupData _faction set ["groups", _groups]; nil;
 
@@ -39,32 +39,32 @@ private _groups = createHashmap;
 if (_prefix in ["occ", "inv"]) exitWith {
 
 //singular units
-_groups set ["grunt", unit(military, SquadLeader)];
-_groups set ["bodyGuard", unit(military, Rifleman)];
-_groups set ["marksman", unit(military, Marksman)];
-_groups set ["staticCrew", unit(military, Rifleman)];
+_groups set ["grunt", unit(military, "SquadLeader")];
+_groups set ["bodyGuard", unit(military, "Rifleman")];
+_groups set ["marksman", unit(military, "Marksman")];
+_groups set ["staticCrew", unit(military, "Rifleman")];
 
-_groups set ["official", unit(other, Official)];
-_groups set ["traitor", unit(other, Traitor)];
-_groups set ["crew", unit(other, Crew)];
-_groups set ["unarmed", unit(other, Unarmed)];
-_groups set ["pilot", unit(other, Pilot)];
+_groups set ["official", unit(other, "Official")];
+_groups set ["traitor", unit(other, "Traitor")];
+_groups set ["crew", unit(other, "Crew")];
+_groups set ["unarmed", unit(other, "Unarmed")];
+_groups set ["pilot", unit(other, "Pilot")];
 
-_groups set ["militia_Rifleman", unit(militia, Rifleman)];
-_groups set ["militia_Marksman", unit(militia, Marksman)];
+_groups set ["militia_Rifleman", unit(militia, "Rifleman")];
+_groups set ["militia_Marksman", unit(militia, "Marksman")];
 
-_groups set ["police_Officer", unit(police, SquadLeader)];
-_groups set ["police_Grunt", unit(police, Standard)];
+_groups set ["police_Officer", unit(police, "SquadLeader")];
+_groups set ["police_Grunt", unit(police, "Standard")];
 
 //military
-_groups set ["sentry", [unit(military, Grenadier), unit(military, Rifleman)]];
-_groups set ["sniper", [unit(military, Sniper), unit(military, Rifleman)]];
+_groups set ["sentry", [unit(military, "Grenadier"), unit(military, "Rifleman")]];
+_groups set ["sniper", [unit(military, "Sniper"), unit(military, "Rifleman")]];
 _groups set ["pilots", double( _groups get "pilot" )];
 _groups set ["small", [_groups get "sentry", _groups get "sniper"]];
-_groups set ["AA", [unit(military, SquadLeader), unit(military, AA), unit(military, AA)]];
-_groups set ["AA", [unit(military, SquadLeader), unit(military, AT), unit(military, AT)]];
+_groups set ["AA", [unit(military, "SquadLeader"), unit(military, "AA"), unit(military, "AA")]];
+_groups set ["AT", [unit(military, "SquadLeader"), unit(military, "AT"), unit(military, "AT")]];
 _groups set ["medium", [
-    [unit(military, SquadLeader), unit(military, MachineGunner), unit(military, Grenadier), unit(military, LAT)]
+    [unit(military, "SquadLeader"), unit(military, "MachineGunner"), unit(military, "Grenadier"), unit(military, "LAT")]
     , _groups get "AA", _groups get "AT"
 ]];
 
@@ -72,14 +72,14 @@ _groups set ["medium", [
 private _squads = [];
 for "_i" from 1 to 5 do {
     _squads pushBack [
-        unit(military, SquadLeader),
-        selectRandomWeighted [unit(military, LAT), 2, unit(military, MachineGunner), 1],
-        selectRandomWeighted [unit(military, Rifleman), 2, unit(military, Grenadier), 1],
-        selectRandomWeighted [unit(military, MachineGunner), 2, unit(military, Marksman), 1],
-        selectRandomWeighted [unit(military, Rifleman), 4, unit(military, AT), 1],
-        selectRandomWeighted [unit(military, AA), 1, unit(military, Engineer), 4],
-        unit(military, Rifleman),
-        unit(military, Medic)
+        unit(military, "SquadLeader"),
+        selectRandomWeighted [unit(military, "LAT"), 2, unit(military, "MachineGunner"), 1],
+        selectRandomWeighted [unit(military, "Rifleman"), 2, unit(military, "Grenadier"), 1],
+        selectRandomWeighted [unit(military, "MachineGunner"), 2, unit(military, "Marksman"), 1],
+        selectRandomWeighted [unit(military, "Rifleman"), 4, unit(military, "AT"), 1],
+        selectRandomWeighted [unit(military, "AA"), 1, unit(military, "Engineer"), 4],
+        unit(military, "Rifleman"),
+        unit(military, "Medic")
     ];
 };
 _groups set ["squads", _squads];
@@ -87,31 +87,31 @@ _groups set ["squad", _squads#0];
 
 //specops
 _groups set ["specOps", [
-    unit(SF, SquadLeader)
-    , unit(SF, Rifleman)
-    , unit(SF, MachineGunner)
-    , unit(SF, ExplosivesExpert)
-    , unit(SF, LAT)
-    , unit(SF, Medic)
+    unit(SF, "SquadLeader")
+    , unit(SF, "Rifleman")
+    , unit(SF, "MachineGunner")
+    , unit(SF, "ExplosivesExpert")
+    , unit(SF, "LAT")
+    , unit(SF, "Medic")
 ]];
 
 //militia
 _groups set ["militia_Small", [
-    [unit(militia, Grenadier), unit(militia, Rifleman)]
-    , [unit(militia, Marksman), unit(militia, Rifleman)]
-    , [unit(militia, Marksman), unit(militia, Grenadier)]
+    [unit(militia, "Grenadier"), unit(militia, "Rifleman")]
+    , [unit(militia, "Marksman"), unit(militia, "Rifleman")]
+    , [unit(militia, "Marksman"), unit(militia, "Grenadier")]
 ]];
 
 private _militiaMid = [];
 for "_i" from 1 to 6 do {
     _militiaMid pushBack [
-        unit(militia, SquadLeader),
-        unit(militia, Grenadier),
-        unit(militia, MachineGunner),
+        unit(militia, "SquadLeader"),
+        unit(militia, "Grenadier"),
+        unit(militia, "MachineGunner"),
         selectRandom [
-            unit(militia, LAT),
-            unit(militia, Marksman),
-            unit(militia, Engineer),
+            unit(militia, "LAT"),
+            unit(militia, "Marksman"),
+            unit(militia, "Engineer")
         ]
     ];
 };
@@ -120,15 +120,15 @@ _groups set ["militia_Medium", _militiaMid];
 private _militiaSquads = [];
 for "_i" from 1 to 5 do {
     _militiaSquads pushBack [
-        unit(militia, SquadLeader),
-        unit(militia, MachineGunner),
-        unit(militia, Granadier),
-        unit(militia, Rifleman),
-        selectRandom [unit(militia, Rifleman), unit(militia, Marksman)],
-        selectRandomWeighted [unit(militia, Rifleman), 2, unit(militia, Marksman), 1],
-        selectRandom [unit(militia, Rifleman), unit(militia, ExplosivesExpert)],
-        unit(militia, LAT),
-        unit(militia, Medic)
+        unit(militia, "SquadLeader"),
+        unit(militia, "MachineGunner"),
+        unit(militia, "Granadier"),
+        unit(militia, "Rifleman"),
+        selectRandom [unit(militia, "Rifleman"), unit(militia, "Marksman")],
+        selectRandomWeighted [unit(militia, "Rifleman"), 2, unit(militia, "Marksman"), 1],
+        selectRandom [unit(militia, "Rifleman"), unit(militia, "ExplosivesExpert")],
+        unit(militia, "LAT"),
+        unit(militia, "Medic")
     ];
 };
 _groups set ["militia_Squads", _militiaSquads];
@@ -145,20 +145,20 @@ SaveGroupData
 //------------------|
 
 //singular units
-_groups set ["Petros", unit(militia, Petros)];
-_groups set ["staticCrew", unit(militia, staticCrew)];
-_groups set ["Unarmed", unit(militia, Unarmed)];
+_groups set ["Petros", unit(militia, "Petros")];
+_groups set ["staticCrew", unit(militia, "staticCrew")];
+_groups set ["Unarmed", unit(militia, "Unarmed")];
 
-//two man teams
-_groups set ["Sniper", double( unit(militia, sniper) )];
-_groups set ["LAT", double( unit(militia, lat) )];
-_groups set ["Medic", double( unit(militia, medic) )];
-_groups set ["MG", double( unit(militia, MachineGunner) )];
-_groups set ["Exp", double( unit(militia, ExplosivesExpert) )];
-_groups set ["GL", double( unit(militia, Granadier) )];
-_groups set ["Mil", double( unit(militia, Rifleman) )];
-_groups set ["SL", double( unit(militia, SquadLeader) )];
-_groups set ["Eng", double( unit(militia, Engineer) )];
+//two man teams (should really be just singular unit def, then variations bellow)
+_groups set ["Sniper", double( unit(militia, "sniper") )];
+_groups set ["LAT", double( unit(militia, "lat") )];
+_groups set ["Medic", double( unit(militia, "medic") )];
+_groups set ["MG", double( unit(militia, "MachineGunner") )];
+_groups set ["Exp", double( unit(militia, "ExplosivesExpert") )];
+_groups set ["GL", double( unit(militia, "Granadier") )];
+_groups set ["Mil", double( unit(militia, "Rifleman") )];
+_groups set ["SL", double( unit(militia, "SquadLeader") )];
+_groups set ["Eng", double( unit(militia, "Engineer") )];
 
 _groups set ["medium", [_groups get "SL", _groups get "GL", _groups get "MG", _groups get "Mil"]];
 _groups set ["AT", [_groups get "SL", _groups get "MG", _groups get "LAT", _groups get "LAT", _groups get "LAT"]];
@@ -213,9 +213,9 @@ _groups set ["Tier3",
     + (_groups get "Sniper")
 ];
 _groups set ["soldiers",
-    _groups get "Tier1"
-    + _groups get "Tier2"
-    + _groups get "Tier3"
+    (_groups get "Tier1")
+    + (_groups get "Tier2")
+    + (_groups get "Tier3")
 ];
 
 SaveGroupData

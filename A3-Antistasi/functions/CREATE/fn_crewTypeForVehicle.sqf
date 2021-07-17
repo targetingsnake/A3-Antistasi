@@ -18,7 +18,8 @@
     Example(s):
         [west,cursorObject] call A3A_fnc_crewTypeForVehicle;  // Returns some NATO Crew Unit type
 */
-
+#include "..\..\Includes\common.inc"
+FIX_LINE_NUMBERS()
 params ["_side", "_vehicle"];
 
 private _sideIndex = [west, east, independent, civilian] find _side;

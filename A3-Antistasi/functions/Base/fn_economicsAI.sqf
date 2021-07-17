@@ -41,13 +41,13 @@ private _accelerator = [1 + (tierWar + difficultyCoef) / 20, 0] select (tierWar 
 [0.2, "random", FactionGet(occ,"vehiclesAPCs"), _outposts * 0.3 + _airbases * 2, _accelerator] spawn _fnc_economics;
 [0.1, "", FactionGet(occ,"vehiclesTanks"), _outposts * 0.5 + _airbases * 2, _accelerator] spawn _fnc_economics;
 [0.1, "", FactionGet(occ,"vehiclesAA"), _airbases, _accelerator] spawn _fnc_economics;
-[0.3, "", FactionGet(occ,"vehiclesGunboats"), _seaports, _accelerator] spawn _fnc_economics;
+[0.3, "", FactionGet(occ,"vehiclesGunBoats"), _seaports, _accelerator] spawn _fnc_economics;
 [0.2, "", FactionGet(occ,"vehiclesPlanesCAS"), _airbases * 4, _accelerator] spawn _fnc_economics;
 [0.2, "", FactionGet(occ,"vehiclesPlanesAA"), _airbases * 4, _accelerator] spawn _fnc_economics;
 [0.2, "random", FactionGet(occ,"vehiclesPlanesTransport"), _airbases * 4, _accelerator] spawn _fnc_economics;
 [0.2, "random", FactionGet(occ,"vehiclesHelisTransport"), _airbases * 4, _accelerator] spawn _fnc_economics;
 [0.2, "random", FactionGet(occ,"vehiclesHelisAttack"), _airbases * 4, _accelerator] spawn _fnc_economics;
-[0.2, "", FactionGet(occ,"vehiclesArtillery") apply {_x#0}, _airbases + _outposts * 0.2, _accelerator] spawn _fnc_economics;
+[0.2, "", FactionGet(occ,"vehiclesArtillery"), _airbases + _outposts * 0.2, _accelerator] spawn _fnc_economics;
 
 //--------------------------------------Invaders---------------------------------------------------
 _airbases = { sidesX getVariable [_x, sideUnknown] == Invaders } count airportsX;
@@ -60,7 +60,7 @@ _accelerator = 1.2 + (tierWar + difficultyCoef) / 20;
 [0.2, "random", FactionGet(inv,"vehiclesAPCs"), _outposts * 0.3 + _airbases * 2, _accelerator] spawn _fnc_economics;
 [0.1, "", FactionGet(inv,"vehiclesTanks"), _outposts * 0.5 + _airbases * 2, _accelerator] spawn _fnc_economics;
 [0.1, "", FactionGet(inv,"vehiclesAA"), _airbases, _accelerator] spawn _fnc_economics;
-[0.3, "", FactionGet(inv,"vehiclesGunboats"), _seaports, _accelerator] spawn _fnc_economics;
+[0.3, "", FactionGet(inv,"vehiclesGunBoats"), _seaports, _accelerator] spawn _fnc_economics;
 [0.2, "", FactionGet(inv,"vehiclesPlanesCAS"), _airbases * 4, _accelerator] spawn _fnc_economics;
 [0.2, "", FactionGet(inv,"vehiclesPlanesAA"), _airbases * 4, _accelerator] spawn _fnc_economics;
 [0.2, "random", FactionGet(inv,"vehiclesPlanesTransport"), _airbases * 4, _accelerator] spawn _fnc_economics;

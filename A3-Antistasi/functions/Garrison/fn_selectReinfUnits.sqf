@@ -25,6 +25,7 @@ private _unitsSend = [];
 private _reinf = +([_target] call A3A_fnc_getRequested);
 private _side = sidesX getVariable [_base, sideUnknown];
 private _faction = Faction(_side);
+private _groupData = _faction get "groups";
 
 private _maxRequested = [_reinf, false] call A3A_fnc_countGarrison;
 private _maxVehiclesNeeded = _maxRequested select 0;
@@ -137,7 +138,7 @@ while {_currentUnitCount < (_maxUnitSend - 2) && {_maxCargoSpaceNeeded+_maxVehic
     if(_currentSelected != "") then
     {
         //Assigning crew
-        private _crewMember = if(_side == Occupants) then {NATOCrew} else {"loadouts_inv_other_Crew"};
+        private _crewMember = _groupData get "crew";
         private _crew = [_currentSelected, _crewMember] call A3A_fnc_getVehicleCrew;
         _currentUnitCount = _currentUnitCount + 1 + _crewSeats;
 

@@ -117,7 +117,7 @@ private _removableDefaultItems = [
 ];
 {
 	_x params ["_itemCategoryArray","_vanillaItem","_templateVariable"];
-	private _allowedItems = A3A_faction_reb getVariable _templateVariable;
+	private _allowedItems = A3A_faction_reb get _templateVariable;
 	if !(_vanillaItem in _allowedItems) then {
 		_itemCategoryArray deleteAt (_itemCategoryArray find _vanillaItem);
 	};

@@ -13,13 +13,6 @@ Scope: Any
 Environment: Any
 Public: No
 Dependencies:
-    Old template system that uses global variable assignment.
-        ////////////////////////////////////
-        //             UNITS             ///
-        ////////////////////////////////////
-        //Military Units
-        CSATGrunt = "LIB_SOV_rifleman";
-        ...etc
 
 Example:
     How to init (inside fn_initVarServer.sqf):
@@ -29,7 +22,10 @@ Example:
     How to use:
         private _sideIndex = [west,east,resistance,civilian] find (side player);
         private _typeX = typeOf _vehicle;
-        private _crewLoadout = A3A_vehClassToCrew getOrDefault [_typeX,[NATOGrunt, CSATGrunt, staticCrewTeamPlayer, "C_Man_1"]] select _sideIndex;
+        private _groupsOcc = FactionGet(occ,"groups");
+        private _groupsInv = FactionGet(inv,"groups");
+        private _groupsReb = FactionGet(reb,"groups");
+        private _crewLoadout = A3A_vehClassToCrew getOrDefault [_typeX,[_groupsOcc get "grunt", _groupsInv get "grunt", _groupsReb get "staticCrew", "C_Man_1"]] select _sideIndex;
         //        ^-returned loadout to be used                        ^-----Default load-outs if veh not in templates-----^
 */
 #include "..\..\Includes\common.inc"
@@ -42,19 +38,19 @@ private _rebGroups = FactionGet(reb,"groups");
 // ⬇ EDIT HERE 👇 TO ADD TEMPLATE LOAD-OUTS ⬇
 private _allVehClassToCrew = [
 
-//  [           vehFixedWing            ,[  NATOPilot,    CSATPilot,     staticCrewTeamPlayer,     "C_Man_1"  ]    ],
-//     ^---A template category or an---^    ^--Gov--^    ^--Invade--^        ^---Rebel---^         ^--Civ--^
-//     ^--array of vehicle classnames--^ ^----------Array of load-outs, one loadout for each faction----------^
+//  [ FactionGet(all,"vehiclesFixedWing"), [_occGroups get "pilot", _invGroups get "pilot", _rebGroups get "staticCrew", "C_Man_1" ]    ],
+//     ^---A template category or an---^    ^--Gov--^               ^--Invade--^             ^---Rebel---^               ^--Civ--^
+//     ^--array of vehicle classnames--^ ^--------------------Array of load-outs, one loadout for each faction-------------------^
 
 // Vehicles categories at the top have higher priority than bellow.
 // So if "Tank_F" is in both NATOLand and NATOTanks, NATOTanks should be ABOVE NATOLand, as NATOTanks is a specialised child.
 
-    [vehFixedWing,[_occGroups get "pilot", _invGroups get "pilot", _rebGroups get "staticCrew", "C_Man_1"]],
-    [flatten vehArmor, [_occGroups get "crew", _invGroups get "crew", _rebGroups get "staticCrew", "C_Man_1"]],          // <- vehArmor has nested arrays; therefore, it needs to be flattened.
-    [vehHelis, [_occGroups get "pilot", _invGroups get "pilot", _rebGroups get "staticCrew", "C_Man_1"]],
-    [vehUAVs, ["B_UAV_AI", "O_UAV_AI", "I_UAV_AI", "C_UAV_AI"]],
-    [vehFIA, [_occGroups get "militia_Rifleman", _invGroups get "militia_Rifleman", _rebGroups get "staticCrew", "C_Man_1"]],
-    [FactionGet(all, "vehiclesPolice"), [_occGroups get "police_Grunt", _invGroups get "police_Grunt", _rebGroups get "staticCrew", "C_Man_1"]]       // < vehPoliceCar is a single classname; therefore, it needs to be put into an array.
+    [FactionGet(all,"vehiclesFixedWing"),[_occGroups get "pilot", _invGroups get "pilot", _rebGroups get "staticCrew", "C_Man_1"]],
+    [flatten FactionGet(all,"vehiclesArmor"), [_occGroups get "crew", _invGroups get "crew", _rebGroups get "staticCrew", "C_Man_1"]],          // <- vehiclesArmor has nested arrays; therefore, it needs to be flattened. (will change with arty template change)
+    [FactionGet(all,"vehiclesHelis"), [_occGroups get "pilot", _invGroups get "pilot", _rebGroups get "staticCrew", "C_Man_1"]],
+    [FactionGet(all,"vehiclesUAVs"), ["B_UAV_AI", "O_UAV_AI", "I_UAV_AI", "C_UAV_AI"]],
+    [FactionGet(all,"vehiclesReb"), [_occGroups get "militia_Rifleman", _invGroups get "militia_Rifleman", _rebGroups get "staticCrew", "C_Man_1"]],
+    [FactionGet(all, "vehiclesPolice"), [_occGroups get "police_Grunt", _invGroups get "police_Grunt", _rebGroups get "staticCrew", "C_Man_1"]]       // < vehiclesPolice is a single classname; therefore, it needs to be put into an array.
 ];
 // ⬆ STOP EDITING HERE 👋 THANK YOU, COME AGAIN ⬆
 

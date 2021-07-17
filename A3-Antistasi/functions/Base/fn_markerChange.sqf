@@ -296,7 +296,7 @@ if (_winner == teamPlayer) then
 		//[_flagX,"remove"] remoteExec ["A3A_fnc_flagaction",0,_flagX];
 		//_flagX setVariable ["isGettingCaptured", nil, true];
 		[_flagX,"SDKFlag"] remoteExec ["A3A_fnc_flagaction",0,_flagX];
-		[_flagX,SDKFlagTexture] remoteExec ["setFlagTexture",_flagX];
+		[_flagX,FactionGet(reb,"flagTexture")] remoteExec ["setFlagTexture",_flagX];
 		sleep 2;
 		//[_flagX,"unit"] remoteExec ["A3A_fnc_flagaction",[teamPlayer,civilian],_flagX];
 		//[_flagX,"vehicle"] remoteExec ["A3A_fnc_flagaction",[teamPlayer,civilian],_flagX];
@@ -333,7 +333,7 @@ else
 		};
 		if (_winner == Occupants) then
 		{
-			[_flagX,NATOFlagTexture] remoteExec ["setFlagTexture",_flagX];
+			[_flagX,FactionGet(occ,"flagTexture")] remoteExec ["setFlagTexture",_flagX];
 		}
 		else
 		{

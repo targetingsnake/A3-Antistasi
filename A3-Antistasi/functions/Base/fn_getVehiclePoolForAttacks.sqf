@@ -68,8 +68,8 @@ private_vehicleSelection = switch (tierWar) do {
             [_faction get "vehiclesAPCs", if (_isOcc) then {20} else {15}],
             [(_faction get "vehiclesHelisLight") + (_faction get "vehiclesHelisTransport"), if (_isOcc) then {20} else {10}],
             [_faction get "vehiclesAA", 15],
-            [_faction get "vehiclesHelisAttack", if (_isOcc) then {30} else {15}]
-            [_faction get "vehiclesTanks", if (_isOcc) then {15} else {20}],
+            [_faction get "vehiclesHelisAttack", if (_isOcc) then {30} else {15}],
+            [_faction get "vehiclesTanks", if (_isOcc) then {15} else {20}]
         ] + (if (_isOcc) then { [] } else {[
             [_faction get "vehiclesPlanesTransport", 15]
         ]});
@@ -80,7 +80,7 @@ private_vehicleSelection = switch (tierWar) do {
             [_faction get "vehiclesAPCs", if (_isOcc) then {15} else {10}],
             [(_faction get "vehiclesHelisLight") + (_faction get "vehiclesHelisTransport"), if (_isOcc) then {10} else {5}],
             [_faction get "vehiclesAA", 10],
-            [_faction get "vehiclesHelisAttack", 20]
+            [_faction get "vehiclesHelisAttack", 20],
             [_faction get "vehiclesTanks", if (_isOcc) then {15} else {20}],
             [_faction get "vehiclesPlanesTransport", 15]
         ];
@@ -93,11 +93,11 @@ private_vehicleSelection = switch (tierWar) do {
         [
             [_faction get "vehiclesAPCs", 10],
             [_faction get "vehiclesAA", if (_isOcc) then {5} else {10}],
-            [_faction get "vehiclesHelisAttack", if (_isOcc) then {20} else {25}]
+            [_faction get "vehiclesHelisAttack", if (_isOcc) then {20} else {25}],
             [_faction get "vehiclesTanks", if (_isOcc) then {20} else {25}],
             [_faction get "vehiclesPlanesTransport", 15]
         ] + (if (_isOcc) then { [
-            [(_faction get "vehiclesHelisLight") + (_faction get "vehiclesHelisTransport"), 10],
+            [(_faction get "vehiclesHelisLight") + (_faction get "vehiclesHelisTransport"), 10]
         ] } else { [] });
     };
 };

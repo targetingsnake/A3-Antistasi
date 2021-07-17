@@ -472,7 +472,7 @@ if(_type == "convoy") then
       	};
       	case "Supplies":
       	{
-      		_text = format ["A truck with medical supplies destination %3 it's about to depart at %2 from %1. Steal that truck bring it to %3 and let people in there know it is %4 who's giving those supplies.",_nameOrigin,_displayTime,_nameDest,nameTeamPlayer];
+      		_text = format ["A truck with medical supplies destination %3 it's about to depart at %2 from %1. Steal that truck bring it to %3 and let people in there know it is %4 who's giving those supplies.",_nameOrigin,_displayTime,_nameDest,FactionGet(reb,"name")];
       		_taskTitle = "Supply Convoy";
       		_taskIcon = "heal";
       		_typeVehObj = "C_Van_01_box_F"; //ToDo: replace with templated vehicles, no hard coded classes

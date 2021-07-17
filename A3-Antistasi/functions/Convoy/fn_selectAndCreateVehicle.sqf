@@ -58,7 +58,7 @@ _crew = [_selectedVehicle, _crewUnits] call A3A_fnc_getVehicleCrew;
 _typeGroup = [];
 if (!_isEasy) then
 {
-  if (!(_selectedVehicle in vehTanks)) then
+  if (!(_selectedVehicle in FactionGet(all,"vehiclesTanks"))) then
   {
     _typeGroup = [_selectedVehicle,_side] call A3A_fnc_cargoSeats;
   };

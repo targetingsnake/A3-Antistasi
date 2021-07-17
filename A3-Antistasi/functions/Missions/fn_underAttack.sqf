@@ -9,7 +9,7 @@ if ([_markerX] call BIS_fnc_taskExists) exitWith {};
 _nameDest = [_markerX] call A3A_fnc_localizar;
 _nameENY = if (_sideEny == teamPlayer) then
 {
-	nameTeamPlayer
+	FactionGet(reb,"name")
 }
 else
 {

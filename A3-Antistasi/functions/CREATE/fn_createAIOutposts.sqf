@@ -158,7 +158,7 @@ _roads = _positionX nearRoads _size;
 
 if ((_markerX in seaports) and !A3A_hasIFA) then
 {
-	_typeVehX = selectRandom (_faction get "vehiclesGunboats");
+	_typeVehX = selectRandom (_faction get "vehiclesGunBoats");
 	if ([_typeVehX] call A3A_fnc_vehAvailable) then
 	{
 		_mrkMar = seaSpawn select {getMarkerPos _x inArea _markerX};
@@ -238,7 +238,7 @@ if (_spawnParameter isEqualType []) then
 	_typeVehX = if (_sideX == Occupants) then
 	{
 		private _types = if (!_isFIA) then {(_faction get "vehiclesTrucks") + (_faction get "vehiclesCargoTrucks")} else {_faction get "vehiclesMilitiaTrucks"};
-		_types = _types select { _x in vehCargoTrucks };
+		_types = _types select { _x in FactionGet(all,"vehiclesCargoTrucks") };
 		if (count _types == 0) then { (_faction get "vehiclesCargoTrucks") } else { _types };
 	}
 	else

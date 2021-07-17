@@ -54,12 +54,29 @@ _veh setVariable ["A3A_sellVehicle_inProgress",true,false];  // Only processed o
 private _typeX = typeOf _veh;
 private _costs = call {
     if (_veh isKindOf "StaticWeapon") exitWith {100};			// in case rebel static is same as enemy statics
-    if (_typeX in vehFIA) exitWith { ([_typeX] call A3A_fnc_vehiclePrice) / 2 };
-    if ((_typeX in arrayCivVeh) or (_typeX in civBoats) or (_typeX in [civBoat,civCar,civTruck])) exitWith {25};
-    if ((_typeX in vehNormal) or (_typeX in vehBoats) or (_typeX in vehAmmoTrucks)) exitWith {100};
-    if (_typeX in (OccAndInv("vehiclesHelisLight") + [civHeli])) exitWith {500};
-    if ((_typeX in vehAPCs) || (_typeX in vehTransportAir) || (_typeX in vehUAVs)) exitWith {1000};
-    if ((_typeX in vehAttackHelis) or (_typeX in vehTanks) or (_typeX in vehAA) or (_typeX in vehMRLS)) exitWith {3000};
+    if (_typeX in FactionGet(all,"vehiclesReb")) exitWith { ([_typeX] call A3A_fnc_vehiclePrice) / 2 };
+    if (
+        (_typeX in arrayCivVeh)
+        or (_typeX in civBoats)
+        or (_typeX in [FactionGet(reb,"vehicleCivBoat"),FactionGet(reb,"vehicleCivCar"),FactionGet(reb,"vehicleCivTruck")])
+    ) exitWith {25};
+    if (
+        (_typeX in FactionGet(all,"vehiclesNormal"))
+        or (_typeX in FactionGet(all,"vehiclesBoats"))
+        or (_typeX in FactionGet(all,"vehiclesAmmoTrucks"))
+    ) exitWith {100};
+    if (_typeX in (OccAndInv("vehiclesHelisLight") + [FactionGet(reb,"vehicleCivHeli")])) exitWith {500};
+    if (
+        (_typeX in FactionGet(all,"vehiclesAPCs"))
+        || (_typeX in FactionGet(all,"vehiclesTransportAir"))
+        || (_typeX in FactionGet(all,"vehiclesUAVs"))
+    ) exitWith {1000};
+    if (
+        (_typeX in FactionGet(all,"vehiclesAttackHelis"))
+        or (_typeX in FactionGet(all,"vehiclesTanks"))
+        or (_typeX in FactionGet(all,"vehiclesAA"))
+        or (_typeX in FactionGet(all,"vehiclesArtillery"))
+    ) exitWith {3000};
     if (_typeX in (OccAndInv("vehiclesPlanesCAS") + OccAndInv("vehiclesPlanesAA"))) exitWith {4000};
     0;
 };

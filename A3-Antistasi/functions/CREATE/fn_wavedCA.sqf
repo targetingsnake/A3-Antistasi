@@ -33,11 +33,10 @@ private _faction = Faction(_sideX);
 private _groupData = FactionGetGroups(_sideX);
 _sideTsk = [teamPlayer,civilian,Invaders];
 _sideTsk1 = [Occupants];
-_nameENY = nameOccupants;
+_nameENY = _faction get "name";
 //_config = cfgNATOInf;
 if (_sideX == Invaders) then
 	{
-	_nameENY = FactionGet(inv,"name");
 	//_config = cfgCSATInf;
 	_sideTsk = [teamPlayer,civilian,Occupants];
 	_sideTsk1 = [Invaders];
@@ -74,15 +73,15 @@ private _vehPoolAirSupport = [];
 private _vehPoolAirTransport = [];
 
 // unlimited vehicle types, for later use
-private _typePatrolHeli = _faction get "vehiclesHelisLight";
+private _typePatrolHelis = _faction get "vehiclesHelisLight";
 private _typesTruck = _faction get "vehiclesTrucks";
 private _typesMRAP = _faction get "vehiclesLightArmed";
 
 // Just getting the variables out of scope
 call {
 	private _typesAPC = _faction get "vehiclesAPCs";
-	private _typeTank = _faction get "vehiclesTanks";
-	private _typeAA = _faction get "vehiclesAA";
+	private _typesTank = _faction get "vehiclesTanks";
+	private _typesAA = _faction get "vehiclesAA";
 
 	// Add up to 4 + tierWar APCs, selected randomly from available vehicles
 	{
@@ -93,10 +92,17 @@ call {
 	_vehPoolLand resize ((4 + tierWar) min (count _vehPoolLand));
 
 	// Add in war-tier capped tanks and AA vehicles
-	private _tankCount = tierWar min (timer getVariable [_typeTank, 0]);
-	for "_i" from 1 to (_tankCount) do { _vehPoolLand pushBack _typeTank };
-	private _aaCount = (ceil (tierWar / 3)) min (timer getVariable [_typeAA, 0]);
-	for "_i" from 1 to (_aaCount) do { _vehPoolLand pushBack _typeAA };
+    private _available = 0;
+    _typesTank = _typesTank select {timer getVariable [_x, 0] > 0};
+    { _available = _available + (timer getVariable [_x, 0]) } forEach _typesTank;
+	private _tankCount = tierWar min _available;
+	for "_i" from 1 to (_tankCount) do { _vehPoolLand pushBack (selectRandom _typesTank) };
+
+    private _available = 0;
+    _typesAA = _typesAA select {timer getVariable [_x, 0] > 0};
+    { _available = _available + (timer getVariable [_x, 0]) } forEach _typesAA;
+	private _aaCount = (ceil (tierWar / 3)) min _available;
+	for "_i" from 1 to (_aaCount) do { _vehPoolLand pushBack (selectRandom _typesAA) };
 
 	// Add some trucks and MRAPs depending on war tier
 	private _truckCount = 8 - ceil (tierWar / 2);
@@ -107,8 +113,8 @@ call {
 
 	// Separate air support from transports because air support can't conquer
 
-	private _typePlane = _faction get "vehiclesPlanesCAS";
-	private _typePlaneAA = _faction get "vehiclesPlanesAA";
+	private _typesPlane = _faction get "vehiclesPlanesCAS";
+	private _typesPlaneAA = _faction get "vehiclesPlanesAA";
 	private _typesAttackHelis = _faction get "vehiclesHelisAttack";
 	private _typesTransportPlanes = _faction get "vehiclesPlanesTransport";
 	private _typesTransportHelis = (_faction get "vehiclesHelisLight") + (_faction get "vehiclesHelisTransport");
@@ -123,8 +129,8 @@ call {
 
 	// Plus a handful of fixed-wing aircraft
 	private _planeCount = ceil (tierWar / 3);
-	for "_i" from 1 to (_planeCount) do { _vehPoolAirSupport pushBack _typePlane };
-	for "_i" from 1 to (_planeCount) do { _vehPoolAirSupport pushBack _typePlaneAA };
+	for "_i" from 1 to (_planeCount) do { _vehPoolAirSupport pushBack (selectRandom _typesPlane) };
+	for "_i" from 1 to (_planeCount) do { _vehPoolAirSupport pushBack (selectRandom _typesPlaneAA) };
 
 	// Use up to 8 + tierWar/2 air transports, randomly selected from available vehicles
 	{
@@ -136,7 +142,7 @@ call {
 
 	// Fill out with patrol helis
 	private _patrolHeliCount = 8 - ceil (tierWar / 2);
-	for "_i" from 1 to (_patrolHeliCount) do { _vehPoolAirTransport pushBack _typePatrolHeli };
+	for "_i" from 1 to (_patrolHeliCount) do { _vehPoolAirTransport pushBack (selectRandom _typePatrolHelis) };
 };
 
 Debug_1("Land vehicle pool: %1", _vehPoolLand);
@@ -251,7 +257,7 @@ while {(_waves > 0)} do
 				_groups pushBack _groupVeh;
 				_vehiclesX pushBack _veh;
 				_landPos = [_posDestination,_pos,false,_landPosBlacklist] call A3A_fnc_findSafeRoadToUnload;
-				if (not(_typeVehX in vehTanks)) then
+				if (not(_typeVehX in FactionGet(all,"vehiclesTanks"))) then
 				{
 					_landPosBlacklist pushBack _landPos;
 					_typeGroup = [_typeVehX,_sideX] call A3A_fnc_cargoSeats;
@@ -272,7 +278,7 @@ while {(_waves > 0)} do
                             deleteVehicle _x;
                         };
 					} forEach units _grupo;
-					if (not(_typeVehX in vehTrucks)) then
+					if (not(_typeVehX in FactionGet(all,"vehiclesTrucks"))) then
 					{
 						{_x disableAI "MINEDETECTION"} forEach (units _groupVeh);
 						(units _grupo) joinSilent _groupVeh;
@@ -287,7 +293,7 @@ while {(_waves > 0)} do
 						_Vwp1 setWaypointStatements ["true","if !(local this) exitWith {}; {if (side _x != side this) then {this reveal [_x,4]}} forEach allUnits"];
 						_Vwp1 setWaypointBehaviour "COMBAT";
 						_veh allowCrewInImmobile true;
-						private _typeName = if (_typeVehX in vehAPCs) then {"APC"} else {"MRAP"};
+						private _typeName = if (_typeVehX in FactionGet(all,"vehiclesAPCs")) then {"APC"} else {"MRAP"};
 						[_veh,"APC"] spawn A3A_fnc_inmuneConvoy;
 					}
 					else
@@ -313,7 +319,7 @@ while {(_waves > 0)} do
 					_Vwp0 setWaypointStatements ["true","if !(local this) exitWith {}; {if (side _x != side this) then {this reveal [_x,4]}} forEach allUnits"];
 					_Vwp0 = _groupVeh addWaypoint [_posDestination, count (wayPoints _groupVeh)];
 					_Vwp0 setWaypointType "SAD";
-					private _typeName = if (_typeVehX in vehTanks) then {"Tank"} else {"AA"};
+					private _typeName = if (_typeVehX in FactionGet(all,"vehiclesTanks")) then {"Tank"} else {"AA"};
 					[_veh, _typeName] spawn A3A_fnc_inmuneConvoy;
 					_veh allowCrewInImmobile true;
 				};
@@ -348,7 +354,7 @@ while {(_waves > 0)} do
 		_pos = getMarkerPos ([seaAttackSpawn,_posDestination] call BIS_fnc_nearestPosition);
 		if (count _pos > 0) then
 			{
-			_vehPool = (_faction get "vehiclesGunboats") + (_faction get "vehiclesTransportBoats") + (_faction get "vehiclesAmphibious");
+			_vehPool = (_faction get "vehiclesGunBoats") + (_faction get "vehiclesTransportBoats") + (_faction get "vehiclesAmphibious");
 			_vehPool = _vehPool select {[_x] call A3A_fnc_vehAvailable};
 			_countX = 0;
 			_spawnedSquad = false;
@@ -356,7 +362,7 @@ while {(_waves > 0)} do
 				{
 				_typeVehX = if (_vehPool isEqualTo []) then {selectRandom (_faction get "vehiclesTransportBoats")} else {selectRandom _vehPool};
 				_proceed = true;
-				if (_typeVehX in (_faction get "vehiclesGunboats")) then
+				if (_typeVehX in (_faction get "vehiclesGunBoats")) then
 					{
 					_landPos = [_posDestination, 10, 1000, 10, 2, 0.3, 0] call BIS_Fnc_findSafePos;
 					}
@@ -392,7 +398,7 @@ while {(_waves > 0)} do
 					_vehiclesX pushBack _veh;
 					{[_x] call A3A_fnc_NATOinit} forEach units _groupVeh;
 					[_veh, _sideX] call A3A_fnc_AIVEHinit;
-					if ((_typeVehX in (_faction get "vehiclesGunboats")) then
+					if (_typeVehX in (_faction get "vehiclesGunBoats")) then
 						{
 						_wp0 = _groupVeh addWaypoint [_landpos, 0];
 						_wp0 setWaypointType "SAD";
@@ -417,7 +423,7 @@ while {(_waves > 0)} do
 							deleteVehicle _x;
 							};
 						} forEach units _grupo;
-						if (_typeVehX in vehAPCs) then
+						if (_typeVehX in FactionGet(all,"vehiclesAPCs")) then
 							{
 							_groups pushBack _grupo;
 							_Vwp = _groupVeh addWaypoint [_landPos, 0];
@@ -528,7 +534,7 @@ while {(_waves > 0)} do
 		}
 		else {
 			if (count _vehPoolAirTransport == 0) then {
-				for "_i" from 1 to 10 do { _vehPoolAirTransport pushBack _typePatrolHeli };
+				for "_i" from 1 to 10 do { _vehPoolAirTransport pushBack (selectRandom _typePatrolHelis) };
                 Info("Attack ran out of air transports");
 				_waves = 0;
 			};
@@ -550,7 +556,7 @@ while {(_waves > 0)} do
 			_vehiclesX pushBack _veh;
 			{[_x] call A3A_fnc_NATOinit} forEach units _groupVeh;
 			[_veh, _sideX] call A3A_fnc_AIVEHinit;
-			if (not (_typeVehX in vehTransportAir)) then
+			if (not (_typeVehX in FactionGet(all,"vehiclesTransportAir"))) then
 				{
 				_airSupport pushBack _veh;
 				_groups pushBack _groupVeh;
@@ -726,7 +732,7 @@ while {(_waves > 0)} do
                     };
                 } forEach citiesX;
 				[60,-60,_mrkDestination,false] remoteExec ["A3A_fnc_citySupportChange",2];		// no pop scaling, force swing
-				["TaskFailed", ["", format ["%1 joined %2",[_mrkDestination, false] call A3A_fnc_location,nameOccupants]]] remoteExec ["BIS_fnc_showNotification",teamPlayer];
+				["TaskFailed", ["", format ["%1 joined %2",[_mrkDestination, false] call A3A_fnc_location, FactionGet(occ,"name")]]] remoteExec ["BIS_fnc_showNotification",teamPlayer];
 				sidesX setVariable [_mrkDestination,Occupants,true];
 				[Occupants, -10, 45] remoteExec ["A3A_fnc_addAggression",2];
 				_mrkD = format ["Dum%1",_mrkDestination];
