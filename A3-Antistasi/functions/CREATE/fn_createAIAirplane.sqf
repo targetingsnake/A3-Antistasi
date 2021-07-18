@@ -141,7 +141,7 @@ _countX = 0;
 _groupX = createGroup _sideX;
 _groups pushBack _groupX;
 _typeUnit = _groupData get "staticCrew";
-_typeVehX = _faction get "staticMortars";
+_typeVehX = selectRandom (_faction get "staticMortars");
 
 _spawnParameter = [_markerX, "Mortar"] call A3A_fnc_findSpawnPosition;
 while {_spawnParameter isEqualType []} do

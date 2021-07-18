@@ -98,7 +98,7 @@ if (_patrol) then
 if ((_frontierX) and (_markerX in outposts)) then
 {
 	_typeUnit = _groupData get "staticCrew";
-	_typeVehX = _faction get "staticMortars";;
+	_typeVehX = selectRandom (_faction get "staticMortars");
 	_spawnParameter = [_markerX, "Mortar"] call A3A_fnc_findSpawnPosition;
 	if(_spawnParameter isEqualType []) then
 	{
