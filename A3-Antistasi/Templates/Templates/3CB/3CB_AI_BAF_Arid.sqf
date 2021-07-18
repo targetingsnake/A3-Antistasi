@@ -80,8 +80,8 @@ _loadoutData set ["carbines", []];
 _loadoutData set ["grenadeLaunchers", []];
 _loadoutData set ["SMGs", []];
 _loadoutData set ["machineGuns", []];
-_loadoutData set ["marksmanrifles", []];
-_loadoutData set ["sniperrifles", []];
+_loadoutData set ["marksmanRifles", []];
+_loadoutData set ["sniperRifles", []];
 _loadoutData set ["lightATLaunchers", []];
 _loadoutData set ["ATLaunchers", []];
 _loadoutData set ["missileATLaunchers", []];
@@ -114,10 +114,10 @@ _loadoutData set ["Rangefinder", ["rhsusf_bino_lerca_1200_black"]];
 _loadoutData set ["uniforms", []];					//don't fill this line - this is only to set the variable
 _loadoutData set ["vests", []];						//don't fill this line - this is only to set the variable
 _loadoutData set ["SLvests", []];
-_loadoutData set ["MEDvests", []];
+_loadoutData set ["Medvests", []];
 _loadoutData set ["GLvests", []];
 _loadoutData set ["MGvests", []];
-_loadoutData set ["SNIvests", []];
+_loadoutData set ["Snivests", []];
 _loadoutData set ["backpacks", []];			//this line determines backpacks for special forces -- Example: ["B_AssaultPack_mcamo", "B_Kitbag_mcamo"] -- Array, can contain multiple assets
 _loadoutData set ["longRangeRadios", []];
 _loadoutData set ["Medbackpacks", []];
@@ -160,10 +160,10 @@ _sfLoadoutData set ["uniforms", ["UK3CB_BAF_U_CombatUniform_MTP_RM", "UK3CB_BAF_
 _sfLoadoutData set ["NVGs", ["UK3CB_BAF_HMNVS"]];
 _sfLoadoutData set ["vests", ["UK3CB_BAF_V_Osprey_Rifleman_A", "UK3CB_BAF_V_Osprey_Rifleman_B", "UK3CB_BAF_V_Osprey_Rifleman_C", "UK3CB_BAF_V_Osprey_Rifleman_D"]];
 _sfLoadoutData set ["SLvests", ["UK3CB_BAF_V_Osprey_SL_A", "UK3CB_BAF_V_Osprey_SL_B", "UK3CB_BAF_V_Osprey_SL_C", "UK3CB_BAF_V_Osprey_SL_D"]];
-_sfLoadoutData set ["MEDvests", ["UK3CB_BAF_V_Osprey_Medic_A", "UK3CB_BAF_V_Osprey_Medic_B", "UK3CB_BAF_V_Osprey_Medic_C", "UK3CB_BAF_V_Osprey_Medic_D"]];
+_sfLoadoutData set ["Medvests", ["UK3CB_BAF_V_Osprey_Medic_A", "UK3CB_BAF_V_Osprey_Medic_B", "UK3CB_BAF_V_Osprey_Medic_C", "UK3CB_BAF_V_Osprey_Medic_D"]];
 _sfLoadoutData set ["GLvests", ["UK3CB_BAF_V_Osprey_Grenadier_A", "UK3CB_BAF_V_Osprey_Grenadier_B"]];
 _sfLoadoutData set ["MGvests", ["UK3CB_BAF_V_Osprey_MG_A", "UK3CB_BAF_V_Osprey_MG_B"]];
-_sfLoadoutData set ["SNIvests", ["UK3CB_BAF_V_Osprey_Marksman_A"]];
+_sfLoadoutData set ["Snivests", ["UK3CB_BAF_V_Osprey_Marksman_A"]];
 _sfLoadoutData set ["backpacks", ["UK3CB_BAF_B_Bergen_MTP_Rifleman_L_C", "UK3CB_BAF_B_Bergen_MTP_Rifleman_L_D", "UK3CB_BAF_B_Kitbag_MTP"]];
 _sfLoadoutData set ["AAbackpacks", ["UK3CB_BAF_B_Carryall_MTP"]];
 _sfLoadoutData set ["Medbackpacks", ["UK3CB_BAF_B_Bergen_MTP_Medic_L_A", "UK3CB_BAF_B_Bergen_MTP_Medic_L_B", "UK3CB_BAF_B_Bergen_MTP_Medic_H_A", "UK3CB_BAF_B_Bergen_MTP_Medic_H_B"]];
@@ -258,7 +258,7 @@ private _militaryLoadoutData = _loadoutData call _fnc_copyLoadoutData; // touch 
 _militaryLoadoutData set ["uniforms", ["UK3CB_BAF_U_CombatUniform_DDPM", "UK3CB_BAF_U_CombatUniform_DDPM_ShortSleeve"]];
 _militaryLoadoutData set ["vests", ["UK3CB_BAF_V_Osprey_DDPM7"]];
 _militaryLoadoutData set ["SLvests", ["UK3CB_BAF_V_Osprey_DDPM2"]];
-_militaryLoadoutData set ["MEDvests", ["UK3CB_BAF_V_Osprey_DDPM8", "UK3CB_BAF_V_Osprey_DDPM9"]];
+_militaryLoadoutData set ["Medvests", ["UK3CB_BAF_V_Osprey_DDPM8", "UK3CB_BAF_V_Osprey_DDPM9"]];
 _militaryLoadoutData set ["GLvests", ["UK3CB_BAF_V_Osprey_DDPM3"]];
 _militaryLoadoutData set ["backpacks", ["UK3CB_BAF_B_Kitbag_DDPM", "UK3CB_BAF_B_Bergen_DDPM_Rifleman_A",
 "UK3CB_BAF_B_Bergen_DDPM_Rifleman_B"]];
@@ -335,7 +335,7 @@ _policeLoadoutData set ["uniforms", ["U_B_GEN_Soldier_F", "U_B_GEN_Commander_F"]
 _policeLoadoutData set ["vests", ["V_TacVest_blk_POLICE"]];			//this line determines vests for police loadouts -- Example: ["V_TacVest_gen_F"] -- Array, can contain multiple assets
 _policeLoadoutData set ["helmets", ["H_Cap_police"]];			//this line determines helmets for police loadouts -- Example: ["H_Beret_gen_F"] -- Array, can contain multiple assets
 
-_policeLoadoutData set ["shotguns", [
+_policeLoadoutData set ["shotGuns", [
 ["UK3CB_BAF_L128A1", "", "", "rhsusf_acc_eotech_xps3", ["UK3CB_BAF_12G_Pellets", "UK3CB_BAF_12G_Slugs"], [], ""],
 ["UK3CB_BAF_L128A1", "", "", "rhsusf_acc_T1_high", ["UK3CB_BAF_12G_Pellets", "UK3CB_BAF_12G_Slugs"], [], ""]
 ]];
@@ -471,7 +471,7 @@ private _riflemanTemplate = {
 
 private _medicTemplate = {
 	["helmets"] call _fnc_setHelmet;
-	[["MEDvests", "vests"] call _fnc_fallback] call _fnc_setVest;
+	[["Medvests", "vests"] call _fnc_fallback] call _fnc_setVest;
 	["uniforms"] call _fnc_setUniform;
 	[["Medbackpacks", "backpacks"] call _fnc_fallback] call _fnc_setBackpack;
 
@@ -697,11 +697,11 @@ private _machineGunnerTemplate = {
 
 private _marksmanTemplate = {
 	["helmets"] call _fnc_setHelmet;
-	[["SNIvests", "vests"] call _fnc_fallback] call _fnc_setVest;
+	[["Snivests", "vests"] call _fnc_fallback] call _fnc_setVest;
 	["uniforms"] call _fnc_setUniform;
 
 
-	["marksmanrifles"] call _fnc_setPrimary;
+	["marksmanRifles"] call _fnc_setPrimary;
 	["primary", 5] call _fnc_addMagazines;
 
 	["sidearms"] call _fnc_setHandgun;
@@ -723,7 +723,7 @@ private _marksmanTemplate = {
 
 private _sniperTemplate = {
 	["helmets"] call _fnc_setHelmet;
-	[["SNIvests", "vests"] call _fnc_fallback] call _fnc_setVest;
+	[["Snivests", "vests"] call _fnc_fallback] call _fnc_setVest;
 	["uniforms"] call _fnc_setUniform;
 	["backpacks"] call _fnc_setBackpack;
 
@@ -753,7 +753,7 @@ private _policeTemplate = {
 	["uniforms"] call _fnc_setUniform;
 
 
-	[selectRandom ["SMGs", "shotguns"]] call _fnc_setPrimary;
+	[selectRandom ["SMGs", "shotGuns"]] call _fnc_setPrimary;
 	["primary", 4] call _fnc_addMagazines;
 
 	["sidearms"] call _fnc_setHandgun;

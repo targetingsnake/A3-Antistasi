@@ -84,8 +84,8 @@ _loadoutData set ["carbines", []];
 _loadoutData set ["grenadeLaunchers", []];
 _loadoutData set ["SMGs", []];
 _loadoutData set ["machineGuns", []];
-_loadoutData set ["marksmanrifles", []];
-_loadoutData set ["sniperrifles", []];
+_loadoutData set ["marksmanRifles", []];
+_loadoutData set ["sniperRifles", []];
 _loadoutData set ["AALaunchers", [ 				//this line determines AA launchers -- Example: ["launch_B_Titan_F"] -- Array, can contain multiple assets
 "rhs_weap_fim92"
 ]];
@@ -114,13 +114,13 @@ _loadoutData set ["Rangefinder", ["rhsusf_bino_lerca_1200_black"]];
 
 _loadoutData set ["uniforms", []];					//don't fill this line - this is only to set the variable
 _loadoutData set ["MGvests", []];						//don't fill this line - this is only to set the variable
-_loadoutData set ["MEDvests", []];
+_loadoutData set ["Medvests", []];
 _loadoutData set ["SLvests", []];
-_loadoutData set ["SNIvests", []];
+_loadoutData set ["Snivests", []];
 _loadoutData set ["GLvests", []];
 _loadoutData set ["vests", []];
 _loadoutData set ["backpacks", []];					//don't fill this line - this is only to set the variable
-_loadoutData set ["Atbackpacks", ["B_Carryall_cbr"]];
+_loadoutData set ["ATbackpacks", ["B_Carryall_cbr"]];
 _loadoutData set ["longRangeRadios", []];			//don't fill this line - this is only to set the variable
 _loadoutData set ["helmets", []];					//don't fill this line - this is only to set the variable
 
@@ -157,7 +157,7 @@ private _sfLoadoutData = _loadoutData call _fnc_copyLoadoutData; // touch and sh
 _sfLoadoutData set ["uniforms", ["rhs_uniform_FROG01_d"]];			//this line determines uniforms for special forces -- Example: ["U_B_CombatUniform_mcam", "U_B_CombatUniform_mcam_tshirt"] -- Array, can contain multiple assets
 _sfLoadoutData set ["vests", ["rhsusf_mbav_rifleman"]];				//this line determines vests for special forces -- Example: ["V_PlateCarrierSpec_mtp", "V_PlateCarrierGL_mtp"] -- Array, can contain multiple assets
 _sfLoadoutData set ["MGvests", ["rhsusf_mbav_mg"]];						//don't fill this line - this is only to set the variable
-_sfLoadoutData set ["MEDvests", ["rhsusf_mbav_medic"]];
+_sfLoadoutData set ["Medvests", ["rhsusf_mbav_medic"]];
 _sfLoadoutData set ["GLvests", ["rhsusf_mbav_grenadier"]];
 _sfLoadoutData set ["backpacks", ["rhsusf_falconii_coy", "B_Kitbag_cbr"]];			//this line determines backpacks for special forces -- Example: ["B_AssaultPack_mcamo", "B_Kitbag_mcamo"] -- Array, can contain multiple assets
 _sfLoadoutData set ["helmets", ["rhs_booniehat2_marpatd", "rhsusf_opscore_mar_ut", "rhsusf_opscore_mar_ut_pelt", "rhsusf_opscore_aor1_pelt_nsw", "rhsusf_opscore_aor1_pelt", "rhsusf_opscore_aor1"]];				//this line determines helmets for special forces -- Example: ["H_HelmetB_camo", "H_HelmetB_desert"] -- Array, can contain multiple assets
@@ -229,7 +229,7 @@ _sfLoadoutData set ["machineGuns", [
 ["rhs_weap_m240B", "rhsusf_acc_ARDEC_M240", "rhsusf_acc_anpeq15side_bk", "rhsusf_acc_g33_xps3", ["rhsusf_100Rnd_762x51_m61_ap", "rhsusf_100Rnd_762x51_m62_tracer"], [], ""],
 ["rhs_weap_m240B", "rhsusf_acc_ARDEC_M240", "rhsusf_acc_anpeq15side_bk", "rhsusf_acc_ACOG_RMR", ["rhsusf_100Rnd_762x51_m61_ap", "rhsusf_100Rnd_762x51_m62_tracer"], [], ""]
 ]];
-_sfLoadoutData set ["marksmanrifles", [
+_sfLoadoutData set ["marksmanRifles", [
 ["rhs_weap_mk17_LB", "rhsusf_acc_aac_762sdn6_silencer", "rhsusf_acc_anpeq16a", "rhsusf_acc_M8541_d", ["rhs_mag_20Rnd_SCAR_762x51_mk316_special"], [], "rhsusf_acc_harris_bipod"],
 ["rhs_weap_mk17_LB", "rhsusf_acc_aac_762sdn6_silencer", "rhsusf_acc_anpeq16a", "rhsusf_acc_LEUPOLDMK4_2_d", ["rhs_mag_20Rnd_SCAR_762x51_mk316_special"], [], "rhsusf_acc_harris_bipod"],
 ["rhs_weap_mk17_LB", "rhsusf_acc_aac_762sdn6_silencer", "rhsusf_acc_anpeq16a", "rhsusf_acc_premier_mrds", ["rhs_mag_20Rnd_SCAR_762x51_mk316_special"], [], "rhsusf_acc_harris_bipod"],
@@ -243,7 +243,7 @@ _sfLoadoutData set ["marksmanrifles", [
 ["rhs_weap_m14_socom_rail", "rhsusf_acc_aac_762sdn6_silencer", "", "rhsusf_acc_LEUPOLDMK4", ["rhsusf_20Rnd_762x51_m993_Mag"], [], "rhsusf_acc_harris_bipod"],
 ["rhs_weap_m14_socom_rail", "rhsusf_acc_aac_762sdn6_silencer", "", "rhsusf_acc_premier_mrds", ["rhsusf_20Rnd_762x51_m993_Mag"], [], "rhsusf_acc_harris_bipod"]
 ]];
-_sfLoadoutData set ["sniperrifles", [
+_sfLoadoutData set ["sniperRifles", [
 ["rhs_weap_XM2010_d", "rhsusf_acc_M2010S_d", "rhsusf_acc_anpeq15side_bk", "rhsusf_acc_M8541_d", [], [], "rhsusf_acc_harris_bipod"],
 ["rhs_weap_XM2010_d", "rhsusf_acc_M2010S_d", "rhsusf_acc_anpeq15side_bk", "rhsusf_acc_LEUPOLDMK4_2", [], [], "rhsusf_acc_harris_bipod"],
 ["rhs_weap_m24sws", "rhsusf_acc_m24_silencer_black", "", "rhsusf_acc_M8541", ["rhsusf_5Rnd_762x51_m993_Mag"], [], "rhsusf_acc_harris_swivel"],
@@ -280,9 +280,9 @@ private _militaryLoadoutData = _loadoutData call _fnc_copyLoadoutData; // touch 
 _militaryLoadoutData set ["uniforms", ["rhs_uniform_FROG01_d"]];		//this line determines uniforms for military loadouts -- Example: ["U_B_CombatUniform_mcam", "U_B_CombatUniform_mcam_tshirt"] -- Array, can contain multiple assets
 _militaryLoadoutData set ["vests", ["rhsusf_spc_rifleman"]];			//this line determines vests for military loadouts -- Example: ["V_PlateCarrierSpec_mtp", "V_PlateCarrierGL_mtp"] -- Array, can contain multiple assets
 _militaryLoadoutData set ["MGvests", ["rhsusf_spc_mg", "rhsusf_spc_iar"]];						//don't fill this line - this is only to set the variable
-_militaryLoadoutData set ["MEDvests", ["rhsusf_spc_corpsman"]];
+_militaryLoadoutData set ["Medvests", ["rhsusf_spc_corpsman"]];
 _militaryLoadoutData set ["SLvests", ["rhsusf_spc_squadleader", "rhsusf_spc_teamleader"]];
-_militaryLoadoutData set ["SNIvests", ["rhsusf_spc_sniper", "rhsusf_spc_marksman"]];
+_militaryLoadoutData set ["Snivests", ["rhsusf_spc_sniper", "rhsusf_spc_marksman"]];
 _militaryLoadoutData set ["GLvests", ["rhsusf_spc_teamleader"]];
 _militaryLoadoutData set ["backpacks", ["rhsusf_assault_eagleaiii_coy", "B_Kitbag_cbr", "B_Carryall_cbr", "rhsusf_falconii_coy"]];		//this line determines backpacks for military loadouts -- Example: ["B_AssaultPack_mcamo", "B_Kitbag_mcamo"] -- Array, can contain multiple assets
 _militaryLoadoutData set ["helmets", ["rhsusf_lwh_helmet_marpatd", "rhsusf_lwh_helmet_marpatd_ess", "rhsusf_lwh_helmet_marpatd_headset", "rhsusf_mich_helmet_marpatd", "rhsusf_mich_helmet_marpatd_alt_headset", "rhsusf_mich_helmet_marpatd_norotos_headset", "rhsusf_mich_helmet_marpatd_norotos"]];		//this line determines helmets for military loadouts -- Example: ["H_HelmetB_camo", "H_HelmetB_desert"] -- Array, can contain multiple assets
@@ -325,12 +325,12 @@ _militaryLoadoutData set ["machineGuns", [
 ["rhs_weap_m240B", "rhsusf_acc_ARDEC_M240", "rhsusf_acc_anpeq15side_bk", "rhsusf_acc_ELCAN", ["rhsusf_100Rnd_762x51_m80a1epr", "rhsusf_100Rnd_762x51_m80a1epr", "rhsusf_100Rnd_762x51_m62_tracer"], [], ""],
 ["rhs_weap_m240B", "rhsusf_acc_ARDEC_M240", "rhsusf_acc_anpeq15side_bk", "rhsusf_acc_ACOG_MDO", ["rhsusf_100Rnd_762x51_m80a1epr", "rhsusf_100Rnd_762x51_m80a1epr", "rhsusf_100Rnd_762x51_m62_tracer"], [], ""]
 ]];
-_militaryLoadoutData set ["marksmanrifles", [
+_militaryLoadoutData set ["marksmanRifles", [
 ["rhs_weap_sr25_ec", "", "rhsusf_acc_anpeq15side_bk", "rhsusf_acc_M8541", ["rhsusf_20Rnd_762x51_SR25_m118_special_Mag", "rhsusf_20Rnd_762x51_SR25_m118_special_Mag", "rhsusf_20Rnd_762x51_SR25_m62_Mag"], [], "rhsusf_acc_harris_bipod"],
 ["rhs_weap_sr25_ec", "", "rhsusf_acc_anpeq15side_bk", "rhsusf_acc_LEUPOLDMK4_2", ["rhsusf_20Rnd_762x51_SR25_m118_special_Mag", "rhsusf_20Rnd_762x51_SR25_m118_special_Mag", "rhsusf_20Rnd_762x51_SR25_m62_Mag"], [], "rhsusf_acc_harris_bipod"],
 ["rhs_weap_sr25_ec", "", "rhsusf_acc_anpeq15side_bk", "rhsusf_acc_premier_mrds", ["rhsusf_20Rnd_762x51_SR25_m118_special_Mag", "rhsusf_20Rnd_762x51_SR25_m118_special_Mag", "rhsusf_20Rnd_762x51_SR25_m62_Mag"], [], "rhsusf_acc_harris_bipod"]
 ]];
-_militaryLoadoutData set ["sniperrifles", [
+_militaryLoadoutData set ["sniperRifles", [
 ["rhs_weap_m24sws", "rhsusf_acc_m24_muzzlehider_black", "", "rhsusf_acc_M8541", ["rhsusf_5Rnd_762x51_m118_special_Mag", "rhsusf_5Rnd_762x51_m118_special_Mag", "rhsusf_5Rnd_762x51_m62_Mag"], [], "rhsusf_acc_harris_swivel"],
 ["rhs_weap_m24sws", "rhsusf_acc_m24_muzzlehider_black", "", "rhsusf_acc_premier", ["rhsusf_5Rnd_762x51_m118_special_Mag", "rhsusf_5Rnd_762x51_m118_special_Mag", "rhsusf_5Rnd_762x51_m62_Mag"], [], "rhsusf_acc_harris_swivel"],
 ["rhs_weap_m24sws", "rhsusf_acc_m24_muzzlehider_black", "", "rhsusf_acc_LEUPOLDMK4", ["rhsusf_5Rnd_762x51_m118_special_Mag", "rhsusf_5Rnd_762x51_m118_special_Mag", "rhsusf_5Rnd_762x51_m62_Mag"], [], "rhsusf_acc_harris_swivel"],
@@ -363,7 +363,7 @@ private _policeLoadoutData = _loadoutData call _fnc_copyLoadoutData; // touch an
 _policeLoadoutData set ["uniforms", ["U_B_GEN_Soldier_F", "U_B_GEN_Commander_F"]];
 _policeLoadoutData set ["vests", ["V_TacVest_blk_POLICE"]];
 _policeLoadoutData set ["helmets", ["H_Cap_police"]];
-_policeLoadoutData set ["shotguns", [
+_policeLoadoutData set ["shotGuns", [
 ["rhs_weap_M590_8RD", "", "", "", ["rhsusf_8Rnd_00Buck", "rhsusf_8Rnd_Slug"], [], ""],
 ["rhs_weap_M590_5RD", "", "", "", ["rhsusf_5Rnd_00Buck", "rhsusf_5Rnd_Slug"], [], ""]
 ]];
@@ -405,10 +405,10 @@ _militiaLoadoutData set ["machineGuns", [
 ["rhs_weap_m240G", "", "", "", ["rhsusf_50Rnd_762x51", "rhsusf_50Rnd_762x51", "rhsusf_50Rnd_762x51_m62_tracer"], [], ""],
 ["rhs_weap_m249_pip_ris", "", "rhsusf_acc_wmx_bk", "", ["rhsusf_100Rnd_556x45_M855_mixed_soft_pouch"], [], "rhsusf_acc_saw_bipod"]
 ]]; 				//this line determines machine guns -- Example: ["arifle_MX_SW_F", "arifle_MX_SW_Hamr_pointer_F"] -- Array, can contain multiple assets
-_militiaLoadoutData set ["marksmanrifles", [
+_militiaLoadoutData set ["marksmanRifles", [
 ["rhs_weap_m14_rail", "rhsusf_acc_m14_flashsuppresor", "", "rhsusf_acc_LEUPOLDMK4", [], [], "rhsusf_acc_harris_swivel"]
 ]]; 			//this line determines markman rifles -- Example: ["arifle_MXM_F", "arifle_MXM_Hamr_pointer_F"] -- Array, can contain multiple assets
-_militiaLoadoutData set ["sniperrifles", [
+_militiaLoadoutData set ["sniperRifles", [
 ["rhs_weap_m40a5", "", "rhsusf_acc_wmx_bk", "rhsusf_acc_LEUPOLDMK4", [], [], "rhsusf_acc_harris_swivel"]
 ]]; 				//this line determines sniper rifles -- Example: ["srifle_LRR_camo_F", "srifle_LRR_camo_SOS_F"] -- Array, can contain multiple assets
 _militiaLoadoutData set ["lightATLaunchers", ["rhs_weap_m72a7"]];
@@ -512,7 +512,7 @@ private _riflemanTemplate = {
 
 private _medicTemplate = {
 	["helmets"] call _fnc_setHelmet;
-	[["MEDvests", "vests"] call _fnc_fallback] call _fnc_setVest;
+	[["Medvests", "vests"] call _fnc_fallback] call _fnc_setVest;
 	["uniforms"] call _fnc_setUniform;
 	["backpacks"] call _fnc_setBackpack;
 
@@ -626,7 +626,7 @@ private _latTemplate = {
 	["helmets"] call _fnc_setHelmet;
 	["vests"] call _fnc_setVest;
 	["uniforms"] call _fnc_setUniform;
-	[["Atbackpacks", "backpacks"] call _fnc_fallback] call _fnc_setBackpack;
+	[["ATbackpacks", "backpacks"] call _fnc_fallback] call _fnc_setBackpack;
 
 	["rifles"] call _fnc_setPrimary;
 	["primary", 6] call _fnc_addMagazines;
@@ -657,7 +657,7 @@ private _atTemplate = {
 	["helmets"] call _fnc_setHelmet;
 	["vests"] call _fnc_setVest;
 	["uniforms"] call _fnc_setUniform;
-	[["Atbackpacks", "backpacks"] call _fnc_fallback] call _fnc_setBackpack;
+	[["ATbackpacks", "backpacks"] call _fnc_fallback] call _fnc_setBackpack;
 
 	["rifles"] call _fnc_setPrimary;
 	["primary", 6] call _fnc_addMagazines;
@@ -687,7 +687,7 @@ private _aaTemplate = {
 	["helmets"] call _fnc_setHelmet;
 	["vests"] call _fnc_setVest;
 	["uniforms"] call _fnc_setUniform;
-	[["Atbackpacks", "backpacks"] call _fnc_fallback] call _fnc_setBackpack;
+	[["ATbackpacks", "backpacks"] call _fnc_fallback] call _fnc_setBackpack;
 
 	["rifles"] call _fnc_setPrimary;
 	["primary", 6] call _fnc_addMagazines;
@@ -743,7 +743,7 @@ private _marksmanTemplate = {
 	["uniforms"] call _fnc_setUniform;
 
 
-	["marksmanrifles"] call _fnc_setPrimary;
+	["marksmanRifles"] call _fnc_setPrimary;
 	["primary", 5] call _fnc_addMagazines;
 
 	["sidearms"] call _fnc_setHandgun;
@@ -765,11 +765,11 @@ private _marksmanTemplate = {
 
 private _sniperTemplate = {
 	["helmets"] call _fnc_setHelmet;
-	[["SNIvests", "vests"] call _fnc_fallback] call _fnc_setVest;
+	[["Snivests", "vests"] call _fnc_fallback] call _fnc_setVest;
 	["uniforms"] call _fnc_setUniform;
 	["backpacks"] call _fnc_setBackpack;
 
-	["sniperrifles"] call _fnc_setPrimary;
+	["sniperRifles"] call _fnc_setPrimary;
 	["primary", 5] call _fnc_addMagazines;
 
 	["sidearms"] call _fnc_setHandgun;
@@ -795,7 +795,7 @@ private _policeTemplate = {
 	["uniforms"] call _fnc_setUniform;
 
 
-	[selectRandom ["SMGs", "shotguns"]] call _fnc_setPrimary;
+	[selectRandom ["SMGs", "shotGuns"]] call _fnc_setPrimary;
 	["primary", 5] call _fnc_addMagazines;
 
 	["sidearms"] call _fnc_setHandgun;

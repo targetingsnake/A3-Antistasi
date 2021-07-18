@@ -108,7 +108,7 @@ _loadoutData set ["radios", ["ItemRadio"]];
 _loadoutData set ["gpses", ["ItemGPS"]];
 _loadoutData set ["NVGs", ["NVGoggles_INDEP"]];
 _loadoutData set ["binoculars", ["Binocular"]];
-_loadoutData set ["rangefinder", ["Rangefinder"]];
+_loadoutData set ["Rangefinder", ["Rangefinder"]];
 
 _loadoutData set ["uniforms", []];
 _loadoutData set ["vests", []];
@@ -191,7 +191,7 @@ _policeLoadoutData set ["uniforms", []];
 _policeLoadoutData set ["vests", []];
 _policeLoadoutData set ["helmets", []];
 
-_policeLoadoutData set ["smgs", []];
+_policeLoadoutData set ["SMGs", []];
 _policeLoadoutData set ["sidearms", []];
 
 ////////////////////////////////
@@ -207,7 +207,7 @@ _militiaLoadoutData set ["helmets", []];
 _militiaLoadoutData set ["rifles", []];
 _militiaLoadoutData set ["carbines", []];
 _militiaLoadoutData set ["grenadeLaunchers", []];
-_militiaLoadoutData set ["smgs", []];
+_militiaLoadoutData set ["SMGs", []];
 _militiaLoadoutData set ["machineGuns", []];
 _militiaLoadoutData set ["marksmanRifles", []];
 _militiaLoadoutData set ["sidearms", []];
@@ -296,7 +296,7 @@ private _medicTemplate = {
 	["vests"] call _fnc_setVest;
 	["uniforms"] call _fnc_setUniform;
 	["backpacks"] call _fnc_setBackpack;
-  [selectRandom ["carbines", "smgs"]] call _fnc_setPrimary;
+  [selectRandom ["carbines", "SMGs"]] call _fnc_setPrimary;
 	["primary", 5] call _fnc_addMagazines;
 
 	["sidearms"] call _fnc_setHandgun;
@@ -379,7 +379,7 @@ private _engineerTemplate = {
 	["uniforms"] call _fnc_setUniform;
 	["backpacks"] call _fnc_setBackpack;
 
-	[selectRandom ["carbines", "smgs"]] call _fnc_setPrimary;
+	[selectRandom ["carbines", "SMGs"]] call _fnc_setPrimary;
 	["primary", 5] call _fnc_addMagazines;
 
 	["sidearms"] call _fnc_setHandgun;
@@ -535,7 +535,7 @@ private _marksmanTemplate = {
 	["watches"] call _fnc_addWatch;
 	["compasses"] call _fnc_addCompass;
 	["radios"] call _fnc_addRadio;
-	["rangefinder"] call _fnc_addBinoculars;
+	["Rangefinder"] call _fnc_addBinoculars;
 	["NVGs"] call _fnc_addNVGs;
 };
 
@@ -561,7 +561,7 @@ private _sniperTemplate = {
 	["watches"] call _fnc_addWatch;
 	["compasses"] call _fnc_addCompass;
 	["radios"] call _fnc_addRadio;
-	["rangefinder"] call _fnc_addBinoculars;
+	["Rangefinder"] call _fnc_addBinoculars;
 	["NVGs"] call _fnc_addNVGs;
 };
 
@@ -571,7 +571,7 @@ private _policeTemplate = {
 	["uniforms"] call _fnc_setUniform;
 	["backpacks"] call _fnc_setBackpack;
 
-	["smgs"] call _fnc_setPrimary;
+	["SMGs"] call _fnc_setPrimary;
 	["primary", 3] call _fnc_addMagazines;
 
 	["sidearms"] call _fnc_setHandgun;
@@ -593,7 +593,7 @@ private _crewTemplate = {
 	["vests"] call _fnc_setVest;
 	["uniforms"] call _fnc_setUniform;
 
-	[selectRandom ["carbines", "smgs"]] call _fnc_setPrimary;
+	[selectRandom ["carbines", "SMGs"]] call _fnc_setPrimary;
 	["primary", 3] call _fnc_addMagazines;
 
 	["sidearms"] call _fnc_setHandgun;

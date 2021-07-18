@@ -128,7 +128,7 @@ _loadoutData set ["Offvests", []];
 _loadoutData set ["backpacks", []];
 _loadoutData set ["SLbackpacks", []];
 _loadoutData set ["ATbackpacks", []];
-_loadoutData set ["ENGbackpacks", []];
+_loadoutData set ["Engbackpacks", []];
 _loadoutData set ["longRangeRadios", []];
 _loadoutData set ["helmets", []];
 
@@ -171,7 +171,7 @@ _sfLoadoutData set ["Offvests", ["vn_o_vest_07"]];
 _sfLoadoutData set ["backpacks", ["vn_o_pack_04", "vn_o_pack_01", "vn_o_pack_02"]];
 _sfLoadoutData set ["SLbackpacks", ["vn_o_pack_t884_01"]];
 _sfLoadoutData set ["ATbackpacks", ["vn_o_pack_03"]];
-_sfLoadoutData set ["ENGbackpacks", ["vn_o_pack_05"]];
+_sfLoadoutData set ["Engbackpacks", ["vn_o_pack_05"]];
 _sfLoadoutData set ["helmets", ["vn_o_helmet_nva_01", "vn_o_helmet_nva_04", "vn_o_helmet_nva_03", "vn_o_helmet_nva_02"]];
 //["Weapon", "Muzzle", "Rail", "Sight", [], [], "Bipod"];
 
@@ -225,7 +225,7 @@ _militaryLoadoutData set ["Offvests", ["vn_o_vest_07"]];
 _militaryLoadoutData set ["backpacks", ["vn_o_pack_04", "vn_o_pack_01", "vn_o_pack_02"]];
 _militaryLoadoutData set ["SLbackpacks", ["vn_o_pack_t884_01"]];
 _militaryLoadoutData set ["ATbackpacks", ["vn_o_pack_03"]];
-_militaryLoadoutData set ["ENGbackpacks", ["vn_o_pack_05"]];
+_militaryLoadoutData set ["Engbackpacks", ["vn_o_pack_05"]];
 _militaryLoadoutData set ["helmets", ["vn_o_helmet_nva_01", "vn_o_helmet_nva_04", "vn_o_helmet_nva_03", "vn_o_helmet_nva_02"]];
 
 _militaryLoadoutData set ["rifles", [
@@ -278,7 +278,7 @@ _policeLoadoutData set ["helmets", []];
 _policeLoadoutData set ["rifles", [
 ["vn_sks", "", "", "", ["vn_sks_mag", "vn_sks_mag", "vn_sks_t_mag"], [], ""]
 ]];
-_policeLoadoutData set ["shotguns", [
+_policeLoadoutData set ["shotGuns", [
 ["vn_izh54", "", "", "", ["vn_izh54_mag"], [], ""]
 ]];
 _policeLoadoutData set ["sidearms", [
@@ -301,7 +301,7 @@ _militiaLoadoutData set ["Offvests", ["vn_o_vest_07"]];
 _militiaLoadoutData set ["backpacks", ["vn_o_pack_04", "vn_o_pack_01", "vn_o_pack_02"]];
 _militiaLoadoutData set ["SLbackpacks", ["vn_o_pack_t884_01"]];
 _militiaLoadoutData set ["ATbackpacks", ["vn_o_pack_03"]];
-_militiaLoadoutData set ["ENGbackpacks", ["vn_o_pack_05"]];
+_militiaLoadoutData set ["Engbackpacks", ["vn_o_pack_05"]];
 _militiaLoadoutData set ["helmets", ["vn_o_helmet_nva_01", "vn_o_helmet_nva_04", "vn_o_helmet_nva_03", "vn_o_helmet_nva_02"]];
 
 _militiaLoadoutData set ["rifles", [
@@ -679,7 +679,7 @@ private _policeTemplate = {
 	["vests"] call _fnc_setVest;
 	["uniforms"] call _fnc_setUniform;
 
-	[selectRandom ["rifles", "shotguns"]] call _fnc_setPrimary;
+	[selectRandom ["rifles", "shotGuns"]] call _fnc_setPrimary;
 	["primary", 3] call _fnc_addMagazines;
 
 	["sidearms"] call _fnc_setHandgun;
@@ -701,7 +701,7 @@ private _crewTemplate = {
 	["vests"] call _fnc_setVest;
 	["uniforms"] call _fnc_setUniform;
 
-	["smgs"] call _fnc_setPrimary;
+	["SMGs"] call _fnc_setPrimary;
 	["primary", 3] call _fnc_addMagazines;
 
 	["sidearms"] call _fnc_setHandgun;

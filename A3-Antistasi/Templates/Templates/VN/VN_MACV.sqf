@@ -142,7 +142,7 @@ _loadoutData set ["backpacks", []];
 _loadoutData set ["SLbackpacks", []];
 _loadoutData set ["MGbackpacks", []];
 _loadoutData set ["Medbackpacks", []];
-_loadoutData set ["ENGbackpacks", []];
+_loadoutData set ["Engbackpacks", []];
 _loadoutData set ["helmets", []];
 _loadoutData set ["GLhelmets", []];
 _loadoutData set ["MGhelmets", []];
@@ -187,7 +187,7 @@ _sfLoadoutData set ["backpacks", ["vn_b_pack_trp_02", "vn_b_pack_lw_03"]];
 _sfLoadoutData set ["SLbackpacks", ["vn_b_pack_trp_04", "vn_b_pack_trp_04_02", "vn_b_pack_prc77_01", "vn_b_pack_lw_06"]];
 _sfLoadoutData set ["MGbackpacks", ["vn_b_pack_trp_01", "vn_b_pack_trp_01_02"]];
 _sfLoadoutData set ["Medbackpacks", ["vn_b_pack_lw_07", "vn_b_pack_m5_01"]];
-_sfLoadoutData set ["ENGbackpacks", ["vn_b_pack_lw_04", "vn_b_pack_trp_03_02"]];
+_sfLoadoutData set ["Engbackpacks", ["vn_b_pack_lw_04", "vn_b_pack_trp_03_02"]];
 _sfLoadoutData set ["helmets", ["vn_b_boonie_02_02", "vn_b_boonie_02_01", "vn_b_beret_01_01", "vn_b_beret_01_06", "vn_b_bandana_02"]];
 _sfLoadoutData set ["binoculars", ["vn_anpvs2_binoc"]];
 
@@ -255,7 +255,7 @@ _militaryLoadoutData set ["backpacks", ["vn_b_pack_lw_01", "vn_b_pack_lw_03"]];
 _militaryLoadoutData set ["SLbackpacks", ["vn_b_pack_trp_04_02", "vn_b_pack_prc77_01", "vn_b_pack_lw_06"]];
 _militaryLoadoutData set ["MGbackpacks", ["vn_b_pack_lw_02", "vn_b_pack_lw_05", "vn_b_pack_trp_01_02"]];
 _militaryLoadoutData set ["Medbackpacks", ["vn_b_pack_lw_07", "vn_b_pack_m5_01"]];
-_militaryLoadoutData set ["ENGbackpacks", ["vn_b_pack_lw_04", "vn_b_pack_trp_03_02"]];
+_militaryLoadoutData set ["Engbackpacks", ["vn_b_pack_lw_04", "vn_b_pack_trp_03_02"]];
 _militaryLoadoutData set ["helmets", ["vn_b_helmet_m1_02_01", "vn_b_helmet_m1_03_01", "vn_b_helmet_m1_05_01", "vn_b_helmet_m1_06_01", "vn_b_helmet_m1_07_01"]];
 _militaryLoadoutData set ["GLhelmets", ["vn_b_helmet_m1_04_02"]];
 _militaryLoadoutData set ["MGhelmets", ["vn_b_helmet_m1_08_01"]];
@@ -328,7 +328,7 @@ _policeLoadoutData set ["helmets", ["vn_b_helmet_m1_01_02"]];
 _policeLoadoutData set ["rifles", [
 ["vn_m16", "", "", "", ["vn_m16_20_mag", "vn_m16_20_mag", "vn_m16_20_t_mag"], [], ""]
 ]];
-_policeLoadoutData set ["shotguns", [
+_policeLoadoutData set ["shotGuns", [
 ["vn_m1897", "", "", "", ["vn_m1897_buck_mag", "vn_m1897_fl_mag"], [], ""]
 ]];
 _policeLoadoutData set ["sidearms", [
@@ -352,7 +352,7 @@ _militiaLoadoutData set ["backpacks", ["vn_b_pack_lw_01", "vn_b_pack_lw_03"]];
 _militiaLoadoutData set ["SLbackpacks", ["vn_b_pack_trp_04_02", "vn_b_pack_prc77_01", "vn_b_pack_lw_06"]];
 _militiaLoadoutData set ["MGbackpacks", ["vn_b_pack_lw_02", "vn_b_pack_lw_05", "vn_b_pack_trp_01_02"]];
 _militiaLoadoutData set ["Medbackpacks", ["vn_b_pack_lw_07", "vn_b_pack_m5_01"]];
-_militiaLoadoutData set ["ENGbackpacks", ["vn_b_pack_lw_04", "vn_b_pack_trp_03_02"]];
+_militiaLoadoutData set ["Engbackpacks", ["vn_b_pack_lw_04", "vn_b_pack_trp_03_02"]];
 _militiaLoadoutData set ["helmets", ["vn_b_helmet_m1_01_01", "vn_b_bandana_04", "vn_b_headband_02", "vn_b_helmet_m1_01_01", "vn_b_bandana_06"]];
 _militiaLoadoutData set ["binoculars", ["vn_mk21_binocs"]];
 
@@ -731,7 +731,7 @@ private _policeTemplate = {
 	["vests"] call _fnc_setVest;
 	["uniforms"] call _fnc_setUniform;
 
-	[selectRandom ["rifles", "shotguns"]] call _fnc_setPrimary;
+	[selectRandom ["rifles", "shotGuns"]] call _fnc_setPrimary;
 	["primary", 3] call _fnc_addMagazines;
 
 	["sidearms"] call _fnc_setHandgun;
@@ -753,7 +753,7 @@ private _crewTemplate = {
 	["vests"] call _fnc_setVest;
 	["uniforms"] call _fnc_setUniform;
 
-	["smgs"] call _fnc_setPrimary;
+	["SMGs"] call _fnc_setPrimary;
 	["primary", 3] call _fnc_addMagazines;
 
 	["sidearms"] call _fnc_setHandgun;
