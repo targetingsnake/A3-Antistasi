@@ -134,7 +134,7 @@ if (_isControl) then
 		[_veh, _sideX] call A3A_fnc_AIVEHinit;
 		_vehiclesX pushBack _veh;
 		sleep 1;
-		_typeGroup = selectRandom (_groupData get "medium");
+		_typeGroup = selectRandom (_groupData get "militia_Medium");
 		_groupX = [_positionX, _sideX, _typeGroup, true] call A3A_fnc_spawnGroup;
 		if !(isNull _groupX) then
 			{
