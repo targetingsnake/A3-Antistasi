@@ -67,7 +67,7 @@ private _allDefinitions = _faction get "loadouts";
 [_faction, _side, _file] call A3A_fnc_TV_verifyAssets;
 
 //compile collection list of vehicles for occ and inv
-if (_side in [Occupants, Invaders]) exitWith {
+if (_side in [Occupants, Invaders]) then {
     _faction set ["vehiclesLight", (_faction get "vehiclesLightArmed") + (_faction get "vehiclesLightUnarmed")];
     _faction set ["vehiclesAttack", (_faction get "vehiclesAPCs") + (_faction get "vehiclesTanks")];
     _faction set ["vehiclesBoats", (_faction get "vehiclesGunBoats") + (_faction get "vehiclesTransportBoats")];

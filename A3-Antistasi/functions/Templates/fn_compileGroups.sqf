@@ -155,7 +155,7 @@ _groups set ["LAT", double( unit(militia, "lat") )];
 _groups set ["Medic", double( unit(militia, "medic") )];
 _groups set ["MG", double( unit(militia, "MachineGunner") )];
 _groups set ["Exp", double( unit(militia, "ExplosivesExpert") )];
-_groups set ["GL", double( unit(militia, "Granadier") )];
+_groups set ["GL", double( unit(militia, "Grenadier") )];
 _groups set ["Mil", double( unit(militia, "Rifleman") )];
 _groups set ["SL", double( unit(militia, "SquadLeader") )];
 _groups set ["Eng", double( unit(militia, "Engineer") )];
