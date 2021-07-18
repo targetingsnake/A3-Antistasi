@@ -70,6 +70,25 @@ private _validateWeaightedArray = {
     };
 };
 
+private _genericClassExists = {
+    params ["_class", ["_entry", ""]];
+    if !(_class isEqualType "") exitWith {
+        _invalidReasons pushBack ("Entry: "+ _entry + " | Invalid data type: "+ str _class + " | Data type: "+ typeName _class + " | Expected: String");
+        false;
+    };
+    private _cfgs = ["CfgVehicles", "CfgWeapons", "CfgMagazines", "CfgMagazineWells", "CfgAmmo", "CfgWorlds"];
+    private _cfgIndex = _cfgs findIf { isClass (configFile/_x/_class) };
+    if ( _cfgIndex isEqualTo -1 || {configName (configFile/_x/(_cfgs#_cfgIndex)) isNotEqualTo _class}) exitWith {
+        _invalidReasons pushBack ( if (_cfgIndex isEqualTo -1) then {
+            "Entry: "+ _entry + " | Bad case on classname: "+_class+", expected: "+ configName (configFile/_cfg/_class)
+        } else {
+            "Entry: "+ _entry + " | Invalid classname: "+_class+" | Classname should be from config "+_cfg
+        });
+        false;
+    };
+    true;
+};
+
 private _handleUniqueCases = { //handles unique name cases that the stored value is...
     switch _entry do {
         //string
@@ -89,6 +108,8 @@ private _handleUniqueCases = { //handles unique name cases that the stored value
         case "uavsPortable": _validateArrayOfClasses;
 
         //magazine class
+        case "mineAT";
+        case "mineAPERS";
         case "mortarMagazineHE";
         case "mortarMagazineSmoke": _validateMagazine;
 
@@ -96,8 +117,43 @@ private _handleUniqueCases = { //handles unique name cases that the stored value
         case "minefieldAT";
         case "minefieldAPERS": _validateArrayMagazines;
 
+        //array of weapon class names
+        case "headgear";
+        case "uniforms";
+        case "toolKits";
+        case "itemMaps";
+        case "firstAidKits";
+        case "mediKits": { { ["CfgWeapons",_x,_entry] call _validClassCaseSensitive } forEach _y };
+
+        //generic class
+        case "initialRebelEquipment": _genericClassExists;
+
+        //bool
+        case "addDiveGear";
+        case "addFlightGear": { if !(_y isEqualType true) then {_invalidReasons pushBack ("Entry: "+_entry+" is not of type bool")} };
+
+        //skip validation as its checked elsewere or buildt of valid stuff
+        case "groups";
+        case "loadouts": {};
+
         //truly unique cases
         case "magazines": _validateMagazinesHM;
+        case "placeIntel_itemMedium";
+        case "placeIntel_itemLarge": {
+            if !(_y isEqualTypeArray ["", 0, true]) exitWith {_invalidReasons pushBack ("Entry: "+_entry+" has the wrong data type(s). Expected [<String>Class, <Scalar>Angle, <Bool>isComputer]")};
+            ["CfgVehicles",_y,_entry] call _validClassCaseSensitive;
+        };
+        case "placeIntel_desk": {
+            if !(_y isEqualTypeArray ["",0]) exitWith {_invalidReasons pushBack ("Entry: "+_entry+" has the wrong data type(s). Expected [<String>Class, <Scalar>Angle]")};
+            ["CfgVehicles",_y,_entry] call _validClassCaseSensitive;
+        };
+        case "breachingExplosivesAPC";
+        case "breachingExplosivesTank": {
+            {
+                if !(_x isEqualTypeArray ["", 0]) then {_invalidReasons pushBack ("Entry: "+_entry+" -> "+(str _x)+" has the wrong data type(s). Expected [<String>Magazine, <Scalar>quantity]")};
+                ["CfgMagazines",(_x#0),_entry] call _validClassCaseSensitive;
+            } forEach _y;
+        };
 
         default { Info("Entry: "+_entry+" is lacking validation") };
     };
