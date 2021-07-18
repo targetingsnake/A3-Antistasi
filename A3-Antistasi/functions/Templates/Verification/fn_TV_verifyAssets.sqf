@@ -11,14 +11,14 @@ private _printInvalidReasons = {
 private _validClassCaseSensitive = {
     params ["_cfg", "_class", ["_entry", ""]];
     if !(_class isEqualType "") exitWith {
-        _invalidReasons pushBack ("Entry: "+ _entry + " | Invalid data type: "+ str _class + " | Data type: "+ typeName _class + " | Expected: String");
+        _invalidReasons pushBack ("Entry: "+ (str _entry)  + " | Invalid data type: "+ (str _class) + " | Data type: "+ (typeName _class) + " | Expected: String");
         false;
     };
     if !(isClass (configFile/_cfg/_class) && configName (configFile/_cfg/_class) isEqualTo _class) exitWith {
         _invalidReasons pushBack ( if (isClass (configFile/_cfg/_class)) then {
-            "Entry: "+ _entry + " | Bad case on classname: "+_class+", expected: "+ configName (configFile/_cfg/_class)
+            "Entry: "+(str _entry)+ " | Bad case on classname: "+_class+", expected: "+ configName (configFile/_cfg/_class)
         } else {
-            "Entry: "+ _entry + " | Invalid classname: "+_class+" | Classname should be from config "+_cfg
+            "Entry: "+(str _entry)+ " | Invalid classname: "+_class+" | Classname should be from config "+_cfg
         });
         false;
     };
@@ -27,32 +27,32 @@ private _validClassCaseSensitive = {
 
 //these functions hack the parent scope for the variables; _y, _entry
 private _validateArrayOfClasses = {
-    if !(_y isEqualType []) exitWith { _invalidReasons pushBack ("Entry "+_entry+" is not an array, This entry should be an array of vehicle class names.") };
+    if !(_y isEqualType []) exitWith { _invalidReasons pushBack ("Entry "+(str _entry)+" is not an array, This entry should be an array of vehicle class names.") };
     { ["CfgVehicles", _x, _entry] call _validClassCaseSensitive } forEach _y;
 };
 
 private _validateSingleClass = {
-    if !(_y isEqualType "") exitWith { _invalidReasons pushBack ("Entry "+_entry+" is not a string, This entry should be a vehicle class name.") };
+    if !(_y isEqualType "") exitWith { _invalidReasons pushBack ("Entry "+(str _entry)+" is not a string, This entry should be a vehicle class name.") };
     ["CfgVehicles", _y, _entry] call _validClassCaseSensitive;
 };
 
 private _validateString = {
-    if !(_y isEqualType "") then { _invalidReasons pushBack ("Entry "+_entry+" is not a string.") };
+    if !(_y isEqualType "") then { _invalidReasons pushBack ("Entry "+(str _entry)+" is not a string.") };
 };
 
 private _validateMagazine = {
-    if !(_y isEqualType "") exitWith { _invalidReasons pushBack ("Entry "+_entry+" is not a string, This entry should be a magazine class name.") };
+    if !(_y isEqualType "") exitWith { _invalidReasons pushBack ("Entry "+(str _entry)+" is not a string, This entry should be a magazine class name.") };
     ["CfgMagazines", _y, _entry] call _validClassCaseSensitive;
 };
 
 private _validateArrayMagazines = {
-    if !(_y isEqualType []) exitWith { _invalidReasons pushBack ("Entry "+_entry+" is not an array, This entry should be an array of magazine class names.")};
+    if !(_y isEqualType []) exitWith { _invalidReasons pushBack ("Entry "+(str _entry)+" is not an array, This entry should be an array of magazine class names.")};
     { ["CfgMagazines", _x, _entry] call _validClassCaseSensitive } forEach _y;
 };
 
 private _validateMagazinesHM = {
     //hm of key: Vehicle class, Value: Array of magazine classes
-    if !(_y isEqualType createHashmap) exitWith { _invalidReasons pushBack ("Entry "+_entry+" is not a hashmap, This entry should be a hashmap of vehicles and there corresponding magazine classes.") };
+    if !(_y isEqualType createHashmap) exitWith { _invalidReasons pushBack ("Entry "+(str _entry)+" is not a hashmap, This entry should be a hashmap of vehicles and there corresponding magazine classes.") };
     {
         ["CfgVehicles", _x, _entry] call _validClassCaseSensitive;
         call _validateArrayMagazines;
@@ -60,12 +60,12 @@ private _validateMagazinesHM = {
 };
 
 private _validateWeaightedArray = {
-    if !(_y isEqualType []) exitWith { _invalidReasons pushBack ("Entry "+_entry+" is not an array, This entry should be an weighted array.") };
+    if !(_y isEqualType []) exitWith { _invalidReasons pushBack ("Entry "+(str _entry)+" is not an array, This entry should be an weighted array.") };
     for "_i" from 0 to count _y-2 step 2 do {
         if !(
             (_y#_i) isEqualType ""
             && (_y#(_i+1)) isEqualType 0
-        ) exitWith { _invalidReasons pushBack ("Entry "+_entry+" is not in propper weighted array format, expected an array in format [<String> Class, <Scalar> Weight, ...]") };
+        ) exitWith { _invalidReasons pushBack ("Entry "+(str _entry)+" is not in propper weighted array format, expected an array in format [<String> Class, <Scalar> Weight, ...]") };
         ["CfgVehicles", _y#_i, _entry] call _validClassCaseSensitive;
     };
 };
@@ -73,16 +73,16 @@ private _validateWeaightedArray = {
 private _genericClassExists = {
     params ["_class", ["_entry", ""]];
     if !(_class isEqualType "") exitWith {
-        _invalidReasons pushBack ("Entry: "+ _entry + " | Invalid data type: "+ str _class + " | Data type: "+ typeName _class + " | Expected: String");
+        _invalidReasons pushBack ("Entry: "+ (str _entry) + " | Invalid data type: "+ str _class + " | Data type: "+ typeName _class + " | Expected: String");
         false;
     };
     private _cfgs = ["CfgVehicles", "CfgWeapons", "CfgMagazines", "CfgMagazineWells", "CfgAmmo", "CfgWorlds"];
     private _cfgIndex = _cfgs findIf { isClass (configFile/_x/_class) };
     if ( _cfgIndex isEqualTo -1 || {configName (configFile/_x/(_cfgs#_cfgIndex)) isNotEqualTo _class}) exitWith {
         _invalidReasons pushBack ( if (_cfgIndex isEqualTo -1) then {
-            "Entry: "+ _entry + " | Bad case on classname: "+_class+", expected: "+ configName (configFile/_cfg/_class)
+            "Entry: "+ (str _entry) + " | Bad case on classname: "+_class+", expected: "+ configName (configFile/_cfg/_class)
         } else {
-            "Entry: "+ _entry + " | Invalid classname: "+_class+" | Classname should be from config "+_cfg
+            "Entry: "+ (str _entry) + " | Invalid classname: "+_class+" | Classname should be from config "+_cfg
         });
         false;
     };
@@ -130,7 +130,7 @@ private _handleUniqueCases = { //handles unique name cases that the stored value
 
         //bool
         case "addDiveGear";
-        case "addFlightGear": { if !(_y isEqualType true) then {_invalidReasons pushBack ("Entry: "+_entry+" is not of type bool")} };
+        case "addFlightGear": { if !(_y isEqualType true) then {_invalidReasons pushBack ("Entry: "+(str _entry)+" is not of type bool")} };
 
         //skip validation as its checked elsewere or buildt of valid stuff
         case "groups";
@@ -140,22 +140,22 @@ private _handleUniqueCases = { //handles unique name cases that the stored value
         case "magazines": _validateMagazinesHM;
         case "placeIntel_itemMedium";
         case "placeIntel_itemLarge": {
-            if !(_y isEqualTypeArray ["", 0, true]) exitWith {_invalidReasons pushBack ("Entry: "+_entry+" has the wrong data type(s). Expected [<String>Class, <Scalar>Angle, <Bool>isComputer]")};
+            if !(_y isEqualTypeArray ["", 0, true]) exitWith {_invalidReasons pushBack ("Entry: "+(str _entry)+" has the wrong data type(s). Expected [<String>Class, <Scalar>Angle, <Bool>isComputer]")};
             ["CfgVehicles",_y,_entry] call _validClassCaseSensitive;
         };
         case "placeIntel_desk": {
-            if !(_y isEqualTypeArray ["",0]) exitWith {_invalidReasons pushBack ("Entry: "+_entry+" has the wrong data type(s). Expected [<String>Class, <Scalar>Angle]")};
+            if !(_y isEqualTypeArray ["",0]) exitWith {_invalidReasons pushBack ("Entry: "+(str _entry)+" has the wrong data type(s). Expected [<String>Class, <Scalar>Angle]")};
             ["CfgVehicles",_y,_entry] call _validClassCaseSensitive;
         };
         case "breachingExplosivesAPC";
         case "breachingExplosivesTank": {
             {
-                if !(_x isEqualTypeArray ["", 0]) then {_invalidReasons pushBack ("Entry: "+_entry+" -> "+(str _x)+" has the wrong data type(s). Expected [<String>Magazine, <Scalar>quantity]")};
+                if !(_x isEqualTypeArray ["", 0]) then {_invalidReasons pushBack ("Entry: "+(str _entry)+" -> "+(str _x)+" has the wrong data type(s). Expected [<String>Magazine, <Scalar>quantity]")};
                 ["CfgMagazines",(_x#0),_entry] call _validClassCaseSensitive;
             } forEach _y;
         };
 
-        default { Info("Entry: "+_entry+" is lacking validation") };
+        default { Info("Entry: "+(str _entry)+" is lacking validation") };
     };
 };
 
