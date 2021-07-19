@@ -32,5 +32,4 @@ private _faction = missionNamespace getVariable ["A3A_faction"+_factionPrefix, c
 } forEach _addon;
 
 //update the faction data globaly
-missionNamespace setVariable ["A3A_faction"+_factionPrefix, _faction, true];
 _faction

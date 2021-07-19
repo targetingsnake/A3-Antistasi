@@ -61,8 +61,8 @@ _groups set ["sentry", [unit(military, "Grenadier"), unit(military, "Rifleman")]
 _groups set ["sniper", [unit(military, "Sniper"), unit(military, "Rifleman")]];
 _groups set ["pilots", double( _groups get "pilot" )];
 _groups set ["small", [_groups get "sentry", _groups get "sniper"]];
-_groups set ["AA", [unit(military, "SquadLeader"), unit(military, "AA"), unit(military, "AA")]];
-_groups set ["AT", [unit(military, "SquadLeader"), unit(military, "AT"), unit(military, "AT")]];
+_groups set ["AA", [unit(military, "SquadLeader"), unit(military, "AA"), unit(military, "AA"), unit(military, "Rifleman")]];
+_groups set ["AT", [unit(military, "SquadLeader"), unit(military, "AT"), unit(military, "AT"), unit(military, "Rifleman")]];
 _groups set ["medium", [
     [unit(military, "SquadLeader"), unit(military, "MachineGunner"), unit(military, "Grenadier"), unit(military, "LAT")]
     , _groups get "AA", _groups get "AT"
@@ -122,7 +122,7 @@ for "_i" from 1 to 5 do {
     _militiaSquads pushBack [
         unit(militia, "SquadLeader"),
         unit(militia, "MachineGunner"),
-        unit(militia, "Granadier"),
+        unit(militia, "Grenadier"),
         unit(militia, "Rifleman"),
         selectRandom [unit(militia, "Rifleman"), unit(militia, "Marksman")],
         selectRandomWeighted [unit(militia, "Rifleman"), 2, unit(militia, "Marksman"), 1],

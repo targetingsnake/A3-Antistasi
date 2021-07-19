@@ -35,21 +35,21 @@ private _baseUnitClass = switch (_side) do {
 
 private _unitClassMap = if (_side isNotEqualTo independent) then { createHashMap } else {
     createHashMapFromArray [                // Cases matter. Lower case here because allVariables on namespace returns lowercase
-        ["militia_unarmed", "I_G_Survivor_F"],
-        ["militia_rifleman", "I_G_Soldier_F"],
-        ["militia_staticcrew", "I_G_Soldier_F"],
-        ["militia_medic", "I_G_medic_F"],
-        ["militia_sniper", "I_G_Sharpshooter_F"],
-        ["militia_marksman", "I_G_Soldier_M_F"],
-        ["militia_lat", "I_G_Soldier_LAT_F"],
-        ["militia_machinegunner", "I_G_Soldier_AR_F"],
-        ["militia_explosivesexpert", "I_G_Soldier_exp_F"],
-        ["militia_grenadier", "I_G_Soldier_GL_F"],
-        ["militia_squadleader", "I_G_Soldier_SL_F"],
-        ["militia_engineer", "I_G_engineer_F"],
-        ["militia_at", "I_Soldier_AT_F"],
-        ["militia_aa", "I_Soldier_AA_F"],
-        ["militia_petros", "I_G_officer_F"]
+        ["militia_Unarmed", "I_G_Survivor_F"],
+        ["militia_Rifleman", "I_G_Soldier_F"],
+        ["militia_staticCrew", "I_G_Soldier_F"],
+        ["militia_Medic", "I_G_medic_F"],
+        ["militia_Sniper", "I_G_Sharpshooter_F"],
+        ["militia_Marksman", "I_G_Soldier_M_F"],
+        ["militia_LAT", "I_G_Soldier_LAT_F"],
+        ["militia_MachineGunner", "I_G_Soldier_AR_F"],
+        ["militia_ExplosivesExpert", "I_G_Soldier_exp_F"],
+        ["militia_Grenadier", "I_G_Soldier_GL_F"],
+        ["militia_SquadLeader", "I_G_Soldier_SL_F"],
+        ["militia_Engineer", "I_G_engineer_F"],
+        ["militia_AT", "I_Soldier_AT_F"],
+        ["militia_AA", "I_Soldier_AA_F"],
+        ["militia_Petros", "I_G_officer_F"]
     ]
 };
 //validate loadouts
@@ -98,6 +98,4 @@ if (_side isEqualTo civilian) then {
     civVehIndustrialData = _faction get "vehiclesCivIndustrial";
 };
 
-//set her to bradcast with the collection lists of vehicles
-missionNamespace setVariable ["A3A_faction_" + _factionPrefix, _faction, true]; // ["A3A_faction_occ", "A3A_faction_inv", "A3A_faction_reb", "A3A_faction_civ"]
 _faction;
