@@ -80,7 +80,7 @@
 private _loadoutData = call _fnc_createLoadoutData;
 _loadoutData set ["rifles", []];
 _loadoutData set ["carbines", []];
-_loadoutData set ["shotguns", []];
+_loadoutData set ["shotGuns", []];
 _loadoutData set ["grenadeLaunchers", []];
 _loadoutData set ["machineGuns", []];
 _loadoutData set ["marksmanRifles", []];
@@ -126,7 +126,7 @@ _loadoutData set ["Medvests", []];
 _loadoutData set ["GLvests", []];
 _loadoutData set ["backpacks", []];
 _loadoutData set ["Medbackpacks", ["rhs_medic_bag"]];
-_loadoutData set ["Atbackpacks", ["rhs_rpg_empty"]];
+_loadoutData set ["ATbackpacks", ["rhs_rpg_empty"]];
 _loadoutData set ["AAbackpacks", ["B_Carryall_oli"]];
 _loadoutData set ["Engbackpacks", ["rhs_assault_umbts_engineer_empty"]];
 _loadoutData set ["longRangeRadios", []];
@@ -261,7 +261,7 @@ _policeLoadoutData set ["rifles", [
 _policeLoadoutData set ["carbines", [
 ["rhs_weap_aks74un", "rhs_acc_pgs64_74un", "", "", ["rhs_30Rnd_545x39_7N6M_AK"], [], ""]
 ]];
-_policeLoadoutData set ["shotguns", [
+_policeLoadoutData set ["shotGuns", [
 ["rhs_weap_Izh18", "", "", "", ["rhsgref_1Rnd_00Buck", "rhsgref_1Rnd_Slug"], [], ""]
 ]];
 ////////////////////////////////
@@ -501,7 +501,7 @@ private _latTemplate = {
 	["helmets"] call _fnc_setHelmet;
 	["vests"] call _fnc_setVest;
 	["uniforms"] call _fnc_setUniform;
-	[["Atbackpacks", "backpacks"] call _fnc_fallback] call _fnc_setBackpack;
+	[["ATbackpacks", "backpacks"] call _fnc_fallback] call _fnc_setBackpack;
 
 	["rifles"] call _fnc_setPrimary;
 	["primary", 6] call _fnc_addMagazines;
@@ -531,7 +531,7 @@ private _atTemplate = {
 	["helmets"] call _fnc_setHelmet;
 	["vests"] call _fnc_setVest;
 	["uniforms"] call _fnc_setUniform;
-	[["Atbackpacks", "backpacks"] call _fnc_fallback] call _fnc_setBackpack;
+	[["ATbackpacks", "backpacks"] call _fnc_fallback] call _fnc_setBackpack;
 
 	["rifles"] call _fnc_setPrimary;
 	["primary", 6] call _fnc_addMagazines;
@@ -617,7 +617,7 @@ private _marksmanTemplate = {
 	["uniforms"] call _fnc_setUniform;
 
 
-	["marksmanrifles"] call _fnc_setPrimary;
+	["marksmanRifles"] call _fnc_setPrimary;
 	["primary", 5] call _fnc_addMagazines;
 
 	["sidearms"] call _fnc_setHandgun;
@@ -667,7 +667,7 @@ private _policeTemplate = {
 	["uniforms"] call _fnc_setUniform;
 
 
-	[selectRandom ["carbines", "rifles", "shotguns"]] call _fnc_setPrimary;
+	[selectRandom ["carbines", "rifles", "shotGuns"]] call _fnc_setPrimary;
 	["primary", 3] call _fnc_addMagazines;
 
 	["sidearms"] call _fnc_setHandgun;

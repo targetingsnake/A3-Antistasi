@@ -83,7 +83,7 @@ _loadoutData set ["rifles", []];
 _loadoutData set ["carbines", []];
 _loadoutData set ["grenadeLaunchers", []];
 _loadoutData set ["SMGs", []];
-_loadoutData set ["shotguns", []];
+_loadoutData set ["shotGuns", []];
 _loadoutData set ["machineGuns", []];
 _loadoutData set ["marksmanRifles", []];
 _loadoutData set ["sniperRifles", []];
@@ -130,7 +130,7 @@ _loadoutData set ["Offvests", []];
 _loadoutData set ["Snivests", []];
 _loadoutData set ["backpacks", []];
 _loadoutData set ["Medbackpacks", ["rhs_medic_bag"]];
-_loadoutData set ["Atbackpacks", ["rhs_rpg_empty"]];
+_loadoutData set ["ATbackpacks", ["rhs_rpg_empty"]];
 _loadoutData set ["AAbackpacks", ["B_Carryall_oli"]];
 _loadoutData set ["Engbackpacks", ["rhs_assault_umbts_engineer_empty"]];
 _loadoutData set ["longRangeRadios", []];			//don't fill this line - this is only to set the variable
@@ -331,7 +331,7 @@ _policeLoadoutData set ["uniforms", ["U_B_GEN_Soldier_F", "U_B_GEN_Commander_F"]
 _policeLoadoutData set ["vests", ["V_TacVest_blk_POLICE"]];
 _policeLoadoutData set ["helmets", ["H_Cap_police"]];
 _policeLoadoutData set ["antiInfantryGrenades", ["rhs_mag_fakel", "rhs_mag_fakels", "rhs_mag_plamyam"]];
-_policeLoadoutData set ["shotguns", [
+_policeLoadoutData set ["shotGuns", [
 ["rhs_weap_M590_8RD", "", "", "", ["rhsusf_8Rnd_00Buck", "rhsusf_8Rnd_Slug"], [], ""],
 ["rhs_weap_M590_5RD", "", "", "", ["rhsusf_5Rnd_00Buck", "rhsusf_5Rnd_Slug"], [], ""]
 ]];
@@ -356,7 +356,7 @@ _militiaLoadoutData set ["Offvests", ["rhs_6b5_officer_khaki"]];
 _militiaLoadoutData set ["Snivests", ["rhs_6b5_sniper_khaki"]];
 _militiaLoadoutData set ["backpacks", ["rhs_sidor", "rhs_assault_umbts", "rhs_sidor", "B_Carryall_oli"]];
 _militiaLoadoutData set ["Medbackpacks", ["rhs_medic_bag"]];
-_militiaLoadoutData set ["Atbackpacks", ["rhs_rpg_empty"]];
+_militiaLoadoutData set ["ATbackpacks", ["rhs_rpg_empty"]];
 _militiaLoadoutData set ["Engbackpacks", ["rhs_assault_umbts_engineer_empty"]];
 _militiaLoadoutData set ["helmets", ["rhsgref_ssh68_ttsko_forest"]];		//this line determines helmets for police loadouts -- Example: ["H_HelmetB_camo", "H_HelmetB_desert"] -- Array, can contain multiple assets
 
@@ -581,7 +581,7 @@ private _latTemplate = {
 	["helmets"] call _fnc_setHelmet;
 	["vests"] call _fnc_setVest;
 	["uniforms"] call _fnc_setUniform;
-	["Atbackpacks"] call _fnc_setBackpack;
+	["ATbackpacks"] call _fnc_setBackpack;
 
 	["rifles"] call _fnc_setPrimary;
 	["primary", 6] call _fnc_addMagazines;
@@ -611,7 +611,7 @@ private _atTemplate = {
 	["helmets"] call _fnc_setHelmet;
 	["vests"] call _fnc_setVest;
 	["uniforms"] call _fnc_setUniform;
-	["Atbackpacks"] call _fnc_setBackpack;
+	["ATbackpacks"] call _fnc_setBackpack;
 
 	["rifles"] call _fnc_setPrimary;
 	["primary", 5] call _fnc_addMagazines;
@@ -749,7 +749,7 @@ private _policeTemplate = {
 	["uniforms"] call _fnc_setUniform;
 
 
-	[selectRandom ["smgs", "shotguns"]] call _fnc_setPrimary;
+	[selectRandom ["SMGs", "shotGuns"]] call _fnc_setPrimary;
 	["primary", 5] call _fnc_addMagazines;
 
 	["sidearms"] call _fnc_setHandgun;
@@ -771,7 +771,7 @@ private _crewTemplate = {
 	["vests"] call _fnc_setVest;
 	["uniforms"] call _fnc_setUniform;
 
-	["smgs"] call _fnc_setPrimary;
+	["SMGs"] call _fnc_setPrimary;
 	["primary", 3] call _fnc_addMagazines;
 
 	["sidearms"] call _fnc_setHandgun;
