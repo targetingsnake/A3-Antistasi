@@ -1,4 +1,4 @@
-#include "..\..\Includes\common.inc"
+#include "..\Includes\common.inc"
 FIX_LINE_NUMBERS()
 private _groupData = FactionGet(reb,"groups");
 #define GROUP(VAR) (_groupData get VAR)
