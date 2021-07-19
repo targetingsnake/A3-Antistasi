@@ -16,26 +16,26 @@ if (str (_display) != "no display") then
 	_ChildControl = _display displayCtrl 104;
 	_costs = 0;
 	_costHR = 0;
-	{_costs = _costs + (server getVariable (_x select 0)); _costHR = _costHR +1} forEach GROUP("medium");
+	{_costs = _costs + (server getVariable _x); _costHR = _costHR +1} forEach GROUP("medium");
 	_ChildControl  ctrlSetTooltip format ["Cost: %1 €. HR: %2",_costs,_costHR];
 
 	_ChildControl = _display displayCtrl 105;
 	_costs = 0;
 	_costHR = 0;
-	{_costs = _costs + (server getVariable (_x select 0)); _costHR = _costHR +1} forEach GROUP("squadEng");
+	{_costs = _costs + (server getVariable _x); _costHR = _costHR +1} forEach GROUP("squadEng");
 	_ChildControl  ctrlSetTooltip format ["Cost: %1 €. HR: %2",_costs,_costHR];
 
 	_ChildControl = _display displayCtrl 106;
 	_costs = 0;
 	_costHR = 0;
-	{_costs = _costs + (server getVariable (_x select 0)); _costHR = _costHR +1} forEach GROUP("squadSupp");
+	{_costs = _costs + (server getVariable _x); _costHR = _costHR +1} forEach GROUP("squadSupp");
 	_costs = _costs + ([FactionGet(reb,"staticMG")] call A3A_fnc_vehiclePrice);
 	_ChildControl  ctrlSetTooltip format ["Cost: %1 €. HR: %2",_costs,_costHR];
 
 	_ChildControl = _display displayCtrl 107;
 	_costs = 0;
 	_costHR = 0;
-	{_costs = _costs + (server getVariable (_x select 0)); _costHR = _costHR +1} forEach GROUP("squadSupp");
+	{_costs = _costs + (server getVariable _x); _costHR = _costHR +1} forEach GROUP("squadSupp");
 	_costs = _costs + ([FactionGet(reb,"staticMortar")] call A3A_fnc_vehiclePrice);
 	_ChildControl  ctrlSetTooltip format ["Cost: %1 €. HR: %2",_costs,_costHR];
 };

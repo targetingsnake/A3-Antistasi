@@ -148,18 +148,17 @@ SaveGroupData
 _groups set ["Petros", unit(militia, "Petros")];
 _groups set ["staticCrew", unit(militia, "staticCrew")];
 _groups set ["Unarmed", unit(militia, "Unarmed")];
+_groups set ["Sniper", unit(militia, "Sniper")];
+_groups set ["LAT", unit(militia, "LAT")];
+_groups set ["Medic", unit(militia, "Medic")];
+_groups set ["MG", unit(militia, "MachineGunner")];
+_groups set ["Exp", unit(militia, "ExplosivesExpert")];
+_groups set ["GL", unit(militia, "Grenadier")];
+_groups set ["Mil", unit(militia, "Rifleman")];
+_groups set ["SL", unit(militia, "SquadLeader")];
+_groups set ["Eng", unit(militia, "Engineer")];
 
-//two man teams (should really be just singular unit def, then variations bellow)
-_groups set ["Sniper", double( unit(militia, "Sniper") )];
-_groups set ["LAT", double( unit(militia, "LAT") )];
-_groups set ["Medic", double( unit(militia, "Medic") )];
-_groups set ["MG", double( unit(militia, "MachineGunner") )];
-_groups set ["Exp", double( unit(militia, "ExplosivesExpert") )];
-_groups set ["GL", double( unit(militia, "Grenadier") )];
-_groups set ["Mil", double( unit(militia, "Rifleman") )];
-_groups set ["SL", double( unit(militia, "SquadLeader") )];
-_groups set ["Eng", double( unit(militia, "Engineer") )];
-
+//groups
 _groups set ["medium", [_groups get "SL", _groups get "GL", _groups get "MG", _groups get "Mil"]];
 _groups set ["AT", [_groups get "SL", _groups get "MG", _groups get "LAT", _groups get "LAT", _groups get "LAT"]];
 _groups set ["squad", [

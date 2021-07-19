@@ -53,20 +53,20 @@ switch (true) do {
 			[_unit,unlockedRifles] call A3A_fnc_randomRifle;
 		};
 	};
-	case (_unitClass in GROUP("Mil")): {
+	case (_unitClass isEqualTo GROUP("Mil")): {
 		[_unit,unlockedRifles] call A3A_fnc_randomRifle;
 		// Adding AA launchers to garrison riflemen because explosives guys can't currently be purchased there
 		if (_recruitType == 2 && {count unlockedAA > 0}) then {
 			[_unit, selectRandom unlockedAA, 1] call _addWeaponAndMags;
 		};
 	};
-	case (_unitClass in GROUP("MG")): {
+	case (_unitClass isEqualTo GROUP("MG")): {
 		[_unit,unlockedMachineGuns] call A3A_fnc_randomRifle;
 	};
-	case (_unitClass in GROUP("GL")): {
+	case (_unitClass isEqualTo GROUP("GL")): {
 		[_unit,unlockedGrenadeLaunchers] call A3A_fnc_randomRifle;
 	};
-	case (_unitClass in GROUP("Exp")): {
+	case (_unitClass isEqualTo GROUP("Exp")): {
 		[_unit,unlockedRifles] call A3A_fnc_randomRifle;
 		_unit enableAIFeature ["MINEDETECTION", true]; //This should prevent them from Stepping on the Mines as an "Expert" (It helps, they still step on them)
 		if (count unlockedAA > 0) then {
@@ -74,10 +74,10 @@ switch (true) do {
 		};
 		// TODO: explosives. Not that they know what to do with them.
 	};
-	case (_unitClass in GROUP("Eng")): {
+	case (_unitClass isEqualTo GROUP("Eng")): {
 		[_unit,unlockedRifles] call A3A_fnc_randomRifle;
 	};
-	case (_unitClass in GROUP("Medic")): {
+	case (_unitClass isEqualTo GROUP("Medic")): {
 		[_unit,unlockedSMGs] call A3A_fnc_randomRifle;
 		// temporary hack
 		private _medItems = [];

@@ -10,11 +10,11 @@ if (!([player] call A3A_fnc_hasRadio)) exitWith {if !(A3A_hasIFA) then {["Minefi
 
 _typeX = _this select 0;
 
-_costs = (2*(server getVariable (GROUP("Exp") select 0))) + ([FactionGet(reb,"vehicleTruck")] call A3A_fnc_vehiclePrice);
+_costs = (2*(server getVariable GROUP("Exp"))) + ([FactionGet(reb,"vehicleTruck")] call A3A_fnc_vehiclePrice);
 _hr = 2;
 if (_typeX == "delete") then
 	{
-	_costs = _costs - (server getVariable (GROUP("Exp") select 0));
+	_costs = _costs - (server getVariable GROUP("Exp"));
 	_hr = 1;
 	};
 if ((server getVariable "resourcesFIA" < _costs) or (server getVariable "hr" < _hr)) exitWith {["Minefields", format ["Not enough resources to recruit a mine deploying team (%1 € and %2 HR needed)",_costs,_hr]] call A3A_fnc_customHint;};

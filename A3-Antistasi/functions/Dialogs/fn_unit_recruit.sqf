@@ -13,20 +13,20 @@ _display = findDisplay 100;
 if (str (_display) != "no display") then
 {
 	_ChildControl = _display displayCtrl 104;
-	_ChildControl  ctrlSetTooltip format ["Cost: %1 €",server getVariable (GROUP("Mil") select 0)];
+	_ChildControl  ctrlSetTooltip format ["Cost: %1 €",server getVariable GROUP("Mil")];
 	_ChildControl = _display displayCtrl 105;
-	_ChildControl  ctrlSetTooltip format ["Cost: %1 €",server getVariable (GROUP("Mg") select 0)];
+	_ChildControl  ctrlSetTooltip format ["Cost: %1 €",server getVariable GROUP("Mg")];
 	_ChildControl = _display displayCtrl 126;
-	_ChildControl  ctrlSetTooltip format ["Cost: %1 €",server getVariable (GROUP("Medic") select 0)];
+	_ChildControl  ctrlSetTooltip format ["Cost: %1 €",server getVariable GROUP("Medic")];
 	_ChildControl = _display displayCtrl 107;
-	_ChildControl  ctrlSetTooltip format ["Cost: %1 €",server getVariable (GROUP("Eng") select 0)];
+	_ChildControl  ctrlSetTooltip format ["Cost: %1 €",server getVariable GROUP("Eng")];
 	_ChildControl = _display displayCtrl 108;
-	_ChildControl  ctrlSetTooltip format ["Cost: %1 €",server getVariable (GROUP("Exp") select 0)];
+	_ChildControl  ctrlSetTooltip format ["Cost: %1 €",server getVariable GROUP("Exp")];
 	_ChildControl = _display displayCtrl 109;
-	_ChildControl  ctrlSetTooltip format ["Cost: %1 €",server getVariable (GROUP("GL") select 0)];
+	_ChildControl  ctrlSetTooltip format ["Cost: %1 €",server getVariable GROUP("GL")];
 	if (A3A_hasIFA) then {_childControl ctrlSetText "Radio Operator"};
 	_ChildControl = _display displayCtrl 110;
-	_ChildControl  ctrlSetTooltip format ["Cost: %1 €",server getVariable (GROUP("Sniper") select 0)];
+	_ChildControl  ctrlSetTooltip format ["Cost: %1 €",server getVariable GROUP("Sniper")];
 	_ChildControl = _display displayCtrl 111;
-	_ChildControl  ctrlSetTooltip format ["Cost: %1 €",server getVariable (GROUP("LAT") select 0)];
+	_ChildControl  ctrlSetTooltip format ["Cost: %1 €",server getVariable GROUP("LAT")];
 };

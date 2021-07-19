@@ -30,7 +30,7 @@ if ([_positionX,500] call A3A_fnc_enemyNearCheck) exitWith {["Garrison", "You ca
 //if (((_nearX in outpostsFIA) and !(isOnRoad _positionX)) /*or (_nearX in citiesX)*/ or (_nearX in controlsX)) exitWith {hint "You cannot manage garrisons on this kind of zone"; _nul=CreateDialog "garrison_menu"};
 _outpostFIA = if (_nearX in outpostsFIA) then {true} else {false};
 _wPost = if (_outpostFIA and !(isOnRoad getMarkerPos _nearX)) then {true} else {false};
-_garrison = if (! _wpost) then {garrison getVariable [_nearX,[]]} else {GROUP("Sniper")};
+_garrison = if (! _wpost) then {garrison getVariable [_nearX,[]]} else {GROUP("groupsSnipers")};
 
 if (_typeX == "rem") then
 	{
@@ -77,20 +77,20 @@ else
 	if (str (_display) != "no display") then
 		{
 		_ChildControl = _display displayCtrl 104;
-		_ChildControl  ctrlSetTooltip format ["Cost: %1 €",server getVariable (GROUP("Mil") select 0)];
+		_ChildControl  ctrlSetTooltip format ["Cost: %1 €",server getVariable GROUP("Mil")];
 		_ChildControl = _display displayCtrl 105;
-		_ChildControl  ctrlSetTooltip format ["Cost: %1 €",server getVariable (GROUP("MG") select 0)];
+		_ChildControl  ctrlSetTooltip format ["Cost: %1 €",server getVariable GROUP("MG")];
 		_ChildControl = _display displayCtrl 126;
-		_ChildControl  ctrlSetTooltip format ["Cost: %1 €",server getVariable (GROUP("Medic") select 0)];
+		_ChildControl  ctrlSetTooltip format ["Cost: %1 €",server getVariable GROUP("Medic")];
 		_ChildControl = _display displayCtrl 107;
-		_ChildControl  ctrlSetTooltip format ["Cost: %1 €",server getVariable (GROUP("SL") select 0)];
+		_ChildControl  ctrlSetTooltip format ["Cost: %1 €",server getVariable GROUP("SL")];
 		_ChildControl = _display displayCtrl 108;
 		_ChildControl  ctrlSetTooltip format ["Cost: %1 €",(server getVariable GROUP("staticCrew")) + ([FactionGet(reb,"staticMortar")] call A3A_fnc_vehiclePrice)];
 		_ChildControl = _display displayCtrl 109;
-		_ChildControl  ctrlSetTooltip format ["Cost: %1 €",server getVariable (GROUP("GL") select 0)];
+		_ChildControl  ctrlSetTooltip format ["Cost: %1 €",server getVariable GROUP("GL")];
 		_ChildControl = _display displayCtrl 110;
-		_ChildControl  ctrlSetTooltip format ["Cost: %1 €",server getVariable (GROUP("Sniper") select 0)];
+		_ChildControl  ctrlSetTooltip format ["Cost: %1 €",server getVariable GROUP("Sniper")];
 		_ChildControl = _display displayCtrl 111;
-		_ChildControl  ctrlSetTooltip format ["Cost: %1 €",server getVariable (GROUP("LAT") select 0)];
+		_ChildControl  ctrlSetTooltip format ["Cost: %1 €",server getVariable GROUP("LAT")];
 		};
 	};

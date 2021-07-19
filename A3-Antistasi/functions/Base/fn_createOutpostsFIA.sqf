@@ -1,7 +1,6 @@
 #include "..\..\Includes\common.inc"
 FIX_LINE_NUMBERS()
 private _groupData = FactionGet(reb,"groups");
-#define GROUP(VAR) (_groupData get VAR)
 if (!isServer) exitWith {};
 
 private ["_typeX","_costs","_groupX","_unit","_radiusX","_roads","_road","_pos","_truckX","_textX","_mrk","_hr","_unitsX","_formatX"];
@@ -14,7 +13,7 @@ if (_typeX == "delete") exitWith {["Create Outpost", "Deprecated option. Use Rem
 _isRoad = isOnRoad _positionTel;
 
 _textX = format ["%1 Observation Post",FactionGet(reb,"name")];
-_typeGroup = _grouData get "groupsSnipers";
+_typeGroup = _groupData get "groupsSnipers";
 _typeVehX = FactionGet(reb,"vehicleBasic");
 private _tsk = "";
 if (_isRoad) then
@@ -33,11 +32,7 @@ private _taskId = "outpostsFIA" + str A3A_taskCount;
 [[teamPlayer,civilian],_taskId,["We are sending a team to establish a Watchpost/Roadblock. Use HC to send the team to their destination","Post \ Roadblock Deploy",_mrk],_positionTel,false,0,true,"Move",true] call BIS_fnc_taskCreate;
 [_taskId, "outpostsFIA", "CREATED"] remoteExecCall ["A3A_fnc_taskUpdate", 2];
 
-_formatX = [];
-{
-if (random 20 <= skillFIA) then {_formatX pushBack (_x select 1)} else {_formatX pushBack (_x select 0)};
-} forEach _typeGroup;
-_groupX = [getMarkerPos respawnTeamPlayer, teamPlayer, _formatX] call A3A_fnc_spawnGroup;
+_groupX = [getMarkerPos respawnTeamPlayer, teamPlayer, _typeGroup] call A3A_fnc_spawnGroup;
 _groupX setGroupId ["Post"];
 _road = [getMarkerPos respawnTeamPlayer] call A3A_fnc_findNearestGoodRoad;
 _pos = position _road findEmptyPosition [1,30,"B_G_Van_01_transport_F"];

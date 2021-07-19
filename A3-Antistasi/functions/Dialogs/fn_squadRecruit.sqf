@@ -19,19 +19,19 @@ if (str (_display) != "no display") then
 	_ChildControl = _display displayCtrl 105;
 	_costs = 0;
 	_costHR = 0;
-	{_costs = _costs + (server getVariable (_x select 0)); _costHR = _costHR +1} forEach (_groupData get "medium");
+	{_costs = _costs + (server getVariable _x); _costHR = _costHR +1} forEach (_groupData get "medium");
 	_ChildControl  ctrlSetTooltip format ["Cost: %1 €. HR: %2",_costs,_costHR];
 
 	_ChildControl = _display displayCtrl 106;
 	_costs = 0;
 	_costHR = 0;
-	{_costs = _costs + (server getVariable (_x select 0)); _costHR = _costHR +1} forEach (_groupData get "AT");
+	{_costs = _costs + (server getVariable _x); _costHR = _costHR +1} forEach (_groupData get "AT");
 	_ChildControl  ctrlSetTooltip format ["Cost: %1 €. HR: %2",_costs,_costHR];
 
 	_ChildControl = _display displayCtrl 107;
 	_costs = 0;
 	_costHR = 0;
-	{_costs = _costs + (server getVariable (_x select 0)); _costHR = _costHR +1} forEach (_groupData get "groupsSnipers");
+	{_costs = _costs + (server getVariable _x); _costHR = _costHR +1} forEach (_groupData get "groupsSnipers");
 	_ChildControl  ctrlSetTooltip format ["Cost: %1 €. HR: %2",_costs,_costHR];
 
 	_ChildControl = _display displayCtrl 108;

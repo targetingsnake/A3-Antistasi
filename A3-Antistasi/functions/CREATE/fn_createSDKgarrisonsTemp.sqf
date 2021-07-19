@@ -23,7 +23,7 @@ if (_typeX isEqualType "") then {
 
     _unit = [_groupX, _typeX, _positionX, [], 0, "NONE"] call A3A_fnc_createUnit;
     [_unit,_markerX] call A3A_fnc_FIAinitBases;
-    if (_typeX in (_groupData get "Mil")) then { [_markerX] remoteExec ["A3A_fnc_updateRebelStatics", 2] };
+    if (_typeX isEqualTo (_groupData get "Mil")) then { [_markerX] remoteExec ["A3A_fnc_updateRebelStatics", 2] };
 
     if (_typeX == (_groupData get "staticCrew")) then {
     private _veh = FactionGet(reb,"staticMortar") createVehicle _positionX;

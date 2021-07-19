@@ -247,6 +247,10 @@ DECLARE_SERVER_VAR(arrayCivs, _arrayCivs);
 Info("Reading templates");
 
 call compile preProcessFileLineNumbers "Templates\selector.sqf";
+{ //broadcast the templates to the clients
+    publicVariable ("A3A_faction_"+_x);
+} forEach ["occ", "inv", "reb", "civ", "all"]; // ["A3A_faction_occ", "A3A_faction_inv", "A3A_faction_reb", "A3A_faction_civ", "A3A_faction_all"]
+
 //Set SDKFlagTexture on FlagX
 if (local flagX) then { flagX setFlagTexture FactionGet(reb,"flagTexture") } else { [flagX, FactionGet(reb,"flagTexture")] remoteExec ["setFlagTexture", owner flagX] };
 "NATO_carrier" setMarkerText FactionGet(occ,"spawnMarkerName");

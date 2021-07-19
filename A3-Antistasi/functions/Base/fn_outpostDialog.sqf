@@ -43,7 +43,7 @@ if (_typeX != "delete") then
 
 	//_formatX = (configfile >> "CfgGroups" >> "teamPlayer" >> "Guerilla" >> "Infantry" >> _typeGroup);
 	//_unitsX = [_formatX] call groupComposition;
-	{_costs = _costs + (server getVariable (_x select 0)); _hr = _hr +1} forEach _typeGroup;
+	{_costs = _costs + (server getVariable _x); _hr = _hr +1} forEach _typeGroup;
 	}
 else
 	{

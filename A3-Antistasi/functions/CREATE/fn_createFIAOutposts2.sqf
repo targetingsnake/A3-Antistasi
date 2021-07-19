@@ -20,9 +20,7 @@ if (_isRoad) then
 	if (isNil "_garrison") then
 		{//this is for backward compatibility, remove after v12
 		_garrison = [_groupData get "staticCrew"];
-		{
-		if (random 20 <= skillFIA) then {_garrison pushBack (_x select 1)} else {_garrison pushBack (_x select 0)};
-		} forEach (_groupData get "AT");
+		_garrison append (_groupData get "AT");
 		garrison setVariable [_markerX,_garrison,true];
 		};
 	while {true} do
@@ -47,11 +45,7 @@ if (_isRoad) then
 	}
 else
 	{
-	_formatX = [];
-	{
-	if (random 20 <= skillFIA) then {_formatX pushBack (_x select 1)} else {_formatX pushBack (_x select 0)};
-	} forEach (_groupData get "groupsSnipers");
-	_groupX = [_positionX, teamPlayer, _formatX] call A3A_fnc_spawnGroup;
+	_groupX = [_positionX, teamPlayer, _groupData get "groupsSnipers"] call A3A_fnc_spawnGroup;
 	_groupX setBehaviour "STEALTH";
 	_groupX setCombatMode "GREEN";
 	{[_x,_markerX] spawn A3A_fnc_FIAinitBases;} forEach units _groupX;

@@ -14,15 +14,15 @@ _estatic = if (_siteX in outpostsFIA) then {"Technicals"} else {"Mortars"};
 private _groupData = FactionGet(reb,"groups");
 private _units = [ [],[],[],[],[],[],[],[] ];
 {
-    _units # (switch true do {
-    case (_x in (_groupData get "SL")): {0};
-    case (_x isEqualTo (_groupData get "staticCrew")): {1};
-    case (_x in (_groupData get "Mil")): {2};
-    case (_x in (_groupData get "MG")): {3};
-    case (_x in (_groupData get "Medic")): {4};
-    case (_x in (_groupData get "GL")): {5};
-    case (_x in (_groupData get "Sniper")): {6};
-    case (_x in (_groupData get "LAT")): {7};
+    _units # (switch _x do {
+    case (_groupData get "SL"): {0};
+    case (_groupData get "staticCrew")): {1};
+    case (_groupData get "Mil"): {2};
+    case (_groupData get "MG"): {3};
+    case (_groupData get "Medic"): {4};
+    case (_groupData get "GL"): {5};
+    case (_groupData get "Sniper"): {6};
+    case (_groupData get "LAT"): {7};
     }) pushBack _x;
 } forEach _garrison;
 

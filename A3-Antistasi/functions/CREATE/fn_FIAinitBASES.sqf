@@ -34,11 +34,11 @@ _typeX = _unit getVariable "unitType";
 _skill = (0.6 / skillMult + 0.015 * skillFIA);
 _unit setSkill _skill;
 
-if (_typeX in GROUP("SL")) then {
+if (_typeX isEqualTo GROUP("SL")) then {
 	_unit setskill ["courage",_skill + 0.2];
 	_unit setskill ["commanding",_skill + 0.2];
 };
-if (_typeX in GROUP("Sniper")) then {
+if (_typeX isEqualTo GROUP("Sniper")) then {
 	_unit setskill ["aimingAccuracy",_skill + 0.2];
 	_unit setskill ["aimingShake",_skill + 0.2];
 };
