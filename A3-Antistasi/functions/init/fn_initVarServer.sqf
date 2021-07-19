@@ -391,8 +391,8 @@ if (A3A_hasACRE && startWithLongRangeRadio) then {FactionGet(reb,"initialRebelEq
 
 Info("Creating pricelist");
 private _rebGroups = FactionGet(reb,"groups");
-{server setVariable [_x,50,true]} forEach (_rebGroups get "Mil");
-{server setVariable [_x,75,true]} forEach ((_rebGroups get "Tier1") - (_rebGroups get "Mil"));
+server setVariable [_rebGroups get "Mil",50,true];
+{server setVariable [_x,75,true]} forEach ((_rebGroups get "Tier1") - [_rebGroups get "Mil"]);
 {server setVariable [_x,100,true]} forEach (_rebGroups get "Tier2");
 {server setVariable [_x,150,true]} forEach (_rebGroups get "Tier3");
 {timer setVariable [_x,3,true]} forEach (FactionGet(occ,"staticAT") + FactionGet(occ,"staticAA"));
