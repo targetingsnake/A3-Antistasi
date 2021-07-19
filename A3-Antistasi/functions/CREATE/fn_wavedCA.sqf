@@ -642,14 +642,14 @@ while {(_waves > 0)} do
 
     Info_4("Spawn performed: %1 air vehicles inc. %2 supports, %3 land vehicles, %4 soldiers", _nVehAir, _countNewSupport, _nVehLand, count _soldiers);
 
-	_plane = _faction get "vehiclesPlanesCAS";
+	_planePool = (_faction get "vehiclesPlanesCAS") select {[_x] call A3A_fnc_vehAvailable};
 	if (_sideX == Occupants) then
 		{
 		if (((not(_mrkDestination in outposts)) and (not(_mrkDestination in seaports)) and (_mrkOrigin != "NATO_carrier")) or A3A_hasIFA) then
 			{
             private _reveal = [getMarkerPos _mrkDestination, _sideX] call A3A_fnc_calculateSupportCallReveal;
             [getMarkerPos _mrkDestination, 4, ["MORTAR"], _sideX, _reveal] remoteExec ["A3A_fnc_sendSupport", 2];
-			if (([_plane] call A3A_fnc_vehAvailable) and (not(_mrkDestination in citiesX)) and _firstWave) then
+			if ((_planePool isNotEqualTo []) and (not(_mrkDestination in citiesX)) and _firstWave) then
 				{
 				sleep 60;
 				_rnd = if (_mrkDestination in airportsX) then {round random 4} else {round random 2};
@@ -668,13 +668,14 @@ while {(_waves > 0)} do
 			{
                 private _reveal = [getMarkerPos _mrkDestination, _sideX] call A3A_fnc_calculateSupportCallReveal;
                     [getMarkerPos _mrkDestination, 4, ["MORTAR"], _sideX, _reveal] remoteExec ["A3A_fnc_sendSupport", 2];
-			if (([_plane] call A3A_fnc_vehAvailable) and (_firstWave)) then
+			if ((_planePool isNotEqualTo []) and (_firstWave)) then
 				{
 				sleep 60;
 				_rnd = if (_mrkDestination in airportsX) then {if ({sidesX getVariable [_x,sideUnknown] == Invaders} count airportsX == 1) then {8} else {round random 4}} else {round random 2};
+                _planePool = (_faction get "vehiclesPlanesCAS") select {[_x] call A3A_fnc_vehAvailable}; //refresh because time passed
 				for "_i" from 0 to _rnd do
 					{
-					if ([_plane] call A3A_fnc_vehAvailable) then
+					if (_planePool isNotEqualTo []) then
 						{
                             private _reveal = [getMarkerPos _mrkDestination, _sideX] call A3A_fnc_calculateSupportCallReveal;
                             [getMarkerPos _mrkDestination, 4, ["AIRSTRIKE"], _sideX, _reveal] remoteExec ["A3A_fnc_sendSupport", 2];
