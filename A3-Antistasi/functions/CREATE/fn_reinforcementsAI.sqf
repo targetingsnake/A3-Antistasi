@@ -78,7 +78,7 @@ _reinfPlaces = [];
 				{
 					if ({(_x distance2D _positionX < (2*distanceSPWN)) or (_x distance2D (getMarkerPos _siteX) < (2*distanceSPWN))} count allPlayers == 0) then
 					{
-                        _typeGroup = selectRandom (_groupData get (if (_numberX == 4) then {"medium"} else {"squad"}));
+                        _typeGroup = selectRandom (_groupData get (if (_numberX == 4) then {"medium"} else {"squads"}));
 						[_typeGroup,_sideX,_siteX,2] remoteExec ["A3A_fnc_garrisonUpdate",2];
 
 						//This line send a virtual convoy, execute [] execVM "Convoy\convoyDebug.sqf" as admin to see it
