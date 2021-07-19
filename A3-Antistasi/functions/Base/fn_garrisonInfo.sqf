@@ -16,7 +16,7 @@ private _units = [ [],[],[],[],[],[],[],[] ];
 {
     _units # (switch _x do {
     case (_groupData get "SL"): {0};
-    case (_groupData get "staticCrew")): {1};
+    case (_groupData get "staticCrew"): {1};
     case (_groupData get "Mil"): {2};
     case (_groupData get "MG"): {3};
     case (_groupData get "Medic"): {4};

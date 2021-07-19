@@ -188,29 +188,29 @@ _groups set ["squadSupp", [
     , _groups get "MG"
     , _groups get "LAT"
     , _groups get "Medic"
-    , double( _groups get "staticCrew")
-    , double( _groups get "staticCrew")
+    , _groups get "staticCrew"
+    , _groups get "staticCrew"
 ]];
 _groups set ["groupsSnipers", double( _groups get "Sniper" )];
 _groups set ["groupsSentry", [ _groups get "GL", _groups get "Mil"]];
 
 //Tiers (for costs)
-_groups set ["Tier1",
-    (_groups get "Mil")
-    + double(_groups get "staticCrew")
-    + (_groups get "MG")
-    + (_groups get "GL")
-    + (_groups get "LAT")
-];
-_groups set ["Tier2",
-    (_groups get "Medic")
-    + (_groups get "Exp")
-    + (_groups get "Eng")
-];
-_groups set ["Tier3",
-    (_groups get "SL")
-    + (_groups get "Sniper")
-];
+_groups set ["Tier1", [
+    _groups get "Mil"
+    , _groups get "staticCrew"
+    , _groups get "MG"
+    , _groups get "GL"
+    , _groups get "LAT"
+]];
+_groups set ["Tier2", [
+    _groups get "Medic"
+    , _groups get "Exp"
+    , _groups get "Eng"
+]];
+_groups set ["Tier3", [
+    _groups get "SL"
+    , _groups get "Sniper"
+]];
 _groups set ["soldiers",
     (_groups get "Tier1")
     + (_groups get "Tier2")

@@ -6,7 +6,7 @@ if (!isServer and hasInterface) exitWith {};
 
 private ["_costs","_groupX","_unit","_minesX","_radiusX","_roads","_truckX","_mineX","_countX"];
 
-_costs = (server getVariable GROUP("Exp") + ([FactionGet(reb,"vehicleRepair")] call A3A_fnc_vehiclePrice);
+_costs = server getVariable GROUP("Exp") + ([FactionGet(reb,"vehicleRepair")] call A3A_fnc_vehiclePrice);
 
 [-1,-1*_costs] remoteExec ["A3A_fnc_resourcesFIA",2];
 
