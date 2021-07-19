@@ -39,7 +39,7 @@ private _groups = createHashmap;
 if (_prefix in ["occ", "inv"]) exitWith {
 
 //singular units
-_groups set ["grunt", unit(military, "SquadLeader")];
+_groups set ["grunt", unit(military, "Rifleman")];
 _groups set ["bodyGuard", unit(military, "Rifleman")];
 _groups set ["marksman", unit(military, "Marksman")];
 _groups set ["staticCrew", unit(military, "Rifleman")];
