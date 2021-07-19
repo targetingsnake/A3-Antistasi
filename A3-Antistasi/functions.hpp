@@ -182,6 +182,13 @@ class A3A
         class vehicleMarkers {};
     };
 
+    class Build
+    {
+        class build {};
+        class canBuild {};
+        class initBuildableObjects {};
+    };
+
     class Collections
     {
         class getNestedObject {};
@@ -530,7 +537,7 @@ class A3A
         class addFIAveh {};
         class addSquadVeh {};
         class autoGarrison {};
-        class build {};
+        // class build {}; // Moved to functions/Build
         class buildCreateVehicleCallback {};
         class buildMinefield {};
         class enemyNearCheck {};

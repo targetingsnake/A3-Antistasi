@@ -1,7 +1,7 @@
 if (!(isNil "placingVehicle") && {placingVehicle}) exitWith {["Build Info", "You can't build while placing something."] call A3A_fnc_customHint;};
 if (player != player getVariable ["owner",objNull]) exitWith {["Build Info", "You cannot construct anything while controlling AI"] call A3A_fnc_customHint;};
 
-build_engineerSelected = objNull;
+build_engineerSelected = objNull; // TODO: This needs to be changed to get params from the build menu
 
 private _engineers = (units group player) select {_x getUnitTrait "engineer"};
 private _playerIsEngineer = false;
@@ -72,6 +72,8 @@ if (isNull build_engineerSelected ||
 	["Build Info", _abortMessage] call A3A_fnc_customHint;
 };
 
+// TODO: This needs to be changed to get params from the build menu
+// Also, get rid of the near objects conditions and random selections
 build_type = _this select 0;
 build_time = 60;
 build_cost = 0;
