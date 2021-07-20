@@ -5,8 +5,8 @@ _key = _this select 1;
 if (_key == 21) then {
     // Main dialog / Y-menu
 	if (isNil"garageVeh") then {
-		closedialog 0;
-		// TODO UI-update: open main dialog
+		closedialog 0; // TODO UI-Update check if this can be removed
+		if (!dialog) then {createDialog "A3A_MainDialog";};
 	};
 } else {
     // Non-ACE earplugs

@@ -338,6 +338,28 @@ class A3A
         class updateVehicles {};
     };
 
+    class GUI
+    {
+        class adminTab {};
+        class aiManagementTab {};
+        class airSupportTab {};
+        class commanderTab {};
+        class configColorToArray {};
+        class constructTab {};
+        class donateTab {};
+        class fastTravelTab {};
+        class fireMissionEH {};
+        class getOutpostByMarkerName {};
+        class getVehicleCrewCount {};
+        class mainDialog {};
+        class mapDrawHcGroupsEH {};
+        class mapDrawOutpostsEH {};
+        class mapDrawSelectEH {};
+        class mapDrawUserMarkersEH {};
+        class playerManagementTab {};
+        class playerTab {};
+    };
+
     class Intel
     {
         class getVehicleIntel {};
@@ -685,6 +707,7 @@ class A3A
         class createNamespace {};
         class dateToTimeString {};
         class deleteNamespace {};
+        class formatTime {};
         class getAdmin {};
         class localLog {};
         class log {};
