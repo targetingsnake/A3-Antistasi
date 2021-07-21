@@ -36,8 +36,36 @@ switch (_mode) do
 
     private _display = findDisplay A3A_IDD_BUYVEHICLEDIALOG;
 
-    // Add the stuff to the construct list
-    private _buyableVehiclesList = []; // TODO UI-update: Populate this array with the mess created in initVar
+    // Add stuff to the buyable vehicles list
+    private _buyableVehiclesList = [];
+
+    // Add civ vehicles to the list
+    private _civilianVehicles = [
+        civCar,
+        civTruck,
+        civHeli,
+        civBoat
+    ];
+    {
+        private _vehiclePrice = [_x] call A3A_fnc_vehiclePrice;
+        _buyableVehiclesList pushBack [_x, _vehiclePrice, true];
+    } forEach _civilianVehicles;
+
+    // Add military vehicles to the list
+    private _militaryVehicles = [
+        vehSDKBike,
+        vehSDKLightUnarmed,
+        vehSDKTruck,
+        vehSDKLightArmed,
+        SDKMGStatic,
+        SDKMortar,
+        staticATteamPlayer,
+        staticAAteamPlayer
+    ];
+    {
+        private _vehiclePrice = [_x] call A3A_fnc_vehiclePrice;
+        _buyableVehiclesList pushBack [_x, _vehiclePrice, false];
+    } forEach _militaryVehicles;
 
     private _vehiclesControlsGroup = _display displayCtrl A3A_IDC_VEHICLESGROUP;
 
@@ -76,8 +104,8 @@ switch (_mode) do
       private _button = _display ctrlCreate ["A3A_ShortcutButton", -1, _itemControlsGroup];
       _button ctrlSetPosition [0, 25 * GRID_H, 44 * GRID_W, 12 * GRID_H];
       _button ctrlSetText _displayName;
-      _button buttonSetAction "hint ""Imagine just buying stuff.""";
-      _button ctrlAddEventHandler ["ButtonClick", {hint "Placeholder\nWill use A3A_fnc_addFIAveh when merged"}]; // TODO UI-update: Replace placeholder when merging
+      _button setVariable ["className", _className];
+      _button ctrlAddEventHandler ["ButtonClick", {closeDialog 2; [(_this # 0) getVariable "className"] spawn A3A_fnc_addFIAveh}];
       _button ctrlCommit 0;
 
       private _priceText = _display ctrlCreate ["A3A_InfoTextRight", -1, _itemControlsGroup];
