@@ -364,6 +364,8 @@ if (A3A_hasACE) then { [boxX, boxX] call ace_common_fnc_claim;};	//Disables ALL 
 flagX allowDamage false;
 // TODO UI-update: This addAction differs from the one in A3A_fnc_flagAction. Why?
 flagX addAction ["Unit Recruitment", {if ([player,300] call A3A_fnc_enemyNearCheck) then {["Recruit Unit", "You cannot recruit units while there are enemies near you"] call A3A_fnc_customHint;} else {createDialog "A3A_RecruitDialog";};},nil,0,false,true,"","(isPlayer _this) and (_this == _this getVariable ['owner',objNull]) and (side (group _this) == teamPlayer)"];
+// TODO UI-update: Add commander check for squad recruitment / only show addAction for commander if possible?
+flagX addAction ["Squad Recruitment", {if ([player,300] call A3A_fnc_enemyNearCheck) then {["Recruit Squad", "You cannot recruit squads while there are enemies near you"] call A3A_fnc_customHint;} else {createDialog "A3A_RecruitSquadDialog";};},nil,0,false,true,"","(isPlayer _this) and (_this == _this getVariable ['owner',objNull]) and (side (group _this) == teamPlayer)"];
 flagX addAction ["Move this asset", A3A_fnc_moveHQObject,nil,0,false,true,"","(_this == theBoss)", 4];
 
 //Adds a light to the flag
