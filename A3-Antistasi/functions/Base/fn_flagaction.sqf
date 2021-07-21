@@ -33,7 +33,8 @@ switch _typeX do
     {
         // Open mission request dialog
         petros addAction ["Mission Request", {createDialog "A3A_RequestMissionDialog";},nil,0,false,true,"","(isPlayer _this) and (_this == _this getVariable ['owner',objNull]) and ([_this] call A3A_fnc_isMember) and (petros == leader group petros)",4];
-        // TODO UI-update: petros addAction for HQ management
+        // Open HQ Management dialog
+        petros addAction ["HQ Management", {createDialog "A3A_HqDialog"},nil,0,false,true,"","(_this == theBoss) and (petros == leader group petros)", 4];
         petros addAction ["Move this asset", A3A_fnc_moveHQObject,nil,0,false,true,"","(_this == theBoss)"];
     };
     case "truckX":

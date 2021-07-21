@@ -4,7 +4,7 @@ Maintainer: DoomMetal
 */
 
 #include "mainDialog.hpp"
-// #include "hqDialog.hpp" // TODO UI-Update: Waiting to be merged
+#include "hqDialog.hpp"
 #include "requestMissionDialog.hpp"
 #include "recruitDialog.hpp"
 #include "recruitSquadDialog.hpp"

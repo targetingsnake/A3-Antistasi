@@ -351,6 +351,7 @@ class A3A
         class fireMissionEH {};
         class getOutpostByMarkerName {};
         class getVehicleCrewCount {};
+        class hqDialog {};
         class mainDialog {};
         class mapDrawHcGroupsEH {};
         class mapDrawOutpostsEH {};
@@ -358,6 +359,7 @@ class A3A
         class mapDrawUserMarkersEH {};
         class playerManagementTab {};
         class playerTab {};
+        class requestMissionDialog {};
     };
 
     class Intel
