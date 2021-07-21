@@ -3,7 +3,7 @@
 
 // Current array format: [classname, build time, build cost]
 // Possible addition could be a separate field for display names in case the one in the configs make no sense
-buildableObjects = [
+[
     ["Land_GarbageWashingMachine_F", 60, 0],
     ["Land_JunkPile_F", 60, 0],
     ["Land_Barricade_01_4m_F", 60, 0],

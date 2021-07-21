@@ -49,17 +49,20 @@ switch (_mode) do
       ctrlDelete _x;
     } forEach allControls _constructControlsGroup;
 
+    // Get list of buildings along with construction times and costs
+    private _constructionsList = [] call A3A_fnc_initBuildableObjects;
+
     private _added = 0;
     {
       private _className = _x select 0;
-      private _price = _x select 1;
-      private _buildTime = _x select 2;
+      private _buildTime = _x select 1;
+      private _price = _x select 2;
       private _configClass = configFile >> "CfgVehicles" >> _className;
       private _displayName = getText (_configClass >> "displayName");
       private _editorPreview = getText (_configClass >> "editorPreview");
 
       // Add some extra padding to the top if there are 2 rows or less
-      private _topPadding = if (count constructionsList < 7) then {5 * GRID_H} else {0};
+      private _topPadding = if (count _constructionsList < 7) then {5 * GRID_H} else {0};
       private _itemXpos = 7 * GRID_W + ((7 * GRID_W + 44 * GRID_W) * (_added mod 3));
       private _itemYpos = (floor (_added / 3)) * (44 * GRID_H) + _topPadding;
 
@@ -79,20 +82,22 @@ switch (_mode) do
       _button ctrlSetText _displayName;
       _button ctrlAddEventHandler ["ButtonClick", {hint "Placeholder\nWill use A3A_fnc_build when merged"}]; // TODO UI-update: Replace placeholder when merging
       _button ctrlCommit 0;
+      // Only show price when applicable
+      if (_price > 0) then {
+          private _priceText = _display ctrlCreate ["A3A_InfoTextRight", -1, _itemControlsGroup];
+          _priceText ctrlSetPosition[23 * GRID_W, 18 * GRID_H, 20 * GRID_W, 3 * GRID_H];
+          _priceText ctrlSetText format ["%1 €",_price];
+          _priceText ctrlCommit 0;
+      };
       private _timeText = _display ctrlCreate ["A3A_InfoTextRight", -1, _itemControlsGroup]; // TODO UI-update: Add icon
-      _timeText ctrlSetPosition[23 * GRID_W, 18 * GRID_H, 20 * GRID_W, 3 * GRID_H];
+      _timeText ctrlSetPosition[23 * GRID_W, 21 * GRID_H, 20 * GRID_W, 3 * GRID_H];
       _timeText ctrlSetText format ["%1 s",_buildTime];
       _timeText ctrlCommit 0;
-      private _priceText = _display ctrlCreate ["A3A_InfoTextRight", -1, _itemControlsGroup];
-      _priceText ctrlSetPosition[23 * GRID_W, 21 * GRID_H, 20 * GRID_W, 3 * GRID_H];
-      _priceText ctrlSetText format ["%1 €",_price];
-      _priceText ctrlCommit 0;
-
       _itemControlsGroup ctrlSetFade 0;
       _itemControlsGroup ctrlCommit 0.1;
 
       _added = _added + 1;
-    } forEach constructionsList;
+    } forEach _constructionsList;
   };
 
   default {
