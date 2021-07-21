@@ -69,7 +69,7 @@ setVar("Medics", _medics);
 Info("Identifying vehicle types");
 
 //Occ&Inv X vehicles
-setVar("Police", OccAndInv("vehiclesPolice"));
+setVar("vehiclesPolice", OccAndInv("vehiclesPolice"));
 setVar("vehiclesAttack", OccAndInv("vehiclesAttack") );
 setVar("vehiclesPlanes", OccAndInv("vehiclesAir") + [Reb("vehiclePlane")] );
 setVar("vehiclesAttackHelis", OccAndInv("vehiclesHelisAttack") );
