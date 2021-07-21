@@ -99,6 +99,11 @@ OccAndInv("vehiclesNormal")
 ];
 setVar("vehiclesNormal", _vehNormal);
 
+private _vehMilitia = OccAndInv("vehiclesMilitiaCars")
++ OccAndInv("vehiclesMilitiaTrucks")
++ OccAndInv("vehiclesMilitiaLightArmed");
+setVar("vehiclesMilitia", _vehMilitia);
+
 //boats
 private _vehBoats = OccAndInv("vehiclesTransportBoats") + OccAndInv("vehiclesGunBoats") + [Reb("vehicleBoat")];
 setVar("vehiclesBoats", _vehBoats);

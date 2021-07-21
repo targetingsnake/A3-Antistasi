@@ -49,7 +49,7 @@ private _allVehClassToCrew = [
     [flatten FactionGet(all,"vehiclesArmor"), [_occGroups get "crew", _invGroups get "crew", _rebGroups get "staticCrew", "C_Man_1"]],          // <- vehiclesArmor has nested arrays; therefore, it needs to be flattened. (will change with arty template change)
     [FactionGet(all,"vehiclesHelis"), [_occGroups get "pilot", _invGroups get "pilot", _rebGroups get "staticCrew", "C_Man_1"]],
     [FactionGet(all,"vehiclesUAVs"), ["B_UAV_AI", "O_UAV_AI", "I_UAV_AI", "C_UAV_AI"]],
-    [FactionGet(all,"vehiclesReb"), [_occGroups get "militia_Rifleman", _invGroups get "militia_Rifleman", _rebGroups get "staticCrew", "C_Man_1"]],
+    [FactionGet(all,"vehiclesMilitia"), [_occGroups get "militia_Rifleman", _invGroups get "militia_Rifleman", _rebGroups get "staticCrew", "C_Man_1"]],
     [FactionGet(all, "vehiclesPolice"), [_occGroups get "police_Grunt", _invGroups get "police_Grunt", _rebGroups get "staticCrew", "C_Man_1"]]       // < vehiclesPolice is a single classname; therefore, it needs to be put into an array.
 ];
 // ⬆ STOP EDITING HERE 👋 THANK YOU, COME AGAIN ⬆
