@@ -19,7 +19,8 @@ switch _typeX do
     };
     case "unit":
     {
-        // TODO UI-update: flag addAction for unit recruitment
+        // Open unit recruitment dialog
+        _flag addAction ["Unit Recruitment", {if ([player,300] call A3A_fnc_enemyNearCheck) then {["Unit Recruitment", "You cannot recruit units while there are enemies near you"] call A3A_fnc_customHint;} else {createDialog "A3A_RecruitDialog";};},nil,0,false,true,"","(isPlayer _this) and (_this == _this getVariable ['owner',objNull])",4];
     };
     case "vehicle":
     {
