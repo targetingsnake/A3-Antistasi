@@ -343,6 +343,7 @@ class A3A
         class adminTab {};
         class aiManagementTab {};
         class airSupportTab {};
+        class buyVehicleDialog {};
         class commanderTab {};
         class configColorToArray {};
         class constructTab {};

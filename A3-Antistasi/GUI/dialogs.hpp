@@ -8,4 +8,4 @@ Maintainer: DoomMetal
 #include "requestMissionDialog.hpp"
 #include "recruitDialog.hpp"
 #include "recruitSquadDialog.hpp"
-// #include "buyVehicleDialog.hpp" // TODO UI-Update: Waiting to be merged
+#include "buyVehicleDialog.hpp"

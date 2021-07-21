@@ -27,7 +27,8 @@ switch _typeX do
     };
     case "vehicle":
     {
-        // TODO UI-update: _flag addAction for buy vehicle
+        // Open buy vehicle dialog
+        _flag addAction ["Buy Vehicle", {if ([player,300] call A3A_fnc_enemyNearCheck) then {["Buy Vehicle", "You cannot buy vehicles while there are enemies near you"] call A3A_fnc_customHint;} else {createDialog "A3A_BuyVehicleDialog"}},nil,0,false,true,"","(isPlayer _this) and (_this == _this getVariable ['owner',objNull])",4]
     };
     case "mission":
     {
