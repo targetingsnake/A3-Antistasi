@@ -21,7 +21,7 @@ Dependencies:
 Example:
     ["12345678901234567", 5, player, "Bob"] remoteExec ["A3A_fnc_CCD_receiveUpdate",0,"A3A_CCD_U_12345678901234567"];
 */
-#include "../../Includes/common.inc"
+#include "..\..\Includes\common.inc"
 FIX_LINE_NUMBERS()
 params [
     ["_UID","",[""]],
@@ -71,7 +71,7 @@ if (A3A_CCDStatistics) then {
         _newPlayer,
         _respawned
     ];
-    _irregularities pushBack ("Bit flags (" (_bitFlags apply { ["0","1"] select _x } joinString "") +")");
+    _irregularities pushBack ("Bit flags (" + (_bitFlags apply { ["0","1"] select _x } joinString "") + ")");
 
     // If no false errors are logged, this can be implemented to prevent malicious cache poisoning and remove the need to send clientID.
     private _remoteExecOwner = 2 min remoteExecutedOwner;  // Local Host may have a owner of 0

@@ -19,7 +19,7 @@ if (isServer) then {
 	} ];
 };
 
-[] call A3A_fnc_CCD_sendUpdate;
+[] call A3A_fnc_CCD_sendUpdate;  // A3A_fnc_CDD_init should already be called in initVarCommon
 _nul = [_oldUnit] spawn A3A_fnc_postmortem;
 
 _oldUnit setVariable ["incapacitated",false,true];

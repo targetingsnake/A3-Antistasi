@@ -16,6 +16,7 @@ antistasiVersion = localize "STR_antistasi_credits_generic_version_text";
 Info("Setting initial variables");
 debug = false;
 A3A_customHintEnable = false; // Disables custom hints for boot duration. Is set to true in initClient.
+[] call A3A_fnc_CDD_init;   // Client A3A_CCDStatistics only set in initClient before this execution. Server set in initParams.
 
 ////////////////////////////////////
 //     BEGIN SIDES AND COLORS    ///

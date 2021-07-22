@@ -27,4 +27,4 @@ private _name = name player;  // Local Host may have a clientOwner of 0
 private _JIPID = "A3A_CCD_U" + _UID;
 
 [_UID, _clientID, _playerObject, _name] remoteExec ["A3A_fnc_CCD_receiveUpdate",-_clientID,_JIPID];
-[_UID, _clientID, _playerObject, _name] call A3A_fnc_CCD_receiveUpdate];
+[_UID, _clientID, _playerObject, _name] call A3A_fnc_CCD_receiveUpdate;

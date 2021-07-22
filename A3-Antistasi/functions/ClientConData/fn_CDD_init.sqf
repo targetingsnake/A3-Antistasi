@@ -19,7 +19,7 @@ Dependencies:
 Example:
     [] call A3A_fnc_CDD_init;
 */
-#include "../../Includes/common.inc"
+#include "..\..\Includes\common.inc"
 FIX_LINE_NUMBERS()
 
 A3A_CCD_byUID = createHashMap;
@@ -31,7 +31,7 @@ if (isServer) then {
         if (!A3A_CCDStatistics) exitWith {
             removeMissionEventHandler _thisEventHandler;
         };
-        Info("CCDStatistics | (n/a) (%1) (%2) | Player joined (%3) (n/a) | JIP (%4)",_UID,_clientID,_name,_jip);
+        Info_4("CCDStatistics | (n/a) (%1) (%2) (n/a) | Player joined (%3) (n/a) | JIP (%4)", _UID, _clientID, _name, _jip);
     }];
     addMissionEventHandler ["EntityRespawned", {
         params ["_entity", "_corpse"];
@@ -40,13 +40,13 @@ if (isServer) then {
         };
         private _clientID = owner _entity;
         private _UID = getPlayerUID _entity;
-        Info("CCDStatistics | (n/a) (%1) (%2) | Player respawned (%3) (n/a) | JIP (%4)",_UID,_clientID,_corpse,_jip);
+        Info_4("CCDStatistics | (n/a) (%1) (%2) (n/a) | Player respawned (%3) (n/a) | JIP (%4)", _UID, _clientID, _corpse, _jip);
     }];
     addMissionEventHandler ["PlayerDisconnected", {
         params ["_id", "_UID", "_name", "_jip", "_owner", "_idstr"];
 
         if (A3A_CCDStatistics) then {
-            Info("CCDStatistics | (n/a) (%1) (%2) | Player disconnected (%3) (n/a) | JIP (%4)",_UID,_clientID,_name,_jip);
+            Info_4("CCDStatistics | (n/a) (%1) (%2) (n/a) | Player disconnected (%3) (n/a) | JIP (%4)", _UID, _clientID, _name, _jip);
         };
 
         [_UID] spawn {

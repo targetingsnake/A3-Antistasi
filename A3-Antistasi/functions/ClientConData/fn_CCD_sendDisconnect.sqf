@@ -25,7 +25,7 @@ params [
 ];
 
 if !(_UID in A3A_CCD_byUID) exitWith {
-    ServerError_1("UID not found in A3A_CCD_byUID (" + _UID + ")");
+    ServerError_1("UID not found in A3A_CCD_byUID (%1)", _UID);
 };
 (A3A_CCD_byUID get _UID) params ["_","_clientID","_player","_name","_online"];
 

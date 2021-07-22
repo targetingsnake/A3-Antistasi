@@ -18,7 +18,7 @@ Dependencies:
 Example:
     ["12345678901234567", 5, player, "Bob"] remoteExec ["A3A_fnc_CCD_recieveDisconnect",0,"A3A_CCD_U_12345678901234567"];
 */
-#include "../../Includes/common.inc"
+#include "..\..\Includes\common.inc"
 FIX_LINE_NUMBERS()
 params [
     ["_UID","",[""]],
