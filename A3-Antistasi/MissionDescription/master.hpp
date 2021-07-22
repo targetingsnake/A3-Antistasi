@@ -6,6 +6,7 @@
 #include "..\GUI\controls.hpp"
 #include "..\GUI\dialogs.hpp"
 #include "..\GUI\statusBar.hpp"
+#include "..\Garage\Dialogs.hpp"
 
 author = $STR_antistasi_credits_generic_author_text;
 loadScreen = "Pictures\Mission\pic.jpg"; // NB, this will resolve from root
