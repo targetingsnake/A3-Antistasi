@@ -32,7 +32,7 @@ Dependencies:
     <NUMBER> tierWar
 
 Example:
-    [] call A3A_fnc_goUndercover;
+    [] spawn A3A_fnc_goUndercover;
 */
 #include "..\..\Includes\common.inc"
 FIX_LINE_NUMBERS()

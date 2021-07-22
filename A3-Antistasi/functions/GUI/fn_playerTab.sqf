@@ -40,17 +40,31 @@ switch (_mode) do
     private _undercoverButton = _display displayCtrl A3A_IDC_UNDERCOVERBUTTON;
     private _undercoverIcon = _display displayCtrl A3A_IDC_UNDERCOVERICON;
     private _canGoUndercover = [] call A3A_fnc_canGoUndercover;
-    if (_canGoUndercover # 0) then
-    {
-      _undercoverButton ctrlEnable true;
-      _undercoverButton ctrlSetTooltip "";
-      _undercoverIcon ctrlSetTextColor ([A3A_COLOR_WHITE] call A3A_fnc_configColorToArray);
-      _undercoverIcon ctrlSetTooltip "";
+    private _isUndercover = captive player;
+    if (_isUndercover) then {
+        _undercoverButton ctrlEnable true;
+        _undercoverButton ctrlSetTooltip "";
+        _undercoverButton ctrlSetText "Go Overt";
+        _undercoverButton ctrlRemoveAllEventHandlers "MouseButtonClick";
+        _undercoverButton ctrlAddEventHandler ["MouseButtonClick", {player setCaptive false}];
+        _undercoverIcon ctrlSetTextColor ([A3A_COLOR_WHITE] call A3A_fnc_configColorToArray);
+        _undercoverIcon ctrlSetTooltip "";
     } else {
-      _undercoverButton ctrlEnable false;
-      _undercoverButton ctrlSetTooltip (_canGoUndercover # 1);
-      _undercoverIcon ctrlSetTextColor ([A3A_COLOR_BUTTON_BACKGROUND_DISABLED] call A3A_fnc_configColorToArray);
-      _undercoverIcon ctrlSetTooltip (_canGoUndercover # 1);
+        if (_canGoUndercover # 0) then {
+            _undercoverButton ctrlEnable true;
+            _undercoverButton ctrlSetTooltip "";
+            _undercoverButton ctrlSetText localize "STR_antistasi_dialogs_main_undercover";
+            _undercoverButton ctrlRemoveAllEventHandlers "MouseButtonClick";
+            _undercoverButton ctrlAddEventHandler ["MouseButtonClick", {[] spawn A3A_fnc_goUndercover}];
+            _undercoverIcon ctrlSetTextColor ([A3A_COLOR_WHITE] call A3A_fnc_configColorToArray);
+            _undercoverIcon ctrlSetTooltip "";
+        } else {
+            _undercoverButton ctrlEnable false;
+            _undercoverButton ctrlSetTooltip (_canGoUndercover # 1);
+            _undercoverButton ctrlSetText localize "STR_antistasi_dialogs_main_undercover";
+            _undercoverIcon ctrlSetTextColor ([A3A_COLOR_BUTTON_BACKGROUND_DISABLED] call A3A_fnc_configColorToArray);
+            _undercoverIcon ctrlSetTooltip (_canGoUndercover # 1);
+        };
     };
 
     // Fast travel

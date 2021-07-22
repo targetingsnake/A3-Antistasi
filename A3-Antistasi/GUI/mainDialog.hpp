@@ -96,7 +96,7 @@ class A3A_MainDialog : A3A_TabbedDialog
         {
           idc = A3A_IDC_UNDERCOVERBUTTON;
           text = $STR_antistasi_dialogs_main_undercover;
-          onButtonClick = "[] call A3A_fnc_goUndercover; closeDialog 0";
+          // onButtonClick = "[] call A3A_fnc_goUndercover; closeDialog 0";
           sizeEx = GUI_TEXT_SIZE_LARGE;
           x = 20 * GRID_W;
           y = 11 * GRID_H;
