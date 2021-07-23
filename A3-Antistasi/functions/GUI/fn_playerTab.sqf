@@ -16,7 +16,7 @@ Dependencies:
     None
 
 Example:
-    ["update"] call A3A_fnc_playerTab;
+    ["update"] spawn A3A_fnc_playerTab;
 */
 
 #include "..\..\GUI\ids.inc"
@@ -46,7 +46,7 @@ switch (_mode) do
         _undercoverButton ctrlSetTooltip "";
         _undercoverButton ctrlSetText "Go Overt";
         _undercoverButton ctrlRemoveAllEventHandlers "MouseButtonClick";
-        _undercoverButton ctrlAddEventHandler ["MouseButtonClick", {player setCaptive false}];
+        _undercoverButton ctrlAddEventHandler ["MouseButtonClick", {player setCaptive false; ["update"] spawn A3A_fnc_playerTab}];
         _undercoverIcon ctrlSetTextColor ([A3A_COLOR_WHITE] call A3A_fnc_configColorToArray);
         _undercoverIcon ctrlSetTooltip "";
     } else {
@@ -55,7 +55,7 @@ switch (_mode) do
             _undercoverButton ctrlSetTooltip "";
             _undercoverButton ctrlSetText localize "STR_antistasi_dialogs_main_undercover";
             _undercoverButton ctrlRemoveAllEventHandlers "MouseButtonClick";
-            _undercoverButton ctrlAddEventHandler ["MouseButtonClick", {[] spawn A3A_fnc_goUndercover}];
+            _undercoverButton ctrlAddEventHandler ["MouseButtonClick", {[] spawn A3A_fnc_goUndercover; ["update"] spawn A3A_fnc_playerTab}];
             _undercoverIcon ctrlSetTextColor ([A3A_COLOR_WHITE] call A3A_fnc_configColorToArray);
             _undercoverIcon ctrlSetTooltip "";
         } else {
