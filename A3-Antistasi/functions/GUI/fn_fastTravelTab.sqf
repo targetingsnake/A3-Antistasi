@@ -62,19 +62,47 @@ switch (_mode) do
         private _fastTravelInfoText = _display displayCtrl A3A_IDC_FASTTRAVELLOCATIONGROUP;
         private _fastTravelCommitButton = _display displayCtrl A3A_IDC_FASTTRAVELCOMMITBUTTON;
 
-        // Check if location is set.
+        // Check if a location is selected.
         if !(_selectedMarker isEqualTo "") then {
+            // Location is selected
+
             // Format info text
             private _infoText = "";
 
             // Player/Group name + location name
             private _locationName = [_selectedMarker] call A3A_fnc_getLocationMarkerName;
 
+            // Check if location is valid for fast travel
+            private _canFastTravelToLocation = nil;
             if (_hcMode) then {
+                private _hcGroup = _fastTravelMap getVariable "hcGroup";
+                _canFastTravelToLocation = [_hcGroup, _selectedMarker] call A3A_fnc_canFastTravelToLocation;
+            } else {
+                _canFastTravelToLocation = [player, _selectedMarker] call A3A_fnc_canFastTravelToLocation;
+            };
+            if !(_canFastTravelToLocation # 0) exitWith {
+                // Not a valid location for fast travel
+
+                // Disable commit button and show what's wrong in info text
+                _infoText = _canFastTravelToLocation # 1;
+                _fastTravelCommitButton ctrlEnable false;
+                _fastTravelSelectText ctrlShow false;
+                _fastTravelInfoText ctrlShow true;
+                _fastTravelInfoText ctrlSetStructuredText parseText _infoText;
+
+                // Pan to location
+                private _position = (_fastTravelMap getVariable "selectMarkerData") # 0;
+                _fastTravelMap ctrlMapAnimAdd [0.2, ctrlMapScale _fastTravelMap, _position];
+                ctrlMapAnimCommit _fastTravelMap;
+            };
+
+            if (_hcMode) then {
+                // If we're in high command mode
                 private _hcGroup = _fastTravelMap getVariable "hcGroup";
                 private _groupName = groupId _hcGroup;
                 _infoText = _infoText + _groupName + " " + localize "STR_antistasi_dialogs_main_fast_travel_group_will_travel_to" + ":<br/>" + _locationName + "<br/><br/>";
             } else {
+                // If we're not in high command mode
                 _infoText = _infoText + localize "STR_antistasi_dialogs_main_fast_travel_you_will_travel_to" + ":<br/>" + _locationName + "<br/><br/>";
             };
 
@@ -90,7 +118,7 @@ switch (_mode) do
             };
 
 
-            // Enable button
+            // Enable commit button
             _fastTravelCommitButton ctrlEnable true;
             // Hide select location text
             _fastTravelSelectText ctrlShow false;
@@ -103,7 +131,9 @@ switch (_mode) do
             _fastTravelMap ctrlMapAnimAdd [0.2, ctrlMapScale _fastTravelMap, _position];
             ctrlMapAnimCommit _fastTravelMap;
         } else {
-            // Disable button
+            // No location selected
+
+            // Disable commit button
             _fastTravelCommitButton ctrlEnable false;
             // Enable select location text
             _fastTravelSelectText ctrlShow true;
@@ -131,7 +161,7 @@ switch (_mode) do
         // Find closest marker to the clicked position
         _params params ["_clickedPosition"];
         private _clickedWorldPosition = _fastTravelMap ctrlMapScreenToWorld _clickedPosition;
-        private _locations = airportsX + resourcesX + factories + outposts + seaports + citiesX;
+        private _locations = airportsX + resourcesX + factories + outposts + seaports + citiesX + ["Synd_HQ"];
         private _selectedMarker = [_locations, _clickedWorldPosition] call BIS_fnc_nearestPosition;
         Debug_1("Selected marker: %1", _selectedMarker);
 
@@ -170,14 +200,19 @@ switch (_mode) do
         _fastTravelMap setVariable ["hcGroup", _hcGroup];
     };
 
-    case ("commitButtonClicked"): // TODO UI-update: Placeholder, replace with actual FT function on merge
+    case ("commitButtonClicked"):
     {
         private _display = findDisplay A3A_IDD_MAINDIALOG;
         private _fastTravelMap = _display displayCtrl A3A_IDC_FASTTRAVELMAP;
         private _marker = _fastTravelMap getVariable ["selectedMarker", ""];
-        if !(_marker isEqualTo "") then {
-            player setPos getMarkerPos _marker;
-            closeDialog 0;
+        private _hcMode = _fastTravelMap getVariable ["hcMode", false];
+        if (_hcMode) then {
+            private _hcGroup = _fastTravelMap getVariable ["hcGroup", grpNull];
+            closeDialog 1;
+            [_hcGroup, _marker] spawn A3A_fnc_fastTravel;
+        } else {
+            closeDialog 1;
+            [player, _marker] spawn A3A_fnc_fastTravel;
         };
     };
 

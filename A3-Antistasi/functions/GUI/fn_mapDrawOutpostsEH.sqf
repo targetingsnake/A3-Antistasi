@@ -71,7 +71,7 @@ private _outpostIconData = [];
     };
 
     _outpostIconData pushBack [_name, _pos, _icon, _color];
-} forEach airportsX + resourcesX + factories + outposts + seaports + citiesX;
+} forEach airportsX + resourcesX + factories + outposts + seaports + citiesX + ["Synd_HQ"];
 // TODO UI-update: add user placed roadblocks/outposts to the above list
 
 {

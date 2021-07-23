@@ -22,7 +22,7 @@ Dependencies:
 	<ARRAY> forcedSpawn
 
 Example:
-    [player, "SYND_HQ"] call A3A_fnc_fastTravel;
+    [player, "SYND_HQ"] spawn A3A_fnc_fastTravel;
 */
 
 #include "..\..\Includes\common.inc"
