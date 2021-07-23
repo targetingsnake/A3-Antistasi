@@ -67,6 +67,7 @@ class A3A
 		class garbageCleaner {};
 		class garrisonInfo {};
         class getAggroLevelString {};
+        class getLocationMarkerName {};
         class getLocationMarkerType {};
         class getVehiclePoolForAttacks {};
         class getVehiclePoolForQRFs {};
@@ -293,6 +294,7 @@ class A3A
         class canFastTravel {};
         class canFastTravelToLocation {};
         class fastTravel {};
+        class getFastTravelTime {};
     };
 
     class Garrison

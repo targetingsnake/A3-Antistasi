@@ -307,7 +307,7 @@ class A3A_MainDialog : A3A_TabbedDialog
           y = 25 * GRID_H;
           w = 22 * GRID_W;
           h = 4 * GRID_H;
-        }
+      };
 
         class CommanderButton : A3A_Button
         {
