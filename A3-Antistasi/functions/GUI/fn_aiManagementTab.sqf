@@ -163,6 +163,40 @@ switch (_mode) do
         [[_unit]] spawn A3A_fnc_controlUnit;
     };
 
+    case ("dismissButtonClicked"):
+    {
+        private _display = findDisplay A3A_IDD_MAINDIALOG;
+        private _aiListBox = _display displayCtrl A3A_IDC_AILISTBOX;
+        private _units = [];
+        {
+            _units pushBack (objectFromNetId (_aiListBox lbData _x));
+        } forEach lbSelection _aiListBox;
+        [_units] spawn A3A_fnc_dismissPlayerGroup;
+    };
+
+    case ("autoLootButtonClicked"):
+    {
+        private _display = findDisplay A3A_IDD_MAINDIALOG;
+        private _aiListBox = _display displayCtrl A3A_IDC_AILISTBOX;
+        private _units = [];
+        {
+            _units pushBack (objectFromNetId (_aiListBox lbData _x));
+        } forEach lbSelection _aiListBox;
+        _units spawn A3A_fnc_rearmCall;
+    };
+
+    case ("autoHealButtonClicked"):
+    {
+        // This one needs some more shit to work, see unstable branch
+        /* private _display = findDisplay A3A_IDD_MAINDIALOG;
+        private _aiListBox = _display displayCtrl A3A_IDC_AILISTBOX;
+        private _units = [];
+        {
+            _units pushBack (objectFromNetId (_aiListBox lbData _x));
+        } forEach lbSelection _aiListBox;
+        [_units] call A3A_fnc_autoHealFnc; */
+    };
+
     default
     {
         // Log error if attempting to call a mode that doesn't exist

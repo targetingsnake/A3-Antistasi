@@ -1723,7 +1723,7 @@ class A3A_MainDialog : A3A_TabbedDialog
             {
               idc = A3A_IDC_AIDISMISSBUTTON;
               text = $STR_antistasi_dialogs_main_ai_management_dismiss_button;
-              onButtonClick = "hint ""Placeholder\nWill use REINF\dismissPlayerGroup.sqf when merged (and probably move that to functions)"""; // TODO UI-update: Replace placeholder when merging
+              onButtonClick = "[""dismissButtonClicked""] call A3A_fnc_aiManagementTab";
               x = 0 * GRID_W;
               y = 20 * GRID_H;
               w = 32 * GRID_W;
@@ -1744,7 +1744,7 @@ class A3A_MainDialog : A3A_TabbedDialog
             {
               idc = A3A_IDC_AIAUTOLOOTBUTTON;
               text = $STR_antistasi_dialogs_main_ai_management_auto_rearm_button;
-              onButtonClick = "hint ""Placeholder\nWill use A3A_fnc_rearmCall when merged"""; // TODO UI-update: Replace placeholder when merging
+              onButtonClick = "[""autoLootButtonClicked""] call A3A_fnc_aiManagementTab";
               x = 0 * GRID_W;
               y = 40 * GRID_H;
               w = 32 * GRID_W;
@@ -1765,7 +1765,7 @@ class A3A_MainDialog : A3A_TabbedDialog
             {
               idc = A3A_IDC_AIAUTOHEALBUTTON;
               text = $STR_antistasi_dialogs_main_ai_management_auto_heal_button;
-              onButtonClick = "hint ""Placeholder\nWill use A3A_fnc_autoHealFnc when merged"""; // TODO UI-update: Replace placeholder when merging
+              onButtonClick = "[""autoHealButtonClicked""] call A3A_fnc_aiManagementTab";
               x = 0 * GRID_W;
               y = 60 * GRID_H;
               w = 32 * GRID_W;
