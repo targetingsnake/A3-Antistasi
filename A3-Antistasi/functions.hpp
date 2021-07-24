@@ -346,6 +346,7 @@ class A3A
         class mapDrawUserMarkersEH {};
         class playerManagementTab {};
         class playerTab {};
+        class recruitDialog {};
         class requestMissionDialog {};
     };
 

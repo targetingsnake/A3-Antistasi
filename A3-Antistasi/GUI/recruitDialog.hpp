@@ -1,7 +1,7 @@
 class A3A_RecruitDialog : A3A_DefaultDialog
 {
   idd = A3A_IDD_RECRUITDIALOG;
-  // onLoad = "[""onLoad""] spawn A3A_fnc_buyVehicleDialog";
+  onLoad = "[""onLoad""] spawn A3A_fnc_recruitDialog";
 
   class Controls
   {
@@ -24,8 +24,8 @@ class A3A_RecruitDialog : A3A_DefaultDialog
       {
         class MilitiamanIcon : A3A_Picture
         {
-          idc = -1;
-          colorText[]= {0.7,0.7,0.7,1};
+          idc = A3A_IDC_RECRUITMILITIAMANICON;
+          colorText[]= A3A_COLOR_TEXT_DARKER;
           text = A3A_Icon_Rifleman;
           x = 24 * GRID_W;
           y = 13 * GRID_H;
@@ -35,9 +35,9 @@ class A3A_RecruitDialog : A3A_DefaultDialog
 
         class MilitiamanPriceText : A3A_Text
         {
-          idc = -1;
+          idc = A3A_IDC_RECRUITMILITIAMANPRICE;
           style = ST_CENTER;
-          text = "€ 5000";
+          text = "€ 0";
           shadow = 2;
           x = 24 * GRID_W;
           y = 19 * GRID_H;
@@ -47,9 +47,9 @@ class A3A_RecruitDialog : A3A_DefaultDialog
 
         class MilitiamanButton : A3A_Button
         {
-          idc = -1;
+          idc = A3A_IDC_RECRUITMILITIAMANBUTTON;
           text = $STR_antistasi_dialogs_recruit_units_militiaman;
-          onButtonClick = "hint ""Placeholder\nWill use A3A_fnc_reinfPlayer when merged"""; // TODO UI-update: Replace placeholder when merging
+          onButtonClick = "[SDKMil] spawn A3A_fnc_reinfPlayer; [""onLoad""] spawn A3A_fnc_recruitDialog;";
           x = 36 * GRID_W;
           y = 11 * GRID_H;
           w = 36 * GRID_W;
@@ -58,8 +58,8 @@ class A3A_RecruitDialog : A3A_DefaultDialog
 
         class AutoriflemanIcon : A3A_Picture
         {
-          idc = -1;
-          colorText[]= {0.7,0.7,0.7,1};
+          idc = A3A_IDC_RECRUITAUTORIFLEMANICON;
+          colorText[]= A3A_COLOR_TEXT_DARKER;
           text = A3A_Icon_Autorifleman;
           x = 24 * GRID_W;
           y = 34 * GRID_H;
@@ -69,9 +69,9 @@ class A3A_RecruitDialog : A3A_DefaultDialog
 
         class AutoriflemanPriceText : A3A_Text
         {
-          idc = -1;
+          idc = A3A_IDC_RECRUITAUTORIFLEMANPRICE;
           style = ST_CENTER;
-          text = "€ 5000";
+          text = "€ 0";
           shadow = 2;
           x = 24 * GRID_W;
           y = 40 * GRID_H;
@@ -81,9 +81,9 @@ class A3A_RecruitDialog : A3A_DefaultDialog
 
         class AutoriflemanButton : A3A_Button
         {
-          idc = -1;
+          idc = A3A_IDC_RECRUITAUTORIFLEMANBUTTON;
           text = $STR_antistasi_dialogs_recruit_units_autorifleman;
-          onButtonClick = "hint ""Placeholder\nWill use A3A_fnc_reinfPlayer when merged"""; // TODO UI-update: Replace placeholder when merging
+          onButtonClick = "[SDKMG] spawn A3A_fnc_reinfPlayer; [""onLoad""] spawn A3A_fnc_recruitDialog;";
           x = 36 * GRID_W;
           y = 32 * GRID_H;
           w = 36 * GRID_W;
@@ -92,8 +92,8 @@ class A3A_RecruitDialog : A3A_DefaultDialog
 
         class GrenadierIcon : A3A_Picture
         {
-          idc = -1;
-          colorText[]= {0.7,0.7,0.7,1};
+          idc = A3A_IDC_RECRUITGRENADIERICON;
+          colorText[]= A3A_COLOR_TEXT_DARKER;
           text = A3A_Icon_Grenadier;
           x = 24 * GRID_W;
           y = 55 * GRID_H;
@@ -103,9 +103,9 @@ class A3A_RecruitDialog : A3A_DefaultDialog
 
         class GrenadierPriceText : A3A_Text
         {
-          idc = -1;
+          idc = A3A_IDC_RECRUITGRENADIERPRICE;
           style = ST_CENTER;
-          text = "€ 5000";
+          text = "€ 0";
           shadow = 2;
           x = 24 * GRID_W;
           y = 61 * GRID_H;
@@ -115,9 +115,9 @@ class A3A_RecruitDialog : A3A_DefaultDialog
 
         class GrenadierButton : A3A_Button
         {
-          idc = -1;
+          idc = A3A_IDC_RECRUITGRENADIERBUTTON;
           text = $STR_antistasi_dialogs_recruit_units_grenadier;
-          onButtonClick = "hint ""Placeholder\nWill use A3A_fnc_reinfPlayer when merged"""; // TODO UI-update: Replace placeholder when merging
+          onButtonClick = "[SDKGL] spawn A3A_fnc_reinfPlayer; [""onLoad""] spawn A3A_fnc_recruitDialog;";
           x = 36 * GRID_W;
           y = 53 * GRID_H;
           w = 36 * GRID_W;
@@ -126,8 +126,8 @@ class A3A_RecruitDialog : A3A_DefaultDialog
 
         class AntitankIcon : A3A_Picture
         {
-          idc = -1;
-          colorText[]= {0.7,0.7,0.7,1};
+          idc = A3A_IDC_RECRUITANTITANKICON;
+          colorText[]= A3A_COLOR_TEXT_DARKER;
           text = A3A_Icon_AT;
           x = 24 * GRID_W;
           y = 76 * GRID_H;
@@ -137,9 +137,9 @@ class A3A_RecruitDialog : A3A_DefaultDialog
 
         class AntitankPriceText : A3A_Text
         {
-          idc = -1;
+          idc = A3A_IDC_RECRUITANTITANKPRICE;
           style = ST_CENTER;
-          text = "€ 5000";
+          text = "€ 0";
           shadow = 2;
           x = 24 * GRID_W;
           y = 82 * GRID_H;
@@ -149,9 +149,9 @@ class A3A_RecruitDialog : A3A_DefaultDialog
 
         class AntitankButton : A3A_Button
         {
-          idc = -1;
+          idc = A3A_IDC_RECRUITANTITANKBUTTON;
           text = $STR_antistasi_dialogs_recruit_units_antitank;
-          onButtonClick = "hint ""Placeholder\nWill use A3A_fnc_reinfPlayer when merged"""; // TODO UI-update: Replace placeholder when merging
+          onButtonClick = "[SDKATman] spawn A3A_fnc_reinfPlayer; [""onLoad""] spawn A3A_fnc_recruitDialog;";
           x = 36 * GRID_W;
           y = 74 * GRID_H;
           w = 36 * GRID_W;
@@ -160,8 +160,8 @@ class A3A_RecruitDialog : A3A_DefaultDialog
 
         class MedicIcon : A3A_Picture
         {
-          idc = -1;
-          colorText[]= {0.7,0.7,0.7,1};
+          idc = A3A_IDC_RECRUITMEDICICON;
+          colorText[]= A3A_COLOR_TEXT_DARKER;
           text = A3A_Icon_Heal;
           x = 128 * GRID_W;
           y = 13 * GRID_H;
@@ -171,9 +171,9 @@ class A3A_RecruitDialog : A3A_DefaultDialog
 
         class MedicPriceText : A3A_Text
         {
-          idc = -1;
+          idc = A3A_IDC_RECRUITMEDICPRICE;
           style = ST_CENTER;
-          text = "€ 5000";
+          text = "€ 0";
           shadow = 2;
           x = 128 * GRID_W;
           y = 19 * GRID_H;
@@ -183,9 +183,9 @@ class A3A_RecruitDialog : A3A_DefaultDialog
 
         class MedicButton : A3A_Button
         {
-          idc = -1;
+          idc = A3A_IDC_RECRUITMEDICBUTTON;
           text = $STR_antistasi_dialogs_recruit_units_medic;
-          onButtonClick = "hint ""Placeholder\nWill use A3A_fnc_reinfPlayer when merged"""; // TODO UI-update: Replace placeholder when merging
+          onButtonClick = "[SDKMedic] spawn A3A_fnc_reinfPlayer; [""onLoad""] spawn A3A_fnc_recruitDialog;";
           x = 88 * GRID_W;
           y = 11 * GRID_H;
           w = 36 * GRID_W;
@@ -194,8 +194,8 @@ class A3A_RecruitDialog : A3A_DefaultDialog
 
         class MarksmanIcon : A3A_Picture
         {
-          idc = -1;
-          colorText[]= {0.7,0.7,0.7,1};
+          idc = A3A_IDC_RECRUITMARKSMANICON;
+          colorText[]= A3A_COLOR_TEXT_DARKER;
           text = A3A_Icon_Sniper;
           x = 128 * GRID_W;
           y = 34 * GRID_H;
@@ -205,9 +205,9 @@ class A3A_RecruitDialog : A3A_DefaultDialog
 
         class MarksmanPriceText : A3A_Text
         {
-          idc = -1;
+          idc = A3A_IDC_RECRUITMARKSMANPRICE;
           style = ST_CENTER;
-          text = "€ 5000";
+          text = "€ 0";
           shadow = 2;
           x = 128 * GRID_W;
           y = 40 * GRID_H;
@@ -217,9 +217,9 @@ class A3A_RecruitDialog : A3A_DefaultDialog
 
         class MarksmanButton : A3A_Button
         {
-          idc = -1;
+          idc = A3A_IDC_RECRUITMARKSMANBUTTON;
           text = $STR_antistasi_dialogs_recruit_units_marksman;
-          onButtonClick = "hint ""Placeholder\nWill use A3A_fnc_reinfPlayer when merged"""; // TODO UI-update: Replace placeholder when merging
+          onButtonClick = "[SDKSniper] spawn A3A_fnc_reinfPlayer; [""onLoad""] spawn A3A_fnc_recruitDialog;";
           x = 88 * GRID_W;
           y = 32 * GRID_H;
           w = 36 * GRID_W;
@@ -228,8 +228,8 @@ class A3A_RecruitDialog : A3A_DefaultDialog
 
         class EngineerIcon : A3A_Picture
         {
-          idc = -1;
-          colorText[]= {0.7,0.7,0.7,1};
+          idc = A3A_IDC_RECRUITENGINEERICON;
+          colorText[]= A3A_COLOR_TEXT_DARKER;
           text = A3A_Icon_Construct;
           x = 128 * GRID_W;
           y = 55 * GRID_H;
@@ -239,9 +239,9 @@ class A3A_RecruitDialog : A3A_DefaultDialog
 
         class EngineerPriceText : A3A_Text
         {
-          idc = -1;
+          idc = A3A_IDC_RECRUITENGINEERPRICE;
           style = ST_CENTER;
-          text = "€ 5000";
+          text = "€ 0";
           shadow = 2;
           x = 128 * GRID_W;
           y = 61 * GRID_H;
@@ -251,9 +251,9 @@ class A3A_RecruitDialog : A3A_DefaultDialog
 
         class EngineerButton : A3A_Button
         {
-          idc = -1;
+          idc = A3A_IDC_RECRUITENGINEERBUTTON;
           text = $STR_antistasi_dialogs_recruit_units_engineer;
-          onButtonClick = "hint ""Placeholder\nWill use A3A_fnc_reinfPlayer when merged"""; // TODO UI-update: Replace placeholder when merging
+          onButtonClick = "[SDKEng] spawn A3A_fnc_reinfPlayer; [""onLoad""] spawn A3A_fnc_recruitDialog;";
           x = 88 * GRID_W;
           y = 53 * GRID_H;
           w = 36 * GRID_W;
@@ -262,8 +262,8 @@ class A3A_RecruitDialog : A3A_DefaultDialog
 
         class BombSpecialistIcon : A3A_Picture
         {
-          idc = -1;
-          colorText[]= {0.7,0.7,0.7,1};
+          idc = A3A_IDC_RECRUITBOMBSPECIALISTICON;
+          colorText[]= A3A_COLOR_TEXT_DARKER;
           text = A3A_Icon_Bomb_Specialist;
           x = 128 * GRID_W;
           y = 76 * GRID_H;
@@ -273,9 +273,9 @@ class A3A_RecruitDialog : A3A_DefaultDialog
 
         class BombSpecialistPriceText : A3A_Text
         {
-          idc = -1;
+          idc = A3A_IDC_RECRUITBOMBSPECIALISTPRICE;
           style = ST_CENTER;
-          text = "€ 5000";
+          text = "€ 0";
           shadow = 2;
           x = 128 * GRID_W;
           y = 82 * GRID_H;
@@ -285,9 +285,9 @@ class A3A_RecruitDialog : A3A_DefaultDialog
 
         class BombSpecialistButton : A3A_Button
         {
-          idc = -1;
+          idc = A3A_IDC_RECRUITBOMBSPECIALISTBUTTON;
           text = $STR_antistasi_dialogs_recruit_units_bomb_specialist;
-          onButtonClick = "hint ""Placeholder\nWill use A3A_fnc_reinfPlayer when merged"""; // TODO UI-update: Replace placeholder when merging
+          onButtonClick = "[SDKExp] spawn A3A_fnc_reinfPlayer; [""onLoad""] spawn A3A_fnc_recruitDialog;";
           x = 88 * GRID_W;
           y = 74 * GRID_H;
           w = 36 * GRID_W;
