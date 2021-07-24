@@ -1702,7 +1702,7 @@ class A3A_MainDialog : A3A_TabbedDialog
             {
               idc = A3A_IDC_AICONTROLBUTTON;
               text = $STR_antistasi_dialogs_main_ai_management_temp_ai_control_button;
-              onButtonClick = "hint ""Placeholder\nWill use REINF\controlunit.sqf when merged (and probably move that to functions)"""; // TODO UI-update: Replace placeholder when merging
+              onButtonClick = "[""aiControlButtonClicked""] call A3A_fnc_aiManagementTab";
               x = 0 * GRID_W;
               y = 0 * GRID_H;
               w = 32 * GRID_W;
