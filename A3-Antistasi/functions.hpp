@@ -294,6 +294,16 @@ class A3A
         class unit_recruit {};
     };
 
+    class Events
+    {
+        class addEventHandler {};
+        class addEventHandlerLocal {};
+        class genEventID {};
+        class removeEventHandler {};
+        class removeEventHandlerLocal {};
+        class triggerEvent {};
+    };
+
     class EventHandler
     {
         class addArtilleryTrailEH {};

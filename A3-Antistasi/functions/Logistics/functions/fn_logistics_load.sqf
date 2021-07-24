@@ -22,7 +22,12 @@
 */
 params ["_cargo", "_vehicle", "_node", "_weapon", ["_instant", false, [true]]];
 
-if (_vehicle getVariable ["LoadingCargo", false]) exitWith {["Logistics", "Cargo is already being loaded into the vehicle"] remoteExec ["A3A_fnc_customHint", remoteExecutedOwner]; nil};
+if (_vehicle getVariable ["LoadingCargo", false]) exitWith {
+    if (!_instant) then { //not remoteExeced when instant, so remoteExecutedOwner is 0
+        ["Logistics", "Cargo is already being loaded into the vehicle"] remoteExec ["A3A_fnc_customHint", remoteExecutedOwner];
+    };
+    nil
+};
 _vehicle setVariable ["LoadingCargo",true,true];
 
 //update list of nodes on vehicle
@@ -121,4 +126,5 @@ if (_weapon) then {
 
 _vehicle setVariable ["LoadingCargo",nil,true];
 [_vehicle, "unload"] remoteExec ["A3A_fnc_logistics_addAction", 0 ,_vehicle];
+["LogisticLoaded",[_cargo, _vehicle, _instant]] call A3A_fnc_triggerEvent;
 nil
