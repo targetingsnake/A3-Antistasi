@@ -188,6 +188,15 @@ class A3A
         class vehicleMarkers {};
     };
 
+    class AIManagement
+    {
+        class addToGarrison {};
+        class controlHCsquad {};
+        class controlUnit {};
+        class dismissPlayerGroup {};
+        class dismissSquad {};
+    };
+
     class Build
     {
         class build {};
