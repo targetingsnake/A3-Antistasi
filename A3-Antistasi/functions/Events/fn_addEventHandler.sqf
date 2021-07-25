@@ -7,9 +7,9 @@ Arguments:
 0. <Any>    Event type identifier
 1. <Code
 | String>   Code or function name
-2. <Bool>   Global (optional)
-3. <Any>    Any extra arguments to be passed to the handler execution (optional)
-4. <Bool>   Execute handler localy where event was triggered (optional)
+2. <Bool>   Global (optional - Default: true)
+3. <Any>    Any extra arguments to be passed to the handler execution (optional - Default: nil)
+4. <Bool>   Execute handler localy where event was triggered (optional - Default: true)
 
 Return Value: <Scalar> Event handler id, -1 if not added
 

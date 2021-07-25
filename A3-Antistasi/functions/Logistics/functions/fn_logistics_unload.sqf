@@ -32,19 +32,24 @@ if !(
     ((gunner _cargo) isEqualTo _cargo)
     or ((gunner _cargo) isEqualTo objNull)
 ) exitWith {
-    if (_instant) then {
+    if (remoteExecutedOwner isNotEqualTo 0 && !_instant) then {
         ["Logistics", "Can't unload a static that's mounted"] remoteExec ["A3A_fnc_customHint", remoteExecutedOwner]
     };
     nil
 };
 
 if (_vehicle getVariable ["LoadingCargo", false]) exitWith {
-    if (_instant) then {
+    if (remoteExecutedOwner isNotEqualTo 0 && !_instant) then {
         ["Logistics", "Cargo is already being unloaded from the vehicle"] remoteExec ["A3A_fnc_customHint", remoteExecutedOwner]
     };
     nil
 };
 _vehicle setVariable ["LoadingCargo",true,true];
+if (remoteExecutedOwner isNotEqualTo 0) then {
+    ["LogisticUnloading",[_cargo, _vehicle, _instant]] remoteExecCall ["A3A_fnc_triggerEvent", remoteExecutedOwner];
+} else {
+    ["LogisticUnloading",[_cargo, _vehicle, _instant]] call A3A_fnc_triggerEvent;
+};
 
 //update list of nodes on vehicle
 _updateList = {
@@ -142,6 +147,10 @@ _vehicle setVariable ["Cargo", _loaded, true];
 [_vehicle] call A3A_fnc_logistics_refreshVehicleLoad; //refresh list in case theres more on the list but no actuall cargo loaded
 
 _vehicle setVariable ["LoadingCargo",nil,true];
-["LogisticUnloaded",[_cargo, _vehicle, _instant]] call A3A_fnc_triggerEvent;
+if (remoteExecutedOwner isNotEqualTo 0) then {
+    ["LogisticUnloaded",[_cargo, _vehicle, _instant]] remoteExecCall ["A3A_fnc_triggerEvent", remoteExecutedOwner];
+} else {
+    ["LogisticUnloaded",[_cargo, _vehicle, _instant]] call A3A_fnc_triggerEvent;
+};
 if (_keepUnloading and !_lastLoaded) then {[_vehicle] spawn A3A_fnc_logistics_unload};//if you tried to unload a null obj unload next on list
 nil
