@@ -471,6 +471,7 @@ class A3A
         class memberAdd {};
         class membersList {};
         class playerLeash {};
+        class playerLeashBoundary {};
         class playerLeashRefresh {};
         class playerLeashCheckPosition {};
         class playerScoreAdd {};
