@@ -106,6 +106,8 @@ private _handleUniqueCases = { //handles unique name cases that the stored value
         case "equipmentBox": _validateSingleClass;
 
         //array of vehicle class names
+        case "minefieldAT";
+        case "minefieldAPERS";
         case "uavsAttack";
         case "uavsPortable": _validateArrayOfClasses;
 
@@ -116,8 +118,6 @@ private _handleUniqueCases = { //handles unique name cases that the stored value
         case "mortarMagazineSmoke": _validateMagazine;
 
         //array of magazine class names
-        case "minefieldAT";
-        case "minefieldAPERS": _validateArrayMagazines;
 
         //array of weapon class names
         case "headgear";
