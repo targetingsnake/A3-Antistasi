@@ -6,7 +6,8 @@ params ["_faction", "_side", "_templatePath"];
 // Functions |
 //===========|
 private _printInvalidReasons = {
-    //todo: make print function
+    private _failedText = _templatePath+" Template validation failed for:"+endl + ((_invalidReasons apply {LogNewLine+_x}) joinString endl);
+    Error(_failedText);
 };
 private _validClassCaseSensitive = {
     params ["_cfg", "_class", ["_entry", ""]];
