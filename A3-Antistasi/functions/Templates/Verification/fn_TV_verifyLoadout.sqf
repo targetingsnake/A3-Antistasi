@@ -112,7 +112,12 @@ private _validateWeaponMagazine = { //valid class and compatible with weapon and
     private _compatibleMagazines = getArray (configFile/"CfgWeapons"/_weapon/"Magazines");
     private _maxCount = getNumber (configFile/"CfgMagazines"/_magClass/"count");
 
-    _magClass in _compatibleMagazines && { _bulletCount <= _maxCount };
+    if !(_magClass in _compatibleMagazines && { _bulletCount <= _maxCount }) exitWith {
+        if (_bulletCount > _maxCount) then { _invalidReasons pushBack ("Mag bullet count excedes capaciy of "+str _maxCount+" bullets") };
+        if !(_magClass in _compatibleMagazines) then { _invalidReasons pushBack ("Magazine is not compatible with this weapon, Compatible magazines: "+str _compatibleMagazines) };
+        false;
+    };
+    true;
 };
 private _validBipod = { //valid class and optic compatible with weapon
     params ["_weapon", "_bipod"];
@@ -121,7 +126,7 @@ private _validBipod = { //valid class and optic compatible with weapon
 
     private _compatibleBipods = (configProperties [(configFile/"CfgWeapons"/_weapon/"WeaponSlotsInfo"/"UnderBarrel"/"compatibleItems"), "true", true]) apply {configName _x};
     if !(_bipod in _compatibleBipods) exitWith {
-        _invalidReasons pushBack ("Optic: "+_bipod+" is incompatible with "+_weapon+" | Comaptible optics: "+ str _compatibleOptics);
+        _invalidReasons pushBack ("Bipod: "+_bipod+" is incompatible with "+_weapon+" | Comaptible bipods: "+ str _compatibleBipods);
         false;
     };
     true;
