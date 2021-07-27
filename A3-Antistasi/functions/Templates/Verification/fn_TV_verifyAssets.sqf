@@ -143,11 +143,11 @@ private _handleUniqueCases = { //handles unique name cases that the stored value
         case "placeIntel_itemMedium";
         case "placeIntel_itemLarge": {
             if !(_y isEqualTypeArray ["", 0, true]) exitWith {_invalidReasons pushBack ("Entry: "+(str _entry)+" has the wrong data type(s). Expected [<String>Class, <Scalar>Angle, <Bool>isComputer]")};
-            {["CfgVehicles",_x,_entry] call _validClassCaseSensitive} forEach _y;
+            ["CfgVehicles",_y#0,_entry] call _validClassCaseSensitive;
         };
         case "placeIntel_desk": {
             if !(_y isEqualTypeArray ["",0]) exitWith {_invalidReasons pushBack ("Entry: "+(str _entry)+" has the wrong data type(s). Expected [<String>Class, <Scalar>Angle]")};
-            {["CfgVehicles",_x,_entry] call _validClassCaseSensitive} forEach _y;
+            ["CfgVehicles",_y#0,_entry] call _validClassCaseSensitive;
         };
         case "breachingExplosivesAPC";
         case "breachingExplosivesTank": {
