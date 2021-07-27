@@ -6,6 +6,7 @@ params ["_faction", "_side", "_templatePath"];
 // Functions |
 //===========|
 private _printInvalidReasons = {
+    if (_invalidReasons isEqualTo []) exitWith {};
     private _failedText = _templatePath+" Template validation failed for:"+endl + ((_invalidReasons apply {LogNewLine+_x}) joinString endl);
     Error(_failedText);
 };
