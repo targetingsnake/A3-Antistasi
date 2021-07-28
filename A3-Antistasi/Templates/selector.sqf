@@ -124,7 +124,7 @@ private _AIFactionEnums = [
     , ["BAF", A3A_has3CBBAF]
     , ["Coldwar US", A3A_has3CBFactions]
     , ["Coldwar Soviets", A3A_has3CBFactions]
-    , ["TKA west", A3A_has3CBFactions]
+    , ["TKA West", A3A_has3CBFactions]
     , ["TKA East", A3A_has3CBFactions]
     , ["MACV", A3A_hasVN]
     , ["PAVN", A3A_hasVN]

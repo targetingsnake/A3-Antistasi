@@ -235,7 +235,7 @@ class Params
         texts[] = {
             "Default (Auto)", "NATO", "CSAT", "AAF", "LDF (Contact)", "USAF (RHS)", "AFRF (RHS)","CDF (RHS)"
             , "US Marines (RHS)", "BAF (BAF)", "Coldwar US (Factions)", "Coldwar Soviets (Factions)"
-            , "TKA west (Factions)", "TKA East (Factions)", "MACV (SOG:PF)", "PAVN (SOG:PF)"
+            , "TKA West (Factions)", "TKA East (Factions)", "MACV (SOG:PF)", "PAVN (SOG:PF)"
         };
         default = 9999;
     };
@@ -246,7 +246,7 @@ class Params
         texts[] = {
             "Default (Auto)", "NATO", "CSAT", "AAF", "LDF (Contact)", "USAF (RHS)", "AFRF (RHS)","CDF (RHS)"
             , "US Marines (RHS)", "BAF (BAF)", "Coldwar US (Factions)", "Coldwar Soviets (Factions)"
-            , "TKA west (Factions)", "TKA East (Factions)", "MACV (SOG:PF)", "PAVN (SOG:PF)"
+            , "TKA West (Factions)", "TKA East (Factions)", "MACV (SOG:PF)", "PAVN (SOG:PF)"
         };
         default = 9999;
     };
