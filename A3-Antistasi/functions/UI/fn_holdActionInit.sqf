@@ -1,6 +1,7 @@
 /*
 Maintainer: Caleb Serafin
-    Initialised values are sorted from most critical to least critical.
+    First sets up localisd text for key instructions.
+    Then creates some animation packs that can be used.
 
 Scope: Local Effect
 Environment: Any
