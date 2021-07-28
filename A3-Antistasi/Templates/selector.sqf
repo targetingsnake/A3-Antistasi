@@ -168,7 +168,14 @@ private _pickAITemplate = {
         case "TKA East": { "Templates\Templates\3CB\3CB_AI_TKA_East.sqf" };
 
         //RHS
-        case "US Marines": { "Templates\Templates\RHS\RHS_AI_USAF_Marines_Temperate.sqf" };
+        case "US Marines": {
+            switch(true) do {
+                case (toLower worldName in arcticmaps);
+                case (toLower worldName in temperatemaps);
+                case (toLower worldName in tropicalmaps): { "Templates\Templates\RHS\RHS_AI_USAF_Marines_Temperate.sqf" };
+                default { "Templates\Templates\RHS\RHS_AI_USAF_Marines_Arid.sqf" };
+            };
+        };
         case "CDF": { "Templates\Templates\RHS\RHS_AI_CDF_Temperate.sqf" };
         case "USAF": {
             switch(true) do {
