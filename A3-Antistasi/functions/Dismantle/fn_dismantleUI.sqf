@@ -159,7 +159,7 @@ addMissionEventHandler [
                 private _structurePosAGLS = getPos _structure;
                 private _iconPos = [_structurePosAGLS#0,_structurePosAGLS#1,1.72];  // 1.72 is eye height for most humans (Sorry Netherlanders, you gonna have to crook your neck)
                 private _iconText = ["Dismantle","Order Unit to Dismantle"] select (count groupSelectedUnits player > 0);
-                player setUserActionText [_actionID, _iconText, "<t font='PuristaMedium' color='#fc911e' shadow='2' size='2'><img image='\a3\ui_f_oldman\Data\IGUI\Cfg\HoldActions\holdAction_market_ca.paa'/><br/>"+_iconText+"</t>"];
+                player setUserActionText [_actionID, _iconText, "<t font='PuristaMedium' color='#ffae00' shadow='2' size='2'><img image='\a3\ui_f_oldman\Data\IGUI\Cfg\HoldActions\holdAction_market_ca.paa'/><br/>"+_iconText+"</t>"];
                 _drawData append [_operationMode,_cubeEdges,_iconPos];
             };
 
@@ -171,8 +171,8 @@ addMissionEventHandler [
             case "grant": { drawIcon3D ["\a3\ui_f\data\IGUI\Cfg\HoldActions\holdAction_requestLeadership_ca.paa", [0.26,1,0.26,1], _drawData#1, 1,1,0,"", 2, 0.05, "PuristaMedium"]; };
             case "revoke": { drawIcon3D ["\a3\ui_f\data\IGUI\Cfg\HoldActions\holdAction_passLeadership_ca.paa", [1,0.25,0.25,1], _drawData#1, 1,1,0,"", 2, 0.05, "PuristaMedium"]; };
             case "deconstruct": {
-                drawIcon3D ["\a3\ui_f_oldman\Data\IGUI\Cfg\HoldActions\holdAction_market_ca.paa", [0.98,0.57,0.12,1], _drawData#2, 1,1,0,"" , 2, 0.05, "PuristaMedium"]; // #fc911e
-                private _brightOrange = [1,1,0,1]; //[0.98,0.57,0.12,1]; // #fc911e // Is outside forEach to avoid 11 more allocations.
+                drawIcon3D ["\a3\ui_f_oldman\Data\IGUI\Cfg\HoldActions\holdAction_market_ca.paa", [0.98,0.57,0.12,1], _drawData#2, 1,1,0,"" , 2, 0.05, "PuristaMedium"]; // #ffae00
+                private _brightOrange = [1,1,0,1]; //[0.98,0.57,0.12,1]; // #ffae00 // Is outside forEach to avoid 11 more allocations.
                 {
                     drawLine3D [ _x#0, _x#1, _brightOrange];
                 } forEach (_drawData#1);
