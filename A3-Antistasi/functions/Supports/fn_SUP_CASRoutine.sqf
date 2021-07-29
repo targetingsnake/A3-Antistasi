@@ -19,7 +19,7 @@ while {_sleepTime > 0} do
 //150 is more likely to be in the actual viewcone of a player
 private _spawnPos = (getMarkerPos _airport);
 private _strikePlane = createVehicle [_plane, _spawnPos, [], 0, "FLY"];
-_strikePlane setDir (_spawnPos getDir _supportObj);
+_strikePlane setDir (_spawnPos getDir _setupPos);
 
 //Put it in the sky
 _strikePlane setPosATL (_spawnPos vectorAdd [0, 0, 1000]);
@@ -100,6 +100,7 @@ _strikePlane addEventHandler
                 };
             };
         };
+        nil; //HandleDamage must return Nothing for damage to apply normally.
     }
 ];
 
@@ -605,7 +606,7 @@ if (alive _strikePlane && [driver _strikePlane] call A3A_fnc_canFight) then
     _wpBase setWaypointType "MOVE";
     _wpBase setWaypointBehaviour "CARELESS";
     _wpBase setWaypointSpeed "FULL";
-    _wpBase setWaypointStatements ["", "deleteVehicle (vehicle this); {deleteVehicle _x} forEach thisList"];
+    _wpBase setWaypointStatements ["true", "if !(local this) exitWith {}; deleteVehicle (vehicle this); {deleteVehicle _x} forEach thisList"];
     _strikeGroup setCurrentWaypoint _wpBase;
 
     waitUntil {sleep 0.5;_strikePlane distance2D (getMarkerPos _airport) < 100};

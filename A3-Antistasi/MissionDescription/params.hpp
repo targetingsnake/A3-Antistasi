@@ -88,13 +88,6 @@ class Params
         texts[] = {"Default (4000)","2000","4000","6000","8000","10000","12000"};
         default = 9999;
     };
-    class allowPvP
-    {
-        title = "Allow PvP Slots";
-        values[] = {9999,1,0};
-        texts[] = {"Default (Yes)","Yes","No"};
-        default = 9999;
-    };
     class pMarkers
     {
         title = "Allow Friendly Player Markers";
@@ -140,22 +133,8 @@ class Params
     class memberDistance
     {
         title = "Max distance non members can be from the closest member or HQ (they will be teleported to HQ after some timeout)";
-        values[] = {9999,4000,5000,6000,7000,8000,16000};
-        texts[] = {"Default (5km)","4 Kmts","5 Kmts","6 Kmts","7 Kmts","8 Kmts","Unlimited"};
-        default = 9999;
-    };
-    class allowMembersFactionGarageAccess
-    {
-        title = "Allow members to access the faction garage";
-        values[] = {9999,1,0};
-        texts[] = {"Default (Yes)","Yes","No"};
-        default = 9999;
-    };
-    class personalGarageMax
-    {
-        title = "Max personal garage slots";
-        values[] = {9999,0,2,5,10};
-        texts[] = {"Default (2)","Unlimited","2","5","10"};
+        values[] = {9999,4000,5000,6000,7000,8000,10000,16000,-1};  // 16000 is left as backwards compatibility
+        texts[] = {"Default (5 km)","4 km","5 km","6 km","7 km","8 km","10 km","16 km","Unlimited"};
         default = 9999;
     };
     class allowFT
@@ -170,13 +149,6 @@ class Params
         title = "Enable Napalm Bombing for AI";
         values[] = {9999,0,1};
         texts[] = {"Default (No)","No","Yes"};
-        default = 9999;
-    };
-    class teamSwitchDelay
-    {
-        title = "Delay After Leaving Before a Player Can Join Another Team";
-        values[] = {9999, 0, 900, 1800, 3600};
-        texts[] = {"Default (60 mins)","No delay","15 minutes","30 minutes","60 minutes"};
         default = 9999;
     };
     class unlockedUnlimitedAmmo
@@ -305,18 +277,18 @@ class Params
         texts[] = {"Default (No)","Yes","No"};
         default = 9999;
     };
-    class OfficialMod
-    {
-        title = "Allow ADR-97 DLC?";
-        values[] = {9999,1,0};
-        texts[] = {"Default (No)","Yes","No"};
-        default = 9999;
-    };
     class AoW
     {
         title = "Allow Art of War DLC?";
         values[] = {9999,1,0};
         texts[] =  {"Default (No)","Yes","No"};
+        default = 9999;
+    };
+        class VN
+    {
+        title = "Allow VN DLC (S.O.G. PRAIRIE FIRE)?";
+        values[] = {9999,1,0};
+        texts[] =  {"Default (Yes)","Yes","No"};
         default = 9999;
     };
     class Spacer0

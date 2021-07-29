@@ -98,11 +98,12 @@ DECLARE_SERVER_VAR(bombRuns, 0);
 DECLARE_SERVER_VAR(revealX, false);
 //Whether the players have Nightvision unlocked
 DECLARE_SERVER_VAR(haveNV, false);
-DECLARE_SERVER_VAR(missionsX, []);
+DECLARE_SERVER_VAR(A3A_activeTasks, []);
+DECLARE_SERVER_VAR(A3A_taskCount, 0);
 //List of statics (MGs, AA, etc) that will be saved and loaded.
 DECLARE_SERVER_VAR(staticsToSave, []);
 //Whether the players have access to radios.
-DECLARE_SERVER_VAR(haveRadio, A3A_hasTFAR || A3A_hasACRE || A3A_hasTFARBeta);
+DECLARE_SERVER_VAR(haveRadio, call A3A_fnc_checkRadiosUnlocked);
 //List of vehicles that are reported (I.e - Players can't go undercover in them)
 DECLARE_SERVER_VAR(reportedVehs, []);
 //Currently destroyed buildings.
@@ -111,6 +112,8 @@ DECLARE_SERVER_VAR(reportedVehs, []);
 server setVariable ["hr",8,true];
 //Initial faction money pool
 server setVariable ["resourcesFIA",1000,true];
+// Time of last garbage clean. Note: serverTime may not reset to zero if server was not restarted. Therefore, it should capture the time at start of mission.
+DECLARE_SERVER_VAR(A3A_lastGarbageCleanTime, serverTime);
 
 ////////////////////////////////////
 //     SERVER ONLY VARIABLES     ///
@@ -143,6 +146,8 @@ savedPlayers = [];
 destroyedBuildings = [];		// synced only on join, to avoid spam on change
 
 testingTimerIsActive = false;
+
+A3A_tasksData = [];
 
 ///////////////////////////////////////////
 //     INITIALISING ITEM CATEGORIES     ///
@@ -196,7 +201,7 @@ everyEquipmentRelatedArrayName = allEquipmentArrayNames + unlockedEquipmentArray
 } forEach everyEquipmentRelatedArrayName;
 
 //Create a global namespace for custom unit types.
-DECLARE_SERVER_VAR(customUnitTypes, [true] call A3A_fnc_createNamespace);
+DECLARE_SERVER_VAR(A3A_customUnitTypes, [true] call A3A_fnc_createNamespace);
 
 ////////////////////////////////////
 //          MOD CONFIG           ///
@@ -219,9 +224,9 @@ FIX_LINE_NUMBERS()
 				["TF_give_personal_radio_to_regular_soldier", false, true,"mission"] call CBA_settings_fnc_set;
 				["TF_give_microdagr_to_soldier", false, true,"mission"] call CBA_settings_fnc_set;
 				};
-			//tf_teamPlayer_radio_code = "";publicVariable "tf_teamPlayer_radio_code";								//to make enemy vehicles usable as LR radio
-			//tf_east_radio_code = tf_teamPlayer_radio_code; publicVariable "tf_east_radio_code";					//to make enemy vehicles usable as LR radio
-			//tf_guer_radio_code = tf_teamPlayer_radio_code; publicVariable "tf_guer_radio_code";					//to make enemy vehicles usable as LR radio
+			tf_teamPlayer_radio_code = "";publicVariable "tf_teamPlayer_radio_code";								//to make enemy vehicles usable as LR radio
+			tf_east_radio_code = tf_teamPlayer_radio_code; publicVariable "tf_east_radio_code";					//to make enemy vehicles usable as LR radio
+			tf_guer_radio_code = tf_teamPlayer_radio_code; publicVariable "tf_guer_radio_code";					//to make enemy vehicles usable as LR radio
 			["TF_same_sw_frequencies_for_side", true, true,"mission"] call CBA_settings_fnc_set;						//synchronize SR default frequencies
 			["TF_same_lr_frequencies_for_side", true, true,"mission"] call CBA_settings_fnc_set;						//synchronize LR default frequencies
 		};
@@ -248,6 +253,7 @@ private _templateVariables = [
 	"nameTeamPlayer",
 	"SDKFlag",
 	"SDKFlagTexture",
+	"SDKFlagMarkerType",
 	"typePetros",
 	"staticCrewTeamPlayer",
 	"SDKUnarmed",
@@ -376,6 +382,7 @@ private _templateVariables = [
 	"staticATOccupants",
 	"staticAAOccupants",
 	"NATOMortar",
+	"NATOmortarMagazineHE",
 
 	//Invaders
 	"nameInvaders",
@@ -391,6 +398,7 @@ private _templateVariables = [
 	"CSATOfficer",
 	"CSATBodyG",
 	"CSATCrew",
+	"CSATUnarmed",
 	"CSATMarksman",
 	"staticCrewInvaders",
 	"CSATPilot",
@@ -441,7 +449,8 @@ private _templateVariables = [
 	"CSATMG",
 	"staticATInvaders",
 	"staticAAInvaders",
-	"CSATMortar"
+	"CSATMortar",
+	"CSATmortarMagazineHE"
 ];
 
 {
@@ -449,6 +458,8 @@ private _templateVariables = [
 } forEach _templateVariables;
 
 call compile preProcessFileLineNumbers "Templates\selector.sqf";
+//Set SDKFlagTexture on FlagX
+if (local flagX) then { flagX setFlagTexture SDKFlagTexture } else { [flagX, SDKFlagTexture] remoteExec ["setFlagTexture", owner flagX] };
 
 ////////////////////////////////////
 //     TEMPLATE SANITY CHECK      //
@@ -457,7 +468,7 @@ Info("Sanity-checking templates");
 
 // modify these appropriately when adding new template vars
 private _nonClassVars = ["nameTeamPlayer", "SDKFlagTexture", "nameOccupants", "NATOPlayerLoadouts", "NATOFlagTexture", "flagNATOmrk", "nameInvaders", "CSATPlayerLoadouts", "CSATFlagTexture", "flagCSATmrk"];
-private _magazineVars = ["SDKMortarHEMag", "SDKMortarSmokeMag", "ATMineMag", "APERSMineMag", "vehNATOMRLSMags", "vehCSATMRLSMags", "breachingExplosivesAPC", "breachingExplosivesTank"];
+private _magazineVars = ["SDKMortarHEMag", "SDKMortarSmokeMag", "ATMineMag", "APERSMineMag", "vehNATOMRLSMags", "vehCSATMRLSMags", "breachingExplosivesAPC", "breachingExplosivesTank", "NATOmortarMagazineHE", "CSATmortarMagazineHE"];
 
 private _missingVars = [];
 private _badCaseVars = [];
@@ -477,6 +488,8 @@ private _badCaseVars = [];
 
 		private _section = if (_x in _magazineVars) then {"CfgMagazines"} else {"CfgVehicles"};
 		{
+			if ("loadouts_" in _x) then {continue};
+			if ("not_supported" in _x) then {continue};
 			if !(_x isEqualType "") exitWith { Error("Bad template var " + _varName) };
 			if !(_x isEqualTo configName (configFile >> _section >> _x)) then
 			{
@@ -697,7 +710,8 @@ if (A3A_hasIFA) then {
 ////////////////////////////////////
 //     ACRE ITEM MODIFICATIONS   ///
 ////////////////////////////////////
-if (A3A_hasACRE) then {initialRebelEquipment append ["ACRE_PRC343","ACRE_PRC148","ACRE_PRC152","ACRE_PRC77","ACRE_PRC117F"];};
+if (A3A_hasACRE) then {initialRebelEquipment append ["ACRE_PRC343","ACRE_PRC148","ACRE_PRC152","ACRE_SEM52SL"];};
+if (A3A_hasACRE && startWithLongRangeRadio) then {initialRebelEquipment append ["ACRE_SEM70", "ACRE_PRC117F", "ACRE_PRC77"];};
 
 ////////////////////////////////////
 //    UNIT AND VEHICLE PRICES    ///

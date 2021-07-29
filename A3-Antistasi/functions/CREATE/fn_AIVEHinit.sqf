@@ -22,7 +22,7 @@ _veh setVariable ["originalSide", _side, true];
 _veh setVariable ["ownerSide", _side, true];
 
 // probably just shouldn't be called for these
-if ((_veh isKindOf "FlagCarrier") or (_veh isKindOf "Building") or (_veh isKindOf "ReammoBox_F")) exitWith {};
+if ((_veh isKindOf "Building") or (_veh isKindOf "ReammoBox_F")) exitWith {};
 //if (_veh isKindOf "ReammoBox_F") exitWith {[_veh] call A3A_fnc_NATOcrate};
 
 // this might need moving into a different function later
@@ -33,6 +33,9 @@ if (_side == teamPlayer) then
 	clearItemCargoGlobal _veh;
 	clearBackpackCargoGlobal _veh;
 };
+
+// Sync the vehicle textures if necessary
+_veh call A3A_fnc_vehicleTextureSync;
 
 private _typeX = typeOf _veh;
 if ((_typeX in vehNormal) or (_typeX in vehAttack) or (_typeX in vehBoats) or (_typeX in vehAA)) then
@@ -103,12 +106,14 @@ else
 	{
 		if (_veh isKindOf "StaticWeapon") then
 		{
-			[_veh] call A3A_fnc_logistics_addLoadAction;
 			_veh setCenterOfMass [(getCenterOfMass _veh) vectorAdd [0, 0, -1], 0];
-			if ((not (_veh in staticsToSave)) and (side gunner _veh != teamPlayer)) then
-			{
-				if (A3A_hasRHS and ((_typeX == staticATteamPlayer) or (_typeX == staticAAteamPlayer))) then {[_veh,"moveS"] remoteExec ["A3A_fnc_flagaction",[teamPlayer,civilian],_veh]};
+
+			if !(_typeX isKindOf "StaticMortar") then {
+				[_veh, "static"] remoteExec ["A3A_fnc_flagAction", [teamPlayer,civilian], _veh];
+				if (_side == teamPlayer && !isNil {serverInitDone}) then { [_veh] remoteExec ["A3A_fnc_updateRebelStatics", 2] };
 			};
+
+			// TODO: fix this shit so it's dependent on occupancy rather than type
 			if (_typeX == SDKMortar) then
 			{
 				_veh addEventHandler ["Fired",
@@ -130,7 +135,7 @@ else
 						{if ((side _x == Occupants) or (side _x == Invaders)) then {_x reveal [_mortarX,4]}} forEach allUnits;
 						if (_mortarX distance posHQ < 300) then
 						{
-							if (!(["DEF_HQ"] call BIS_fnc_taskExists)) then
+							if !("DEF_HQ" in A3A_activeTasks) then
 							{
 								_LeaderX = leader (gunner _mortarX);
 								if (!isPlayer _LeaderX) then
@@ -163,6 +168,11 @@ if (_side == civilian) then
 			_veh removeEventHandler ["HandleDamage", _thisEventHandler];
 		};
 	}];
+};
+
+if(_typeX in vehMRLS + [CSATMortar, NATOMortar, SDKMortar]) then
+{
+    [_veh] call A3A_fnc_addArtilleryTrailEH;
 };
 
 // EH behaviour:
@@ -244,8 +254,8 @@ _veh addEventHandler ["Dammaged", {
 	};
 }];
 
-//add JNL loading to quadbikes
-if(!A3A_hasIFA && typeOf _veh in [vehSDKBike,vehNATOBike,vehCSATBike]) then {[_veh] call A3A_fnc_logistics_addLoadAction;};
+//add logistics loading to loadable objects
+if([typeOf _veh] call A3A_fnc_logistics_isLoadable) then {[_veh] call A3A_fnc_logistics_addLoadAction;};
 
 // deletes vehicle if it exploded on spawn...
 [_veh] spawn A3A_fnc_cleanserVeh;

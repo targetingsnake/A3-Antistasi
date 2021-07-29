@@ -1,4 +1,3 @@
-#include "..\Garage\defineGarage.inc"
 #include "..\..\Includes\common.inc"
 FIX_LINE_NUMBERS()
 
@@ -91,6 +90,7 @@ if (isMultiplayer && {playerMarkersEnabled}) then {
 
 [player] spawn A3A_fnc_initRevive;		// with ACE medical, only used for helmet popping & TK checks
 [] spawn A3A_fnc_outOfBounds;
+[] spawn A3A_fnc_darkMapFix;
 
 if (!A3A_hasACE) then {
 	[] spawn A3A_fnc_tags;
@@ -327,7 +327,7 @@ if (isMultiplayer) then {
 			} else {
 				_nonMembers = {(side group _x == teamPlayer) and !([_x] call A3A_fnc_isMember)} count (call A3A_fnc_playableUnits);
 				if (_nonMembers >= (playableSlotsNumber teamPlayer) - bookedSlots) then {["memberSlots",false,1,false,false] call BIS_fnc_endMission};
-				if (memberDistance != 16000) then {[] execVM "orgPlayers\nonMemberDistance.sqf"};
+				[] spawn A3A_fnc_playerLeash;
 
 				["General Info", "Welcome Guest<br/><br/>You have joined this server as guest"] call A3A_fnc_customHint;
 			};
@@ -343,30 +343,7 @@ if !(isPlayer leader group player) then {
 
 [] remoteExec ["A3A_fnc_assignBossIfNone", 2];
 
-if (_isJip) then {
-    Info("Joining In Progress (JIP)");
-
-	waitUntil {!(isNil "missionsX")};
-	if (count missionsX > 0) then {
-		{
-			_tsk = _x select 0;
-			if ([_tsk] call BIS_fnc_taskExists) then {
-				_state = _x select 1;
-				if ((_tsk call BIS_fnc_taskState) != _state) then {
-					/*
-					_tskVar = _tsk call BIS_fnc_taskVar;
-					_tskVar setTaskState _state;
-					*/
-					[_tsk,_state] call bis_fnc_taskSetState;
-				};
-			};
-		} forEach missionsX;
-	};
-}
-else
-{
-    Info("Not Joining in Progress (JIP)");
-};
+if (_isJip) then { Info("Joining In Progress (JIP)") } else { Info("Not Joining in Progress (JIP)") };
 
 [] spawn A3A_fnc_modBlacklist;
 
@@ -423,6 +400,7 @@ if (A3A_hasACE) then
 boxX allowDamage false;
 boxX addAction ["Transfer Vehicle cargo to Ammobox", {[] spawn A3A_fnc_empty;}, 4];
 boxX addAction ["Move this asset", A3A_fnc_moveHQObject,nil,0,false,true,"","(_this == theBoss)", 4];
+if (A3A_hasACE) then { [boxX, boxX] call ace_common_fnc_claim;};	//Disables ALL Ace Interactions
 flagX allowDamage false;
 flagX addAction ["Unit Recruitment", {if ([player,300] call A3A_fnc_enemyNearCheck) then {["Recruit Unit", "You cannot recruit units while there are enemies near you"] call A3A_fnc_customHint;} else { [] spawn A3A_fnc_unit_recruit; }},nil,0,false,true,"","(isPlayer _this) and (_this == _this getVariable ['owner',objNull]) and (side (group _this) == teamPlayer)"];
 flagX addAction ["Move this asset", A3A_fnc_moveHQObject,nil,0,false,true,"","(_this == theBoss)", 4];
@@ -437,13 +415,10 @@ _flagLight lightAttachObject [flagX, [0, 0, 4]];
 _flagLight setLightAttenuation [7, 0, 0.5, 0.5];
 
 vehicleBox allowDamage false;
-vehicleBox addAction ["Heal, Repair and Rearm", A3A_fnc_healAndRepair,nil,0,false,true,"","(isPlayer _this) and (_this == _this getVariable ['owner',objNull]) and (side (group _this) == teamPlayer)", 4];
+vehicleBox addAction ["Heal nearby units", A3A_fnc_vehicleBoxHeal,nil,0,false,true,"","(isPlayer _this) and (_this == _this getVariable ['owner',objNull]) and (side (group _this) == teamPlayer)", 4];
 vehicleBox addAction ["Vehicle Arsenal", JN_fnc_arsenal_handleAction, [], 0, true, false, "", "alive _target && vehicle _this != _this", 10];
+[vehicleBox] call HR_GRG_fnc_initGarage;
 if (A3A_hasACE) then { [vehicleBox, VehicleBox] call ace_common_fnc_claim;};	//Disables ALL Ace Interactions
-if (isMultiplayer) then {
-	vehicleBox addAction ["Personal Garage", { [GARAGE_PERSONAL] spawn A3A_fnc_garage },nil,0,false,true,"","(isPlayer _this) and (_this == _this getVariable ['owner',objNull]) and (side (group _this) == teamPlayer)", 4];
-};
-vehicleBox addAction ["Faction Garage", { [GARAGE_FACTION] spawn A3A_fnc_garage; },nil,0,false,true,"","(isPlayer _this) and (_this == _this getVariable ['owner',objNull]) and (side (group _this) == teamPlayer)", 4];
 vehicleBox addAction ["Buy Vehicle", {if ([player,300] call A3A_fnc_enemyNearCheck) then {["Purchase Vehicle", "You cannot buy vehicles while there are enemies near you"] call A3A_fnc_customHint;} else {nul = createDialog "vehicle_option"}},nil,0,false,true,"","(isPlayer _this) and (_this == _this getVariable ['owner',objNull]) and (side (group _this) == teamPlayer)", 4];
 vehicleBox addAction ["Move this asset", A3A_fnc_moveHQObject,nil,0,false,true,"","(_this == theBoss)", 4];
 
@@ -465,7 +440,8 @@ mapX addAction ["Game Options", {
 		"<br/>Limited Fast Travel: "+ (["No","Yes"] select limitedFT) +
 		"<br/>AI Limit: "+ str maxUnits +
 		"<br/>Spawn Distance: "+ str distanceSPWN + "m" +
-		"<br/>Civilian Limit: "+ str civPerc
+		"<br/>Civilian Limit: "+ str civPerc +
+		"<br/>Time since GC: " + ([[serverTime-A3A_lastGarbageCleanTime] call A3A_fnc_secondsToTimeSpan,1,0,false,2,false,true] call A3A_fnc_timeSpan_format)
 	] call A3A_fnc_customHint;
 	CreateDialog "game_options";
 	nil;

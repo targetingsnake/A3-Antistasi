@@ -43,6 +43,7 @@ class A3A
 		class blackout {};
 		class buildHQ {};
         class calculateAggression {};
+        class canMoveHQ {};
         class chooseAttackType {};
 		class citiesToCivPatrol {};
 		class citySupportChange {};
@@ -68,7 +69,7 @@ class A3A
         class getAggroLevelString {};
         class getVehiclePoolForAttacks {};
         class getVehiclePoolForQRFs {};
-		class healAndRepair {};
+		class vehicleBoxHeal {};
 		class initPetros {};
 		class isFrontline {};
 		class arePositionsConnected {};
@@ -76,6 +77,7 @@ class A3A
 		class keys {};
 		class localizar {};
 		class location {};
+        class lockStatic {};
 		class logPerformance {};
 		class markerChange {};
 		class moveHQ {};
@@ -115,7 +117,9 @@ class A3A
         class teleportVehicleToBase {};
         class timingCA {};
         class translateVariable {};
+        class unlockStatic {};
         class unlockVehicle {};
+        class updateRebelStatics {};
         class zoneCheck {};
     };
 
@@ -177,6 +181,7 @@ class A3A
         class unitGetToCover {};
         class useFlares {};
         class VANTinfo {};
+        class vehicleConvoyTravel {};
         class vehicleMarkers {};
     };
 
@@ -290,25 +295,9 @@ class A3A
         class unit_recruit {};
     };
 
-    class Garage
+    class EventHandler
     {
-        class addToPersonalGarage {};
-        class addToPersonalGarageLocal {};
-        class attemptPlaceVehicle {};
-        class displayVehiclePlacementMessage {};
-        class garage {};
-        class garageVehicle {};
-        class getPersonalGarage {};
-        class getPersonalGarageLocal {};
-        class handleVehPlacementCancelled {};
-        class placeEmptyVehicle {};
-        class setPersonalGarage {};
-        class setPersonalGarageLocal {};
-        class vehPlacementBegin {};
-        class vehPlacementCallbacks {};
-        class vehPlacementCancel {};
-        class vehPlacementChangeVehicle {};
-        class vehPlacementCleanup {};
+        class addArtilleryTrailEH {};
     };
 
     class Garrison
@@ -342,6 +331,7 @@ class A3A
     {
         class getVehicleIntel {};
         class placeIntel {};
+        class searchEncryptedIntel {};
         class searchIntelOnDocument {};
         class searchIntelOnLaptop {};
         class searchIntelOnLeader {};
@@ -378,6 +368,7 @@ class A3A
         class logistics_addLoadAction {};
         class logistics_getVehCapacity {};
         class logistics_initNodes {};
+        class logistics_isLoadable {};
     };
 
     class LogisticsFunctions
@@ -386,6 +377,7 @@ class A3A
         class logistics_addAction {};
         class logistics_addOrRemoveObjectMass {};
         class logistics_addWeaponAction {};
+        class logistics_attachCargo {};
         class logistics_canLoad {};
         class logistics_generateHardPoints {};
         class logistics_getCargoNodeType {};
@@ -420,7 +412,6 @@ class A3A
         class attackHQ {};
         class CON_Outpost {};
         class convoy {};
-        class deleteTask {};
         class DES_Antenna {};
         class DES_Heli {};
         class DES_Vehicle {};
@@ -432,11 +423,14 @@ class A3A
         class REP_Antenna {};
         class RES_Prisoners {};
         class RES_Refugees {};
+        class taskDelete {};
+        class taskSetState {};
         class taskUpdate {};
         class underAttack {};
     };
 
     class ModsAndDLC {
+        class darkMapFix {};
         class getModOfConfigClass {};
         class initDisabledMods {};
         class isModNameVanilla {};
@@ -457,6 +451,7 @@ class A3A
         class equipmentSort {};
         class fillLootCrate {};
         class getRadio {};
+        class hasARadio {};
         class itemConfig {};
         class itemConfigMass {};
         class itemSort {};
@@ -476,6 +471,9 @@ class A3A
         class makePlayerBossIfEligible {};
         class memberAdd {};
         class membersList {};
+        class playerLeash {};
+        class playerLeashRefresh {};
+        class playerLeashCheckPosition {};
         class playerScoreAdd {};
         class promotePlayer {};
         class ranksMP {};
@@ -498,11 +496,15 @@ class A3A
         class findNodesInDistance {};
         class findPath {};
         class findPathPrecheck {};
+        class findPosOnRoute {};
         class getMainPositions {};
+        class getMarkerNavPoint {};
         class getNearestNavPoint {};
         class listInsert {};
         class loadNavGrid {};
         class markNode {};
+        class roadAStar {};
+        class roadConnPoint {};
         class setNavData {};
         class trimPath {};
     };
@@ -651,14 +653,26 @@ class A3A
         class saveLoop {};
     };
 
+    class String {
+        class pad_2Digits {};
+        class pad_3Digits {};
+    };
+
     class Templates
     {
         class aceModCompat {};
-		class compatabilityLoadFaction {};
+		class compatibilityLoadFaction {};
 		class getLoadout {};
 		class loadFaction {};
         class ifaModCompat {};
         class rhsModCompat {};
+    };
+
+    class Time {
+        class dateToTimeString {};
+        class secondsToTimeSpan {};
+        class systemTime_format_S {};
+        class timeSpan_format {};
     };
 
     class UI
@@ -674,23 +688,24 @@ class A3A
 
     class Undercover
     {
-        class initUndercover {};
+        class canGoUndercover {};
         class goUndercover {};
+        class initUndercover {};
     };
 
     class Utility
     {
         class basicBackpack {};
         class classNameToModel {};
+        class countAttachedObjects {};
         class createDataObject {};
         class createNamespace {};
-        class dateToTimeString {};
         class deleteNamespace {};
         class getAdmin {};
         class localLog {};
         class log {};
         class setPos {};
-        class systemTime_format_S {};
+        class vehicleTextureSync {};
         class vehicleWillCollideAtPosition {};
         class getRoadDirection {};
     };

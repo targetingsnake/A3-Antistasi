@@ -5,6 +5,8 @@ if (isServer) then {
     Info("Starting Persistent Load.");
 	petros allowdamage false;
 
+	A3A_saveVersion = 0;
+	["version"] call A3A_fnc_getStatVariable;
 	["savedPlayers"] call A3A_fnc_getStatVariable;
 	["outpostsFIA"] call A3A_fnc_getStatVariable; publicVariable "outpostsFIA";
 	["mrkSDK"] call A3A_fnc_getStatVariable;
@@ -26,6 +28,7 @@ if (isServer) then {
 	["skillFIA"] call A3A_fnc_getStatVariable;
 	["membersX"] call A3A_fnc_getStatVariable;
 	["vehInGarage"] call A3A_fnc_getStatVariable;
+    ["HR_Garage"] call A3A_fnc_getStatVariable;
 	["destroyedBuildings"] call A3A_fnc_getStatVariable;
 	["idlebases"] call A3A_fnc_getStatVariable;
 	["idleassets"] call A3A_fnc_getStatVariable;
