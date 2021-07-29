@@ -27,6 +27,14 @@ FIX_LINE_NUMBERS()
 
 params[["_mode","onLoad"], ["_params",[]]];
 
+// TODO UI-update: move these to some more sensible place:
+private _civLimitMin = 0;
+private _civLimitMax = 150;
+private _spawnDistanceMin = 600;
+private _spawnDistanceMax = 2000;
+private _aiLimiterMin = 80;
+private _aiLimiterMax = 200;
+
 switch (_mode) do
 {
   case ("update"):
@@ -34,22 +42,22 @@ switch (_mode) do
     Trace("Updating admin tab");
     private _display = findDisplay A3A_IDD_MAINDIALOG;
     // Update AI limit settings
-    _civLimitSlider = _display displayCtrl A3A_IDC_CIVLIMITSLIDER;
-    _civLimitSlider sliderSetRange [civLimitMin,civLimitMax];
+    private _civLimitSlider = _display displayCtrl A3A_IDC_CIVLIMITSLIDER;
+    _civLimitSlider sliderSetRange [_civLimitMin, _civLimitMax];
     _civLimitSlider sliderSetSpeed [10, 10];
-    _civLimit = missionNamespace getVariable ["civPerc",0];
+    private _civLimit = missionNamespace getVariable ["civPerc",0];
     _civLimitSlider sliderSetPosition _civLimit;
     ctrlSetText [A3A_IDC_CIVLIMITEDITBOX, str _civLimit];
 
     _spawnDistanceSlider = _display displayCtrl A3A_IDC_SPAWNDISTANCESLIDER;
-    _spawnDistanceSlider sliderSetRange [spawnDistanceMin,spawnDistanceMax];
+    _spawnDistanceSlider sliderSetRange [_spawnDistanceMin, _spawnDistanceMax];
     _spawnDistanceSlider sliderSetSpeed [100, 100];
     _spawnDistance = missionNamespace getVariable ["distanceSPWN",0];
     _spawnDistanceSlider sliderSetPosition _spawnDistance;
     ctrlSetText [A3A_IDC_SPAWNDISTANCEEDITBOX, str _spawnDistance];
 
     _aiLimiterSlider = _display displayCtrl A3A_IDC_AILIMITERSLIDER;
-    _aiLimiterSlider sliderSetRange [civLimitMin,civLimitMax];
+    _aiLimiterSlider sliderSetRange [_aiLimiterMin, _aiLimiterMax];
     _aiLimiterSlider sliderSetSpeed [10, 10];
     _aiLimiter = missionNamespace getVariable ["maxUnits",0];
     _aiLimiterSlider sliderSetPosition _aiLimiter;
@@ -123,8 +131,8 @@ switch (_mode) do
     private _civLimitEditBoxValue = floor parseNumber ctrlText _civLimitEditBox;
     _civLimitEditBox ctrlSetText str _civLimitEditBoxValue;  // Strips non-numeric characters
     _civLimitSlider sliderSetPosition _civLimitEditBoxValue;
-    if (_civLimitEditBoxValue < civLimitMin) then {_civLimitEditBox ctrlSetText str civLimitMin};
-    if (_civLimitEditBoxValue > civLimitMax) then {_civLimitEditBox ctrlSetText str civLimitMax};
+    if (_civLimitEditBoxValue < _civLimitMin) then {_civLimitEditBox ctrlSetText str _civLimitMin};
+    if (_civLimitEditBoxValue > _civLimitMax) then {_civLimitEditBox ctrlSetText str _civLimitMax};
   };
 
   case ("spawnDistanceSliderChanged"):
@@ -144,8 +152,8 @@ switch (_mode) do
     private _spawnDistanceEditBoxValue = floor parseNumber ctrlText _spawnDistanceEditBox;
     _spawnDistanceEditBox ctrlSetText str _spawnDistanceEditBoxValue; // Strips non-numeric characters
     _spawnDistanceSlider sliderSetPosition _spawnDistanceEditBoxValue;
-    if (_spawnDistanceEditBoxValue < spawnDistanceMin) then {_spawnDistanceEditBox ctrlSetText str spawnDistanceMin};
-    if (_spawnDistanceEditBoxValue > spawnDistanceMax) then {_spawnDistanceEditBox ctrlSetText str spawnDistanceMax};
+    if (_spawnDistanceEditBoxValue < _spawnDistanceMin) then {_spawnDistanceEditBox ctrlSetText str _spawnDistanceMin};
+    if (_spawnDistanceEditBoxValue > _spawnDistanceMax) then {_spawnDistanceEditBox ctrlSetText str _spawnDistanceMax};
   };
 
   case ("aiLimiterSliderChanged"):
@@ -165,8 +173,8 @@ switch (_mode) do
     private _aiLimiterEditBoxValue = floor parseNumber ctrlText _aiLimiterEditBox;
     _aiLimiterEditBox ctrlSetText str _aiLimiterEditBoxValue; // Strips non-numeric characters
     _aiLimiterSlider sliderSetPosition _aiLimiterEditBoxValue;
-    if (_aiLimiterEditBoxValue < aiLimiterMin) then {_aiLimiterEditBox ctrlSetText str aiLimiterMin};
-    if (_aiLimiterEditBoxValue > aiLimiterMax) then {_aiLimiterEditBox ctrlSetText str aiLimiterMax};
+    if (_aiLimiterEditBoxValue < _aiLimiterMin) then {_aiLimiterEditBox ctrlSetText str _aiLimiterMin};
+    if (_aiLimiterEditBoxValue > _aiLimiterMax) then {_aiLimiterEditBox ctrlSetText str _aiLimiterMax};
   };
 
   case ("confirmAILimit"):
@@ -192,10 +200,10 @@ switch (_mode) do
       // [player,"maxUnits","increase"] remoteExecCall ["A3A_fnc_HQGameOptions",2];
 
       // TODO UI-update: Placeholder routine, don't merge! Has no security checks whatsoever
-      Trace_3("Changing AI Settings - civPerc:%1, distanceSPWN:%2, maxUnits:%3", _civPerc, _distanceSPWN, _maxUnits);
-      missionNamespace setVariable ["civPerc", _civPerc];
-      missionNamespace setVariable ["distanceSPWN", _distanceSPWN];
-      missionNamespace setVariable ["maxUnits", _maxUnits];
+      // Trace_3("Changing AI Settings - civPerc:%1, distanceSPWN:%2, maxUnits:%3", _civPerc, _distanceSPWN, _maxUnits);
+      // missionNamespace setVariable ["civPerc", _civPerc];
+      // missionNamespace setVariable ["distanceSPWN", _distanceSPWN];
+      // missionNamespace setVariable ["maxUnits", _maxUnits];
 
 
       closeDialog 2;
