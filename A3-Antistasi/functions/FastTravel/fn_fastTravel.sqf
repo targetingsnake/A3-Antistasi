@@ -206,4 +206,7 @@ if (!_isHighCommandGroup) then {
     // If it's a high command group show hint that it arrived at the destination
     ["Fast Travel", format ["Group %1 arrived at its destination",groupID _group]] call A3A_fnc_customHint;
 };
+[] call A3A_fnc_playerLeashRefresh;
+sleep 5;
+{_x allowDamage true} forEach units _group;
 Debug("Fast Travel done");
