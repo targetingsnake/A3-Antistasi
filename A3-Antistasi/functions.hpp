@@ -282,7 +282,6 @@ class A3A
         class createDialog_setParams {};
         class createDialog_shouldLoadPersonalSave {};
         class dialogHQ {};
-        class dismantleUI {};
         class fastTravelRadio {};
         class HQGameOptions {};
         class loadPreviousSession {};
@@ -293,6 +292,13 @@ class A3A
         class squadOptions {};
         class squadRecruit {};
         class unit_recruit {};
+    };
+
+    class Dismantle {
+        class dismantle {};
+        class dismantleAddAssist {};
+        class dismantleAuto {};
+        class dismantleUI {};
     };
 
     class EventHandler
@@ -325,6 +331,11 @@ class A3A
         class updatePreference {};
         class updateReinfState {};
         class updateVehicles {};
+    };
+
+    class HoldAction {
+        class holdAction {};
+        class holdActionInit { preInit=1; };
     };
 
     class Intel
@@ -541,9 +552,6 @@ class A3A
         class build {};
         class buildCreateVehicleCallback {};
         class buildMinefield {};
-        class dismantle {};
-        class dismantleAddAssist {};
-        class dismantleAuto {};
         class enemyNearCheck {};
         class equipRebel {};
         class FIAinit {};
@@ -681,8 +689,6 @@ class A3A
         class customHintDismiss {};
         class customHintInit {};
         class customHintRender {};
-        class holdAction {};
-        class holdActionInit { preInit=1; };
         class shader_ratioToHex {};
     };
 
