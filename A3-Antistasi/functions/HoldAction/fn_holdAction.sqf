@@ -1,39 +1,50 @@
 /*
 Maintainer: Caleb Serafin
-    Add a hold action.
-    The first 7 parameters cannot be changed during runtime.
+    Add an advanced and fast hold action.
+    The parameters after shared cannot be changed during runtime. So choose wisely
+    addActions arguments extracted from https://community.bistudio.com/wiki/addAction
 
 Arguments:
+    <HASHMAP> _shared holdAction data. Values can be set in a hashMap before the action is created. See bottom of function for values you can override. [Default=false]
+    <OBJECT> Unit, vehicle or static object. No agents and simple objects!
+    <SCALAR> Priority value of the action. Actions will be arranged in descending order according to this value. Can be negative or fraction. Same priorities will be arranged in newest at the bottom. [Default=1.5]
+    <STRING> One of the key names defined in bin.pbo (e.g. "moveForward"). Adding shortcut will bind corresponding keyboard key to this action. Shortcut can be tested with inputAction command [Default=""]
+    <SCALAR> Maximum 3D distance in meters between the activating unit's eyePos and the object's memoryPoint, selection or position. -1 disables the radius. [Default=15]
+    <BOOLEAN> If true will be shown to incapacitated player. See also setUnconscious and lifeState. [Default=false]
+    <STRING> object's geometry LOD's named selection [Default=""]
+    <STRING> object's memory point. If selection is supplied, memoryPoint is not used [Default=""]
 
 Return Value:
-    <HASHMAP> _shared.
+    <HASHMAP> Same reference to _shared.
 
-Scope: Server/Server&HC/Clients/Any, Local Arguments/Global Arguments, Local Effect/Global Effect
-Environment: Scheduled/Unscheduled/Any
-Public: Yes/No
+Scope: Clients, Local Arguments, Local Effect
+Environment: Any
+Public: Yes
 Dependencies:
-    <CODE >holdActionInit needs to be finished.
+    <CODE> holdActionInit needs to be finished.
 
 Example:
     // Add hold action
-    _shared = [player] call A3A_fnc_holdAction;
+    _shared = [false,player] call A3A_fnc_holdAction;
     // Remove hold action
     _shared set ["_dispose",true];
+
+    // Full list;
+    [_shared,_target,_priority,_keyShortcut,_radius,_showUnconscious,_modelSelection,_modelMemoryPoint] call A3A_fnc_holdAction;
 */
 
 
 #include "..\..\Includes\common.inc"
 FIX_LINE_NUMBERS()
 params [
+    ["_shared",false,[false,A3A_const_hashMap]],
     ["_target",objNull,[objNull]],
     ["_priority",1000,[123]],
     ["_keyShortcut","",[""]],
     ["_radius",15,[123]],
     ["_showUnconscious",false,[false]],
     ["_modelSelection","",[""]],
-    ["_modelMemoryPoint","",[""]],
-
-    ["_shared",false,[false,A3A_const_hashMap]]
+    ["_modelMemoryPoint","",[""]]
 ];
 
 if (_target isEqualTo objNull) exitWith {
@@ -69,7 +80,7 @@ if (isNil "A3A_fnc_holdAction_textureSelector") then {A3A_fnc_holdAction_texture
     private _ratio = if (_duration > 0) then {
         (serverTime / _duration) mod 1;  // Ratio is based on serverTime.
     } else {
-        (_shared get "_completionProgress") / (_shared get "_completionTotal");  // Ratio is based on progress percentage
+        (_shared get "_completionProgress") / (_shared get "_completionGoal");  // Ratio is based on progress percentage
     };
     // The main count textures omitted -1. This makes it act as if there was an extra texture. This allows all texture frames to have the same on screen duration.
     // Basic floor wouldn't show the last frame.
@@ -114,7 +125,9 @@ if (isNil "A3A_fnc_holdAction_onClick") then {A3A_fnc_holdAction_onClick = {
     params ["_target", "_caller", "_actionId", "_shared"];
     // progress can only start from idle, otherwise it's disabled or already running
     if ((_shared get "_state") isNotEqualTo "idle") exitWith {};
+    _shared set ["_caller",_caller];
     _shared set ["_state","progress"];
+    _shared set ["_refresh",true];
     _this spawn {
         params ["_target","_caller","_actionID","_shared"];
         //disable player's action menu
@@ -125,10 +138,10 @@ if (isNil "A3A_fnc_holdAction_onClick") then {A3A_fnc_holdAction_onClick = {
             _shared call A3A_fnc_holdAction_updateGraphics;
             uiSleep (_shared get "_progressSleep");
             if (_shared get "_autoInterrupt" && {(inputAction "Action" < 0.5 && inputAction "ActionContext" < 0.5)}) exitWith {
-                _shared call (_shared get "_codeInterrupted");
                 _shared set ["_state","idle"];
+                _shared call (_shared get "_codeInterrupted");
             };
-            if (_shared get "_completionProgress" >= _shared get "_completionTotal") exitWith {
+            if (_shared get "_completionProgress" >= _shared get "_completionGoal") exitWith {
                 _shared call (_shared get "_codeCompleted");    // Will stay on progress state. codeCompleted will decide to reset or dispose.
             };
         };
@@ -148,7 +161,14 @@ if (isNil "A3A_fnc_holdAction_bootstrapper") then {A3A_fnc_holdAction_bootstrapp
         true;   // makes it visible to expose any errors if it is not removed.
     };
     private _state = _shared get "_state";
-    if (_state isEqualTo "progress") exitWith { true };
+    if (_state isEqualTo "progress") exitWith {
+        if (_shared get "_refresh") then {
+            _shared set ["_refresh",false];
+            false;
+        } else {
+            true
+        };
+    };
     if (serverTime < (_shared get "_idleSleepUntil")) exitWith { _state isNotEqualTo "hidden" };
     _shared set ["_idleSleepUntil",serverTime + (_shared get "_idleSleep")];
 
@@ -168,7 +188,7 @@ _shared insert [
     ["_PID",_PID],
     ["_PID_sharedName",_PID_sharedName],
     ["_target",_target],
-    ["_caller",_caller],
+    ["_caller",objNull],
     ["_actionID",_actionID],
     ["_priority",_priority],
     ["_keyShortcut",_keyShortcut],
@@ -177,14 +197,17 @@ _shared insert [
     ["_modelSelection",_modelSelection],
     ["_modelMemoryPoint",_modelMemoryPoint],
 
-    // Disposal variable
-    ["_dispose",false],
+    ["_dispose",false],  // Disposal variable, deletes action.
+    ["_refresh",false],  // Hides and shows the action when the user starts. This is needed to prevent the action from fading out while the holdAction is still in progress.
+    ["_idleSleepUntil",0] // Do not set, used for determining when to come out of sleep.
+];
 
+private _insertIfEmpty = [
     // Visibility and progress settings
     ["_state","idle"],   // hidden, disabled, idle, progress
     ["_autoInterrupt",true],
     ["_completionProgress",0],
-    ["_completionTotal",1],
+    ["_completionGoal",1],
 
     // Custom set events
     ["_codeIdle",{
@@ -195,13 +218,12 @@ _shared insert [
             };
         };
     }],
-    ["_codeStart",{ _shared set ["_progressSleep",1/16]; _shared set ["_completionTotal",9.75]; }],
+    ["_codeStart",{ _shared set ["_progressSleep",1/16]; _shared set ["_completionGoal",9.75]; }],
     ["_codeProgress",{ _shared set ["_completionProgress",(_shared get "_completionProgress")+1/16]; }],
     ["_codeCompleted",{ _shared set ["_dispose",true]; }],
     ["_codeInterrupted",{ _shared set ["_idleSleep",1/16]; _shared get "_graphics_idle" set [3, [0,A3A_holdAction_texturesClockwiseCombined]]; }],
 
     ["_idleSleep",0.01], // little faster than 60Hz.
-    ["_idleSleepUntil",0], // Do not set, used for determining when to come out of sleep.
     ["_progressSleep",0.01], // little faster than 60Hz.
 
     // Default Text and image animations.
@@ -224,4 +246,9 @@ _shared insert [
         [0,A3A_holdAction_texturesClockwiseCombined]  // Background
     ]]
 ];
+{
+    if !((_x#0) in _shared) then {
+        _shared set _x;
+    };
+} forEach _insertIfEmpty;
 _shared;
