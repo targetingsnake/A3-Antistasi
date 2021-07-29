@@ -45,7 +45,7 @@ switch (_mode) do
       _commanderTabButton ctrlSetTooltip localize "STR_antistasi_dialogs_main_commander_tab_disabled_tooltip";
     };
 
-    if (true) then { // TODO UI-update: replace with admin check
+    if !((isServer && hasInterface) || admin owner player > 0) then {
       private _adminTabButton = _display displayCtrl A3A_IDC_ADMINTABBUTTON;
       _adminTabButton ctrlEnable false;
       _adminTabButton ctrlshow false;
@@ -159,7 +159,7 @@ switch (_mode) do
 
       case ("admin"):
       {
-        if (true) then { // TODO UI-update replace with admin check
+        if ((isServer && hasInterface) || admin owner player > 0) then {
           _selectedTabIDC = A3A_IDC_ADMINTAB;
         };
       };
