@@ -34,7 +34,30 @@ private _outpostIconData = [];
     private _type = _marker call A3A_fnc_getLocationMarkerType;
     private _name = markerText _marker;
     private _pos = getMarkerPos _marker;
-    private _color = [0.1,0.7,0.1,1]; // TODO UI-update: use faction color
+    private _side = sidesX getVariable [_marker,sideUnknown];
+    private _color = [1,0.5,1,1];
+
+    switch (_side) do {
+        case (teamPlayer): {
+            _color = ["Map", "Independent"] call BIS_fnc_displayColorGet;
+        };
+
+        case (Occupants): {
+            _color = ["Map", "BLUFOR"] call BIS_fnc_displayColorGet;
+        };
+
+        case (Invaders): {
+            _color = ["Map", "OPFOR"] call BIS_fnc_displayColorGet;
+        };
+
+        case (civilian): {
+            _color = ["Map", "Civilian"] call BIS_fnc_displayColorGet;
+        };
+
+        case (sideUnknown): {
+            _color = ["Map", "Unknown"] call BIS_fnc_displayColorGet;
+        };
+    };
 
     private _icon = switch (_type) do {
         case ("hq"): {
