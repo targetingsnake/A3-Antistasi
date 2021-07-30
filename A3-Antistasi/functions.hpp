@@ -296,8 +296,9 @@ class A3A
 
     class Dismantle {
         class dismantle {};
-        class dismantleAddAssist {};
+        class dismantleAssist {};
         class dismantleAuto {};
+        class dismantleHost {};
         class dismantleUI {};
     };
 

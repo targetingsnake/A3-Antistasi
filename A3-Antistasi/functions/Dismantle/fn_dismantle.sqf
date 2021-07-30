@@ -5,9 +5,6 @@ Maintainer: Caleb Serafin
     Script only exits when structure is removed / action cancelled.
 
 Arguments:
-    <OBJECT> Structure to dismantle.
-    <SCALAR> Build Time Multiplier (default: 0.75)
-    <SCALAR> Build cost return Multiplier. (default: 0)
 
 Return Value:
     <BOOL> true if dismantled. false if prematurely exited.
@@ -22,7 +19,8 @@ Example:
     [] spawn A3A_fnc_dismantle;
 */
 #include "..\..\Includes\common.inc"
-FIX_LINE_NUMBERS()
+#include "dismantleConfig.hpp"
+FIX_LINE_NUMBERS();
 
 if (isNil {A3A_dismantle_structureJouleCostHM}) then {
     A3A_dismantle_structureJouleCostHM = createHashMapFromArray [
@@ -43,36 +41,27 @@ if (isNil {A3A_dismantle_structureJouleCostHM}) then {
 };
 private _shared = createHashMapFromArray [
     ["_structure",objNull],
-    ["_prevStructure",objNull],
-    ["_simpleObject",objNull],
+    ["_structureCost",0],  // Needs to be saved if structure removal propagated before completionCode.
+    ["_structureJoules",0],  // Needs to be saved if structure removal propagated before completionCode.
+    ["_structureRadius",0],  // BoundingBox requests aren't free.
     ["_roughHeight",1],
     ["_lastAnimLifeToken",[false]],
-    ["_assistMode",false],
     ["_completionLostPerSecond",0],
     ["_completionExpiryTime",serverTime]
 ];
 
 private _codeIdle = {
-    _shared set ["_state","idle"];
-    private _graphics_idle = _shared get "_graphics_idle";
-    private _structure =  cursorObject;
+    private _structure = cursorObject;
     _shared set ["_structure",_structure];
 
-    if (_shared get "_completionProgress" > 0) then {
-        private _newCompletion = (_shared get "_completionLostPerSecond") * ((_shared get "_completionExpiryTime") - serverTime);
-        _newCompletion = _newCompletion max 0;
-        _shared set ["_completionProgress",_newCompletion];  // Rate will be double due to higher tick rate.
-        if (_shared get "_completionProgress" <= 0) then {
-            _shared get "_graphics_idle" set [3, [2,A3A_holdAction_texturesOrbitSegments]];
-            _shared get "_graphics_disabled" set [3, [2,A3A_holdAction_texturesRingBreath]];
-        } else {
-            _shared get "_graphics_idle" set [3,(_shared get "_graphics_progress")#3];
-            _shared get "_graphics_disabled" set [3,(_shared get "_graphics_progress")#3];
-        }
-    };
+    // Reset background to non-progress type.
+    private _graphics_idle = _shared get "_graphics_idle";
+    _graphics_idle set [3, [2,A3A_holdAction_texturesOrbitSegments]];
+    _shared get "_graphics_disabled" set [3, [2,A3A_holdAction_texturesRingBreath]];
 
     if !(typeOf _structure in A3A_dismantle_structureJouleCostHM) exitWith {
-        _graphics_idle set [1,"<t font='PuristaMedium' size='1.8'>"+(format [A3A_holdAction_holdSpaceTo,"color='#ffae00'","Exit"]) + "</t><br/><t font='PuristaMedium' size='1.2' valign='top'>No Object Selected.</t>"];
+        _shared set ["_state","idle"];
+        _graphics_idle set [1,"<t font='PuristaMedium' size='1.8'>"+(format [A3A_holdAction_holdSpaceTo,"color='#ffae00'","Exit"]) + "</t><br/><t font='PuristaMedium' size='1.2' valign='top'>No Dismantlable Selected.</t>"];
         _graphics_idle set [2,"<img image='\a3\ui_f\data\IGUI\Cfg\HoldActions\holdAction_search_ca.paa'/>"];
     };
 
@@ -81,58 +70,62 @@ private _codeIdle = {
     if (player distance _structure > _dismantleRadius) exitWith {
         _shared set ["_state","disabled"];
     };
+    _shared set ["_state","idle"];
 
     private _isEngineer = player getUnitTrait "engineer";
     private _engineerBonusText = ["","<t size='0.9' valign='middle'>  *Engineer Bonus</t>"] select _isEngineer;
-    private _inputWatts = [1.34,4] select _isEngineer;
+    private _inputWatts = [REBEL_WATTS,ENGINEER_WATTS] select _isEngineer;
 
-    if !(isNull (_structure getVariable ["A3A_dismantler",objNull])) exitWith {
-        _shared set ["_assistMode",true];
-        private _timeLeft = (_structure getVariable ["A3A_dismantle_eta",serverTime]) - serverTime;
-        private _watts = _structure getVariable ["A3A_dismantle_watts",0];
-        private _joulesRemaining = _timeLeft * _watts;
-        _timeLeft = _joulesRemaining / (_watts + _inputWatts);
+    (A3A_dismantle_structureJouleCostHM get (typeOf _structure)) params [["_joules",1],["_structureCost",0]];
+    _shared set ["_completionGoal",_joules];
+
+    private _activeWatts = _structure getVariable ["A3A_dismantle_watts",0];
+    if (_activeWatts != 0) exitWith {
+        private _actionText = ["Continue Dismantle","Assist Dismantle"] select (_activeWatts > 0);
+        private _icon = ["<img image='\a3\ui_f_oldman\Data\IGUI\Cfg\HoldActions\holdAction_market_ca.paa'/>","<img image='\a3\ui_f_oldman\Data\IGUI\Cfg\HoldActions\meet_ca'/>"] select (_activeWatts > 0);
+
+        private _joulesRemaining = ((_structure getVariable ["A3A_dismantle_eta",serverTime]) - serverTime) * _activeWatts;
+        private _potentialTimeRemaining = _joulesRemaining / ((_activeWatts max 0) + _inputWatts);
+
         _graphics_idle set [1,
-            ("<t font='PuristaMedium' size='1.8'>"+format [A3A_holdAction_holdSpaceTo,"color='#ffae00'","Assist " + name (_structure getVariable ["A3A_dismantler",objNull])]) + "</t><br/>" +
-            "<t font='PuristaMedium' size='1.2' valign='top'><t color='#00000000'>"+_engineerBonusText+"</t>"+str _timeLeft+"s<t color='#cccccc'>"+_engineerBonusText+"</t></t>"
+            ("<t font='PuristaMedium' size='1.8'>"+format [A3A_holdAction_holdSpaceTo,"color='#ffae00'",_actionText]) + "</t><br/>" +
+            "<t font='PuristaMedium' size='1.2' valign='top'><t color='#00000000'>"+_engineerBonusText+"</t>"+(_potentialTimeRemaining toFixed 0)+"s "+(_structureCost * COST_RETURN_RATIO toFixed 0)+"€<t color='#cccccc'>"+_engineerBonusText+"</t></t>"
         ];    // The invisible engineer text makes the numbers centers
-        _graphics_idle set [2,"<img image='\a3\ui_f_oldman\Data\IGUI\Cfg\HoldActions\meet_ca'/>"];
+        _graphics_idle set [2,_icon];
+
+        _shared set ["_completionProgress",_joules - _joulesRemaining];
+        _shared set ["_completionGoal",_joules];
+        _graphics_idle set [3,(_shared get "_graphics_progress")#3];
+        _shared get "_graphics_disabled" set [3,(_shared get "_graphics_progress")#3];
     };
 
-
-    _shared set ["_prevStructure",_structure];
-    (A3A_dismantle_structureJouleCostHM get (typeOf _structure)) params [["_joules",1],["_costReturn",0]];
-    _shared set ["_completionGoal",_joules];
-    private _timeLeft = ceil (_joules / _inputWatts);
-    _costReturn = ceil (_costReturn * ([0.05,0.25] select _isEngineer));
-    _graphics_idle set [1,
-        ("<t font='PuristaMedium' size='1.8'>"+format [A3A_holdAction_holdSpaceTo,"color='#ffae00'","Dismantle"]) + "</t><br/>" +
-    "<t font='PuristaMedium' size='1.2' valign='top'><t color='#00000000'>"+_engineerBonusText+"</t>"+str _timeLeft+"s "+str _costReturn+"€<t color='#cccccc'>"+_engineerBonusText+"</t></t>"
-    ];    // The invisible engineer text makes the numbers centers
-    _graphics_idle set [2,"<img image='\a3\ui_f_oldman\Data\IGUI\Cfg\HoldActions\holdAction_market_ca.paa'/>"];
-    if (_structure isNotEqualTo (_shared get "_prevStructure")) exitWith {
+    if (_activeWatts == 0) exitWith {
+        _graphics_idle set [1,
+            ("<t font='PuristaMedium' size='1.8'>"+format [A3A_holdAction_holdSpaceTo,"color='#ffae00'","Dismantle"]) + "</t><br/>" +
+            "<t font='PuristaMedium' size='1.2' valign='top'><t color='#00000000'>"+_engineerBonusText+"</t>"+(_joules / _inputWatts toFixed 0)+"s "+(_structureCost * COST_RETURN_RATIO toFixed 0)+"€<t color='#cccccc'>"+_engineerBonusText+"</t></t>"
+        ];    // The invisible engineer text makes the numbers centers
+        _graphics_idle set [2,"<img image='\a3\ui_f_oldman\Data\IGUI\Cfg\HoldActions\holdAction_market_ca.paa'/>"];
     };
 };
 
 private _codeStart = {
     private _structure = _shared get "_structure";
 
-    if !(typeOf _structure in A3A_dismantle_structureJouleCostHM) exitWith {   // Will display the exit text when no object is selected.
+    // Will display the exit text when no object is selected. Therefore, this will exit.
+    if !(typeOf _structure in A3A_dismantle_structureJouleCostHM) exitWith {
         _shared set ["_dispose",true];
         _shared set ["_state","disabled"];
     };
 
-    private _isEngineer = player getUnitTrait "engineer";
-    private _watts = [1.34,4] select _isEngineer;
+    // Get and save structure data
+    (A3A_dismantle_structureJouleCostHM get (typeOf _structure)) params [["_structureJoules",1],["_structureCost",0]];
+    private _boundingSphereDiameter = (2 boundingBox _structure)#2;
+    private _dismantleRadius = _boundingSphereDiameter/2 * 1.5 + 3;
+    _shared set ["_structureJoules",_structureJoules];
+    _shared set ["_structureCost",_structureCost];
+    _shared set ["_structureRadius",_dismantleRadius];
 
-    private _simpleObject = createSimpleObject [typeOf _structure, getPosASL _structure, true];
-    //player disableCollisionWith _simpleObject;
-    _shared set ["_simpleObject",_simpleObject];
-    private _boundingBox = 0 boundingBoxReal _structure;
-    private _roughHeight = -(_boundingBox#0#2) + _boundingBox#1#2;
-    _shared set ["_boundingBox",_boundingBox];
-    _shared set ["_roughHeight",_roughHeight];
-
+    // Player animation
     _shared get "_lastAnimLifeToken" set [0,false];
     private _animLifeToken = [true];
     _shared set ["_lastAnimLifeToken",_animLifeToken];
@@ -152,88 +145,90 @@ private _codeStart = {
     ];
     localNamespace setVariable ["A3A_dismantle_animLifeToken_" + str _animEHID,_animLifeToken];
 
-    if (_shared get "_assistMode") exitWith {
-        [_structure,_watts] remoteExecCall ["A3A_fnc_dismantleAddAssist",_structure getVariable ["A3A_dismantler",objNull]]; // Variables are calculated and broadcast from single machine to avoid race conditions.
+
+    private _joulesCompleted = 0;
+    if (isServer) then {
+        [_structure,player,true] call A3A_fnc_dismantleAssist;
+        _joulesCompleted = _structureJoules - ((_structure getVariable ["A3A_dismantle_eta",serverTime]) - serverTime) * (_structure getVariable ["A3A_dismantle_watts",0]);
+    } else {
+        // Calculate time remaining and completed joules
+        // Check if it's already networked.
+        private _activeWatts = _structure getVariable ["A3A_dismantle_watts",0];
+        private _joulesRemaining = _structureJoules;
+        if (_activeWatts != 0) then {
+            _joulesRemaining = ((_structure getVariable ["A3A_dismantle_eta",serverTime]) - serverTime) * _activeWatts;
+        };
+        private _totalWatts = (_activeWatts max 0) + [REBEL_WATTS,ENGINEER_WATTS] select (player getUnitTrait "engineer");
+        private _timeRemaining = _joulesRemaining / _totalWatts;
+        //systemChat ("START _timeRemaining: "+(_timeRemaining toFixed 0)+"_joulesRemaining: "+(_joulesRemaining toFixed 0));
+        _joulesCompleted = _structureJoules - _joulesRemaining;
+
+        // Set local variables to allow UI to look consistent when the watts update returns from server.
+        _structure setVariable ["A3A_dismantle_eta",serverTime + _timeRemaining];
+        _structure setVariable ["A3A_dismantle_watts",_totalWatts];
+        [_structure,player,true] remoteExecCall ["A3A_fnc_dismantleAssist",2];
     };
 
-    (A3A_dismantle_structureJouleCostHM get (typeOf _structure)) params [["_joules",1],["_costReturn",0]];
-    private _timeLeft = ceil ((_joules - (_shared get "_completionProgress")) / _watts);
-    _structure setVariable ["A3A_dismantle_eta",serverTime + _timeLeft,true];
-    _structure setVariable ["A3A_dismantler",player,true];
-    _structure setVariable ["A3A_dismantle_watts",_watts,true];
-
-    _shared set ["_completionGoal",_joules];
+    _shared set ["_completionProgress",_joulesCompleted];
+    _shared set ["_completionGoal",_structureJoules];
 };
 
 private _codeProgress = {
     private _structure = _shared get "_structure";
 
-    private _boundingSphereDiameter = (2 boundingBox _structure)#2;
-    private _dismantleRadius = _boundingSphereDiameter/2 * 1.5 + 3;
-    if (player distance _structure > _dismantleRadius) exitWith {
+    if (_structure isEqualTo objNull) exitWith {  // Structure was deleted by host before completion on client.
+        _shared set ["_completionProgress",_shared get "_structureJoules"];
+    };
+
+    if (player distance _structure > (_shared get "_structureRadius")) exitWith {
         _shared call (_shared get "_codeInterrupted");
         _shared set ["_state","disabled"];
     };
 
     /// Progress and Time Calculation ///
-    (A3A_dismantle_structureJouleCostHM get (typeOf _structure)) params [["_joules",1],["_costReturn",0]];
-    private _watts = _structure getVariable ["A3A_dismantle_watts",0];
-    private _timeLeft = (_structure getVariable ["A3A_dismantle_eta",serverTime]) - serverTime;
-    private _joulesRemaining = _timeLeft * _watts;
-
-    _shared set ["_completionProgress",_joules - _joulesRemaining];
-    private _completionPercent = (_joules - _joulesRemaining) / _joules;
-    (_shared get "_simpleObject") setPos ([0,0,-(_shared get "_roughHeight")] vectorMultiply _completionPercent vectorAdd getPos (_shared get "_structure"));
+    private _timeRemaining = (_structure getVariable ["A3A_dismantle_eta",serverTime]) - serverTime;
+    private _joulesRemaining = _timeRemaining * (_structure getVariable ["A3A_dismantle_watts",0]);
+    //systemChat ("PROGRESS _timeRemaining: "+(_timeRemaining toFixed 0)+"_joulesRemaining: "+(_joulesRemaining toFixed 0));
+    _shared set ["_completionProgress",(_shared get "_structureJoules") - _joulesRemaining];
 
     private _graphics_progress = _shared get "_graphics_progress";
-    _graphics_progress set [1,"<t font='PuristaMedium' shadow='2' size='2' color='#ffae00' valign='top'><t color='#00000000'>s</t>"+(_timeLeft toFixed 0)+"<t color='#ffffff'>s</t></t>"];
+    _graphics_progress set [1,"<t font='PuristaMedium' shadow='2' size='2' color='#ffae00' valign='top'><t color='#00000000'>s</t>"+(_timeRemaining toFixed 0)+"<t color='#ffffff'>s</t></t>"];
 };
 
 private _codeComplete = {
-    _shared set ["_assistMode",false];
     _shared set ["_state","idle"];
     _shared set ["_completionProgress",0];
     _shared get "_lastAnimLifeToken" set [0,false];
-
-    deleteVehicle (_shared get "_simpleObject");
     player switchMove "";
-    if (_shared get "_assistMode") exitWith {};
 
-    private _structure = _shared get "_structure";
-    if (_structure in staticsToSave) then {
-        staticsToSave deleteAt (staticsToSave find _structure);
-        publicVariable "staticsToSave"
-    };
-    deleteVehicle _structure;
-    (A3A_dismantle_structureJouleCostHM get (typeOf _structure)) params [["_joules",1],["_costReturn",0]];
-    if (_costReturn > 0) then {
-        private _isEngineer = player getUnitTrait "engineer";
-        _costReturn = _costReturn * ([0.05,0.25] select _isEngineer);
-        [0, _costReturn] remoteExec ["A3A_fnc_resourcesFIA",2];
-    };
-    ["<t font='PuristaMedium' color='#ffae00' shadow='2' size='1'> +"+(_costReturn toFixed 0)+"€</t>",-1,0.65,3,0.5,-0.75,789] spawn BIS_fnc_dynamicText;
+    ["<t font='PuristaMedium' color='#ffae00' shadow='2' size='1'> Faction +"+((_shared get "_structureCost") * COST_RETURN_RATIO toFixed 0)+"€</t>",-1,0.65,3,0.5,-0.75,789] spawn BIS_fnc_dynamicText;
     hint "";
 };
 
 private _codeInterrupted = {
     _shared set ["_assistMode",false];
-    private _completionLostPerSecond = 4;
-    _shared set ["_completionLostPerSecond",_completionLostPerSecond];
-    _shared set ["_completionExpiryTime",serverTime + (_shared get "_completionProgress") / _completionLostPerSecond];
     _shared get "_lastAnimLifeToken" set [0,false];
-
-    deleteVehicle (_shared get "_simpleObject");
     player switchMove "";
-    if (_shared get "_assistMode") exitWith {
-        private _isEngineer = player getUnitTrait "engineer";
-        private _watts = [1.34,4] select _isEngineer;
-        [_structure,-_watts] remoteExecCall ["A3A_fnc_dismantleAddAssist",_structure getVariable ["A3A_dismantler",objNull]]; // Variables are calculated and broadcast from single machine to avoid race conditions.
-    };
 
     private _structure = _shared get "_structure";
-    _structure setVariable ["A3A_dismantle_eta",nil,true];
-    _structure setVariable ["A3A_dismantler",nil,true];
-    _structure setVariable ["A3A_dismantle_watts",nil,true];
+    if (isServer) then {
+        [_structure,player,false] call A3A_fnc_dismantleAssist;
+    } else {
+        // Calculate time remaining and completed joules
+        private _totalWatts = _structure getVariable ["A3A_dismantle_watts",0];
+        private _joulesRemaining = ((_structure getVariable ["A3A_dismantle_eta",serverTime]) - serverTime) * _totalWatts;
+        _totalWatts = _totalWatts - ([REBEL_WATTS,ENGINEER_WATTS] select (player getUnitTrait "engineer"));
+        if (_totalWatts <= 0) then {
+            _totalWatts = -DECAY_WATTS;
+        };
+        private _timeRemaining = _joulesRemaining / _totalWatts;
+
+        // Set local variables to allow UI to look consistent when the watts update returns from server.
+        _structure setVariable ["A3A_dismantle_eta",serverTime + _timeRemaining];
+        _structure setVariable ["A3A_dismantle_watts",_totalWatts];
+
+        [_structure,player,false] remoteExecCall ["A3A_fnc_dismantleAssist",2];
+    };
 };
 
 _shared insert [
@@ -250,27 +245,27 @@ _shared insert [
     ["_codeCompleted",_codeComplete],
     ["_codeInterrupted",_codeInterrupted],
 
-    ["_idleSleep",1/8],
-    ["_progressSleep",1/8],
+    ["_idleSleep", 1/6],
+    ["_progressSleep", 1/6],
 
     // Default Text and image animations.
     ["_graphics_idle",[
         "<t align='left'>Dismantler</t>        <t color='#ffae00' align='right'>" + A3A_holdAction_keyName + "     </t>",  // Menu Text
         "Error: Text Not Inserted",  // On-screen Context Text
         A3A_holdAction_iconIdle,  // Icon
-        [2,A3A_holdAction_texturesOrbitSegments] // Background
+        [2,A3A_holdAction_texturesOrbitSegments]  //  12 Frames.  // Background
     ]],
     ["_graphics_disabled",[
         nil /*Load from idle*/,  // Menu Text
         "<t font='PuristaMedium' size='1.8'>Go closer</t>",  // On-screen Context Text
         "<img image='\a3\ui_f\data\IGUI\Cfg\HoldActions\holdAction_search_ca.paa'/>",  // Icon
-        [2,A3A_holdAction_texturesRingBreath]  // Background
+        [2,A3A_holdAction_texturesRingBreath]  //  12 Frames.  // Background
     ]],
     ["_graphics_progress",[
         nil /*Load from idle*/,  // Menu Text
         "Error: Text Not Inserted",  // On-screen Context Text
         "<img image='\a3\ui_f_oldman\Data\IGUI\Cfg\HoldActions\holdAction_market_ca.paa'/>",  // Icon
-        [0,A3A_holdAction_texturesClockwise apply {"<t color='#ffae00'>"+_x+"</t>"}]  // Background
+        [0,A3A_holdAction_texturesClockwise apply {"<t color='#ffae00'>"+_x+"</t>"}]  //  25 Frames.  // Background
     ]]
 ];
 
