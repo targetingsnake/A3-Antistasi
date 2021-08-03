@@ -25,9 +25,9 @@ Dependencies:
 
 Example:
     // Add hold action
-    _shared = [false,player] call A3A_fnc_holdAction;
+    Dev_shared = [false,player] call A3A_fnc_holdAction;
     // Remove hold action
-    _shared set ["_dispose",true];
+    Dev_shared set ["_dispose",true];
 
     // Full list;
     [_shared,_target,_priority,_keyShortcut,_radius,_showUnconscious,_modelSelection,_modelMemoryPoint] call A3A_fnc_holdAction;
@@ -67,6 +67,24 @@ _textContext = format["<t font='RobotoCondensedBold'>%1</t>",_textContext];
 _textMenu = format["<t color='#FFFFFF' align='left'>%1</t>        <t color='#83ffffff' align='right'>%2     </t>",_textMenu,_keyName];
 
 // Selects texture from animation loop or global progress
+if (isNil "A3A_fnc_holdAction_graphicsOverlay") then {A3A_fnc_holdAction_graphicsOverlay = {
+    params [
+        ["_baseGraphics", [], [ [] ], [4]],
+        ["_overlayGraphics", [], [ [] ], [4]]
+    ];
+
+    private _topGraphics = [];
+    {
+        _topGraphics set [_forEachIndex,if (isNil {_x}) then {
+            _baseGraphics #_forEachIndex;
+        } else {
+            _x
+        }];
+    } forEach _overlayGraphics;
+    _topGraphics;
+};};
+
+// Selects texture from animation loop or global progress
 if (isNil "A3A_fnc_holdAction_textureSelector") then {A3A_fnc_holdAction_textureSelector = {
     params [
         "_shared",
@@ -92,7 +110,7 @@ if (isNil "A3A_fnc_holdAction_textureSelector") then {A3A_fnc_holdAction_texture
 
     if (isNil {_singleTexture}) then {
         _singleTexture = "Texture Selection Error";
-        Error_1("textureSelector: Output Texture was null. _textureAnimation: %1",str _textureAnimation);
+        Error_2("textureSelector: Output Texture was null. count: %1; _textureAnimation: %2",str count _textureAnimation,str _textureAnimation);
     };
     _singleTexture;
 };};
@@ -109,14 +127,33 @@ if (isNil "A3A_fnc_holdAction_updateGraphics") then {A3A_fnc_holdAction_updateGr
         _state = "idle";
     };
 
-    private _graphicsAnimations = +(_shared get ("_graphics_"+_state));
-    // If there is at least 1 nil, load defaults.
-    if (_graphicsAnimations findIf {isNil{_x}} != -1) then {
-        private _graphicsIdleAnimations = _shared get "_graphics_idle";
-        _graphicsAnimations params [["_menuAnim",_graphicsIdleAnimations#0],["_contextAnim",_graphicsIdleAnimations#1],["_iconAnim",_graphicsIdleAnimations#2],["_backgroundAnim",_graphicsIdleAnimations#3]];
-        _graphicsAnimations = [_menuAnim,_contextAnim,_iconAnim,_backgroundAnim];
+    // Draw top graphics.
+    private _graphicsStack = +(_shared get "_overlayLayers");
+    _graphicsStack pushBackUnique ("_graphics_"+_state);
+    _graphicsStack pushBackUnique "_graphics_idle";
+    {
+        if !(_x in _shared) then {
+            systemChat "UPDATE GRAPHICS graphics layer not found!";
+            Error("Graphics layer not found ["+ str _forEachIndex +"]: "+_x);
+            Error("_graphics_idle: "+str (_shared get "_graphics_idle"));
+        };
+    } forEach _graphicsStack;
+    private _topGraphics = _shared get (_graphicsStack deleteAt 0);
+    {
+        if (_topGraphics findIf {isNil {_x}} == -1) exitWith {};
+        if (count (_shared get _x) != 4) then {
+            systemChat ("UPDATE GRAPHICS Count from "+_x+" was "+str count _topGraphics);
+        };
+        _topGraphics = [_shared get _x,_topGraphics] call A3A_fnc_holdAction_graphicsOverlay;
+    } forEach _graphicsStack;
+
+    if (_topGraphics findIf {isNil {_x}} != -1) then {
+        systemChat "UPDATE GRAPHICS final graphics missing field";
+        Error("Processed _topGraphics had nil value at ["+ str (_topGraphics findIf {isNil {_x}}) +"]. _topGraphics: "+ str _topGraphics);
+        Error("_graphics_idle: "+str (_shared get "_graphics_idle"));
     };
-    (_graphicsAnimations apply {[_shared, _x] call A3A_fnc_holdAction_textureSelector}) params ["_menu","_context","_icon","_background"];
+
+    (_topGraphics apply {[_shared, _x] call A3A_fnc_holdAction_textureSelector}) params ["_menu","_context","_icon","_background"];
     (_shared get "_target") setUserActionText [_shared get "_actionID", _menu, "<t size='3' shadow='0'>"+_background+"</t>","<t size='3'>"+_icon+"</t><br/><t font='RobotoCondensedBold'>"+_context+"</t>"];
 };};
 
@@ -127,12 +164,14 @@ if (isNil "A3A_fnc_holdAction_onClick") then {A3A_fnc_holdAction_onClick = {
     if ((_shared get "_state") isNotEqualTo "idle") exitWith {};
     _shared set ["_caller",_caller];
     _shared set ["_state","progress"];
-    _shared set ["_refresh",true];
     _this spawn {
         params ["_target","_caller","_actionID","_shared"];
         //disable player's action menu
         {inGameUISetEventHandler [_x, "true"]} forEach ["PrevAction", "NextAction"];
         _shared call (_shared get "_codeStart");
+        if ((_shared get "_state") isEqualTo "progress") then {  // May have been changed by codeStart
+            _shared set ["_refresh",true];
+        };
         while {(_shared get "_state") isEqualTo "progress"} do {
             _shared call (_shared get "_codeProgress");
             _shared call A3A_fnc_holdAction_updateGraphics;
@@ -205,6 +244,7 @@ _shared insert [
 private _insertIfEmpty = [
     // Visibility and progress settings
     ["_state","idle"],   // hidden, disabled, idle, progress
+    ["_overlayLayers",[]],  // Names of graphics that will replace any provided fields. ie ["_graphics_techno"]
     ["_autoInterrupt",true],
     ["_completionProgress",0],
     ["_completionGoal",1],
@@ -231,19 +271,19 @@ private _insertIfEmpty = [
         "<t align='left'>A3A Hold Action</t>        <t color='#ffae00' align='right'>" + A3A_holdAction_keyName + "     </t>",  // Menu Text
         "<br/>"+(format [A3A_holdAction_holdSpaceTo,"color='#ffae00'","Commence The Reckoning"])+"<br/>Must survive for 9¾ seconds.",  // On-screen Context Text
         A3A_holdAction_iconIdle,  // Icon
-        [2,A3A_holdAction_texturesOrbitSegments] // Background
+        [2,A3A_holdAction_texturesOrbitSegments]  // 12 Frames.  // Background
     ]],
     ["_graphics_disabled",[
         nil /*Load from idle*/,  // Menu Text
         nil /*Load from idle*/,  // On-screen Context Text
         A3A_holdAction_iconDisabled,  // Icon
-        [2,A3A_holdAction_texturesRingBreath]  // Background
+        [4,A3A_holdAction_texturesRingBreath]  // 60 Frames.  // Background
     ]],
     ["_graphics_progress",[
         nil /*Load from idle*/,  // Menu Text
         [0,["Started.","Good Progress.","Almost There.","You can Taste It!"]],  // On-screen Context Text
         A3A_holdAction_iconProgress,  // Icon
-        [0,A3A_holdAction_texturesClockwiseCombined]  // Background
+        [0,A3A_holdAction_texturesClockwiseCombined]   // 55 Frames. // Background
     ]]
 ];
 {

@@ -47,15 +47,15 @@ A3A_holdAction_texturesOuterRingToRing = [
 A3A_holdAction_texturesOuterRingToRingReverse = +A3A_holdAction_texturesOuterRingToRing;
 reverse A3A_holdAction_texturesOuterRingToRingReverse;
 
-// Thin ring with breathing effect. 12 Frames.
+// Thin ring with breathing effect. 60 Frames. Recommended duration of 3.5 to 4.5 seconds (Aligns with calm breath cycle).
 A3A_customHint_hexChars = ["0","1","2","3","4","5","6","7","8","9","A","B","C","D","E","F"];    // required for A3A_fnc_shader_ratioToHex
 A3A_holdAction_texturesRingBreath = [];
-for "_i" from 0 to 11 do {
-    private _alpha = (sin((_i/11) * 360) * 0.25) + 0.75;
+for "_i" from 0 to 59 do {
+    // he clast frame is clipped off to avoid a double full transparent when used in a equal-frame-time loop (Like the one used in A3A_fnc_holdAction).
+    private _alpha = sin((_i/(59+1)) * 360) * 0.45 + 0.55;
     A3A_holdAction_texturesRingBreath pushBack ("<img color='#" + ([_alpha] call A3A_fnc_shader_ratioToHex) + "ffffff' image='\A3\Ui_f\data\IGUI\Cfg\HoldActions\in\in_0_ca.paa'/>");
 };
-A3A_holdAction_texturesRingBreathReverse = +A3A_holdAction_texturesRingBreath;
-reverse A3A_holdAction_texturesRingBreathReverse;
+// Sine wave is already symmetrical, no reversed version.
 
 // Two halves of 3 segments orbit. 12 Frames.
 A3A_holdAction_texturesOrbitSegments = [];
