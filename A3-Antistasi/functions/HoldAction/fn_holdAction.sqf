@@ -154,7 +154,7 @@ if (isNil "A3A_fnc_holdAction_updateGraphics") then {A3A_fnc_holdAction_updateGr
     };
 
     (_topGraphics apply {[_shared, _x] call A3A_fnc_holdAction_textureSelector}) params ["_menu","_context","_icon","_background"];
-    (_shared get "_target") setUserActionText [_shared get "_actionID", _menu, "<t size='3' shadow='0'>"+_background+"</t>","<t size='3'>"+_icon+"</t><br/><t font='RobotoCondensedBold'>"+_context+"</t>"];
+    (_shared get "_target") setUserActionText [_shared get "_actionID", _menu, "<t size='3.5' shadow='0'>"+_background+"</t>","<t size='3.5'>"+_icon+"</t><br/><t font='RobotoCondensedBold'>"+_context+"</t>"];
 };};
 
 // On click which activates when action called
@@ -268,8 +268,8 @@ private _insertIfEmpty = [
 
     // Default Text and image animations.
     ["_graphics_idle",[
-        "<t align='left'>A3A Hold Action</t>        <t color='#ffae00' align='right'>" + A3A_holdAction_keyName + "     </t>",  // Menu Text
-        "<br/>"+(format [A3A_holdAction_holdSpaceTo,"color='#ffae00'","Commence The Reckoning"])+"<br/>Must survive for 9¾ seconds.",  // On-screen Context Text
+        "<t align='left'>A3A Hold Action</t>   <t color='#ffae00' align='right'>" + A3A_holdAction_keyName + "     </t>",  // Menu Text  // Those right are required to prevent the text from hanging ut of the menu.
+        A3A_holdAction_standardSpacer+(format [A3A_holdAction_holdSpaceTo,"color='#ffae00'","Commence The Reckoning"])+"<br/>Must survive for 9¾ seconds.",  // On-screen Context Text
         A3A_holdAction_iconIdle,  // Icon
         [2,A3A_holdAction_texturesOrbitSegments]  // 12 Frames.  // Background
     ]],

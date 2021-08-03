@@ -18,7 +18,7 @@ A3A_holdAction_PIDCounter = 0;
 private _keyNameRaw = actionKeysNames ["Action",1,"Keyboard"];
 A3A_holdAction_keyName = _keyNameRaw select [1,count _keyNameRaw - 2]; // We are trimming the outer quotes.   // STR_A3_HoldKeyTo: "Hold %1 to %2"
 A3A_holdAction_holdSpaceTo = format [localize "STR_A3_HoldKeyTo", "<t %1>" + A3A_holdAction_keyName + "</t>", "%2"];       // A3A_holdAction_holdSpaceTo: "Hold space to %2", %1 is text attributes for key
-
+A3A_holdAction_standardSpacer = "<t font='RobotoCondensed' size='0.5'><br/></t>";
 // Create blank haspMap for type comparisons.
 A3A_const_hashMap = createHashMap;
 
