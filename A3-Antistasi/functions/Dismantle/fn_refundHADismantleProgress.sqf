@@ -20,4 +20,5 @@ private _joulesRemaining = _timeRemaining * (_structure getVariable ["A3A_disman
 _shared set ["_completionProgress",(_shared get "_structureJoules") - _joulesRemaining];
 
 private _graphics_progress = _shared get "_graphics_progress";
-_graphics_progress set [1,"<br/><t font='PuristaMedium' shadow='2' size='2' color='#ffae00' valign='top'><t color='#00000000'>s</t>"+(_timeRemaining toFixed 0)+"<t color='#ffffff'>s</t></t>"];
+// No line-break, positioned right under the icon.
+_graphics_progress set [1,"<t font='PuristaMedium' shadow='2' size='2' color='#ffae00' valign='top'><t color='#00000000'>s</t>"+(_timeRemaining toFixed 0)+"<t color='#ffffff'>s</t></t>"];

@@ -307,6 +307,7 @@ class A3A
         class refundHADismantleProgress {};
         class refundHADismantleStart {};
         class refundHADismissAIIdle {};
+        class refundHADismissAIStart {};
         class refundHASellVehicleIdle {};
         class refundHASellVehicleStart {};
         class refundIdentifyRefundType {};
@@ -564,6 +565,7 @@ class A3A
         class build {};
         class buildCreateVehicleCallback {};
         class buildMinefield {};
+        class dismissPlayerGroup {};
         class enemyNearCheck {};
         class equipRebel {};
         class FIAinit {};

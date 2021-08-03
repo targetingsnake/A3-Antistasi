@@ -58,6 +58,7 @@ if (isNil {A3A_refund_sellableVehicles}) then {
     A3A_refund_sellableVehicles append [vehNATOPlane,vehNATOPlaneAA,vehCSATPlane,vehCSATPlaneAA];
 };
 private _shared = createHashMapFromArray [
+    ["_idleNextCodeRunTime",0],
     ["_selectedObject",objNull],
     ["_structureCost",0],  // Needs to be saved if structure removal propagated before completionCode.
     ["_structureJoules",0],  // Needs to be saved if structure removal propagated before completionCode.
@@ -66,6 +67,9 @@ private _shared = createHashMapFromArray [
 ];
 
 private _codeIdle = {
+    if ((_shared get "_idleNextCodeRunTime") > serverTime) exitWith {};
+    _shared set ["_idleNextCodeRunTime", serverTime + 1/4];
+
     private _selectedObject = cursorObject;
     _shared set ["_selectedObject",_selectedObject];
     _shared set ["_state","idle"];
@@ -87,14 +91,18 @@ private _codeIdle = {
             [] call A3A_fnc_refundHASellVehicleIdle;
         };
         case ("dismissAI"): {
+            [] call A3A_fnc_refundHADismissAIIdle;
         };
         case ("exit"): {
             _overlayLayers pushBack "_graphics_exit";
         };
     };
+    if (isNil{Dev_BRSize}) then {
+        Dev_BRSize = 1;
+    };
     (_shared get "_graphics_idle") set [1,
-        "<br/><t font='PuristaMedium' size='1.8'>" + _topText + "</t><br/>" +
-        "<t font='PuristaMedium' size='1.2' valign='top'>" + _bottomText + "</t>"
+        A3A_holdAction_standardSpacer + "<t font='PuristaMedium' size='1.8'>" + _topText + "</t><br/>" +
+        "<t font='RobotoCondensed' size='1.2' valign='top'>" + _bottomText + "</t>"
     ];    // The invisible engineer text makes the numbers centers
 };
 
@@ -113,6 +121,7 @@ private _codeStart = {
             [] call A3A_fnc_refundHASellVehicleStart;
         };
         case ("dismissAI"): {
+            [] call A3A_fnc_refundHADismissAIStart;
         };
         case ("exit"): {
             _shared set ["_dispose",true];
@@ -141,10 +150,10 @@ _shared insert [
 
     // Default Text and image animations.
     ["_graphics_idle",[
-        "<t align='left'>Refund Menu</t>   <t color='#ffae00' align='right'>" + A3A_holdAction_keyName + "</t>",  // Menu Text
-        "<br/>Error: Text Not Inserted",  // On-screen Context Text
+        "<t align='left'>Refund Menu</t>   <t color='#ffae00' align='right'>" + A3A_holdAction_keyName + "     </t>",  // Menu Text
+        A3A_holdAction_standardSpacer + "Error: Text Not Inserted",  // On-screen Context Text
         A3A_holdAction_iconIdle,  // Icon
-        [2,A3A_holdAction_texturesOrbitSegments]  //  12 Frames.  // Background
+        [1,A3A_holdAction_texturesOrbitSegments]  //  12 Frames.  // Background
     ]],
     ["_graphics_disabled",[
         nil,
@@ -154,7 +163,7 @@ _shared insert [
     ]],
     ["_graphics_progress",[
         nil /*Load from idle*/,  // Menu Text
-        "<br/>Error: Text Not Inserted",  // On-screen Context Text
+        A3A_holdAction_standardSpacer + "Error: Text Not Inserted",  // On-screen Context Text
         "<img image='\a3\ui_f_oldman\Data\IGUI\Cfg\HoldActions\holdAction_market_ca.paa'/>",  // Icon
         [0,A3A_holdAction_texturesClockwise apply {"<t color='#ffae00'>"+_x+"</t>"}]  //  25 Frames.  // Background
     ]],
@@ -166,13 +175,13 @@ _shared insert [
     ]],
     ["_graphics_exit",[
         nil,  // Menu Text
-        "<br/><t font='PuristaMedium' size='1.8'>"+(format [A3A_holdAction_holdSpaceTo,"color='#ffae00'","Exit"]) + "</t><br/><t font='PuristaMedium' size='1.2' valign='top'>No Dismantlable Selected.</t>",  // On-screen Context Text
+        A3A_holdAction_standardSpacer + "<t font='PuristaMedium' size='1.8'>"+(format [A3A_holdAction_holdSpaceTo,"color='#ffae00'","Exit"]) + "</t><br/><t font='PuristaMedium' size='1.2' valign='top'>No Dismantlable Selected.</t>",  // On-screen Context Text
         "<img image='\A3\Ui_f\data\IGUI\Cfg\HoldActions\holdAction_forceRespawn_ca.paa'/>",  // Icon
         [4,A3A_holdAction_texturesRingBreath]  //  60 Frames. // Background
     ]],
     ["_graphics_tooFar",[
         nil /*Load from idle*/,  // Menu Text
-        "<br/><t font='PuristaMedium' size='1.8'>Go closer</t>",  // On-screen Context Text
+        A3A_holdAction_standardSpacer + "<t font='PuristaMedium' size='1.8'>Go closer</t>",  // On-screen Context Text
         "<img image='\a3\ui_f\data\IGUI\Cfg\HoldActions\holdAction_search_ca.paa'/>",  // Icon
         nil  // Background
     ]],
@@ -219,6 +228,30 @@ _shared insert [
         nil  // Background
     ]],
     ["_graphics_sellVehicle",[
+        nil,  // Menu Text
+        nil,  // On-screen Context Text
+        "<img image='\a3\ui_f_oldman\Data\IGUI\Cfg\HoldActions\holdAction_market_ca.paa'/>",  // Icon
+        nil  // Background
+    ]],
+    ["_graphics_notSquadLeader",[
+        nil,  // Menu Text
+        nil,  // On-screen Context Text
+        "<img image='\a3\ui_f\data\IGUI\Cfg\HoldActions\holdAction_passLeadership_ca.paa'/>",  // Icon
+        nil  // Background
+    ]],
+    ["_graphics_petros",[
+        nil,  // Menu Text
+        nil,  // On-screen Context Text
+        "<img image='functions\Dismantle\images\holdAction_petros.paa'/>",  // Icon
+        nil  // Background
+    ]],
+    ["_graphics_injured",[
+        nil,  // Menu Text
+        nil,  // On-screen Context Text
+        "<img image='\A3\Ui_f\data\IGUI\Cfg\HoldActions\holdAction_revive_ca.paa'/>",  // Icon
+        nil  // Background
+    ]],
+    ["_graphics_dismissAI",[
         nil,  // Menu Text
         nil,  // On-screen Context Text
         "<img image='\a3\ui_f_oldman\Data\IGUI\Cfg\HoldActions\holdAction_market_ca.paa'/>",  // Icon

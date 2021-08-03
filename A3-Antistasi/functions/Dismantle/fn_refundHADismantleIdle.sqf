@@ -29,7 +29,7 @@ if (_activeWatts != 0) then {
     _topText = format [A3A_holdAction_holdSpaceTo,"color='#ffae00'","Dismantle"];
     _potentialTimeRemaining = _joules / _inputWatts;
 };
-_bottomText = "<t color='#00000000'>"+_engineerBonusText+"</t>"+(_potentialTimeRemaining toFixed 0)+"s "+(_structureCost * COST_RETURN_RATIO toFixed 0)+"€<t color='#cccccc'>"+_engineerBonusText+"</t>";
+_bottomText = "<t color='#00000000'>"+_engineerBonusText+"</t>"+(_potentialTimeRemaining toFixed 0)+"s, +"+(_structureCost * COST_RETURN_RATIO toFixed 0)+"€<t color='#cccccc'>"+_engineerBonusText+"</t>";
 
 private _boundingSphereDiameter = (2 boundingBox _structure)#2;
 private _dismantleRadius = _boundingSphereDiameter/2 * 1.5 + 3;

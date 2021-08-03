@@ -1,57 +1,40 @@
-//if (!isServer) exitWith{};
+_shared set ["_state","disabled"];
+private _AISoldier = _shared get "_selectedObject";
 
-if (player != leader group player) exitWith {["Dismiss Group", "You cannot dismiss anyone if you are not the squad leader"] call A3A_fnc_customHint;};
+if (player isNotEqualTo leader group player) exitWith {
+    _topText = "Not Squad Leader";
+    _bottomText = "Must be squad leader to dismiss soldiers.";
+    _overlayLayers pushBack "_graphics_notSquadLeader";
+};
 
-private ["_units","_hr","_resourcesFIA","_unit","_newGroup"];
+if (_AISoldier isEqualTo Petros) exitWith {
 
-_units = _this select 0;
-_units = _units - [player];
-_units = _units select { !(isPlayer _x) && { !(_x == petros) } };
-if (_units isEqualTo []) exitWith {};
-if (_units findIf {!([_x] call A3A_fnc_canFight)} != -1) exitWith {["Dismiss Group", "You cannot disband supressed, undercover or unconscious units"] call A3A_fnc_customHint;};
-player globalChat "Get out of my sight you useless scum!";
+    private _humanResources = server getVariable "hr";
+    private _factionCash = server getVariable "resourcesFIA";
+    private _petrosHR = round(_humanResources*0.9);
+    private _petrosCost = round(_factionCash*0.9);
 
-_newGroup = createGroup teamPlayer;
-//if ({isPlayer _x} count units group player == 1) then {_ai = true; _newGroup = createGroup teamPlayer};
+    _topText = "Dismiss Comrade Petros?";
+    _bottomText = "That's treason!" + " -"+(_petrosHR toFixed 0)+"HR, -"+(_petrosCost toFixed 0)+"€";
+    _overlayLayers pushBack "_graphics_petros";
+};
 
-{
-if ((_x getVariable "unitType") != SDKUnarmed) then
-	{
-	[_x] join _newGroup;
-	if !(A3A_hasIFA) then {arrayids = arrayids + [name _x]};
-	};
-} forEach _units;
+if (player isNotEqualTo leader group _AISoldier) exitWith {
+    _topText = "Different Squad";
+    _bottomText = "Can only dismiss your soldiers";
+    _overlayLayers pushBack "_graphics_notSquadLeader";
+};
 
-if (recruitCooldown < time) then {recruitCooldown = time + 60} else {recruitCooldown = recruitCooldown + 60};
+if !([_AISoldier] call A3A_fnc_canFight) exitWith {
+    _topText = "Soldier Injured";
+    _bottomText = "Cannot dismiss suppressed, undercover, or unconscious soldiers.";
+    _overlayLayers pushBack "_graphics_injured";
+};
 
+// Apparently server is an object or location? No clue honestly. Extracted from A3-Antistasi/REINF/dismissPlayerGroup.sqf
+private _cost = server getVariable (_AISoldier getVariable "unitType");
 
-_LeaderX = leader _newGroup;
-
-{_x domove getMarkerPos respawnTeamPlayer} forEach units _newGroup;
-
-_timeX = time + 120;
-
-waitUntil {sleep 1; (time > _timeX) or ({(_x distance getMarkerPos respawnTeamPlayer < 50) and (alive _x)} count units _newGroup == {alive _x} count units _newGroup)};
-
-_hr = 0;
-_resourcesFIA = 0;
-_items = [];
-_ammunition = [];
-_weaponsX = [];
-
-{_unit = _x;
-if ([_unit] call A3A_fnc_canFight) then
-	{
-	_resourcesFIA = _resourcesFIA + (server getVariable (_unit getVariable "unitType"));
-	_hr = _hr +1;
-	{if (not(([_x] call BIS_fnc_baseWeapon) in unlockedWeapons)) then {_weaponsX pushBack ([_x] call BIS_fnc_baseWeapon)}} forEach weapons _unit;
-	{if (not(_x in unlockedMagazines)) then {_ammunition pushBack _x}} forEach magazines _unit;
-	_items = _items + (items _unit) + (primaryWeaponItems _unit) + (assignedItems _unit) + (secondaryWeaponItems _unit) + [(hmd _unit),(headGear _unit),(vest _unit)];
-	};
-deleteVehicle _x;
-} forEach units _newGroup;
-if (!isMultiplayer) then {_nul = [_hr,_resourcesFIA] remoteExec ["A3A_fnc_resourcesFIA",2];} else {_nul = [_hr,0] remoteExec ["A3A_fnc_resourcesFIA",2]; [_resourcesFIA] call A3A_fnc_resourcesPlayer};
-{boxX addWeaponCargoGlobal [_x,1]} forEach _weaponsX;
-{boxX addMagazineCargoGlobal [_x,1]} forEach _ammunition;
-{boxX addItemCargoGlobal [_x,1]} forEach _items;
-deleteGroup _newGroup;
+_shared set ["_state","idle"];
+_topText = format [A3A_holdAction_holdSpaceTo,"color='#ffae00'","Dismiss Soldier"];
+_bottomText = "+1HR, +"+(_cost toFixed 0)+"€";
+_overlayLayers pushBack "_graphics_dismissAI";

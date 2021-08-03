@@ -44,5 +44,5 @@ if (_cost == 0) exitWith {
 
 _shared set ["_state","idle"];
 _topText = format [A3A_holdAction_holdSpaceTo,"color='#ffae00'","Sell Vehicle"];
-_bottomText = (_cost toFixed 0)+"€";
+_bottomText = " +"+(_cost toFixed 0)+"€";
 _overlayLayers pushBack "_graphics_sellVehicle";

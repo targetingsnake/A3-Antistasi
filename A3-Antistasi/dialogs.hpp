@@ -1673,7 +1673,7 @@ class AI_management 		{
 			w = 0.175015 * safezoneW;
 			h = 0.0560125 * safezoneH;
 			tooltip = $STR_antistasi_dialogs_AI_management_dismiss_units_tooltip;
-			action = "closeDialog 0;if (count groupselectedUnits player > 0) then {nul = [groupselectedUnits player] execVM ""REINF\dismissPlayerGroup.sqf""} else {if (count (hcSelected player) > 0) then {nul = [hcSelected player] execVM ""REINF\dismissSquad.sqf""}}; if ((count groupselectedUnits player == 0) and (count hcSelected player == 0)) then {[""Dismiss Squad"", ""No units or squads selected""] call A3A_fnc_customHint;}";
+			action = "closeDialog 0;if (count groupselectedUnits player > 0) then {nul = [groupselectedUnits player] call A3A_fnc_dismissPlayerGroup} else {if (count (hcSelected player) > 0) then {nul = [hcSelected player] execVM ""REINF\dismissSquad.sqf""}}; if ((count groupselectedUnits player == 0) and (count hcSelected player == 0)) then {[""Dismiss Squad"", ""No units or squads selected""] call A3A_fnc_customHint;}";
 		};
 		class 8slots_R4: RscButton
 		{
@@ -1925,7 +1925,7 @@ class dismiss_menu 				{
 			w = 0.175015 * safezoneW;
 			h = 0.0560125 * safezoneH;
 			tooltip = $STR_antistasi_dialogs_dismiss_menu_dismiss_tooltip;
-			action = "closeDialog 0;if (count groupselectedUnits player > 0) then {nul = [groupselectedUnits player] execVM ""REINF\dismissPlayerGroup.sqf""} else {if (count (hcSelected player) > 0) then {nul = [hcSelected player] execVM ""REINF\dismissSquad.sqf""}}; if ((count groupselectedUnits player == 0) and (count hcSelected player == 0)) then {[""Garrison Squad"", ""No units or squads selected""] call A3A_fnc_customHint;}";
+			action = "closeDialog 0;if (count groupselectedUnits player > 0) then {nul = [groupselectedUnits player] call A3A_fnc_dismissPlayerGroup} else {if (count (hcSelected player) > 0) then {nul = [hcSelected player] execVM ""REINF\dismissSquad.sqf""}}; if ((count groupselectedUnits player == 0) and (count hcSelected player == 0)) then {[""Garrison Squad"", ""No units or squads selected""] call A3A_fnc_customHint;}";
 		};
 		class HQ_button_Gstatic: RscButton
 		{
