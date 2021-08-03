@@ -24,7 +24,7 @@ Example:
 #include "..\..\Includes\common.inc"
 FIX_LINE_NUMBERS()
 params [
-    ["_structure",objNull,[ objNull ]],
+    ["_selectedObject",objNull,[ objNull ]],
     ["_worker",objNull,[ objNull ]],
     ["_timeMultiplier",0.75,[ 0.75 ]],
     ["_costReturnMultiplier",0,[ 0 ]]
@@ -117,7 +117,7 @@ _structure enableSimulation false;
 _structure allowDamage false;
 
 [_animation_cancellationToken,_structure,[0,0,-_roughHeight],_structureTime] spawn {
-    params ["_animation_cancellationToken","_structure","_fullMoveVector","_duration"];
+    params ["_animation_cancellationToken","_selectedObject","_fullMoveVector","_duration"];
     private _initialPos = getPos _structure;
     private _startTime = serverTime;
     while {!(_animation_cancellationToken#0)} do {

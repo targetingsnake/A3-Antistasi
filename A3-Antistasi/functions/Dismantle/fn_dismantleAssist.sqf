@@ -43,7 +43,7 @@ if (_watts == 0) then {
     _joulesRemaining = _joules;
 };
 
-private _additionalWatts = ([-1,1] select _add) * ([REBEL_WATTS,ENGINEER_WATTS] select (_unit getUnitTrait "engineer"));
+private _additionalWatts = ([-1,1] select _add) * ([SOLDIER_WATTS,ENGINEER_WATTS] select (_unit getUnitTrait "engineer"));
 _watts = _additionalWatts + (_watts max 0);
 if (_watts <= 0) then {
     _watts = -DECAY_WATTS;
@@ -57,4 +57,4 @@ _structure setVariable ["A3A_dismantle_eta",serverTime + _timeLeft,true];
 if !(_structure getVariable ["A3A_dismantle_hasHost",false]) then {
     _structure setVariable ["A3A_dismantle_hasHost",true];
     [_structure] spawn A3A_fnc_dismantleHost;
-}
+};

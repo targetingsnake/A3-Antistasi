@@ -300,6 +300,16 @@ class A3A
         class dismantleAuto {};
         class dismantleHost {};
         class dismantleUI {};
+        class refundCanGiveAuthorisation {};
+        class refundHADismantleCompleted {};
+        class refundHADismantleIdle {};
+        class refundHADismantleInterrupted {};
+        class refundHADismantleProgress {};
+        class refundHADismantleStart {};
+        class refundHADismissAIIdle {};
+        class refundHASellVehicleIdle {};
+        class refundHASellVehicleStart {};
+        class refundIdentifyRefundType {};
     };
 
     class EventHandler
@@ -479,6 +489,7 @@ class A3A
     class OrgPlayers
     {
         class donateMoney {};
+        class isAdmin {};
         class isMember {};
         class makePlayerBossIfEligible {};
         class memberAdd {};
