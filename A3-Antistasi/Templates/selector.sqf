@@ -13,7 +13,7 @@ Dependencies:
 #include "..\Includes\common.inc"
 FIX_LINE_NUMBERS()
 //Map checker
-aridmaps = ["altis","kunduz","malden","tem_anizay","takistan","sara"];
+aridmaps = ["altis","kunduz","malden","tem_anizay","takistan","sara","tem_kujari"];
 tropicalmaps = ["tanoa","cam_lao_nam"];
 temperatemaps = ["enoch","chernarus_summer","vt7","tembelan"];
 arcticmaps = ["chernarus_winter"];
