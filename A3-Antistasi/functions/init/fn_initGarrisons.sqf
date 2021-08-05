@@ -137,9 +137,6 @@ if (gameMode == 1) then
 		case "malden": {
 			_mrkCSAT = ["airport", "seaport_7"];
 		};
-		case "tem_kujari": {
-			_mrkCSAT = [];
-		};
 		case "vt7": {
 			_mrkCSAT = ["airport_2", "control_25", "control_29", "control_30", "control_31", "control_32", "Seaport_1", "Outpost_3"];
 			_controlsCSAT = ["control_25", "control_29", "control_30", "control_31", "control_32"];
@@ -154,6 +151,10 @@ if (gameMode == 1) then
 		case "sara": {
 			_mrkCSAT = ["airport_1", "seaport_6", "outpost_22", "outpost_15", "resource_9", "outpost_19", "outpost_14", "resource_11"];
 			_controlsCSAT = ["control_28", "control_27"];
+		};
+		case "tem_kujari": {
+			_mrkCSAT = ["airport_2", "factory_4", "resource_10", "outpost_11", "outpost_13"];
+			_controlsCSAT = ["control_11", "control_12", "control_13", "control_14", "control_15", "control_16", "control_17", "control_18"];
 		};
 		case "cam_lao_nam": {
 			_mrkCSAT = ["airport_5", "outpost_33", "outpost_34", "resource_4", "seaport_3", "outpost_15", "outpost_22", "outpost_8", "outpost_4", "resource_9", "outpost_21", "resource_14", "outpost_3", "outpost_2", "factory_3", "outpost_1", "outpost_7", "seaport_2", "outpost_32", "airport_1", "outpost_23", "outpost_10", "outpost_5", "outpost_16", "outpost_6", "outpost_11", "resource_6", "resource_20", "outpost_9", "outpost_38"];
