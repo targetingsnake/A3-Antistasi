@@ -44,11 +44,13 @@ private _validClassCaseSensitive = {
 
 //these functions hack the parent scope for the variables; _y, _entry
 private _validateArrayOfClasses = {
+    if (_y isEqualTo []) exitWith {};
     if !(_y isEqualType []) exitWith { _invalidReasons pushBack ("Entry "+(str _entry)+" is not an array, This entry should be an array of vehicle class names.") };
     { ["CfgVehicles", _x, _entry] call _validClassCaseSensitive } forEach _y;
 };
 
 private _validateSingleClass = {
+    if (_y isEqualTo "") exitWith {};
     if !(_y isEqualType "") exitWith { _invalidReasons pushBack ("Entry "+(str _entry)+" is not a string, This entry should be a vehicle class name.") };
     ["CfgVehicles", _y, _entry] call _validClassCaseSensitive;
 };
@@ -58,6 +60,7 @@ private _validateString = {
 };
 
 private _validateMagazine = {
+    if (_y isEqualTo "") exitWith {};
     if !(_y isEqualType "") exitWith { _invalidReasons pushBack ("Entry "+(str _entry)+" is not a string, This entry should be a magazine class name.") };
     ["CfgMagazines", _y, _entry] call _validClassCaseSensitive;
 };
