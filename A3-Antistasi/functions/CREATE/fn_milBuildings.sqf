@@ -28,6 +28,7 @@ private _spawnParameter = [_markerX, "Heli"] call A3A_fnc_findSpawnPosition;
 private _count = 1 + round (random 3); //Change these numbers as you want, first number is minimum, max is first plus second number
 while {_spawnParameter isEqualType [] && {_count > 0}} do
 {
+    if (_helicopterTypes isEqualTo []) exitWith {}; //no helis to pick from
     _typeVehX = selectRandom _helicopterTypes;
     _veh = createVehicle [_typeVehX, (_spawnParameter select 0), [],0, "CAN_COLLIDE"];
     _veh setDir (_spawnParameter select 1);
