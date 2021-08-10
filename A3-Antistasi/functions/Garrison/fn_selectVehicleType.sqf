@@ -59,8 +59,8 @@ if(_preference in ["AIR_GENERIC", "AIR_DEFAULT"]) then {
 
 if(count _possibleVehicles == 0) exitWith
 {
-    Error_1("No result for %1, assuming bad parameter!", _preference);
-    "Empty";
+    //Error_1("No result for %1, assuming bad parameter!", _preference);
+    "";
 };
 
 Verbose_1("SelectVehicleType: Preselection done, possible vehicles are %1", str _possibleVehicles);
