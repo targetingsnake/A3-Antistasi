@@ -58,7 +58,7 @@
 ["vehiclesHelisAttack", ["vn_o_air_mi2_04_02","vn_o_air_mi2_05_04"]] call _fnc_saveToTemplate;
 
 ["vehiclesArtillery", ["vn_o_vc_static_mortar_type53"]] call _fnc_saveToTemplate;
-["magazines", [
+["magazines", createHashMapFromArray [
 ["vn_o_vc_static_mortar_type53", ["vn_mortar_type53_mag_he_x8"]]
 ]] call _fnc_saveToTemplate;
 

@@ -7,9 +7,23 @@ params ["_faction", "_side", "_templatePath"];
 //===========|
 private _printInvalidReasons = {
     if (_invalidReasons isEqualTo []) exitWith {};
-    private _failedText = _templatePath+" Template validation failed for:"+endl + ((_invalidReasons apply {LogNewLine+_x}) joinString endl);
-    Error(_failedText);
+
+    private _failedText = _templatePath+" Template validation failed for:"+endl;
+    private _count = count _failedText;
+    _printStack = {
+        Error(_failedText);
+        _failedText = endl;
+        _count = 0;
+    };
+
+    {
+        if (_count > 1023) then _printStack;
+        private _newLine = LogNewLine + _x + endl;
+        _failedText = _failedText + _newLine;
+        _count = _count + count _newLine;
+    } forEach _invalidReasons;
 };
+
 private _validClassCaseSensitive = {
     params ["_cfg", "_class", ["_entry", ""]];
     if !(_class isEqualType "") exitWith {
@@ -56,12 +70,12 @@ private _validateMagazinesHM = {
     //hm of key: Vehicle class, Value: Array of magazine classes
     if !(_y isEqualType createHashmap) exitWith { _invalidReasons pushBack ("Entry "+(str _entry)+" is not a hashmap, This entry should be a hashmap of vehicles and there corresponding magazine classes.") };
     {
-        ["CfgVehicles", _x, _entry] call _validClassCaseSensitive;
+        ["CfgMagazines", _x, _entry] call _validClassCaseSensitive;
         call _validateArrayMagazines;
     } forEach _y;
 };
 
-private _validateWeaightedArray = {
+private _validateWeightedArray = {
     if !(_y isEqualType []) exitWith { _invalidReasons pushBack ("Entry "+(str _entry)+" is not an array, This entry should be an weighted array.") };
     for "_i" from 0 to count _y-2 step 2 do {
         if !(
@@ -134,10 +148,6 @@ private _handleUniqueCases = { //handles unique name cases that the stored value
         case "addDiveGear";
         case "addFlightGear": { if !(_y isEqualType true) then {_invalidReasons pushBack ("Entry: "+(str _entry)+" is not of type bool")} };
 
-        //skip validation as its checked elsewere or buildt of valid stuff
-        case "groups";
-        case "loadouts": {};
-
         //truly unique cases
         case "magazines": _validateMagazinesHM;
         case "placeIntel_itemMedium";
@@ -164,21 +174,22 @@ private _handleUniqueCases = { //handles unique name cases that the stored value
 //=======================|
 // Process template data |
 //=======================|
+Info_2("Template validation for side: %1 | Template: %2",_side, _templatePath);
+private _invalidReasons = [];
 {
-    private _invalidReasons = [];
     _x params ["_entry"];
+    if (_entry in ["groups", "loadouts"]) then {continue};
+
     switch true do {
-
+        case ("Mag" in _entry): _validateMagazine;
+        case ("vehiclesCiv" in _entry): _validateWeightedArray;
         case ("vehicles" in _entry): _validateArrayOfClasses;
-
         case ("vehicle" in _entry): _validateSingleClass;
-
         case ("static" in _entry): {
             if (_side in [west, east]) then _validateArrayOfClasses else _validateSingleClass;
         };
 
         default _handleUniqueCases;
-
     };
-    call _printInvalidReasons;
 } forEach _faction;
+call _printInvalidReasons;

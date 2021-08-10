@@ -46,7 +46,7 @@
 ["vehiclesHelisAttack", ["B_Heli_Light_01_armed_F", "B_Heli_Attack_01_F"]] call _fnc_saveToTemplate;
 
 ["vehiclesArtillery", ["B_T_MBT_01_arty_F", "B_T_MBT_01_mlrs_F"]] call _fnc_saveToTemplate;
-["magazines", [
+["magazines", createHashMapFromArray [
 ["B_T_MBT_01_arty_F", ["32Rnd_155mm_Mo_shells"]],
 ["B_T_MBT_01_mlrs_F", ["12Rnd_230mm_rockets"]]
 ]] call _fnc_saveToTemplate;
