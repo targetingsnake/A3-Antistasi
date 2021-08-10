@@ -12,7 +12,7 @@ private _groupData = FactionGetGroups(_side);
 */
 
 private ["_vehicleType", "_vehicle", "_crew", "_crewMember", "_cargoGroup", "_line"];
-
+//data format: vehicle preference, include veh crew, squad preference
 _vehicleType = _data select 0;
 _vehicle = [_vehicleType, _side] call A3A_fnc_selectVehicleType;
 _crew = [];
