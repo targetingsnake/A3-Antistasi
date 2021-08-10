@@ -8,10 +8,10 @@ params ["_faction", "_side", "_templatePath"];
 private _printInvalidReasons = {
     if (_invalidReasons isEqualTo []) exitWith {};
 
-    private _failedText = _templatePath+" Template validation failed for:"+endl;
+    private _failedText = _templatePath+" Template validation failed for:" + endl;
     private _count = count _failedText;
     _printStack = {
-        Error(_failedText);
+        Error(_failedText + LogNewLine);
         _failedText = endl;
         _count = 0;
     };
@@ -22,6 +22,7 @@ private _printInvalidReasons = {
         _failedText = _failedText + _newLine;
         _count = _count + count _newLine;
     } forEach _invalidReasons;
+    call _printStack;
 };
 
 private _validClassCaseSensitive = {
@@ -70,7 +71,7 @@ private _validateMagazinesHM = {
     //hm of key: Vehicle class, Value: Array of magazine classes
     if !(_y isEqualType createHashmap) exitWith { _invalidReasons pushBack ("Entry "+(str _entry)+" is not a hashmap, This entry should be a hashmap of vehicles and there corresponding magazine classes.") };
     {
-        ["CfgMagazines", _x, _entry] call _validClassCaseSensitive;
+        ["CfgVehicles", _x, _entry] call _validClassCaseSensitive;
         call _validateArrayMagazines;
     } forEach _y;
 };
@@ -188,7 +189,6 @@ private _invalidReasons = [];
         case ("static" in _entry): {
             if (_side in [west, east]) then _validateArrayOfClasses else _validateSingleClass;
         };
-
         default _handleUniqueCases;
     };
 } forEach _faction;
