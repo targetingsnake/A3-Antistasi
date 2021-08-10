@@ -504,7 +504,7 @@ while {(_waves > 0)} do
 		//75% chance to spawn a UAV, to give some variety.
 		if (random 1 < 0.25) exitWith {};
 		_typeVehX = selectRandom (_faction get "uavsAttack");
-		if (_typeVehX isEqualTo []) exitWith {};
+		if (isNil "_typeVehX") exitWith {};
 		_uav = createVehicle [_typeVehX, _posOrigin, [], 0, "FLY"];
 		_vehiclesX pushBack _uav;
 		_airSupport pushBack _uav;
