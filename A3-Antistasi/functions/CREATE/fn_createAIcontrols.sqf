@@ -160,11 +160,10 @@ else
 		if ({if (_x inArea _markerX) exitWith {1}} count allMines == 0) then
 			{
 			Debug_1("Creating a Minefield at %1", _markerX);
-				private _mines = ([A3A_faction_inv,A3A_faction_occ] select (_sideX == Occupants)) getVariable "minefieldAPERS";
-				private _revealTo = [Invaders,Occupants] select (_sideX == Occupants);
+				private _mines = (_faction get "minefieldAPERS");
 				for "_i" from 1 to 45 do {
 					_mineX = createMine [ selectRandom _mines ,_positionX,[],_size];
-					_revealTo revealMine _mineX;
+					_sideX revealMine _mineX;
 				};
 			};
 		_groupX = [_positionX,_sideX, _cfg] call A3A_fnc_spawnGroup;
