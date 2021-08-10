@@ -42,6 +42,10 @@ private _autoPickAI = {
                     case (toLower worldName in arcticmaps);
                     case (toLower worldName in temperatemaps): {"US Marines"};
                     case (toLower worldName in tropicalmaps): {"Coldwar US"};
+                    case (toLower worldName == "kunduz"): {"ANA"};
+                    case (toLower worldName == "altis"): {"3CB AAF"};
+                    case (toLower worldName == "tanoa"): {"HIDF"};
+                    case (toLower worldName == "malden"): {"MDF"};
                     default {"TKA West"};
                 };
             };
@@ -126,6 +130,11 @@ private _AIFactionEnums = [
     , ["Coldwar Soviets", A3A_has3CBFactions]
     , ["TKA West", A3A_has3CBFactions]
     , ["TKA East", A3A_has3CBFactions]
+    , ["ADA", A3A_has3CBFactions]
+    , ["ANA", A3A_has3CBFactions]
+    , ["3CB AAF", A3A_has3CBFactions]
+    , ["MDF", A3A_has3CBFactions]
+    , ["HIDF", A3A_has3CBFactions]
     , ["MACV", A3A_hasVN]
     , ["PAVN", A3A_hasVN]
 ];
@@ -166,6 +175,11 @@ private _pickAITemplate = {
         case "Coldwar Soviets": { "Templates\Templates\3CB\3CB_AI_CW_SOV.sqf" };
         case "TKA West": { "Templates\Templates\3CB\3CB_AI_TKA_West.sqf" };
         case "TKA East": { "Templates\Templates\3CB\3CB_AI_TKA_East.sqf" };
+        case "ADA": { "Templates\Templates\3CB\3CB_AI_ADA.sqf" };
+        case "ANA": { "Templates\Templates\3CB\3CB_AI_ANA.sqf" };
+        case "3CB AAF": { "Templates\Templates\3CB\3CB_AI_AAF.sqf" };
+        case "HIDF": { "Templates\Templates\3CB\3CB_AI_HIDF.sqf" };
+        case "MDF": { "Templates\Templates\3CB\3CB_AI_MDF.sqf" };
 
         //RHS
         case "US Marines": {
