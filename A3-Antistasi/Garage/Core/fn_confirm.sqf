@@ -15,10 +15,10 @@
 
     Example: [] call HR_GRG_fnc_confirm;
 
-    License: Håkon Rydland Garage SHARED SOURCE LICENSE
+    License: APL-ND
 */
 HR_GRG_SelectedVehicles params ["_catIndex", "_vehUID", "_class"];
-if (_vehUID isEqualTo -1) exitWith {[localize "STR_HR_GRG_Feedback_confirm_NullSelection"] call HR_GRG_fnc_Hint};
+if (_vehUID isEqualTo -1) exitWith {["STR_HR_GRG_Feedback_confirm_NullSelection"] call HR_GRG_fnc_Hint};
 
 //get mounts state
 HR_GRG_Mounts apply {

@@ -75,6 +75,15 @@ private _fnc_parseWeaponFormat = {
 		// Only for primary slot
 		if (_muzzle == "pri") then {
 			private _defaultMagData = [_class] call A3A_fnc_loadout_defaultWeaponMag;
+
+            //if it dosnt have any valid mags return nothing
+            if (_defaultMagData isEqualTo []) then {
+                continueWith [
+                    [],
+                    []
+                ];
+            };
+
 			continueWith [
 				_defaultMagData,
 				[_defaultMagData select 0]

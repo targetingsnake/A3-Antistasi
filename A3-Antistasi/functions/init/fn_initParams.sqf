@@ -51,9 +51,8 @@ A3A_paramTable = [
     ["allowDLCTanks", "Tanks", ["server"], false],
     ["allowDLCGlobMob", "GlobMob", ["server"], false],
     ["allowDLCEnoch", "Enoch", ["server"], false],
-    ["allowDLCOfficialMod", "OfficialMod", ["server"], false],
     ["allowDLCAoW", "AoW", ["server"], false],
-    ["allowDLCVN", "VN", [], true],
+    ["allowDLCVN", "VN", [], false],
 
     ["membershipEnabled", "membership", [], true],
     ["switchCom", "switchComm", ["server"], true],						// dead param

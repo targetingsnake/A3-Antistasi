@@ -111,8 +111,8 @@ _loadoutData set ["sniperRifles", []];
 _loadoutData set ["lightATLaunchers", ["vn_m72"]];
 _loadoutData set ["sidearms", []];
 
-_loadoutData set ["ATMines", ["vn_mine_m14_mag"]];
-_loadoutData set ["APMines", ["vn_mine_m15_mag"]];
+_loadoutData set ["ATMines", ["vn_mine_m15_mag"]];
+_loadoutData set ["APMines", ["vn_mine_m14_mag"]];
 _loadoutData set ["lightExplosives", ["vn_mine_m112_remote_mag"]];
 _loadoutData set ["heavyExplosives", ["vn_mine_satchel_remote_02_mag"]];
 
