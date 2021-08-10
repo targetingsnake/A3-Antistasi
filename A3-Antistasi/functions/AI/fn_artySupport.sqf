@@ -63,7 +63,7 @@ if (!_hasArtillery) exitWith {["Artillery Support", "You must select an artiller
 if (!_areAlive) exitWith {["Artillery Support", "All elements in this Batery cannot fire or are disabled"] call A3A_fnc_customHint;};
 if ((_hasAmmunition < 2) and (!_areReady)) exitWith {["Artillery Support", "The Battery has no ammo to fire. Reload it on HQ"] call A3A_fnc_customHint;};
 if (!_areReady) exitWith {["Artillery Support", "Selected Battery is busy right now"] call A3A_fnc_customHint;};
-if (_typeAmmunition == "not_supported") exitWith {["Artillery Support", "Your current modset doesent support this strike type"] call A3A_fnc_customHint;};
+if (_typeAmmunition == "") exitWith {["Artillery Support", "Your current modset doesent support this strike type"] call A3A_fnc_customHint;};
 if (isNil "_typeAmmunition") exitWith {};
 
 hcShowBar false;

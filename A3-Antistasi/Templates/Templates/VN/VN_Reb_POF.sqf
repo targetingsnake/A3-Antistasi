@@ -29,18 +29,18 @@
 ["vehicleLightUnarmed", "vn_i_wheeled_m151_02"] call _fnc_saveToTemplate; 		//this line determines light and unarmed vehicles. -- Example: ["vehiclesLightUnarmed", ["B_MRAP_01_F"]] -- Array, can contain multiple assets
 ["vehicleLightArmed", "vn_i_wheeled_m151_mg_01"] call _fnc_saveToTemplate; 		//this line determines light and armed vehicles -- Example: ["vehiclesLightArmed",["B_MRAP_01_hmg_F","B_MRAP_01_gmg_F"]] -- Array, can contain multiple assets
 ["vehicleTruck", "vn_i_wheeled_m54_01"] call _fnc_saveToTemplate; 			//this line determines the trucks -- Example: ["vehiclesTrucks", ["B_Truck_01_transport_F","B_Truck_01_covered_F"]] -- Array, can contain multiple assets
-["vehicleAT", "not_supported"] call _fnc_saveToTemplate; 		//this line determines AT vehicle -- Example: ["vehiclesCargoTrucks", ["B_Truck_01_transport_F","B_Truck_01_covered_F"]] -- Array, can contain multiple assets
+["vehicleAT", ""] call _fnc_saveToTemplate; 		//this line determines AT vehicle -- Example: ["vehiclesCargoTrucks", ["B_Truck_01_transport_F","B_Truck_01_covered_F"]] -- Array, can contain multiple assets
 ["vehicleAA", "vn_b_wheeled_m54_mg_02"] call _fnc_saveToTemplate; 		//this line determines AA vehicle -- Example: ["vehiclesCargoTrucks", ["B_Truck_01_transport_F","B_Truck_01_covered_F"]] -- Array, can contain multiple assets
 
 ["vehicleBoat", "vn_o_boat_02_01"] call _fnc_saveToTemplate; 	//this line determines transport boats -- Example: ["vehiclesTransportBoats", ["B_Boat_Transport_01_F"]] -- Array, can contain multiple assets
 ["vehicleRepair", "vn_i_wheeled_m54_repair"] call _fnc_saveToTemplate; 			//this line determines gun boats -- Example: ["vehiclesGunBoats", ["B_Boat_Armed_01_minigun_F"]] -- Array, can contain multiple assets
 
 ["vehiclePlane", "vn_o_air_mi2_01_02"] call _fnc_saveToTemplate; 		//this line determines CAS planes -- Example: ["vehiclesPlanesCAS", ["B_Plane_CAS_01_dynamicLoadout_F"]] -- Array, can contain multiple assets
-["vehicleHeli", "not_supported"] call _fnc_saveToTemplate; 		//this line determines light helis -- Example: ["vehiclesHelisLight", ["B_Heli_Light_01_F"]] -- Array, can contain multiple assets
+["vehicleHeli", ""] call _fnc_saveToTemplate; 		//this line determines light helis -- Example: ["vehiclesHelisLight", ["B_Heli_Light_01_F"]] -- Array, can contain multiple assets
 
 ["vehicleCivCar", "vn_c_wheeled_m151_02"] call _fnc_saveToTemplate;
 ["vehicleCivTruck", "vn_b_wheeled_m54_01_airport"] call _fnc_saveToTemplate;
-["vehicleCivHeli", "not_supported"] call _fnc_saveToTemplate;
+["vehicleCivHeli", ""] call _fnc_saveToTemplate;
 ["vehicleCivBoat", "vn_c_boat_08_01"] call _fnc_saveToTemplate;
 
 ["staticMG", "vn_i_static_m60_high"] call _fnc_saveToTemplate; 					//this line determines static MGs -- Example: ["staticMG", ["B_HMG_01_high_F"]] -- Array, can contain multiple assets

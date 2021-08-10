@@ -25,11 +25,7 @@ private _allVehicles = switch _type do {
     case ACCESS_ARMOR: { (_faction get "vehiclesAPCs") + (_faction get "vehiclesTanks") };
     case ACCESS_AIR: {
         (_faction get "vehiclesPlanesCAS") + (_faction get "vehiclesPlanesAA") + (_faction get "vehiclesPlanesTransport")
-        + (
-            (_faction get "uavsAttack")
-            + (_faction get "uavsPortable")
-            select {_x isNotEqualTo "not_supported"}
-        ) //maybe all should have "not_supported" filtered out (out of scope for this pr)
+        + (_faction get "uavsAttack") + (_faction get "uavsPortable")
     };
 };
 private _text = "";

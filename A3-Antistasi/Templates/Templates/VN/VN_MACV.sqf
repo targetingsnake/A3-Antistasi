@@ -73,8 +73,8 @@
 ["vn_b_army_static_m101_02", ["vn_cannon_m101_mag_he_x8", "vn_cannon_m101_mag_ab_x8", "vn_cannon_m101_mag_wp_x8"]],
 ]] call _fnc_saveToTemplate;
 
-["uavsAttack", ["not_supported"]] call _fnc_saveToTemplate;
-["uavsPortable", ["not_supported"]] call _fnc_saveToTemplate;
+["uavsAttack", []] call _fnc_saveToTemplate;
+["uavsPortable", []] call _fnc_saveToTemplate;
 
 //Config special vehicles
 ["vehiclesMilitiaLightArmed", ["vn_i_wheeled_m151_mg_01_mp"]] call _fnc_saveToTemplate;

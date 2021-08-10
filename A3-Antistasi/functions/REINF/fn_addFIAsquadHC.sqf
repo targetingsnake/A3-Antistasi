@@ -21,7 +21,7 @@ _typeGroup = _this select 0;
 _exit = false;
 
 if (_typeGroup isEqualType "") then {
-	if (_typeGroup == "not_supported") then {_exit = true; ["Recruit Squad", "The group or vehicle type you requested is not supported in your modset"] call A3A_fnc_customHint;};
+	if (_typeGroup == "") then {_exit = true; ["Recruit Squad", "The group or vehicle type you requested is not supported in your modset"] call A3A_fnc_customHint;};
 	if (A3A_hasIFA and ((_typeGroup == FactionGet(reb,"staticMortar")) or (_typeGroup == FactionGet(reb,"staticMG"))) and !debug) then {_exit = true; ["Recruit Squad", "The group or vehicle type you requested is not supported in your modset"] call A3A_fnc_customHint;};
 };
 
@@ -126,7 +126,7 @@ if (_esinf) then {
 
 	if (_typeGroup == FactionGet(reb,"staticAA")) then
 	{
-		private _vehType = if (FactionGet(reb,"vehicleAA") != "not_supported") then {FactionGet(reb,"vehicleAA")} else {FactionGet(reb,"vehicleTruck")}; //ToDo get rid of not_supported syntax
+		private _vehType = if (FactionGet(reb,"vehicleAA") != "") then {FactionGet(reb,"vehicleAA")} else {FactionGet(reb,"vehicleTruck")};
 		_truckX = createVehicle [_vehType, _pos, [], 0, "NONE"];
 		_truckX setDir _roadDirection;
 
@@ -136,7 +136,7 @@ if (_esinf) then {
 		_driver moveInDriver _truckX;
 		_driver assignAsDriver _truckX;
 
-		if (FactionGet(reb,"vehicleAA") == "not_supported") then //maybe switch to logistic load
+		if (FactionGet(reb,"vehicleAA") == "") then //maybe switch to logistic load
 		{
 			private _lpos = _pos vectorAdd [0,0,1000];
 			private _launcher = createVehicle [FactionGet(reb,"staticAA"), _lpos, [], 0, "CAN_COLLIDE"];

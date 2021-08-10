@@ -74,8 +74,8 @@
 ["staticAA", ["vn_o_nva_static_zpu4"]] call _fnc_saveToTemplate;
 ["staticMortars", ["vn_o_nva_65_static_mortar_type63"]] call _fnc_saveToTemplate;
 
-["uavsAttack", ["not_supported"]] call _fnc_saveToTemplate;
-["uavsPortable", ["not_supported"]] call _fnc_saveToTemplate;
+["uavsAttack", []] call _fnc_saveToTemplate;
+["uavsPortable", []] call _fnc_saveToTemplate;
 
 ["mortarMagazineHE", "vn_mortar_type63_mag_he_x8"] call _fnc_saveToTemplate;
 ["mortarMagazineSmoke", "vn_mortar_type63_mag_wp_x8"] call _fnc_saveToTemplate;

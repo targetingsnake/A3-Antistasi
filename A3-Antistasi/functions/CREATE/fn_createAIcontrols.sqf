@@ -170,7 +170,7 @@ else
 		_groupX = [_positionX,_sideX, _cfg] call A3A_fnc_spawnGroup;
 		_nul = [leader _groupX, _markerX, "SAFE","SPAWNED","RANDOM","NOVEH2","NOFOLLOW"] execVM "scripts\UPSMON.sqf";//TODO need delete UPSMON link
 		_typeVehX = selectRandom (_faction get "uavsPortable");
-		if (_typeVehX != "not_supported") then
+		if (_typeVehX isNotEqualTo []) then
 			{
 			sleep 1;
 			{_soldiers pushBack _x} forEach units _groupX;

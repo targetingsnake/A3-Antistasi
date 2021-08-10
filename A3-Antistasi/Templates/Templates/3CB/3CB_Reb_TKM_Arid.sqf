@@ -19,7 +19,7 @@
 ["vehicleRepair", "UK3CB_CCM_I_V3S_Repair"] call _fnc_saveToTemplate; 			//this line determines gun boats -- Example: ["vehiclesGunBoats", ["B_Boat_Armed_01_minigun_F"]] -- Array, can contain multiple assets
 
 ["vehiclePlane", "UK3CB_CHC_I_Antonov_AN2"] call _fnc_saveToTemplate; 		//this line determines CAS planes -- Example: ["vehiclesPlanesCAS", ["B_Plane_CAS_01_dynamicLoadout_F"]] -- Array, can contain multiple assets
-["vehicleHeli", "not_supported"] call _fnc_saveToTemplate; 		//this line determines light helis -- Example: ["vehiclesHelisLight", ["B_Heli_Light_01_F"]] -- Array, can contain multiple assets
+["vehicleHeli", ""] call _fnc_saveToTemplate; 		//this line determines light helis -- Example: ["vehiclesHelisLight", ["B_Heli_Light_01_F"]] -- Array, can contain multiple assets
 
 ["vehicleCivCar", "UK3CB_C_Hilux_Open"] call _fnc_saveToTemplate;
 ["vehicleCivTruck", "UK3CB_TKC_C_Kamaz_Open"] call _fnc_saveToTemplate;
