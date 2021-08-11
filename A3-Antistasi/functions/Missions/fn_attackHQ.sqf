@@ -53,6 +53,7 @@ _typeGroup = _groupData get "specOps";
 for "_i" from 0 to (round random 2) do
 	{
 	_typeVehX = selectRandom _typesVeh;
+    if (isNil "_typeVehX") exitWith {};
 	//_pos = [_positionX, distanceSPWN * 3, random 360] call BIS_Fnc_relPos;
 	_vehicle=[_posOrigin, 0, _typeVehX, _sideX] call A3A_fnc_spawnVehicle;
 	_heli = _vehicle select 0;
