@@ -3,7 +3,7 @@ FIX_LINE_NUMBERS()
 if (!isServer) exitWith {};
 private ["_typeX","_sideX","_markerX","_modeX","_garrison","_subType"];
 //ModeX: -1 to remove 1 unbit (killed EHs etc). 1 add 1 single classname / object. 2 adds a hole array and admits classnames or objects
-params ["_typeX", "_sideX", "_markerX", "_modeX"]
+params ["_typeX", "_sideX", "_markerX", "_modeX"];
 if (isNil "_typeX") exitWith {};
 if (_typeX isEqualType []) then {
 	if ((_typeX select 0) isEqualType objNull) then {
