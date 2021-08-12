@@ -30,10 +30,6 @@ if (_exit) exitWith {
 };
 
 waitUntil {!garrisonIsChanging};
-{if (isNil _x) exitWith {_exit = true}} forEach ["_typeX","_sideX","_markerX","_modeX"];
-if (_exit) exitWith {
-    Error_4("Failed to update Garrison with params:%1,%2,%3,%4",_typeX,_sideX,_markerX,_modeX);
-	};
 garrisonIsChanging = true;
 if ((_sideX == Occupants) and (!(sidesX getVariable [_markerX,sideUnknown] == Occupants))) exitWith {garrisonIsChanging = false};
 if ((_sideX == Invaders) and (!(sidesX getVariable [_markerX,sideUnknown] == Invaders))) exitWith {garrisonIsChanging = false};
