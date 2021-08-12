@@ -11,6 +11,7 @@
 */
 #include "..\..\Includes\common.inc"
 FIX_LINE_NUMBERS()
+
 private _translateMarker = {
 	params ["_mrk"];
 	if (_mrk find "puesto" == 0) exitWith { "outpost" + (_mrk select [6]) };
@@ -76,7 +77,9 @@ if (_varName in _specialVarLoads) then {
 	if (_varName == 'hr') then {server setVariable ["HR",_varValue,true]};
 	if (_varName == 'dateX') then {setDate _varValue};
 	if (_varName == 'weather') then {
-		0 setFog (_varValue select 0);
+		// Avoid persisting potentially-broken fog values
+		private _fogParams = _varValue select 0;
+		0 setFog [_fogParams#0, (_fogParams#1) max 0, (_fogParams#2) max 0];
 		0 setRain (_varValue select 1);
 		forceWeatherChange
 	};
@@ -142,15 +145,21 @@ if (_varName in _specialVarLoads) then {
 	};
 	if (_varName == 'garrison') then {
 		{
-			garrison setVariable [[_x select 0] call _translateMarker, _x select 1, true];
+			private _garrison = +(_x select 1);
+			{
+				// fix for 2.4 -> 2.5 rebel garrison incompatibity
+				if (_x find "loadouts_rebel" != 0) then { continue };
+				_garrison set [_forEachIndex, "loadouts_reb" + (_x select [14])];
+			} forEach _garrison;
+			garrison setVariable [[_x select 0] call _translateMarker, _garrison, true];
 			if (count _x > 2) then { garrison setVariable [(_x select 0) + "_lootCD", _x select 2, true] };
 		} forEach _varvalue;
 	};
 	if (_varName == 'wurzelGarrison') then {
 		{
-			garrison setVariable [format ["%1_garrison", (_x select 0)], _x select 1, true];
-			garrison setVariable [format ["%1_requested", (_x select 0)], _x select 2, true];
-			garrison setVariable [format ["%1_over", (_x select 0)], _x select 3, true];
+			garrison setVariable [format ["%1_garrison", (_x select 0)], +(_x select 1), true];
+			garrison setVariable [format ["%1_requested", (_x select 0)], +(_x select 2), true];
+			garrison setVariable [format ["%1_over", (_x select 0)], +(_x select 3), true];
 			[(_x select 0)] call A3A_fnc_updateReinfState;
 		} forEach _varvalue;
 	};

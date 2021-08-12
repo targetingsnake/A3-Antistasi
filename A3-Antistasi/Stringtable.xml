@@ -626,7 +626,7 @@
         <Korean>저항세력의 지도자가 되고 영웅이 되십시오.</Korean>
       </Key>
       <Key ID="STR_antistasi_credits_generic_version_text">
-        <Original>2.5.0</Original>
+        <Original>2.5.1</Original>
       </Key>
     </Container>
     <Container name="dialog_vehicle_purchase">
@@ -1878,6 +1878,14 @@
         <Chinesesimp>按下 End 启用/禁用耳塞。使用ACE时无法使用。</Chinesesimp>
         <Korean>END키로 이어플러그 탈부착이 가능합니다. ACE모드에선 불가능.</Korean>
         <Russian>Нажмите END, чтобы включить/отключить беруши. Отключено при использовании ACE.</Russian>
+      </Key>
+      <Key ID="STR_antistasi_journal_entry_header_SpecialK_6">
+        <Original>Toggle Info Bar Visibility</Original>
+        <Russian>Переключить видимость информ. строки</Russian>
+      </Key>
+      <Key ID="STR_antistasi_journal_entry_text_SpecialK_6">
+        <Original>Press ALT+HOME to show / hide information bar at the top of the screen.</Original>
+        <Russian>Нажмите ALT+HOME, чтобы отобразить/скрыть информационную строку в верхней части экрана.</Russian>
       </Key>
       <Key ID="STR_antistasi_journal_entry_header_Features_1">
         <Original>Faction Leader</Original>
@@ -3436,6 +3444,18 @@
         <Chinesesimp>这将会提升你在我方阵营中的威望</Chinesesimp>
         <Russian>Это повысит ваш престиж среди вашей фракции</Russian>
       </Key>
+      <Key ID="STR_antistasi_dialogs_toggle_info_bar_title">
+        <Original>Information Bar</Original>
+        <Russian>Информационная строка</Russian>
+      </Key>
+      <Key ID="STR_antistasi_dialogs_toggle_info_bar_body_off">
+        <Original>You've turned off top information bar. To enable it, press ALT+HOME.</Original>
+        <Russian>Вы выключили отображение информационной строки. Чтобы включить её снова, нажмите ALT+HOME.</Russian>
+      </Key>
+      <Key ID="STR_antistasi_dialogs_toggle_info_bar_body_on">
+        <Original>You've turned on top information bar. To disable it, press ALT+HOME.</Original>
+        <Russian>Вы включили отображение информационной строки. Чтобы выключить её, нажмите ALT+HOME.</Russian>
+      </Key>
     </Container>
     <Container name="garage_sell">
       <Key ID="STR_antistasi_dialogs_garage_sell">
@@ -3767,6 +3787,10 @@
             <Original>Loot crate stored</Original>
             <English>Loot crate stored</English>
         </Key>
+        <Key ID="STR_HR_GRG_Feedback_addVehicle_LightSource_Stored">
+            <Original>Light stored</Original>
+            <English>Light stored</English>
+        </Key>
         <Key ID="STR_HR_GRG_Feedback_addVehicle_Distance">
             <Original>You can't garage vehicles that are more than 25m away from you</Original>
             <English>You can't garage vehicles that are more than 25m away from you</English>
@@ -3891,6 +3915,16 @@
             <English>Driver</English>
         </Key>
         </Container>
+    <Container name="Utility_Items">
+        <Key ID="STR_A3A_Utility_Items_Feedback_Normal">
+            <Original>Q/E to rotate - Space/Enter to stop.</Original>
+            <English>Q/E to rotate - Space/Enter to stop.</English>
+        </Key>
+        <Key ID="STR_A3A_Utility_Items_Feedback_Far">
+            <Original>You're too far</Original>
+            <English>You're too far</English>
+        </Key>
+    </Container>
     <Container name="time_units">
       <!--Note the lack of front spacing on abbreviations.-->
       <!--Auto translated.-->>
@@ -3986,6 +4020,19 @@
         <Czech>(nyní)</Czech>
         <Chinesesimp>(现在)</Chinesesimp>
         <Korean>(현재)</Korean>
+      </Key>
+    </Container>
+    <Container name ="Base">
+      <Key ID="STR_antistasi_Base_vehicleBoxHeal_Healed">
+        <Original>Nearby units have been healed, refreshed, and can go undercover again.&lt;br/&gt;&lt;br/&gt; Nearby vehicles are no longer reported.</Original>
+      </Key>
+      <Key ID="STR_antistasi_Base_vehicleBoxHeal_UsedRecently">
+        <Original>The box has been used in the last 30 seconds! Please wait for a bit.</Original>
+      </Key>
+    </Container>
+    <Container name ="singleWord">
+      <Key ID="STR_antistasi_singleWord_Heal">
+        <Original>Heal</Original>
       </Key>
     </Container>
   </Package>

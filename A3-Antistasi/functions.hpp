@@ -687,6 +687,8 @@ class A3A
         class customHintInit {};
         class customHintRender {};
         class shader_ratioToHex {};
+        class updateInfoBarShown {};
+        class disableInfoBar {};
     };
 
     class Undercover
@@ -711,5 +713,11 @@ class A3A
         class vehicleTextureSync {};
         class vehicleWillCollideAtPosition {};
         class getRoadDirection {};
+    };
+
+    class UtilityItems {
+        class spawnLight {};
+        class initUtilityItems {};
+        class rotateItem {};
     };
 };
