@@ -51,6 +51,7 @@ if _alreadyInGarrison exitWith {["Garrison", "The units selected already are in 
 private _rebGroupData = FactionGet(reb,"groups");
 {
 	private _unitType = _x getVariable "unitType";
+    if (isNil "_unitType") exitWith {Debug("Unit lacking unitType entry")};
 	if (
         (_unitType in (["staticCrew", "Unarmed", "Petros"] apply {_rebGroupData get _x}))
         or (_unitType in arrayCivs) or (!alive _x)
