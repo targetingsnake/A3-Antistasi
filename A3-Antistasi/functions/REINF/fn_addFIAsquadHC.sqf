@@ -45,8 +45,7 @@ _resourcesFIA = server getVariable "resourcesFIA";
 private _withBackpck = "";
 if (_typeGroup isEqualType []) then {
 	{
-		private _typeUnit = if (random 20 <= skillFIA) then {_x select 1} else {_x select 0};
-		_formatX pushBack _typeUnit;
+		_formatX pushBack _x;
 		_costs = _costs + (server getVariable _typeUnit); _costHR = _costHR +1
 	} forEach _typeGroup;
 
