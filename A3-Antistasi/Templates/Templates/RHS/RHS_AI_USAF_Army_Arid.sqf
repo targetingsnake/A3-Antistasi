@@ -110,7 +110,7 @@ _loadoutData set ["radios", ["ItemRadio"]];			//this line determines radio
 _loadoutData set ["gpses", ["ItemGPS"]];			//this line determines GPS
 _loadoutData set ["NVGs", ["rhsusf_ANPVS_14"]];						//this line determines NVGs -- Array, can contain multiple assets
 _loadoutData set ["binoculars", ["Binocular"]];		//this line determines the binoculars
-_loadoutData set ["Rangefinder", ["rhsusf_bino_lerca_1200_black"]];
+_loadoutData set ["rangefinders", ["rhsusf_bino_lerca_1200_black"]];
 
 _loadoutData set ["uniforms", []];					//don't fill this line - this is only to set the variable
 _loadoutData set ["MGvests", []];						//don't fill this line - this is only to set the variable
@@ -750,7 +750,7 @@ private _marksmanTemplate = {
 	["watches"] call _fnc_addWatch;
 	["compasses"] call _fnc_addCompass;
 	["radios"] call _fnc_addRadio;
-	["Rangefinder"] call _fnc_addBinoculars;
+	["rangefinders"] call _fnc_addBinoculars;
 	["NVGs"] call _fnc_addNVGs;
 };
 
@@ -776,7 +776,7 @@ private _sniperTemplate = {
 	["watches"] call _fnc_addWatch;
 	["compasses"] call _fnc_addCompass;
 	["radios"] call _fnc_addRadio;
-	["Rangefinder"] call _fnc_addBinoculars;
+	["rangefinders"] call _fnc_addBinoculars;
 	["NVGs"] call _fnc_addNVGs;
 };
 

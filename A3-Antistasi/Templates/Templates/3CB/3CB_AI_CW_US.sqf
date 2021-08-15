@@ -117,7 +117,7 @@ _loadoutData set ["radios", ["ItemRadio"]];			//this line determines radio
 _loadoutData set ["gpses", ["ItemGPS"]];			//this line determines GPS
 _loadoutData set ["NVGs", ["rhsusf_ANPVS_14"]];						//this line determines NVGs -- Array, can contain multiple assets
 _loadoutData set ["binoculars", ["Binocular"]];		//this line determines the binoculars
-_loadoutData set ["Rangefinder", []];
+_loadoutData set ["rangefinders", []];
 
 _loadoutData set ["uniforms", []];					//don't fill this line - this is only to set the variable
 _loadoutData set ["MGvests", []];						//don't fill this line - this is only to set the variable
