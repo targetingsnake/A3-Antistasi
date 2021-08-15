@@ -124,12 +124,12 @@ _loadoutData set ["binoculars", ["Binocular"]];		//this line determines the bino
 _loadoutData set ["rangefinders", ["Rangefinder"]];
 
 _loadoutData set ["uniforms", []];					//don't fill this line - this is only to set the variable
-_loadoutData set ["Offuniforms", []];
+_loadoutData set ["slUniforms", []];
 _loadoutData set ["vests", []];						//don't fill this line - this is only to set the variable
 _loadoutData set ["Hvests", []];
-_loadoutData set ["Snivests", ["V_Chestrig_oli"]];
+_loadoutData set ["sniVests", ["V_Chestrig_oli"]];
 _loadoutData set ["backpacks", []];					//don't fill this line - this is only to set the variable
-_loadoutData set ["ATbackpacks", ["B_Carryall_oli"]];
+_loadoutData set ["atBackpacks", ["B_Carryall_oli"]];
 _loadoutData set ["longRangeRadios", []];			//don't fill this line - this is only to set the variable
 _loadoutData set ["helmets", []];					//don't fill this line - this is only to set the variable
 
@@ -216,7 +216,7 @@ _sfLoadoutData set ["sidearms", [
 
 private _militaryLoadoutData = _loadoutData call _fnc_copyLoadoutData; // touch and shit breaks
 _militaryLoadoutData set ["uniforms", ["U_I_CombatUniform_shortsleeve", "U_I_CombatUniform"]];		//this line determines uniforms for military loadouts -- Example: ["U_B_CombatUniform_mcam", "U_B_CombatUniform_mcam_tshirt"] -- Array, can contain multiple assets
-_militaryLoadoutData set ["Offuniforms", ["U_I_OfficerUniform"]];
+_militaryLoadoutData set ["slUniforms", ["U_I_OfficerUniform"]];
 _militaryLoadoutData set ["vests", ["V_PlateCarrierIA2_dgtl", "V_PlateCarrierIA1_dgtl"]];			//this line determines vests for military loadouts -- Example: ["V_PlateCarrierSpec_mtp", "V_PlateCarrierGL_mtp"] -- Array, can contain multiple assets
 _militaryLoadoutData set ["Hvests", ["V_PlateCarrierIAGL_dgtl"]];
 _militaryLoadoutData set ["backpacks", ["B_TacticalPack_oli", "B_FieldPack_oli", "B_Carryall_oli", "B_AssaultPack_dgtl"]];		//this line determines backpacks for military loadouts -- Example: ["B_AssaultPack_mcamo", "B_Kitbag_mcamo"] -- Array, can contain multiple assets
@@ -511,7 +511,7 @@ private _latTemplate = {
 	["helmets"] call _fnc_setHelmet;
 	["vests"] call _fnc_setVest;
 	["uniforms"] call _fnc_setUniform;
-	[["ATbackpacks", "backpacks"] call _fnc_fallback] call _fnc_setBackpack;
+	[["atBackpacks", "backpacks"] call _fnc_fallback] call _fnc_setBackpack;
 
 	[selectRandom ["rifles", "carbines"]] call _fnc_setPrimary;
 	["primary", 6] call _fnc_addMagazines;
@@ -540,7 +540,7 @@ private _atTemplate = {
 	["helmets"] call _fnc_setHelmet;
 	["vests"] call _fnc_setVest;
 	["uniforms"] call _fnc_setUniform;
-	[["ATbackpacks", "backpacks"] call _fnc_fallback] call _fnc_setBackpack;
+	[["atBackpacks", "backpacks"] call _fnc_fallback] call _fnc_setBackpack;
 
 	[selectRandom ["rifles", "carbines"]] call _fnc_setPrimary;
 	["primary", 6] call _fnc_addMagazines;
@@ -569,7 +569,7 @@ private _aaTemplate = {
 	["helmets"] call _fnc_setHelmet;
 	["vests"] call _fnc_setVest;
 	["uniforms"] call _fnc_setUniform;
-	[["ATbackpacks", "backpacks"] call _fnc_fallback] call _fnc_setBackpack;
+	[["atBackpacks", "backpacks"] call _fnc_fallback] call _fnc_setBackpack;
 
 	[selectRandom ["rifles", "carbines"]] call _fnc_setPrimary;
 	["primary", 6] call _fnc_addMagazines;
@@ -647,7 +647,7 @@ private _marksmanTemplate = {
 
 private _sniperTemplate = {
 	["helmets"] call _fnc_setHelmet;
-	[["Snivests","vests"] call _fnc_fallback] call _fnc_setVest;
+	[["sniVests","vests"] call _fnc_fallback] call _fnc_setVest;
 	["uniforms"] call _fnc_setUniform;
 
 

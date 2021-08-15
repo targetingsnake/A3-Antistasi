@@ -128,7 +128,7 @@ _loadoutData set ["rangefinders", ["Rangefinder"]];
 _loadoutData set ["uniforms", []];
 _loadoutData set ["vests", []];
 _loadoutData set ["Hvests", []];
-_loadoutData set ["GLvests", []];
+_loadoutData set ["glVests", []];
 _loadoutData set ["backpacks", []];
 _loadoutData set ["longRangeRadios", []];
 _loadoutData set ["helmets", []];
@@ -237,7 +237,7 @@ _militaryLoadoutData set ["uniforms", ["U_B_T_Soldier_F", "U_B_T_Soldier_AR_F", 
 _militaryLoadoutData set ["backpacks", ["B_AssaultPack_tna_F", "B_Kitbag_sgg", "B_Carryall_oli"]];
 _militaryLoadoutData set ["vests", ["V_PlateCarrier1_tna_F", "V_PlateCarrier2_tna_F"]];
 _militaryLoadoutData set ["Hvests", ["V_PlateCarrierSpec_tna_F"]];
-_militaryLoadoutData set ["GLvests", ["V_PlateCarrierGL_tna_F"]];
+_militaryLoadoutData set ["glVests", ["V_PlateCarrierGL_tna_F"]];
 _militaryLoadoutData set ["backpacks", ["B_AssaultPack_tna_F", "B_Kitbag_sgg", "B_Carryall_oli"]];
 _militaryLoadoutData set ["helmets", ["H_HelmetB_tna_F", "H_HelmetB_Enh_tna_F", "H_HelmetB_Light_tna_F"]];
 _militaryLoadoutData set ["binoculars", ["Laserdesignator_03"]];
@@ -460,7 +460,7 @@ private _medicTemplate = {
 
 private _grenadierTemplate = {
 	["helmets"] call _fnc_setHelmet;
-	[["GLvests", "vests"] call _fnc_fallback] call _fnc_setVest;
+	[["glVests", "vests"] call _fnc_fallback] call _fnc_setVest;
 	["uniforms"] call _fnc_setUniform;
 	["backpacks"] call _fnc_setBackpack;
 
@@ -486,7 +486,7 @@ private _grenadierTemplate = {
 
 private _explosivesExpertTemplate = {
 	["helmets"] call _fnc_setHelmet;
-	[["GLvests", "vests"] call _fnc_fallback] call _fnc_setVest;
+	[["glVests", "vests"] call _fnc_fallback] call _fnc_setVest;
 	["uniforms"] call _fnc_setUniform;
 	["backpacks"] call _fnc_setBackpack;
 

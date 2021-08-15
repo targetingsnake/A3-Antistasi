@@ -101,7 +101,7 @@ _loadoutData set ["heavyATLaunchers", [
 ]];
 _loadoutData set ["AALaunchers", ["rhs_weap_igla"]];
 _loadoutData set ["sidearms", ["rhs_weap_6p53", "rhs_weap_makarov_pm"]];
-_loadoutData set ["GLsidearms", []];
+_loadoutData set ["glSidearms", []];
 _loadoutData set ["ATMines", ["rhs_mine_M19_mag"]]; 					//this line determines the AT mines which can be carried by units -- Example: ["ATMine_Range_Mag"] -- Array, can contain multiple assets
 _loadoutData set ["APMines", ["rhsusf_mine_m14_mag"]]; 					//this line determines the APERS mines which can be carried by units -- Example: ["APERSMine_Range_Mag"] -- Array, can contain multiple assets
 _loadoutData set ["lightExplosives", ["rhsusf_m112_mag", "rhs_ec200_mag"]]; 			//this line determines light explosives -- Example: ["DemoCharge_Remote_Mag"] -- Array, can contain multiple assets
@@ -125,14 +125,14 @@ _loadoutData set ["rangefinders", ["rhs_pdu4"]];
 
 _loadoutData set ["uniforms", []];					//don't fill this line - this is only to set the variable
 _loadoutData set ["vests", []];						//don't fill this line - this is only to set the variable
-_loadoutData set ["Medvests", []];
-_loadoutData set ["Offvests", []];
-_loadoutData set ["Snivests", []];
+_loadoutData set ["medVests", []];
+_loadoutData set ["slVests", []];
+_loadoutData set ["sniVests", []];
 _loadoutData set ["backpacks", []];
-_loadoutData set ["Medbackpacks", ["rhs_medic_bag"]];
-_loadoutData set ["ATbackpacks", ["rhs_rpg_empty"]];
-_loadoutData set ["AAbackpacks", ["B_Carryall_oli"]];
-_loadoutData set ["Engbackpacks", ["rhs_assault_umbts_engineer_empty"]];
+_loadoutData set ["medBackpacks", ["rhs_medic_bag"]];
+_loadoutData set ["atBackpacks", ["rhs_rpg_empty"]];
+_loadoutData set ["aaBackpacks", ["B_Carryall_oli"]];
+_loadoutData set ["engBackpacks", ["rhs_assault_umbts_engineer_empty"]];
 _loadoutData set ["longRangeRadios", []];			//don't fill this line - this is only to set the variable
 _loadoutData set ["helmets", []];					//don't fill this line - this is only to set the variable
 
@@ -168,9 +168,9 @@ _loadoutData set ["items_unarmed_extras", []];
 private _sfLoadoutData = _loadoutData call _fnc_copyLoadoutData; // touch and shit breaks
 _sfLoadoutData set ["uniforms", ["rhsgref_uniform_para_ttsko_urban"]];			//this line determines uniforms for special forces -- Example: ["U_B_CombatUniform_mcam", "U_B_CombatUniform_mcam_tshirt"]] -- Array, can contain multiple assets
 _sfLoadoutData set ["vests", ["rhs_6b5_rifleman"]];				//this line determines vests for special forces -- Example: ["V_PlateCarrierSpec_mtp", "V_PlateCarrierGL_mtp"] -- Array, can contain multiple assets
-_sfLoadoutData set ["Medvests", ["rhs_6b5_medic"]];
-_sfLoadoutData set ["Offvests", ["rhs_6b5_officer"]];
-_sfLoadoutData set ["Snivests", ["rhs_6b5_sniper"]];
+_sfLoadoutData set ["medVests", ["rhs_6b5_medic"]];
+_sfLoadoutData set ["slVests", ["rhs_6b5_officer"]];
+_sfLoadoutData set ["sniVests", ["rhs_6b5_sniper"]];
 _sfLoadoutData set ["backpacks", ["rhs_sidor", "rhs_assault_umbts"]];
 _sfLoadoutData set ["helmets", ["rhsgref_6b27m_ttsko_digi"]];				//this line determines helmets for special forces -- Example: ["H_HelmetB_camo", "H_HelmetB_desert"] -- Array, can contain multiple assets
 _sfLoadoutData set ["binoculars", ["Laserdesignator_03"]];
@@ -246,7 +246,7 @@ _sfLoadoutData set ["sidearms", [
 ["rhs_weap_pb_6p9", "rhs_acc_6p9_suppressor", "", "", [], [], ""],
 ["rhsusf_weap_glock17g4", "rhsusf_acc_omega9k", "acc_flashlight_pistol", "", ["rhsusf_mag_17Rnd_9x19_FMJ"], [], ""]
 ]];
-_sfLoadoutData set ["GLsidearms", [
+_sfLoadoutData set ["glSidearms", [
 ["rhs_weap_M320", "", "", "", ["rhs_mag_M397_HET", "rhs_mag_M441_HE", "rhs_mag_M433_HEDP"], [], ""],
 ["rhs_weap_M320", "", "", "", ["rhs_mag_m4009", "rhs_mag_m714_White", "rhs_mag_m716_yellow"], [], ""] //Stun
 ]];
@@ -257,9 +257,9 @@ _sfLoadoutData set ["GLsidearms", [
 private _militaryLoadoutData = _loadoutData call _fnc_copyLoadoutData; // touch and shit breaks
 _militaryLoadoutData set ["uniforms", ["rhsgref_uniform_ttsko_mountain"]];		//this line determines uniforms for military loadouts -- Example: ["U_B_CombatUniform_mcam", "U_B_CombatUniform_mcam_tshirt"] -- Array, can contain multiple assets
 _militaryLoadoutData set ["vests", ["rhs_6b5_rifleman_ttsko"]];			//this line determines vests for military loadouts -- Example: ["V_PlateCarrierSpec_mtp", "V_PlateCarrierGL_mtp"] -- Array, can contain multiple assets
-_militaryLoadoutData set ["Medvests", ["rhs_6b5_medic_ttsko"]];
-_militaryLoadoutData set ["Offvests", ["rhs_6b5_officer_ttsko"]];
-_militaryLoadoutData set ["Snivests", ["rhs_6b5_sniper_ttsko"]];
+_militaryLoadoutData set ["medVests", ["rhs_6b5_medic_ttsko"]];
+_militaryLoadoutData set ["slVests", ["rhs_6b5_officer_ttsko"]];
+_militaryLoadoutData set ["sniVests", ["rhs_6b5_sniper_ttsko"]];
 _militaryLoadoutData set ["backpacks", ["rhs_sidor", "rhs_assault_umbts"]];
 _militaryLoadoutData set ["helmets", ["rhsgref_6b27m_ttsko_mountain"]];		//this line determines helmets for military loadouts -- Example: ["H_HelmetB_camo", "H_HelmetB_desert"] -- Array, can contain multiple assets
 _militaryLoadoutData set ["binoculars", ["Laserdesignator_03"]];
@@ -351,13 +351,13 @@ _policeLoadoutData set ["sidearms", [
 private _militiaLoadoutData = _loadoutData call _fnc_copyLoadoutData; // touch and shit breaks
 _militiaLoadoutData set ["uniforms", ["rhsgref_uniform_ttsko_forest"]];		//this line determines uniforms for militia loadouts -- Example: ["U_B_CombatUniform_mcam", "U_B_CombatUniform_mcam_tshirt"] -- Array, can contain multiple assets
 _militiaLoadoutData set ["vests", ["rhs_6b5_rifleman_khaki"]];			//this line determines vests for militia loadouts -- Example: ["V_PlateCarrierSpec_mtp", "V_PlateCarrierGL_mtp"] -- Array, can contain multiple assets
-_militiaLoadoutData set ["Medvests", ["rhs_6b5_medic_khaki"]];
-_militiaLoadoutData set ["Offvests", ["rhs_6b5_officer_khaki"]];
-_militiaLoadoutData set ["Snivests", ["rhs_6b5_sniper_khaki"]];
+_militiaLoadoutData set ["medVests", ["rhs_6b5_medic_khaki"]];
+_militiaLoadoutData set ["slVests", ["rhs_6b5_officer_khaki"]];
+_militiaLoadoutData set ["sniVests", ["rhs_6b5_sniper_khaki"]];
 _militiaLoadoutData set ["backpacks", ["rhs_sidor", "rhs_assault_umbts", "rhs_sidor", "B_Carryall_oli"]];
-_militiaLoadoutData set ["Medbackpacks", ["rhs_medic_bag"]];
-_militiaLoadoutData set ["ATbackpacks", ["rhs_rpg_empty"]];
-_militiaLoadoutData set ["Engbackpacks", ["rhs_assault_umbts_engineer_empty"]];
+_militiaLoadoutData set ["medBackpacks", ["rhs_medic_bag"]];
+_militiaLoadoutData set ["atBackpacks", ["rhs_rpg_empty"]];
+_militiaLoadoutData set ["engBackpacks", ["rhs_assault_umbts_engineer_empty"]];
 _militiaLoadoutData set ["helmets", ["rhsgref_ssh68_ttsko_forest"]];		//this line determines helmets for police loadouts -- Example: ["H_HelmetB_camo", "H_HelmetB_desert"] -- Array, can contain multiple assets
 
 _militiaLoadoutData set ["rifles", [
@@ -411,7 +411,7 @@ _pilotLoadoutData set ["helmets", ["rhs_zsh7a_mike"]];			//this line determines 
 
 private _squadLeaderTemplate = {
 	["helmets"] call _fnc_setHelmet;
-	[["Offvests", "vests"] call _fnc_fallback] call _fnc_setVest;
+	[["slVests", "vests"] call _fnc_fallback] call _fnc_setVest;
 	["uniforms"] call _fnc_setUniform;
 
 	["backpacks"] call _fnc_setBackpack;
@@ -468,9 +468,9 @@ private _riflemanTemplate = {
 
 private _medicTemplate = {
 	["helmets"] call _fnc_setHelmet;
-	[["Medvests", "vests"] call _fnc_fallback] call _fnc_setVest;
+	[["medVests", "vests"] call _fnc_fallback] call _fnc_setVest;
 	["uniforms"] call _fnc_setUniform;
-	["Medbackpacks"] call _fnc_setBackpack;
+	["medBackpacks"] call _fnc_setBackpack;
 
 	["carbines"] call _fnc_setPrimary;
 	["primary", 5] call _fnc_addMagazines;
@@ -500,7 +500,7 @@ private _grenadierTemplate = {
 	["grenadeLaunchers"] call _fnc_setPrimary;
 	["primary", 5] call _fnc_addMagazines;
 	["primary", 10] call _fnc_addAdditionalMuzzleMagazines;
-  	[["GLsidearms", "sidearms"] call _fnc_fallback] call _fnc_setHandgun;
+  	[["glSidearms", "sidearms"] call _fnc_fallback] call _fnc_setHandgun;
 	["handgun", 2] call _fnc_addMagazines;
 
 	["items_medical_standard"] call _fnc_addItemSet;
@@ -521,7 +521,7 @@ private _explosivesExpertTemplate = {
 	["helmets"] call _fnc_setHelmet;
 	["vests"] call _fnc_setVest;
 	["uniforms"] call _fnc_setUniform;
-	["Engbackpacks"] call _fnc_setBackpack;
+	["engBackpacks"] call _fnc_setBackpack;
 
 	["rifles"] call _fnc_setPrimary;
 	["primary", 5] call _fnc_addMagazines;
@@ -553,7 +553,7 @@ private _engineerTemplate = {
 	["helmets"] call _fnc_setHelmet;
 	["vests"] call _fnc_setVest;
 	["uniforms"] call _fnc_setUniform;
-	["Engbackpacks"] call _fnc_setBackpack;
+	["engBackpacks"] call _fnc_setBackpack;
 
 	["carbines"] call _fnc_setPrimary;
 	["primary", 5] call _fnc_addMagazines;
@@ -581,7 +581,7 @@ private _latTemplate = {
 	["helmets"] call _fnc_setHelmet;
 	["vests"] call _fnc_setVest;
 	["uniforms"] call _fnc_setUniform;
-	["ATbackpacks"] call _fnc_setBackpack;
+	["atBackpacks"] call _fnc_setBackpack;
 
 	["rifles"] call _fnc_setPrimary;
 	["primary", 6] call _fnc_addMagazines;
@@ -611,7 +611,7 @@ private _atTemplate = {
 	["helmets"] call _fnc_setHelmet;
 	["vests"] call _fnc_setVest;
 	["uniforms"] call _fnc_setUniform;
-	["ATbackpacks"] call _fnc_setBackpack;
+	["atBackpacks"] call _fnc_setBackpack;
 
 	["rifles"] call _fnc_setPrimary;
 	["primary", 5] call _fnc_addMagazines;
@@ -641,7 +641,7 @@ private _aaTemplate = {
 	["helmets"] call _fnc_setHelmet;
 	["vests"] call _fnc_setVest;
 	["uniforms"] call _fnc_setUniform;
-	[["AAbackpacks", "backpacks"] call _fnc_fallback] call _fnc_setBackpack;
+	[["aaBackpacks", "backpacks"] call _fnc_fallback] call _fnc_setBackpack;
 
 	["rifles"] call _fnc_setPrimary;
 	["primary", 5] call _fnc_addMagazines;
@@ -693,7 +693,7 @@ private _machineGunnerTemplate = {
 
 private _marksmanTemplate = {
 	["helmets"] call _fnc_setHelmet;
-	[["Snivests", "vests"] call _fnc_fallback] call _fnc_setVest;
+	[["sniVests", "vests"] call _fnc_fallback] call _fnc_setVest;
 	["uniforms"] call _fnc_setUniform;
 
 
@@ -719,7 +719,7 @@ private _marksmanTemplate = {
 
 private _sniperTemplate = {
 	["helmets"] call _fnc_setHelmet;
-	[["Snivests", "vests"] call _fnc_fallback] call _fnc_setVest;
+	[["sniVests", "vests"] call _fnc_fallback] call _fnc_setVest;
 	["uniforms"] call _fnc_setUniform;
 
 

@@ -132,17 +132,17 @@ _loadoutData set ["binoculars", ["vn_mk21_binocs"]];
 
 _loadoutData set ["uniforms", []];
 _loadoutData set ["vests", []];
-_loadoutData set ["GLvests", []];
-_loadoutData set ["Snivests", []];
-_loadoutData set ["Medvests", []];
-_loadoutData set ["Engvests", []];
-_loadoutData set ["MGvests", []];
-_loadoutData set ["Offvests", []];
+_loadoutData set ["glVests", []];
+_loadoutData set ["sniVests", []];
+_loadoutData set ["medVests", []];
+_loadoutData set ["engVests", []];
+_loadoutData set ["mgVests", []];
+_loadoutData set ["slVests", []];
 _loadoutData set ["backpacks", []];
-_loadoutData set ["SLbackpacks", []];
+_loadoutData set ["slBackpacks", []];
 _loadoutData set ["MGbackpacks", []];
-_loadoutData set ["Medbackpacks", []];
-_loadoutData set ["Engbackpacks", []];
+_loadoutData set ["medBackpacks", []];
+_loadoutData set ["engBackpacks", []];
 _loadoutData set ["helmets", []];
 _loadoutData set ["GLhelmets", []];
 _loadoutData set ["MGhelmets", []];
@@ -179,15 +179,15 @@ _loadoutData set ["items_unarmed_extras", []];
 private _sfLoadoutData = _loadoutData call _fnc_copyLoadoutData;
 _sfLoadoutData set ["uniforms", ["vn_b_uniform_sog_02_02", "vn_b_uniform_sog_02_05", "vn_b_uniform_macv_06_02", "vn_b_uniform_macv_04_02"]];
 _sfLoadoutData set ["vests", ["vn_b_vest_sog_04"]];
-_sfLoadoutData set ["Medvests", ["vn_b_vest_sog_02"]];
-_sfLoadoutData set ["Engvests", ["vn_b_vest_sog_03"]];
-_sfLoadoutData set ["MGvests", ["vn_b_vest_sog_05"]];
-_sfLoadoutData set ["Offvests", ["vn_b_vest_sog_06"]];
+_sfLoadoutData set ["medVests", ["vn_b_vest_sog_02"]];
+_sfLoadoutData set ["engVests", ["vn_b_vest_sog_03"]];
+_sfLoadoutData set ["mgVests", ["vn_b_vest_sog_05"]];
+_sfLoadoutData set ["slVests", ["vn_b_vest_sog_06"]];
 _sfLoadoutData set ["backpacks", ["vn_b_pack_trp_02", "vn_b_pack_lw_03"]];
-_sfLoadoutData set ["SLbackpacks", ["vn_b_pack_trp_04", "vn_b_pack_trp_04_02", "vn_b_pack_prc77_01", "vn_b_pack_lw_06"]];
+_sfLoadoutData set ["slBackpacks", ["vn_b_pack_trp_04", "vn_b_pack_trp_04_02", "vn_b_pack_prc77_01", "vn_b_pack_lw_06"]];
 _sfLoadoutData set ["MGbackpacks", ["vn_b_pack_trp_01", "vn_b_pack_trp_01_02"]];
-_sfLoadoutData set ["Medbackpacks", ["vn_b_pack_lw_07", "vn_b_pack_m5_01"]];
-_sfLoadoutData set ["Engbackpacks", ["vn_b_pack_lw_04", "vn_b_pack_trp_03_02"]];
+_sfLoadoutData set ["medBackpacks", ["vn_b_pack_lw_07", "vn_b_pack_m5_01"]];
+_sfLoadoutData set ["engBackpacks", ["vn_b_pack_lw_04", "vn_b_pack_trp_03_02"]];
 _sfLoadoutData set ["helmets", ["vn_b_boonie_02_02", "vn_b_boonie_02_01", "vn_b_beret_01_01", "vn_b_beret_01_06", "vn_b_bandana_02"]];
 _sfLoadoutData set ["binoculars", ["vn_anpvs2_binoc"]];
 
@@ -197,7 +197,7 @@ _sfLoadoutData set ["rifles", [
 ["vn_m63a", "", "", "", ["vn_m63a_30_mag", "vn_m63a_30_mag", "vn_m63a_30_t_mag"], [], ""],
 ["vn_type56", "", "vn_b_type56", "", ["vn_type56_mag", "vn_type56_mag", "vn_type56_t_mag"], [], ""]
 ]];
-_sfLoadoutData set ["SLrifles", [
+_sfLoadoutData set ["slRifles", [
 ["vn_m16_camo", "vn_s_m16", "", "vn_o_4x_m16", ["vn_m16_40_mag", "vn_m16_40_mag", "vn_m16_40_t_mag"], [], ""],
 ["vn_xm177_fg", "", "", "vn_o_4x_m16", ["vn_m16_40_mag", "vn_m16_40_mag", "vn_m16_40_t_mag"], [], ""],
 ["vn_m16_camo", "vn_s_m16", "", "", ["vn_m16_40_mag", "vn_m16_40_mag", "vn_m16_40_t_mag"], [], ""],
@@ -245,17 +245,17 @@ _sfLoadoutData set ["sidearms", [
 private _militaryLoadoutData = _loadoutData call _fnc_copyLoadoutData;
 _militaryLoadoutData set ["uniforms", ["vn_b_uniform_macv_02_01", "vn_b_uniform_macv_02_07", "vn_b_uniform_macv_01_01", "vn_b_uniform_macv_06_01", "vn_b_uniform_macv_04_01"]];
 _militaryLoadoutData set ["vests", ["vn_b_vest_usarmy_02", "vn_b_vest_usarmy_03"]];
-_militaryLoadoutData set ["GLvests", ["vn_b_vest_usarmy_05"]];
-_militaryLoadoutData set ["Snivests", ["vn_b_vest_usarmy_08"]];
-_militaryLoadoutData set ["Medvests", ["vn_o_vest_06", "vn_b_vest_usarmy_12"]];
-_militaryLoadoutData set ["Engvests", ["vn_b_vest_usarmy_12", "vn_b_vest_usarmy_11"]];
-_militaryLoadoutData set ["MGvests", ["vn_b_vest_usarmy_06"]];
-_militaryLoadoutData set ["Offvests", ["vn_b_vest_usarmy_09", "vn_b_vest_usarmy_11"]];
+_militaryLoadoutData set ["glVests", ["vn_b_vest_usarmy_05"]];
+_militaryLoadoutData set ["sniVests", ["vn_b_vest_usarmy_08"]];
+_militaryLoadoutData set ["medVests", ["vn_o_vest_06", "vn_b_vest_usarmy_12"]];
+_militaryLoadoutData set ["engVests", ["vn_b_vest_usarmy_12", "vn_b_vest_usarmy_11"]];
+_militaryLoadoutData set ["mgVests", ["vn_b_vest_usarmy_06"]];
+_militaryLoadoutData set ["slVests", ["vn_b_vest_usarmy_09", "vn_b_vest_usarmy_11"]];
 _militaryLoadoutData set ["backpacks", ["vn_b_pack_lw_01", "vn_b_pack_lw_03"]];
-_militaryLoadoutData set ["SLbackpacks", ["vn_b_pack_trp_04_02", "vn_b_pack_prc77_01", "vn_b_pack_lw_06"]];
+_militaryLoadoutData set ["slBackpacks", ["vn_b_pack_trp_04_02", "vn_b_pack_prc77_01", "vn_b_pack_lw_06"]];
 _militaryLoadoutData set ["MGbackpacks", ["vn_b_pack_lw_02", "vn_b_pack_lw_05", "vn_b_pack_trp_01_02"]];
-_militaryLoadoutData set ["Medbackpacks", ["vn_b_pack_lw_07", "vn_b_pack_m5_01"]];
-_militaryLoadoutData set ["Engbackpacks", ["vn_b_pack_lw_04", "vn_b_pack_trp_03_02"]];
+_militaryLoadoutData set ["medBackpacks", ["vn_b_pack_lw_07", "vn_b_pack_m5_01"]];
+_militaryLoadoutData set ["engBackpacks", ["vn_b_pack_lw_04", "vn_b_pack_trp_03_02"]];
 _militaryLoadoutData set ["helmets", ["vn_b_helmet_m1_02_01", "vn_b_helmet_m1_03_01", "vn_b_helmet_m1_05_01", "vn_b_helmet_m1_06_01", "vn_b_helmet_m1_07_01"]];
 _militaryLoadoutData set ["GLhelmets", ["vn_b_helmet_m1_04_02"]];
 _militaryLoadoutData set ["MGhelmets", ["vn_b_helmet_m1_08_01"]];
@@ -265,7 +265,7 @@ _militaryLoadoutData set ["rifles", [
 ["vn_m16", "", "", "", ["vn_m16_20_mag", "vn_m16_20_mag", "vn_m16_20_t_mag"], [], ""],
 ["vn_m16", "", "vn_b_m16", "", ["vn_m16_20_mag", "vn_m16_20_mag", "vn_m16_20_t_mag"], [], ""]
 ]];
-_militaryLoadoutData set ["SLrifles", [
+_militaryLoadoutData set ["slRifles", [
 ["vn_m16", "", "", "vn_o_4x_m16", ["vn_m16_30_mag", "vn_m16_30_mag", "vn_m16_30_t_mag"], [], ""],
 ["vn_xm177", "", "", "vn_o_4x_m16", ["vn_m16_30_mag", "vn_m16_30_mag", "vn_m16_30_t_mag"], [], ""],
 ["vn_m16", "", "", "", ["vn_m16_30_mag", "vn_m16_30_mag", "vn_m16_30_t_mag"], [], ""],
@@ -343,16 +343,16 @@ _policeLoadoutData set ["sidearms", [
 private _militiaLoadoutData = _loadoutData call _fnc_copyLoadoutData;
 _militiaLoadoutData set ["uniforms", ["vn_b_uniform_macv_02_01", "vn_b_uniform_macv_02_07", "vn_b_uniform_macv_01_01"]];
 _militiaLoadoutData set ["vests", ["vn_b_vest_usarmy_02", "vn_b_vest_usarmy_03"]];
-_militiaLoadoutData set ["GLvests", ["vn_b_vest_usarmy_05"]];
-_militiaLoadoutData set ["Snivests", ["vn_b_vest_usarmy_08"]];
-_militiaLoadoutData set ["Medvests", ["vn_o_vest_06"]];
-_militiaLoadoutData set ["MGvests", ["vn_b_vest_usarmy_06"]];
-_militiaLoadoutData set ["Offvests", ["vn_b_vest_usarmy_09"]];
+_militiaLoadoutData set ["glVests", ["vn_b_vest_usarmy_05"]];
+_militiaLoadoutData set ["sniVests", ["vn_b_vest_usarmy_08"]];
+_militiaLoadoutData set ["medVests", ["vn_o_vest_06"]];
+_militiaLoadoutData set ["mgVests", ["vn_b_vest_usarmy_06"]];
+_militiaLoadoutData set ["slVests", ["vn_b_vest_usarmy_09"]];
 _militiaLoadoutData set ["backpacks", ["vn_b_pack_lw_01", "vn_b_pack_lw_03"]];
-_militiaLoadoutData set ["SLbackpacks", ["vn_b_pack_trp_04_02", "vn_b_pack_prc77_01", "vn_b_pack_lw_06"]];
+_militiaLoadoutData set ["slBackpacks", ["vn_b_pack_trp_04_02", "vn_b_pack_prc77_01", "vn_b_pack_lw_06"]];
 _militiaLoadoutData set ["MGbackpacks", ["vn_b_pack_lw_02", "vn_b_pack_lw_05", "vn_b_pack_trp_01_02"]];
-_militiaLoadoutData set ["Medbackpacks", ["vn_b_pack_lw_07", "vn_b_pack_m5_01"]];
-_militiaLoadoutData set ["Engbackpacks", ["vn_b_pack_lw_04", "vn_b_pack_trp_03_02"]];
+_militiaLoadoutData set ["medBackpacks", ["vn_b_pack_lw_07", "vn_b_pack_m5_01"]];
+_militiaLoadoutData set ["engBackpacks", ["vn_b_pack_lw_04", "vn_b_pack_trp_03_02"]];
 _militiaLoadoutData set ["helmets", ["vn_b_helmet_m1_01_01", "vn_b_bandana_04", "vn_b_headband_02", "vn_b_helmet_m1_01_01", "vn_b_bandana_06"]];
 _militiaLoadoutData set ["binoculars", ["vn_mk21_binocs"]];
 
@@ -360,7 +360,7 @@ _militiaLoadoutData set ["rifles", [
 ["vn_m14", "", "", "", ["vn_m14_10_mag", "vn_m14_10_mag", "vn_m14_10_t_mag"], [], ""],
 ["vn_m14", "", "vn_b_m14", "", ["vn_m14_10_mag", "vn_m14_10_mag", "vn_m14_10_t_mag"], [], ""]
 ]];
-_militiaLoadoutData set ["SLrifles", [
+_militiaLoadoutData set ["slRifles", [
 ["vn_m14", "", "", "", ["vn_m14_mag", "vn_m14_mag", "vn_m14_t_mag"], [], ""],
 ["vn_m14", "", "vn_b_m14", "", ["vn_m14_mag", "vn_m14_mag", "vn_m14_t_mag"], [], ""]
 ]];
@@ -418,12 +418,12 @@ _pilotLoadoutData set ["helmets", ["vn_b_helmet_svh4_02_06", "vn_b_helmet_svh4_0
 
 private _squadLeaderTemplate = {
 	["helmets"] call _fnc_setHelmet;
-	[["SLvests", "vests"] call _fnc_fallback] call _fnc_setVest;
+	[["slVests", "vests"] call _fnc_fallback] call _fnc_setVest;
 	["uniforms"] call _fnc_setUniform;
 
-	[["SLbackpacks", "backpacks"] call _fnc_fallback] call _fnc_setBackpack;
+	[["slBackpacks", "backpacks"] call _fnc_fallback] call _fnc_setBackpack;
 
-	[selectRandom ["grenadeLaunchers", "SLrifles"]] call _fnc_setPrimary;
+	[selectRandom ["grenadeLaunchers", "slRifles"]] call _fnc_setPrimary;
 	["primary", 8] call _fnc_addMagazines;
 	["primary", 4] call _fnc_addAdditionalMuzzleMagazines;
 
@@ -474,9 +474,9 @@ private _riflemanTemplate = {
 
 private _medicTemplate = {
 	["helmets"] call _fnc_setHelmet;
-	[["Medvests", "vests"] call _fnc_fallback] call _fnc_setVest;
+	[["medVests", "vests"] call _fnc_fallback] call _fnc_setVest;
 	["uniforms"] call _fnc_setUniform;
-	[["Medbackpacks", "backpacks"] call _fnc_fallback] call _fnc_setBackpack;
+	[["medBackpacks", "backpacks"] call _fnc_fallback] call _fnc_setBackpack;
   	["carbines"] call _fnc_setPrimary;
 	["primary", 8] call _fnc_addMagazines;
 
@@ -497,7 +497,7 @@ private _medicTemplate = {
 
 private _grenadierTemplate = {
 	["helmets"] call _fnc_setHelmet;
-	[["GLvests", "vests"] call _fnc_fallback] call _fnc_setVest;
+	[["glVests", "vests"] call _fnc_fallback] call _fnc_setVest;
 	["uniforms"] call _fnc_setUniform;
 	["backpacks"] call _fnc_setBackpack;
 
@@ -523,9 +523,9 @@ private _grenadierTemplate = {
 
 private _explosivesExpertTemplate = {
 	["helmets"] call _fnc_setHelmet;
-	[["Engvests", "vests"] call _fnc_fallback] call _fnc_setVest;
+	[["engVests", "vests"] call _fnc_fallback] call _fnc_setVest;
 	["uniforms"] call _fnc_setUniform;
-	[["Engbackpacks", "backpacks"] call _fnc_fallback] call _fnc_setBackpack;
+	[["engBackpacks", "backpacks"] call _fnc_fallback] call _fnc_setBackpack;
 
 	[selectRandom ["rifles", "carbines"]] call _fnc_setPrimary;
 	["primary", 8] call _fnc_addMagazines;
@@ -554,9 +554,9 @@ private _explosivesExpertTemplate = {
 
 private _engineerTemplate = {
 	["helmets"] call _fnc_setHelmet;
-	[["Engvests", "vests"] call _fnc_fallback] call _fnc_setVest;
+	[["engVests", "vests"] call _fnc_fallback] call _fnc_setVest;
 	["uniforms"] call _fnc_setUniform;
-	[["Engbackpacks", "backpacks"] call _fnc_fallback] call _fnc_setBackpack;
+	[["engBackpacks", "backpacks"] call _fnc_fallback] call _fnc_setBackpack;
 
 	["carbines"] call _fnc_setPrimary;
 	["primary", 8] call _fnc_addMagazines;
@@ -656,7 +656,7 @@ private _aaTemplate = {
 
 private _machineGunnerTemplate = {
 	["helmets"] call _fnc_setHelmet;
-	[["MGvests", "vests"] call _fnc_fallback] call _fnc_setVest;
+	[["mgVests", "vests"] call _fnc_fallback] call _fnc_setVest;
 	["uniforms"] call _fnc_setUniform;
 	[["MGbackpacks", "backpacks"] call _fnc_fallback] call _fnc_setBackpack;
 
@@ -680,7 +680,7 @@ private _machineGunnerTemplate = {
 
 private _marksmanTemplate = {
 	["helmets"] call _fnc_setHelmet;
-	[["Snivests", "vests"] call _fnc_fallback] call _fnc_setVest;
+	[["sniVests", "vests"] call _fnc_fallback] call _fnc_setVest;
 	["uniforms"] call _fnc_setUniform;
 
 	["marksmanRifles"] call _fnc_setPrimary;
@@ -704,7 +704,7 @@ private _marksmanTemplate = {
 
 private _sniperTemplate = {
 	["helmets"] call _fnc_setHelmet;
-	[["Snivests", "vests"] call _fnc_fallback] call _fnc_setVest;
+	[["sniVests", "vests"] call _fnc_fallback] call _fnc_setVest;
 	["uniforms"] call _fnc_setUniform;
 
 	["sniperRifles"] call _fnc_setPrimary;

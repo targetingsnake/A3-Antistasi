@@ -140,12 +140,12 @@ _loadoutData set ["rangefinders", ["rhsusf_bino_lerca_1200_black"]];
 
 _loadoutData set ["uniforms", []];
 _loadoutData set ["vests", []];
-_loadoutData set ["SLvests", []];
-_loadoutData set ["GLvests", []];
+_loadoutData set ["slVests", []];
+_loadoutData set ["glVests", []];
 _loadoutData set ["backpacks", []];
 _loadoutData set ["Toolsbackpacks", ["UK3CB_TKA_O_B_ENG_Tan"]]; // Both engineer and explosivesExpert
 _loadoutData set ["Medicbackpacks", ["UK3CB_B_Alice_Med_K"]];
-_loadoutData set ["ATbackpacks", ["B_Carryall_cbr"]];
+_loadoutData set ["atBackpacks", ["B_Carryall_cbr"]];
 _loadoutData set ["backpacks", []];
 _loadoutData set ["longRangeRadios", []];
 _loadoutData set ["helmets", []];
@@ -184,8 +184,8 @@ _sfLoadoutData set ["uniforms", ["UK3CB_TKA_B_U_CombatUniform_01_DES_MARPAT", "U
 "UK3CB_TKA_B_U_CombatUniform_02_DES_MARPAT", "UK3CB_TKA_B_U_CombatUniform_Shortsleeve_02_DES_MARPAT"]];
 _sfLoadoutData set ["helmets", ["rhsusf_opscore_ut", "rhsusf_opscore_ut_pelt", "rhsusf_opscore_ut_pelt_cam", "H_Booniehat_tan"]];
 _sfLoadoutData set ["vests", ["UK3CB_ANP_B_V_GA_LITE_TAN"]];
-_sfLoadoutData set ["SLvests", ["UK3CB_ANP_B_V_GA_HEAVY_TAN"]];
-_sfLoadoutData set ["GLvests", ["UK3CB_ANP_B_V_GA_HEAVY_TAN"]];
+_sfLoadoutData set ["slVests", ["UK3CB_ANP_B_V_GA_HEAVY_TAN"]];
+_sfLoadoutData set ["glVests", ["UK3CB_ANP_B_V_GA_HEAVY_TAN"]];
 _sfLoadoutData set ["backpacks", ["B_AssaultPack_cbr", "B_Kitbag_cbr"]];
 _sfLoadoutData set ["NVGs", ["rhsusf_ANPVS_15"]];
 _sfLoadoutData set ["binoculars", ["Laserdesignator"]];
@@ -332,8 +332,8 @@ _militaryLoadoutData set  ["uniforms", [
 ]];
 _militaryLoadoutData set ["helmets", ["UK3CB_TKA_B_H_WDL"]];
 _militaryLoadoutData set ["vests", ["UK3CB_TKA_B_V_GA_LITE_WDL"]];
-_militaryLoadoutData set ["SLvests", ["UK3CB_TKA_B_V_GA_HEAVY_WDL"]];
-_militaryLoadoutData set ["GLvests", ["UK3CB_TKA_B_V_GA_HEAVY_WDL"]];
+_militaryLoadoutData set ["slVests", ["UK3CB_TKA_B_V_GA_HEAVY_WDL"]];
+_militaryLoadoutData set ["glVests", ["UK3CB_TKA_B_V_GA_HEAVY_WDL"]];
 _militaryLoadoutData set ["backpacks", ["UK3CB_TKA_B_B_ASS", "UK3CB_TKA_B_B_RIF", "UK3CB_TKA_O_B_RIF_Tan"]];
 
 
@@ -538,7 +538,7 @@ _pilotLoadoutData set ["helmets", ["UK3CB_H_Pilot_Helmet"]];
 
 private _squadLeaderTemplate = {
 	["helmets"] call _fnc_setHelmet;
-	[["SLvests", "vests"] call _fnc_fallback] call _fnc_setVest;
+	[["slVests", "vests"] call _fnc_fallback] call _fnc_setVest;
 	["uniforms"] call _fnc_setUniform;
 
 	["backpacks"] call _fnc_setBackpack;
@@ -617,7 +617,7 @@ private _medicTemplate = {
 
 private _grenadierTemplate = {
 	["helmets"] call _fnc_setHelmet;
-	[["GLvests", "vests"] call _fnc_fallback] call _fnc_setVest;
+	[["glVests", "vests"] call _fnc_fallback] call _fnc_setVest;
 	["uniforms"] call _fnc_setUniform;
 	["backpacks"] call _fnc_setBackpack;
 
@@ -705,7 +705,7 @@ private _latTemplate = {
 	["helmets"] call _fnc_setHelmet;
 	["vests"] call _fnc_setVest;
 	["uniforms"] call _fnc_setUniform;
-	[["ATbackpacks", "backpacks"] call _fnc_fallback] call _fnc_setBackpack;
+	[["atBackpacks", "backpacks"] call _fnc_fallback] call _fnc_setBackpack;
 
 	[selectRandom ["rifles", "carbines"]] call _fnc_setPrimary;
 	["primary", 6] call _fnc_addMagazines;
@@ -734,7 +734,7 @@ private _atTemplate = {
 	["helmets"] call _fnc_setHelmet;
 	["vests"] call _fnc_setVest;
 	["uniforms"] call _fnc_setUniform;
-	[["ATbackpacks", "backpacks"] call _fnc_fallback] call _fnc_setBackpack;
+	[["atBackpacks", "backpacks"] call _fnc_fallback] call _fnc_setBackpack;
 
 	[selectRandom ["rifles", "carbines"]] call _fnc_setPrimary;
 	["primary", 6] call _fnc_addMagazines;
@@ -763,7 +763,7 @@ private _aaTemplate = {
 	["helmets"] call _fnc_setHelmet;
 	["vests"] call _fnc_setVest;
 	["uniforms"] call _fnc_setUniform;
-	[["ATbackpacks", "backpacks"] call _fnc_fallback] call _fnc_setBackpack;
+	[["atBackpacks", "backpacks"] call _fnc_fallback] call _fnc_setBackpack;
 
 	[selectRandom ["rifles", "carbines"]] call _fnc_setPrimary;
 	["primary", 6] call _fnc_addMagazines;
