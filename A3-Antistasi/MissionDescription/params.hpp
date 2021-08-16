@@ -102,6 +102,13 @@ class Params
         texts[] = {"Default (Normal)","Easy","Normal","Hard"};
         default = 9999;
     };
+    class VehicleNerf
+    {
+        title = "Vehicle Accuracy";
+        values[] = {9999,0,250,1000,2500,5000};
+        texts[] = {"Default (Godmode)", "Godmode - No changes to accuracy", "Slight nerf - Might be windy", "Infantry balanced - Spray and pray", "Heavy nerf - No intention to hit anyways","Noobmode - Vehicles are useless"};
+        default = 9999;
+    };
     class unlockItem
     {
         title = "Number of the same item required to unlock";

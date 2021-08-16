@@ -37,6 +37,28 @@ if (_side == teamPlayer) then
 // Sync the vehicle textures if necessary
 _veh call A3A_fnc_vehicleTextureSync;
 
+Info_2("Adding accuracy change to vehicle %1 (Factor %2)", typeOf _veh, accuracyMult);
+_veh addEventHandler
+[
+    "Fired",
+    {
+        params ["_unit", "_weapon", "_muzzle", "_mode", "_ammo", "_magazine", "_projectile", "_gunner"];
+
+        private _dispersion = getNumber(configFile >> "CfgWeapons" >> _weapon >> "dispersion");
+        private _caliber = getNumber(configFile >> "CfgAmmo" >> _ammo >> "caliber");
+        private _yeetBullet = [sin(random 360), sin(random 360)] vectorMultiply (accuracyMult * _dispersion * 5/_caliber);
+
+        private _forward = vectorDir _projectile;
+        private _up = vectorUp _projectile;
+        private _side = _forward vectorCrossProduct _up;
+
+        private _velocity = velocity _projectile;
+        _velocity = _velocity vectorAdd (_up vectorMultiply _yeetBullet#0) vectorAdd (_side vectorMultiply _yeetBullet#1);
+        _projectile setVelocity _velocity;
+        _projectile setVectorDir _velocity;
+    }
+];
+
 private _typeX = typeOf _veh;
 if ((_typeX in vehNormal) or (_typeX in vehAttack) or (_typeX in vehBoats) or (_typeX in vehAA)) then
 {
