@@ -14,7 +14,7 @@
 
     Example:
 
-    License: Håkon Rydland Garage SHARED SOURCE LICENSE
+    License: MIT
 */
 HR_GRG_Prefix = "Antistasi";
 //Overwrite client
@@ -49,13 +49,18 @@ if (isNil "HR_GRG_ServiceDisabled_Refuel") then {HR_GRG_ServiceDisabled_Refuel =
 if (isNil "HR_GRG_ServiceDisabled_Repair") then {HR_GRG_ServiceDisabled_Repair = false};
 
 //camo blacklist (display name, case sensitive)
-HR_GRG_blackListCamo = ["IDAP"];
-
+HR_GRG_blackListCamo = ["IDAP", "African Desert Extremists", "African Desert Extremists 01", "African Desert Extremists 02", "African Desert Extremists Alt"];
 //proxies
-HR_GRG_fnc_Hint = { ["Garage",_this#0] call A3A_fnc_customHint };
-HR_GRG_fnc_vehInit = { 
+HR_GRG_fnc_Hint = {
+    params ["_key", ["_arguments", []]];
+    ["Garage",
+        if (_arguments isEqualTo []) then {localize _key} else {format ( [localize _key] + _arguments )}
+    ] call A3A_fnc_customHint;
+};
+HR_GRG_fnc_vehInit = {
     if (_this isKindOf "StaticWeapon") then {staticsToSave pushBack _this; publicVariable "staticsToSave"};
-    [_this, TeamPlayer] call A3A_fnc_AIVEHinit; }; //is passed vehicle as _this
+    [_this, TeamPlayer] call A3A_fnc_AIVEHinit;
+}; //is passed vehicle as _this
 HR_GRG_onOpenEvent = { player setCaptive false; };
 
 //CBA settings

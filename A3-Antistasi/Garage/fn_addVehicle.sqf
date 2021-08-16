@@ -19,73 +19,80 @@
 
     Example: [cursorObject, clientOwner, call HR_GRG_dLock, _player] remoteExecCall ["HR_GRG_fnc_addVehicle",2];
 
-    License: Håkon Rydland Garage SHARED SOURCE LICENSE
+    License: MIT / (APL-ND) the license switch is noted in the code
 */
 params [ ["_vehicle", objNull, [objNull]], ["_client", 2, [0]], ["_lockUID", ""], ["_player", objNull, [objNull]] ];
 #include "defines.inc"
 FIX_LINE_NUMBERS()
 
-if (isNil "HR_GRG_Vehicles") then {
-    if (isServer) then {[] call HR_GRG_fnc_initServer} else {[] remoteExec ["HR_GRG_fnc_initServer", 2]};
-};
+if (!isServer) exitWith { Error("called on client, this is a server only function") };
+if (isNil "HR_GRG_Vehicles") then { [] call HR_GRG_fnc_initServer };
 private _class = typeOf _vehicle;
 
 //LTC refund
 if (_class in [NATOSurrenderCrate, CSATSurrenderCrate]) exitWith {
-    _vehicle addMagazineCargoGlobal [unlockedMagazines#0,1];// so fnc_empty will delete the crate
-    [_vehicle] spawn A3A_fnc_empty;
+    [_vehicle,boxX,true] call A3A_fnc_ammunitionTransfer;
     [10] remoteExec ["A3A_fnc_resourcesPlayer", _client];
-    [localize "STR_HR_GRG_Feedback_addVehicle_LTC"]  remoteExec ["HR_GRG_fnc_Hint", _client];
+    ["STR_HR_GRG_Feedback_addVehicle_LTC"] remoteExec ["HR_GRG_fnc_Hint", _client];
     true
 };
 
 //validate input
-if (isNull _vehicle) exitWith { [localize "STR_HR_GRG_Feedback_addVehicle_Null"] remoteExec ["HR_GRG_fnc_Hint", _client]; false };
-if (!alive _vehicle) exitWith { [localize "STR_HR_GRG_Feedback_addVehicle_Destroyed"] remoteExec ["HR_GRG_fnc_Hint", _client]; false };
-if (locked _vehicle > 1) exitWith { [localize "STR_HR_GRG_Feedback_addVehicle_Locked"] remoteExec ["HR_GRG_fnc_Hint", _client]; false };
+if (isNull _vehicle) exitWith { ["STR_HR_GRG_Feedback_addVehicle_Null"] remoteExec ["HR_GRG_fnc_Hint", _client]; false };
+if (!alive _vehicle) exitWith { ["STR_HR_GRG_Feedback_addVehicle_Destroyed"] remoteExec ["HR_GRG_fnc_Hint", _client]; false };
+if (locked _vehicle > 1) exitWith { ["STR_HR_GRG_Feedback_addVehicle_Locked"] remoteExec ["HR_GRG_fnc_Hint", _client]; false };
 private _cat = [_class] call HR_GRG_fnc_getCatIndex;
-if (_cat isEqualTo -1) exitWith { [localize "STR_HR_GRG_Feedback_addVehicle_GenericFail"] remoteExec ["HR_GRG_fnc_Hint", _client]; false };
-if (player isNotEqualTo vehicle player) exitWith { [localize "STR_HR_GRG_Feedback_addVehicle_inVehicle"] remoteExec ["HR_GRG_fnc_Hint"] ; false };
+
+if (_cat isEqualTo -1) exitWith { ["STR_HR_GRG_Feedback_addVehicle_GenericFail"] remoteExec ["HR_GRG_fnc_Hint", _client]; false };
+if (player isNotEqualTo vehicle player) exitWith { ["STR_HR_GRG_Feedback_addVehicle_inVehicle"] remoteExec ["HR_GRG_fnc_Hint"] ; false };
 
     //Towing
-if !((_vehicle getVariable ["SA_Tow_Ropes",objNull]) isEqualTo objNull) exitWith {[localize "STR_HR_GRG_Feedback_addVehicle_SATow"] remoteExec ["HR_GRG_fnc_Hint", _client]; false };
+if !((_vehicle getVariable ["SA_Tow_Ropes",objNull]) isEqualTo objNull) exitWith {["STR_HR_GRG_Feedback_addVehicle_SATow"] remoteExec ["HR_GRG_fnc_Hint", _client]; false };
 
     //distance
-if (_player distance _vehicle > 25) exitWith {[localize "STR_HR_GRG_Feedback_addVehicle_Distance"] remoteExec ["HR_GRG_fnc_Hint", _client]; false };
+if (_player distance _vehicle > 25) exitWith {["STR_HR_GRG_Feedback_addVehicle_Distance"] remoteExec ["HR_GRG_fnc_Hint", _client]; false };
 
     //crewed
 private _exit = false;
 if ( ( {alive _x} count (crew _vehicle) ) > 0) then { _exit = true };
 { if ( ( {alive _x} count (crew _x) ) > 0) exitWith {_exit = true} } forEach attachedObjects _vehicle;
-if (_exit) exitWith { [localize "STR_HR_GRG_Feedback_addVehicle_Crewed"] remoteExec ["HR_GRG_fnc_Hint", _client]; false };
+if (_exit) exitWith { ["STR_HR_GRG_Feedback_addVehicle_Crewed"] remoteExec ["HR_GRG_fnc_Hint", _client]; false };
 
     //Valid area
 private _friendlyMarkers = markersX select {sidesX getVariable [_x,sideUnknown] == teamPlayer};
 private _inArea = _friendlyMarkers findIf { count ([_player, _vehicle] inAreaArray _x) > 1 };
-if !(_inArea > -1) exitWith {[format [localize "STR_HR_GRG_Feedback_addVehicle_badLocation",nameTeamPlayer]] remoteExec ["HR_GRG_fnc_Hint", _client]; false };
+if !(_inArea > -1) exitWith {["STR_HR_GRG_Feedback_addVehicle_badLocation",[nameTeamPlayer]] remoteExec ["HR_GRG_fnc_Hint", _client]; false };
 
     //No hostiles near
 private _units = (_player nearEntities ["Man",300]) select {([_x] call A3A_fnc_CanFight) && (side _x isEqualTo Occupants || side _x isEqualTo Invaders)};
 if (_units findIf {_unit = _x; _players = allPlayers select {(side _x isEqualTo teamPlayer) && (_player distance _x < 300)}; _players findIf {_x in (_unit targets [true, 300])} != -1} != -1) exitWith {
-    [localize "STR_HR_GRG_Feedback_addVehicle_enemiesEngaging"] remoteExec ["HR_GRG_fnc_Hint", _client];
+    ["STR_HR_GRG_Feedback_addVehicle_enemiesEngaging"] remoteExec ["HR_GRG_fnc_Hint", _client];
     false;
 };
-if (_units findIf{_player distance _x < 100} != -1) exitWith {[localize "STR_HR_GRG_Feedback_addVehicle_enemiesNear"] remoteExec ["HR_GRG_fnc_Hint", _client]; false };
+if (_units findIf{_player distance _x < 100} != -1) exitWith {["STR_HR_GRG_Feedback_addVehicle_enemiesNear"] remoteExec ["HR_GRG_fnc_Hint", _client]; false };
 
     //cap block
 private _capacity = 0;
 { _capacity = _capacity + count _x } forEach HR_GRG_Vehicles;
 
 private _countStatics = {_x isKindOf "StaticWeapon"} count (attachedObjects _vehicle);
-if ((call HR_GRG_VehCap - _capacity) < (_countStatics + 1)) exitWith { [localize "STR_HR_GRG_Feedback_addVehicle_Capacity"] remoteExec ["HR_GRG_fnc_Hint", _client]; false };//HR_GRG_VehCap is defined in config.inc
+if ((call HR_GRG_VehCap - _capacity) < (_countStatics + 1)) exitWith { ["STR_HR_GRG_Feedback_addVehicle_Capacity"] remoteExec ["HR_GRG_fnc_Hint", _client]; false };//HR_GRG_VehCap is defined in config.inc
 
 //Block air garage outside of airbase
 if (
     (_class isKindOf "Air")
     && {count (airportsX select {(sidesX getVariable [_x,sideUnknown] == teamPlayer) and (_player inArea _x)}) < 1} //no airports
-) exitWith {[format [localize "STR_HR_GRG_Feedback_addVehicle_airBlocked",nameTeamPlayer]] remoteExec ["HR_GRG_fnc_Hint", _client]; false };
+) exitWith {["STR_HR_GRG_Feedback_addVehicle_airBlocked", [nameTeamPlayer]] remoteExec ["HR_GRG_fnc_Hint", _client]; false };
+
+//---------------------------------------------------------|
+// Everything above this line is under the license: MIT    |
+// Everything under this line is under the license: APL-ND |
+//---------------------------------------------------------|
 
 //add vehicle
+if (_vehicle getVariable ["HR_GRG_Garaging", false]) exitWith {};
+_vehicle setVariable ["HR_GRG_Garaging", true];
+
 private _locking = if (_lockUID isEqualTo "") then {false} else {true};
 private _lockName = if (_locking) then { name _player } else { "" };
 {
@@ -138,5 +145,5 @@ private _refreshCode = {
 };
 [ _catToRefresh, _refreshCode ] remoteExecCall ["call", HR_GRG_Users];
 
-[format [localize "STR_HR_GRG_Feedback_addVehicle_Success", cfgDispName(_class)] ] remoteExec ["HR_GRG_fnc_Hint", _client];
+["STR_HR_GRG_Feedback_addVehicle_Success", [cfgDispName(_class)] ] remoteExec ["HR_GRG_fnc_Hint", _client];
 true;

@@ -78,8 +78,8 @@
 
 //Minefield definition
 //Not Magazine type would be: ["APERSBoundingMine", "APERSMine", "ATMine"]
-["minefieldAT", ["ATMine"]] call _fnc_saveToTemplate;
-["minefieldAPERS", ["APERSMine"]] call _fnc_saveToTemplate;
+["minefieldAT", ["rhs_mine_tm62m"]] call _fnc_saveToTemplate;
+["minefieldAPERS", ["rhs_mine_pmn2"]] call _fnc_saveToTemplate;
 
 //PvP definitions
 ["playerDefaultLoadout", []] call _fnc_saveToTemplate;
@@ -727,7 +727,7 @@ private _policeTemplate = {
 	["uniforms"] call _fnc_setUniform;
 
 
-	[selectRandom["smgs", "rifle"]] call _fnc_setPrimary;
+	[selectRandom["smgs", "rifles"]] call _fnc_setPrimary;
 	["primary", 3] call _fnc_addMagazines;
 
 	["sidearms"] call _fnc_setHandgun;

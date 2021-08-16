@@ -16,7 +16,7 @@
 
     Example: _this call HR_GRG_fnc_requestMount;
 
-    License: Håkon Rydland Garage SHARED SOURCE LICENSE
+    License: APL-ND
 */
 #include "defines.inc"
 FIX_LINE_NUMBERS()
@@ -38,7 +38,7 @@ private _nodes = if (_newIconIndex isEqualTo 1) then { //load static
     deleteVehicle _static;
     _nodes;
 } else { [] }; //unload static
-if (_nodes isEqualType 0) exitWith { [localize "STR_HR_GRG_Feedback_requestMount_Denied"] call HR_GRG_fnc_Hint };
+if (_nodes isEqualType 0) exitWith { ["STR_HR_GRG_Feedback_requestMount_Denied"] call HR_GRG_fnc_Hint };
 
 HR_GRG_ReloadMounts = true;
 [false] call HR_GRG_fnc_toggleConfirmBttn;
