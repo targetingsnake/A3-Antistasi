@@ -160,6 +160,7 @@ switch (_mode) do
         private _aiListBox = _display displayCtrl A3A_IDC_AILISTBOX;
         private _unit = objectFromNetId (_aiListBox lbData ((lbSelection _aiListBox) # 0));
 
+        closeDialog 1;
         [[_unit]] spawn A3A_fnc_controlUnit;
     };
 
