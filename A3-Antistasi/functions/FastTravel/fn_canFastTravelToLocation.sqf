@@ -67,7 +67,7 @@ if ([getMarkerPos _location,500] call A3A_fnc_enemyNearCheck) exitWith {
     [false, "You cannot Fast Travel to a location under attack or with enemies in the surrounding area"];
 };
 
-if !([getMarkerPos _location] call A3A_fnc_playerLeashCheckPosition) exitWith {
+if (!([player] call A3A_fnc_isMember) && {!([getMarkerPos _location] call A3A_fnc_playerLeashCheckPosition)}) exitWith {
     [false, format ["There are no members nearby the target location. You need to be within %1 km of HQ or a member.", ceil (memberDistance/1e3)]];
 };
 
