@@ -37,35 +37,39 @@ if (_side == teamPlayer) then
 // Sync the vehicle textures if necessary
 _veh call A3A_fnc_vehicleTextureSync;
 
-Info_2("Adding accuracy change to vehicle %1 (Factor %2)", typeOf _veh, accuracyMult);
-_veh addEventHandler
-[
-    "Fired",
-    {
-        //Parameters from the fired EH
-        private _weapon = _this#1;
-        private _ammo = _this#4;
-        private _projectile = _this#6;
+Debug_2("Adding accuracy change to vehicle %1 (Factor %2)", typeOf _veh, accuracyMult);
+if(accuracyMult != 0) then
+{
+    _veh addEventHandler
+    [
+        "Fired",
+        {
+            //Parameters from the fired EH
+            private _weapon = _this#1;
+            private _ammo = _this#4;
+            private _projectile = _this#6;
 
-        //Getting the original dispersion and the caliber from the configs
-        private _dispersion = getNumber(configFile >> "CfgWeapons" >> _weapon >> "dispersion");
-        private _caliber = getNumber(configFile >> "CfgAmmo" >> _ammo >> "caliber");
+            //Getting the original dispersion and the caliber from the configs
+            private _dispersion = getNumber(configFile >> "CfgWeapons" >> _weapon >> "dispersion");
+            private _caliber = getNumber(configFile >> "CfgAmmo" >> _ammo >> "caliber");
 
-        //Calculating the additional offset, two values to account for y and z axis offset
-        private _offset = [sin(random 360), sin(random 360)] vectorMultiply (accuracyMult * _dispersion * 5/_caliber);
+            //Calculating the additional offset, two values to account for y and z axis offset
+            private _offset = [sin(random 360), sin(random 360)] vectorMultiply (accuracyMult * _dispersion * 5/_caliber);
 
-        //Calculating the needed y and z axis vectors
-        private _forward = vectorDir _projectile;
-        private _up = vectorUp _projectile;
-        private _side = _forward vectorCrossProduct _up;
+            //Calculating the needed y and z axis vectors
+            private _forward = vectorDir _projectile;
+            private _up = vectorUp _projectile;
+            private _side = _forward vectorCrossProduct _up;
 
-        //Getting the current velocity and altering it based on the selected offset
-        private _velocity = velocity _projectile;
-        _velocity = _velocity vectorAdd (_up vectorMultiply _offset#0) vectorAdd (_side vectorMultiply _offset#1);
-        _projectile setVelocity _velocity;
-        _projectile setVectorDir _velocity;
-    }
-];
+            //Getting the current velocity and altering it based on the selected offset
+            private _velocity = velocity _projectile;
+            _velocity = _velocity vectorAdd (_up vectorMultiply _offset#0) vectorAdd (_side vectorMultiply _offset#1);
+            _projectile setVelocity _velocity;
+            _projectile setVectorDir _velocity;
+        }
+    ];
+};
+
 
 private _typeX = typeOf _veh;
 if ((_typeX in vehNormal) or (_typeX in vehAttack) or (_typeX in vehBoats) or (_typeX in vehAA)) then
