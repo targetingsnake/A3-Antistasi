@@ -345,9 +345,20 @@ class A3A
         class updateVehicles {};
     };
 
-    class HoldAction {
-        class holdAction {};
-        class holdActionInit { preInit=1; };
+    class RichActionAPI {
+        class richAction_initAnim { preInit=1; };
+        class richAction_setContext {};
+        class richAction_setMenu {};
+    };
+
+    class RichActionKernel {
+        class richAction_add {};
+        class richAction_init { preInit=1; };
+        class richAction_initAnim { preInit=1; };
+        class richAction_onClick {};
+        class richAction_overlayGFX {};
+        class richAction_render {};
+        class richAction_selectAnimFrame {};
     };
 
     class Intel
