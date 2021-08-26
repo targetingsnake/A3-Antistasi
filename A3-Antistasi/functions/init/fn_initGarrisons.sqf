@@ -114,7 +114,8 @@ if (gameMode == 1) then
 			_controlsCSAT = ["control_52", "control_33"];
 		};
 		case "chernarus_summer": {
-			_mrkCSAT = ["outpost_21"];
+			_mrkCSAT = ["outpost_21", "resource_5", "control_30"];
+			_controlsCSAT = ["control_30"];
 		};
 		case "tem_anizay": {
 			_mrkCSAT = ["outpost_8", "control_19", "control_44", "control_45"];
@@ -152,7 +153,7 @@ if (gameMode == 1) then
 			_controlsCSAT = ["control", "control_1", "control_2", "control_5", "control_13", "control_20", "control_21", "control_22", "control_24", "control_25", "control_31"];
 		};
 		case "sara": {
-			_mrkCSAT = ["airport_1", "seaport_6", "outpost_22", "outpost_15", "resource_9", "outpost_19", "outpost_14", "resource_11"];
+			_mrkCSAT = ["airport_1", "seaport_6", "outpost_16", "outpost_15", "resource_9", "outpost_19", "outpost_14", "resource_11"];
 			_controlsCSAT = ["control_28", "control_27"];
 		};
 		case "cam_lao_nam": {
