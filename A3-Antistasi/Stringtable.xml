@@ -1036,6 +1036,12 @@
         <English>Select AI in the list</English>
       </Key>
     </Container>
+    <Container name="recruit_squad">
+        <Key ID="STR_antistasi_recruit_squad_spawn_message">
+          <Original>Select AI in the list</Original>
+          <English>Select AI in the list</English>
+        </Key>
+    </Container>
     <!-- End new content -->
     <Container name="dialog_load_previous_session">
       <Key ID="STR_antistasi_dialogs_lps_frame_text">

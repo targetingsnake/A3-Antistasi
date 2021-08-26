@@ -356,6 +356,7 @@ class A3A
         class playerManagementTab {};
         class playerTab {};
         class recruitDialog {};
+        class recruitSquadDialog {};
         class requestMissionDialog {};
     };
 
@@ -578,6 +579,8 @@ class A3A
         class FIAinit {};
         class FIAskillAdd {};
         class garrisonAdd {};
+        class getHCsquadPrice {};
+        class getHCSquadVehicleType {};
         class NATObomb {};
         class NATOQuadbike {};
         class postmortem {};
