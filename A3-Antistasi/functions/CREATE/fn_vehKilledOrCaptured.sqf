@@ -17,7 +17,7 @@ private _side = _veh getVariable ["ownerSide", teamPlayer];			// default because
 if (_captured && (_side == _sideEnemy)) exitWith {};
 
 private _act = if (_captured) then {"captured"} else {"destroyed"};
-Debug_4("%1 of %2 %3 by %4", _type, _side, _act, _sideEnemy);
+ServerDebug_4("%1 of %2 %3 by %4", _type, _side, _act, _sideEnemy);
 
 if (_side == Occupants or _side == Invaders) then
 {
@@ -25,13 +25,12 @@ if (_side == Occupants or _side == Invaders) then
 	if (_sideEnemy != teamPlayer) exitWith {};
 
 	private _value = call {
-		if (_type in FactionGet(all,"vehiclesAPCs")) exitWith {8};
-		if (_type in FactionGet(all,"vehiclesTanks")) exitWith {15};
-		if (_type in FactionGet(all,"vehiclesAA") or _type in FactionGet(all,"vehiclesArtillery")) exitWith {15};
-		if (_type in FactionGet(all,"vehiclesAttackHelis")) exitWith {15};
-		if (_type in FactionGet(all,"vehiclesTransportAir")) exitWith {6};
-		if (_type in FactionGet(all,"vehiclesFixedWing")) exitWith {15};		// transportAir must be before this
-		if (_type in FactionGet(all,"vehiclesBoats")) exitWith {3};
+		if (_type in FactionGet(all,"vehiclesAPCs")) exitWith {5};
+		if (_type in FactionGet(all,"vehiclesTanks")) exitWith {10};
+		if (_type in FactionGet(all,"vehiclesAA") or _type in FactionGet(all,"vehiclesArtillery")) exitWith {10};
+		if (_type in FactionGet(all,"vehiclesAttackHelis")) exitWith {10};
+		if (_type in FactionGet(all,"vehiclesTransportAir")) exitWith {4};
+		if (_type in FactionGet(all,"vehiclesFixedWing")) exitWith {10};		// transportAir must be before this
 		if (_type isKindOf "StaticWeapon") exitWith {1};
 		2;		// trucks, light attack, boats, UAV etc
 	};

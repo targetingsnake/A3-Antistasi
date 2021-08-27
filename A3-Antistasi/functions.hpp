@@ -716,8 +716,11 @@ class A3A
     };
 
     class UtilityItems {
-        class spawnLight {};
-        class initUtilityItems {};
+        class carryItem {};
+        class initMovableObject {};
         class rotateItem {};
+        class spawnLight {};
+        class attachedObjects {};
+        class dropObject {};
     };
 };

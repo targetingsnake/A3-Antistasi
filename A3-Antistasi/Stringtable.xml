@@ -626,7 +626,7 @@
         <Korean>저항세력의 지도자가 되고 영웅이 되십시오.</Korean>
       </Key>
       <Key ID="STR_antistasi_credits_generic_version_text">
-        <Original>2.5.1</Original>
+        <Original>2.5.2</Original>
       </Key>
     </Container>
     <Container name="dialog_vehicle_purchase">
@@ -3923,6 +3923,14 @@
         <Key ID="STR_A3A_Utility_Items_Feedback_Far">
             <Original>You're too far</Original>
             <English>You're too far</English>
+        </Key>
+        <Key ID="STR_A3A_Utility_Items_Feedback_Title">
+            <Original>Utility items</Original>
+            <English>Utility items</English>
+        </Key>
+        <Key ID="STR_A3A_Utility_Items_Feedback_Attached_Objects">
+            <Original>You are already carrying something.</Original>
+            <English>You are already carrying something.</English>
         </Key>
     </Container>
     <Container name="time_units">
