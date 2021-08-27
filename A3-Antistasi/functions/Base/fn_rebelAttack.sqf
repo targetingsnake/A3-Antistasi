@@ -14,9 +14,6 @@ FIX_LINE_NUMBERS()
         Nothing
 */
 
-private _groupData = FactionGetGroups(_side);
-if (isNil "_groupData") exitWith {Error_1("No group data for side: %1", _side)};
-
 Info_1("Starting large attack script for side %1", _side);
 
 if (A3A_hasIFA and (sunOrMoon < 1)) exitWith
