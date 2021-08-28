@@ -91,21 +91,26 @@ private _validateWeightedArray = {
 };
 
 private _genericClassExists = {
-    params ["_class", ["_entry", ""]];
+    params ["_class"];
     if !(_class isEqualType "") exitWith {
         _invalidReasons pushBack ("Entry: "+ (str _entry) + " | Invalid data type: "+ str _class + " | Data type: "+ typeName _class + " | Expected: String");
         false;
     };
+
     private _cfgs = ["CfgVehicles", "CfgWeapons", "CfgMagazines", "CfgMagazineWells", "CfgAmmo", "CfgWorlds"];
     private _cfgIndex = _cfgs findIf { isClass (configFile/_x/_class) };
-    if ( _cfgIndex isEqualTo -1 || {configName (configFile/_x/(_cfgs#_cfgIndex)) isNotEqualTo _class}) exitWith {
-        _invalidReasons pushBack ( if (_cfgIndex isEqualTo -1) then {
+    if (_cfgIndex isEqualTo -1) exitWith {
+        _invalidReasons pushBack ("Entry: "+ (str _entry) + " | Invalid classname: "+_class)
+    };
+
+    private _cfg = _cfgs#_cfgIndex;
+    if (configName (configFile/_cfg/_class) isNotEqualTo _class) exitWith {
+        _invalidReasons pushBack (
             "Entry: "+ (str _entry) + " | Bad case on classname: "+_class+", expected: "+ configName (configFile/_cfg/_class)
-        } else {
-            "Entry: "+ (str _entry) + " | Invalid classname: "+_class+" | Classname should be from config "+_cfg
-        });
+        );
         false;
     };
+
     true;
 };
 
@@ -146,7 +151,7 @@ private _handleUniqueCases = { //handles unique name cases that the stored value
         case "mediKits": { { ["CfgWeapons",_x,_entry] call _validClassCaseSensitive } forEach _y };
 
         //generic class
-        case "initialRebelEquipment": _genericClassExists;
+        case "initialRebelEquipment": { { [_x] call _genericClassExists } forEach _y };
 
         //bool
         case "addDiveGear";
