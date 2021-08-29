@@ -349,7 +349,6 @@ waitUntil {sleep 1; (spawner getVariable _markerX == 2)};
 [_markerX] call A3A_fnc_freeSpawnPositions;
 
 deleteMarker _mrk;
-//{if ((!alive _x) and (not(_x in destroyedBuildings))) then {destroyedBuildings = destroyedBuildings + [position _x]; publicVariableServer "destroyedBuildings"}} forEach _buildings;
 
 { if (alive _x) then { deleteVehicle _x } } forEach _soldiers;
 { deleteGroup _x } forEach _groups;

@@ -7,20 +7,6 @@ if (isNil "logLevel") then { logLevel = 2 };scriptName "initClient.sqf";
 
 Info("initClient started");
 
-call A3A_fnc_installSchrodingersBuildingFix;
-
-if (!isServer) then {
-	// get server to send us the current destroyedBuildings list, hide them locally
-	"destroyedBuildings" addPublicVariableEventHandler {
-		{ hideObject _x } forEach (_this select 1);
-	};
-	// need to wait until server has loaded the save
-	[] spawn {
-		waitUntil {(!isNil "serverInitDone")};
-		[clientOwner, "destroyedBuildings"] remoteExecCall ["publicVariableClient", 2];
-	};
-};
-
 // Headless clients install some support functions, register with the server and bail out
 if (!hasInterface) exitWith {
 	call A3A_fnc_initFuncs;
