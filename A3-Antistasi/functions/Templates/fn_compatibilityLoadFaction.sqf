@@ -55,7 +55,7 @@ private _unitClassMap = if (_side isNotEqualTo independent) then { createHashMap
 //validate loadouts
 private _loadoutsPrefix = format ["loadouts_%1_", _factionPrefix];
 private _allDefinitions = _faction get "loadouts";
-[_allDefinitions, _file] call A3A_fnc_TV_verifyLoadoutsData;
+[_faction, _file] call A3A_fnc_TV_verifyLoadoutsData;
 
 //Register loadouts globally.
 {
