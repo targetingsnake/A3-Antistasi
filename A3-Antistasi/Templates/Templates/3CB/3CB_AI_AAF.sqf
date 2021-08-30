@@ -2,72 +2,72 @@
 //   Side Information   //
 //////////////////////////
 
-["name", "AAF"] call _fnc_saveToTemplate; 						
-["spawnMarkerName", "AAF Support Corridor"] call _fnc_saveToTemplate; 			
+["name", "AAF"] call _fnc_saveToTemplate;
+["spawnMarkerName", "AAF Support Corridor"] call _fnc_saveToTemplate;
 
-["flag", "Flag_AAF_F"] call _fnc_saveToTemplate; 						
-["flagTexture", "a3\data_f\flags\flag_aaf_co.paa"] call _fnc_saveToTemplate; 				
-["flagMarkerType", "flag_AAF"] call _fnc_saveToTemplate; 			
+["flag", "Flag_AAF_F"] call _fnc_saveToTemplate;
+["flagTexture", "a3\data_f\flags\flag_aaf_co.paa"] call _fnc_saveToTemplate;
+["flagMarkerType", "flag_AAF"] call _fnc_saveToTemplate;
 
 //////////////////////////
 //       Vehicles       //
 //////////////////////////
 
-["ammobox", "B_supplyCrate_F"] call _fnc_saveToTemplate; 	
-["surrenderCrate", "Box_IND_Wps_F"] call _fnc_saveToTemplate; 
-["equipmentBox", "Box_NATO_Equip_F"] call _fnc_saveToTemplate; 
+["ammobox", "B_supplyCrate_F"] call _fnc_saveToTemplate;
+["surrenderCrate", "Box_IND_Wps_F"] call _fnc_saveToTemplate;
+["equipmentBox", "Box_NATO_Equip_F"] call _fnc_saveToTemplate;
 
-["vehiclesBasic", ["UK3CB_AAF_B_M1030"]] call _fnc_saveToTemplate; 			
-["vehiclesLightUnarmed", ["UK3CB_AAF_B_M1151", "UK3CB_AAF_B_M998_4DR", "UK3CB_AAF_B_M998_2DR", "UK3CB_AAF_B_LR_Closed", "UK3CB_AAF_B_LR_Open"]] call _fnc_saveToTemplate; 		
+["vehiclesBasic", ["UK3CB_AAF_B_M1030"]] call _fnc_saveToTemplate;
+["vehiclesLightUnarmed", ["UK3CB_AAF_B_M1151", "UK3CB_AAF_B_M998_4DR", "UK3CB_AAF_B_M998_2DR", "UK3CB_AAF_B_LR_Closed", "UK3CB_AAF_B_LR_Open"]] call _fnc_saveToTemplate;
 ["vehiclesLightArmed", ["UK3CB_AAF_B_M1151_GPK_M2", "UK3CB_AAF_B_M1151_GPK_M240", "UK3CB_AAF_B_M1151_OGPK_M2", "UK3CB_AAF_B_M1151_OGPK_M240", "UK3CB_AAF_B_SUV_Armed",
-"UK3CB_AAF_I_LR_SF_M2", "UK3CB_AAF_B_LR_M2"]] call _fnc_saveToTemplate; 		
-["vehiclesTrucks", ["UK3CB_AAF_B_M939_Open", "UK3CB_AAF_B_M939", "UK3CB_AAF_B_MTVR_Closed", "UK3CB_AAF_B_MTVR_Open"]] call _fnc_saveToTemplate; 			
+"UK3CB_AAF_I_LR_SF_M2", "UK3CB_AAF_B_LR_M2"]] call _fnc_saveToTemplate;
+["vehiclesTrucks", ["UK3CB_AAF_B_M939_Open", "UK3CB_AAF_B_M939", "UK3CB_AAF_B_MTVR_Closed", "UK3CB_AAF_B_MTVR_Open"]] call _fnc_saveToTemplate;
 ["vehiclesCargoTrucks", ["UK3CB_AAF_I_M939_Recovery", "UK3CB_AAF_B_MTVR_Recovery"]] call _fnc_saveToTemplate;
 ["vehiclesAmmoTrucks", ["UK3CB_AAF_B_MTVR_Reammo", "UK3CB_AAF_B_M939_Reammo"]] call _fnc_saveToTemplate;
 ["vehiclesRepairTrucks", ["UK3CB_AAF_B_M939_Repair", "UK3CB_AAF_B_MTVR_Repair"]] call _fnc_saveToTemplate;
 ["vehiclesFuelTrucks", ["UK3CB_AAF_B_MTVR_Refuel", "UK3CB_AAF_B_M939_Fuel"]] call _fnc_saveToTemplate;
 ["vehiclesMedical", ["UK3CB_AAF_B_M113_AMB"]] call _fnc_saveToTemplate;
-["vehiclesAPCs", ["UK3CB_AAF_B_LAV25", "UK3CB_AAF_B_LAV25", "UK3CB_AAF_B_AAV", "UK3CB_AAF_B_LAV25_HQ", "UK3CB_AAF_B_M113_M2", "UK3CB_AAF_B_AAV"]] call _fnc_saveToTemplate; 				
-["vehiclesTanks", ["UK3CB_AAF_B_M60A3", "UK3CB_AAF_I_T72BC"]] call _fnc_saveToTemplate; 			
+["vehiclesAPCs", ["UK3CB_AAF_B_LAV25", "UK3CB_AAF_B_LAV25", "UK3CB_AAF_B_AAV", "UK3CB_AAF_B_LAV25_HQ", "UK3CB_AAF_B_M113_M2", "UK3CB_AAF_B_AAV"]] call _fnc_saveToTemplate;
+["vehiclesTanks", ["UK3CB_AAF_B_M60A3", "UK3CB_AAF_I_T72BC"]] call _fnc_saveToTemplate;
 ["vehiclesAA", ["UK3CB_AAF_O_ZsuTank", "UK3CB_AAF_O_MTLB_ZU23"]] call _fnc_saveToTemplate; //UK3CB_AAF_O_2S6M_Tunguska
-["vehiclesLightAPCs", []] call _fnc_saveToTemplate;			
-["vehiclesIFVs", []] call _fnc_saveToTemplate;				
+["vehiclesLightAPCs", []] call _fnc_saveToTemplate;
+["vehiclesIFVs", []] call _fnc_saveToTemplate;
 
 
 ["vehiclesTransportBoats", ["UK3CB_AAF_B_RHIB"]] call _fnc_saveToTemplate;
 ["vehiclesGunBoats", ["UK3CB_AAF_B_RHIB_Gunboat"]] call _fnc_saveToTemplate;
 ["vehiclesAmphibious", ["UK3CB_AAF_B_AAV"]] call _fnc_saveToTemplate;
 
-["vehiclesPlanesCAS", ["UK3CB_AAF_B_L39_PYLON"]] call _fnc_saveToTemplate; 		
-["vehiclesPlanesAA", ["UK3CB_AAF_O_MIG29S"]] call _fnc_saveToTemplate; 			
-["vehiclesPlanesTransport", ["UK3CB_AAF_B_C130J"]] call _fnc_saveToTemplate; 	
+["vehiclesPlanesCAS", ["UK3CB_AAF_B_L39_PYLON"]] call _fnc_saveToTemplate;
+["vehiclesPlanesAA", ["UK3CB_AAF_O_MIG29S"]] call _fnc_saveToTemplate;
+["vehiclesPlanesTransport", ["UK3CB_AAF_B_C130J"]] call _fnc_saveToTemplate;
 
-["vehiclesHelisLight", ["UK3CB_AAF_B_UH1H", "UK3CB_AAF_B_Benches_MH9"]] call _fnc_saveToTemplate; 		
-["vehiclesHelisTransport", ["UK3CB_AAF_B_UH60M2", "UK3CB_AAF_B_UH60M", "UK3CB_AAF_O_Mi8AMT", "UK3CB_AAF_O_Mi8", "UK3CB_AAF_I_UH1H_M240"]] call _fnc_saveToTemplate; 	
-["vehiclesHelisAttack", ["UK3CB_AAF_B_AH1Z_GS", "UK3CB_AAF_B_AH1Z", "UK3CB_AAF_B_UH1H_GUNSHIP", "UK3CB_AAF_I_Mi_24V", "UK3CB_AAF_I_Mi8AMTSh"]] call _fnc_saveToTemplate; 		
+["vehiclesHelisLight", ["UK3CB_AAF_B_UH1H", "UK3CB_AAF_B_Benches_MH9"]] call _fnc_saveToTemplate;
+["vehiclesHelisTransport", ["UK3CB_AAF_B_UH60M2", "UK3CB_AAF_B_UH60M", "UK3CB_AAF_O_Mi8AMT", "UK3CB_AAF_O_Mi8", "UK3CB_AAF_I_UH1H_M240"]] call _fnc_saveToTemplate;
+["vehiclesHelisAttack", ["UK3CB_AAF_B_AH1Z_GS", "UK3CB_AAF_B_AH1Z", "UK3CB_AAF_B_UH1H_GUNSHIP", "UK3CB_AAF_I_Mi_24V", "UK3CB_AAF_I_Mi8AMTSh"]] call _fnc_saveToTemplate;
 
 ["vehiclesArtillery", ["UK3CB_AAF_B_M109"]] call _fnc_saveToTemplate;
 ["magazines", createHashMapFromArray [
 ["UK3CB_AAF_B_M109", ["rhs_mag_155mm_m795_28"]]
 ]] call _fnc_saveToTemplate;
 
-["uavsAttack", ["B_UAV_02_dynamicLoadout_F"]] call _fnc_saveToTemplate; 				
-["uavsPortable", ["B_UAV_01_F"]] call _fnc_saveToTemplate; 				
+["uavsAttack", ["B_UAV_02_dynamicLoadout_F"]] call _fnc_saveToTemplate;
+["uavsPortable", ["B_UAV_01_F"]] call _fnc_saveToTemplate;
 
 //Config special vehicles
-["vehiclesMilitiaLightArmed", ["UK3CB_AAF_I_LR_SF_M2", "UK3CB_AAF_I_LR_M2", "UK3CB_AAF_I_Offroad_M2", "UK3CB_AAF_I_UAZ_MG"]] call _fnc_saveToTemplate; 
-["vehiclesMilitiaTrucks", ["UK3CB_AAF_I_Ural_Open"]] call _fnc_saveToTemplate; 	
-["vehiclesMilitiaCars", ["UK3CB_AAF_I_UAZ_Open", "UK3CB_AAF_I_UAZ_Closed"]] call _fnc_saveToTemplate; 		
+["vehiclesMilitiaLightArmed", ["UK3CB_AAF_I_LR_SF_M2", "UK3CB_AAF_I_LR_M2", "UK3CB_AAF_I_Offroad_M2", "UK3CB_AAF_I_UAZ_MG"]] call _fnc_saveToTemplate;
+["vehiclesMilitiaTrucks", ["UK3CB_AAF_I_Ural_Open"]] call _fnc_saveToTemplate;
+["vehiclesMilitiaCars", ["UK3CB_AAF_I_UAZ_Open", "UK3CB_AAF_I_UAZ_Closed"]] call _fnc_saveToTemplate;
 
-["vehiclesPolice", ["UK3CB_ADP_B_Hilux_Open", "UK3CB_ADP_B_Hilux_Closed", "UK3CB_ADP_B_LandRover_Closed", "UK3CB_ADP_B_LandRover_Open", "UK3CB_ADP_B_Van_Transport", "UK3CB_ADP_B_Offroad"]] call _fnc_saveToTemplate; 			
+["vehiclesPolice", ["UK3CB_ADP_B_Hilux_Open", "UK3CB_ADP_B_Hilux_Closed", "UK3CB_ADP_B_LandRover_Closed", "UK3CB_ADP_B_LandRover_Open", "UK3CB_ADP_B_Van_Transport", "UK3CB_ADP_B_Offroad"]] call _fnc_saveToTemplate;
 
-["staticMGs", ["RHS_M2StaticMG_D"]] call _fnc_saveToTemplate; 					
-["staticAT", ["RHS_TOW_TriPod_D"]] call _fnc_saveToTemplate; 					
-["staticAA", ["RHS_Stinger_AA_pod_D"]] call _fnc_saveToTemplate; 					
-["staticMortars", ["RHS_M252_D"]] call _fnc_saveToTemplate; 				
+["staticMGs", ["RHS_M2StaticMG_D"]] call _fnc_saveToTemplate;
+["staticAT", ["RHS_TOW_TriPod_D"]] call _fnc_saveToTemplate;
+["staticAA", ["RHS_Stinger_AA_pod_D"]] call _fnc_saveToTemplate;
+["staticMortars", ["RHS_M252_D"]] call _fnc_saveToTemplate;
 
-["mortarMagazineHE", "rhs_12Rnd_m821_HE"] call _fnc_saveToTemplate; 			
-["mortarMagazineSmoke", "8Rnd_82mm_Mo_Smoke_white"] call _fnc_saveToTemplate; 		
+["mortarMagazineHE", "rhs_12Rnd_m821_HE"] call _fnc_saveToTemplate;
+["mortarMagazineSmoke", "8Rnd_82mm_Mo_Smoke_white"] call _fnc_saveToTemplate;
 
 //Minefield definition
 ["minefieldAT", ["rhsusf_mine_M19"]] call _fnc_saveToTemplate;
@@ -86,48 +86,48 @@ _loadoutData set ["SMGs", []];
 _loadoutData set ["machineGuns", []];
 _loadoutData set ["marksmanRifles", []];
 _loadoutData set ["sniperRifles", []];
-_loadoutData set ["AALaunchers", [ 				
+_loadoutData set ["AALaunchers", [
 "rhs_weap_fim92"
 ]];
 _loadoutData set ["sidearms", []];
 _loadoutData set ["glSidearms", []];
-_loadoutData set ["ATMines", ["rhs_mine_M19_mag"]]; 					
-_loadoutData set ["APMines", ["rhsusf_mine_m14_mag"]]; 					
-_loadoutData set ["lightExplosives", ["rhsusf_m112_mag"]]; 			
-_loadoutData set ["heavyExplosives", ["rhsusf_m112x4_mag"]]; 			
+_loadoutData set ["ATMines", ["rhs_mine_M19_mag"]];
+_loadoutData set ["APMines", ["rhsusf_mine_m14_mag"]];
+_loadoutData set ["lightExplosives", ["rhsusf_m112_mag"]];
+_loadoutData set ["heavyExplosives", ["rhsusf_m112x4_mag"]];
 
 _loadoutData set ["antiInfantryGrenades", ["rhs_mag_m67"]];
 _loadoutData set ["smokeGrenades", ["rhs_mag_an_m8hc"]];
 _loadoutData set ["signalsmokeGrenades", ["rhs_mag_m18_green", "rhs_mag_m18_purple", "rhs_mag_m18_red", "rhs_mag_m18_yellow"]];
 
 //Basic equipment.
-_loadoutData set ["maps", ["ItemMap"]];				
-_loadoutData set ["watches", ["ItemWatch"]];		
-_loadoutData set ["compasses", ["ItemCompass"]];	
-_loadoutData set ["radios", ["ItemRadio"]];			
-_loadoutData set ["gpses", ["ItemGPS"]];			
-_loadoutData set ["NVGs", ["rhsusf_ANPVS_14"]];						
-_loadoutData set ["binoculars", ["Binocular"]];		
+_loadoutData set ["maps", ["ItemMap"]];
+_loadoutData set ["watches", ["ItemWatch"]];
+_loadoutData set ["compasses", ["ItemCompass"]];
+_loadoutData set ["radios", ["ItemRadio"]];
+_loadoutData set ["gpses", ["ItemGPS"]];
+_loadoutData set ["NVGs", ["rhsusf_ANPVS_14"]];
+_loadoutData set ["binoculars", ["Binocular"]];
 _loadoutData set ["rangefinders", ["rhsusf_bino_lerca_1200_black"]];
 
-_loadoutData set ["uniforms", []];					
+_loadoutData set ["uniforms", []];
 _loadoutData set ["slUniforms", []];
-_loadoutData set ["mgVests", []];						
+_loadoutData set ["mgVests", []];
 _loadoutData set ["medVests", []];
 _loadoutData set ["slVests", []];
 _loadoutData set ["sniVests", []];
 _loadoutData set ["glVests", []];
 _loadoutData set ["engVests", []];
 _loadoutData set ["vests", []];
-_loadoutData set ["backpacks", []];					
+_loadoutData set ["backpacks", []];
 _loadoutData set ["atBackpacks", []];
-_loadoutData set ["slBackpacks", []];			
-_loadoutData set ["helmets", []];					
+_loadoutData set ["slBackpacks", []];
+_loadoutData set ["helmets", []];
 _loadoutData set ["slHat", ["UK3CB_AAF_B_H_Beret_Army"]];
 _loadoutData set ["sniHats", []];
 
 //Item *set* definitions. These are added in their entirety to unit loadouts. No randomisation is applied.
-_loadoutData set ["items_medical_basic", ["BASIC"] call A3A_fnc_itemset_medicalSupplies]; 
+_loadoutData set ["items_medical_basic", ["BASIC"] call A3A_fnc_itemset_medicalSupplies];
 _loadoutData set ["items_medical_standard", ["STANDARD"] call A3A_fnc_itemset_medicalSupplies];
 _loadoutData set ["items_medical_medic", ["MEDIC"] call A3A_fnc_itemset_medicalSupplies];
 _loadoutData set ["items_miscEssentials", [] call A3A_fnc_itemset_miscEssentials];
@@ -137,8 +137,8 @@ _loadoutData set ["items_squadleader_extras", ["ACE_microDAGR", "ACE_DAGR", "Las
 _loadoutData set ["items_rifleman_extras", []];
 _loadoutData set ["items_medic_extras", []];
 _loadoutData set ["items_grenadier_extras", []];
-_loadoutData set ["items_explosivesExpert_extras", ["Toolkit", "MineDetector", "ACE_Clacker", "ACE_DefusalKit"]];
-_loadoutData set ["items_engineer_extras", ["Toolkit", "MineDetector"]];
+_loadoutData set ["items_explosivesExpert_extras", ["ToolKit", "MineDetector", "ACE_Clacker", "ACE_DefusalKit"]];
+_loadoutData set ["items_engineer_extras", ["ToolKit", "MineDetector"]];
 _loadoutData set ["items_lat_extras", []];
 _loadoutData set ["items_at_extras", []];
 _loadoutData set ["items_aa_extras", []];
@@ -157,11 +157,11 @@ _loadoutData set ["items_unarmed_extras", []];
 
 private _sfLoadoutData = _loadoutData call _fnc_copyLoadoutData;
 _sfLoadoutData set ["uniforms", ["UK3CB_AAF_B_U_CombatUniform_DIGI_GRN", "UK3CB_AAF_B_U_CombatUniform_Shortsleeve_DIGI_GRN"]];
-_sfLoadoutData set ["vests", ["rhsusf_mbav_rifleman"]];				
-_sfLoadoutData set ["mgVests", ["rhsusf_mbav_mg"]];						
+_sfLoadoutData set ["vests", ["rhsusf_mbav_rifleman"]];
+_sfLoadoutData set ["mgVests", ["rhsusf_mbav_mg"]];
 _sfLoadoutData set ["medVests", ["rhsusf_mbav_medic"]];
 _sfLoadoutData set ["glVests", ["rhsusf_mbav_grenadier"]];
-_sfLoadoutData set ["backpacks", ["B_Kitbag_mcamo", "rhsusf_falconii_mc"]];			
+_sfLoadoutData set ["backpacks", ["B_Kitbag_mcamo", "rhsusf_falconii_mc"]];
 _sfLoadoutData set ["slBackpacks", ["UK3CB_B_I_Backpack_Radio_Chem"]];
 _sfLoadoutData set ["atBackpacks", ["B_Carryall_mcamo"]];
 _sfLoadoutData set ["helmets", ["rhsusf_opscore_mc_cover", "rhsusf_opscore_mc_cover_pelt", "rhsusf_opscore_mc_cover_pelt_nsw", "rhsusf_opscore_mc_cover_pelt_cam",
@@ -294,15 +294,15 @@ _sfLoadoutData set ["glSidearms", [
 /////////////////////////////////
 
 private _militaryLoadoutData = _loadoutData call _fnc_copyLoadoutData; // touch and shit breaks
-_militaryLoadoutData set ["uniforms", ["UK3CB_AAF_B_U_CombatUniform_DIGI_GRN", "UK3CB_AAF_B_U_CombatUniform_Shortsleeve_DIGI_GRN"]];		
+_militaryLoadoutData set ["uniforms", ["UK3CB_AAF_B_U_CombatUniform_DIGI_GRN", "UK3CB_AAF_B_U_CombatUniform_Shortsleeve_DIGI_GRN"]];
 _militaryLoadoutData set ["slUniforms", ["UK3CB_AAF_B_U_Officer_DIGI_GRN"]];
-_militaryLoadoutData set ["vests", ["UK3CB_AAF_O_V_Eagle_RIF_DIGI_GRN"]];			
-_militaryLoadoutData set ["mgVests", ["UK3CB_AAF_O_V_Eagle_MG_DIGI_GRN"]];						
+_militaryLoadoutData set ["vests", ["UK3CB_AAF_O_V_Eagle_RIF_DIGI_GRN"]];
+_militaryLoadoutData set ["mgVests", ["UK3CB_AAF_O_V_Eagle_MG_DIGI_GRN"]];
 _militaryLoadoutData set ["medVests", ["UK3CB_AAF_O_V_Eagle_MED_DIGI_GRN"]];
 _militaryLoadoutData set ["slVests", ["UK3CB_AAF_O_V_Eagle_SL_DIGI_GRN"]];
 _militaryLoadoutData set ["glVests", ["UK3CB_AAF_O_V_Eagle_GL_DIGI_GRN"]];
 _militaryLoadoutData set ["engVests", ["UK3CB_AAF_O_V_Eagle_EOD_DIGI_GRN"]];
-_militaryLoadoutData set ["backpacks", ["B_AssaultPack_dgtl", "UK3CB_AAF_B_B_FIELDPACK_DIGI_GRN"]];		
+_militaryLoadoutData set ["backpacks", ["B_AssaultPack_dgtl", "UK3CB_AAF_B_B_FIELDPACK_DIGI_GRN"]];
 _militaryLoadoutData set ["slBackpacks", ["UK3CB_AAF_I_B_FIELDPACK_DIGI_GRN_Radio"]];
 _militaryLoadoutData set ["atBackpacks", ["UK3CB_AAF_B_B_CARRYALL_DIGI_GRN"]];
 _militaryLoadoutData set ["helmets", ["UK3CB_AAF_I_H_MKVI_Helmet_A_GRN"]];
@@ -359,7 +359,7 @@ _militaryLoadoutData set ["sidearms", [
 //    Police Loadout Data    //
 ///////////////////////////////
 
-private _policeLoadoutData = _loadoutData call _fnc_copyLoadoutData; 
+private _policeLoadoutData = _loadoutData call _fnc_copyLoadoutData;
 _policeLoadoutData set ["uniforms", ["U_B_GEN_Soldier_F", "U_B_GEN_Commander_F"]];
 _policeLoadoutData set ["vests", ["V_TacVest_blk_POLICE"]];
 _policeLoadoutData set ["helmets", ["H_Cap_police"]];
@@ -394,43 +394,43 @@ _militiaLoadoutData set ["rifles", [
 ]];
 _militiaLoadoutData set ["carbines", [
 ["UK3CB_Sten", "", "", "", ["UK3CB_Sten_34Rnd_Magazine_G", "UK3CB_Sten_34Rnd_Magazine_G", "UK3CB_Sten_34Rnd_Magazine_GT"], [], ""]
-]]; 					
+]];
 _militiaLoadoutData set ["grenadeLaunchers", [
 ["UK3CB_M16A2_UGL", "", "", "", ["rhs_mag_30Rnd_556x45_M855_Stanag", "rhs_mag_30Rnd_556x45_M855_Stanag", "rhs_mag_30Rnd_556x45_M855_Stanag_Tracer_Red"], ["rhs_mag_M441_HE", "rhs_mag_M441_HE", "rhs_mag_M433_HEDP", "rhs_mag_m714_White"], ""]
-]]; 			
+]];
 _militiaLoadoutData set ["SMGs", [
 ["UK3CB_Sten", "", "", "", ["UK3CB_Sten_34Rnd_Magazine_G", "UK3CB_Sten_34Rnd_Magazine_G", "UK3CB_Sten_34Rnd_Magazine_GT"], [], ""]
-]]; 						
+]];
 _militiaLoadoutData set ["machineGuns", [
 ["UK3CB_MG3", "", "", "", ["UK3CB_MG3_100rnd_762x51_GT"], [], ""]
-]]; 				
+]];
 _militiaLoadoutData set ["marksmanRifles", [
 ["UK3CB_M14DMR_Railed", "", "", "uk3cb_optic_artel_m14", [], [], ""]
-]]; 			
+]];
 _militiaLoadoutData set ["sniperRifles", [
 ["UK3CB_M14DMR_Railed", "", "", "uk3cb_optic_artel_m14", [], [], ""]
-]]; 				
+]];
 _militiaLoadoutData set ["lightATLaunchers", ["rhs_weap_m72a7"]];
 _militiaLoadoutData set ["ATLaunchers", [
 ["rhs_weap_maaws", "", "", "", ["rhs_mag_maaws_HEAT", "rhs_mag_maaws_HEDP"], [], ""],
 ["rhs_weap_maaws", "", "", "", ["rhs_mag_maaws_HEAT", "rhs_mag_maaws_HE"], [], ""],
 ["rhs_weap_maaws", "", "", "", ["rhs_mag_maaws_HE", "rhs_mag_maaws_HEDP"], [], ""]
 ]];
-_militiaLoadoutData set ["sidearms", ["rhsusf_weap_m1911a1"]]; 					
+_militiaLoadoutData set ["sidearms", ["rhsusf_weap_m1911a1"]];
 
 //////////////////////////
 //    Misc Loadouts     //
 //////////////////////////
 
 private _crewLoadoutData = _militaryLoadoutData call _fnc_copyLoadoutData;
-_crewLoadoutData set ["uniforms", ["UK3CB_AAF_B_U_CombatUniform_DIGI_GRN", "UK3CB_AAF_B_U_CombatUniform_Shortsleeve_DIGI_GRN"]];			
-_crewLoadoutData set ["vests", ["UK3CB_AAF_O_V_Eagle_CREW_DIGI_GRN"]];				
-_crewLoadoutData set ["helmets", ["H_HelmetCrew_I"]];			
+_crewLoadoutData set ["uniforms", ["UK3CB_AAF_B_U_CombatUniform_DIGI_GRN", "UK3CB_AAF_B_U_CombatUniform_Shortsleeve_DIGI_GRN"]];
+_crewLoadoutData set ["vests", ["UK3CB_AAF_O_V_Eagle_CREW_DIGI_GRN"]];
+_crewLoadoutData set ["helmets", ["H_HelmetCrew_I"]];
 
 private _pilotLoadoutData = _militaryLoadoutData call _fnc_copyLoadoutData;
-_pilotLoadoutData set ["uniforms", ["UK3CB_AAF_I_U_H_Pilot_DIGI_GRN"]];			
-_pilotLoadoutData set ["vests", ["UK3CB_AAF_O_V_Eagle_CREW_DIGI_GRN"]];			
-_pilotLoadoutData set ["helmets", ["UK3CB_H_Crew_Helmet", "UK3CB_H_Pilot_Helmet"]];			
+_pilotLoadoutData set ["uniforms", ["UK3CB_AAF_I_U_H_Pilot_DIGI_GRN"]];
+_pilotLoadoutData set ["vests", ["UK3CB_AAF_O_V_Eagle_CREW_DIGI_GRN"]];
+_pilotLoadoutData set ["helmets", ["UK3CB_H_Crew_Helmet", "UK3CB_H_Pilot_Helmet"]];
 
 
 /////////////////////////////////

@@ -115,7 +115,7 @@ allNVGs = allNVGs select { getarray (configFile >> "CfgWeapons" >> _x >> "vision
 private _removableDefaultItems = [
 	[allFirstAidKits,"FirstAidKit","firstAidKits"],
 	[allMedikits,"Medikit","mediKits"],
-	[allToolkits,"ToolKit","toolKits"],
+	[allToolKits,"ToolKit","toolKits"],
 	[allMaps,"ItemMap","itemMaps"]
 ];
 {

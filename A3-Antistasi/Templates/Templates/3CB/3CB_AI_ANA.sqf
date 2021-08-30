@@ -44,9 +44,9 @@
 ["vehiclesPlanesAA", ["UK3CB_ANA_B_L39_PYLON"]] call _fnc_saveToTemplate;
 ["vehiclesPlanesTransport", ["UK3CB_ANA_B_C130J"]] call _fnc_saveToTemplate;
 
-["vehiclesHelisLight", ["UK3CB_ANA_B_UH1H", "UK3CB_ANA_B_Benches_MH9"]] call _fnc_saveToTemplate; 		
-["vehiclesHelisTransport", ["UK3CB_ANA_B_B_UH60M2", "UK3CB_ANA_B_B_UH60M", "UK3CB_ANA_B_Mi8AMT", "UK3CB_ANA_B_Mi8", "UK3CB_ANA_B_UH1H_M240"]] call _fnc_saveToTemplate; 	
-["vehiclesHelisAttack", ["UK3CB_ANA_B_Mi_24P","UK3CB_ANA_B_Mi_24V","UK3CB_ANA_B_Mi8AMTSh","UK3CB_ANA_B_UH1H_GUNSHIP"]] call _fnc_saveToTemplate; 		
+["vehiclesHelisLight", ["UK3CB_ANA_B_UH1H", "UK3CB_ANA_B_Benches_MH9"]] call _fnc_saveToTemplate;
+["vehiclesHelisTransport", ["UK3CB_ANA_B_B_UH60M2", "UK3CB_ANA_B_B_UH60M", "UK3CB_ANA_B_Mi8AMT", "UK3CB_ANA_B_Mi8", "UK3CB_ANA_B_UH1H_M240"]] call _fnc_saveToTemplate;
+["vehiclesHelisAttack", ["UK3CB_ANA_B_Mi_24P","UK3CB_ANA_B_Mi_24V","UK3CB_ANA_B_Mi8AMTSh","UK3CB_ANA_B_UH1H_GUNSHIP"]] call _fnc_saveToTemplate;
 
 ["vehiclesArtillery", ["UK3CB_ANA_B_BM21"]] call _fnc_saveToTemplate;
 ["magazines", createHashMapFromArray [
@@ -149,8 +149,8 @@ _loadoutData set ["items_squadleader_extras", ["ACE_microDAGR", "ACE_DAGR", "Las
 _loadoutData set ["items_rifleman_extras", []];
 _loadoutData set ["items_medic_extras", []];
 _loadoutData set ["items_grenadier_extras", []];
-_loadoutData set ["items_explosivesExpert_extras", ["Toolkit", "MineDetector", "ACE_Clacker", "ACE_DefusalKit"]];
-_loadoutData set ["items_engineer_extras", ["Toolkit", "MineDetector"]];
+_loadoutData set ["items_explosivesExpert_extras", ["ToolKit", "MineDetector", "ACE_Clacker", "ACE_DefusalKit"]];
+_loadoutData set ["items_engineer_extras", ["ToolKit", "MineDetector"]];
 _loadoutData set ["items_lat_extras", []];
 _loadoutData set ["items_at_extras", []];
 _loadoutData set ["items_aa_extras", []];
@@ -173,8 +173,8 @@ _sfLoadoutData set ["uniforms", ["UK3CB_ANA_B_U_CombatUniform_01_GCAM", "UK3CB_A
 _sfLoadoutData set ["helmets", ["UK3CB_ANA_B_H_MICH_BARE_DES", "UK3CB_ANA_B_H_MICH_BARE_DES_Headset"]];
 _sfLoadoutData set ["slHat", ["UK3CB_ANA_B_H_OFF_Beret_MAR"]];
 _sfLoadoutData set ["sniHats", ["H_Booniehat_tan"]];
-_sfLoadoutData set ["vests", ["UK3CB_ANA_B_V_RFL_Vest_GCAM_01"]];			
-_sfLoadoutData set ["mgVests", ["UK3CB_ANA_B_V_MG_Vest_GCAM_01"]];						
+_sfLoadoutData set ["vests", ["UK3CB_ANA_B_V_RFL_Vest_GCAM_01"]];
+_sfLoadoutData set ["mgVests", ["UK3CB_ANA_B_V_MG_Vest_GCAM_01"]];
 _sfLoadoutData set ["medVests", ["UK3CB_ANA_B_V_MD_Vest_GCAM_01"]];
 _sfLoadoutData set ["slVests", ["UK3CB_ANA_B_V_SL_Vest_GCAM_01"]];
 _sfLoadoutData set ["sniVests", ["UK3CB_ANA_B_V_MK_Vest_GCAM_01"]];
@@ -264,12 +264,12 @@ _militaryLoadoutData set ["uniforms", ["UK3CB_ANA_B_U_CombatUniform_01_SPEC4CE",
 _militaryLoadoutData set ["slUniforms", ["UK3CB_ANA_B_U_Officer_SPEC4CE"]];
 _militaryLoadoutData set ["helmets", ["UK3CB_ANA_B_H_6b27m_SPEC4CE", "UK3CB_ANA_B_H_6b27m_ESS_SPEC4CE"]];
 _militaryLoadoutData set ["sniHats", ["H_Booniehat_khk"]];
-_militaryLoadoutData set ["vests", ["UK3CB_ANA_B_V_RFL_Vest_TAN_01"]];			
-_militaryLoadoutData set ["mgVests", ["UK3CB_ANA_B_V_MG_Vest_TAN_01"]];						
+_militaryLoadoutData set ["vests", ["UK3CB_ANA_B_V_RFL_Vest_TAN_01"]];
+_militaryLoadoutData set ["mgVests", ["UK3CB_ANA_B_V_MG_Vest_TAN_01"]];
 _militaryLoadoutData set ["medVests", ["UK3CB_ANA_B_V_MD_Vest_TAN_01"]];
 _militaryLoadoutData set ["slVests", ["UK3CB_ANA_B_V_SL_Vest_TAN_01"]];
 _militaryLoadoutData set ["sniVests", ["UK3CB_ANA_B_V_MK_Vest_TAN_01"]];
-_militaryLoadoutData set ["backpacks", ["UK3CB_B_Alice_K", "UK3CB_UN_B_B_ASS"]];		
+_militaryLoadoutData set ["backpacks", ["UK3CB_B_Alice_K", "UK3CB_UN_B_B_ASS"]];
 _militaryLoadoutData set ["slBackpacks", ["UK3CB_B_I_Alice_Radio_Backpack"]];
 _militaryLoadoutData set ["binoculars", ["Laserdesignator"]];
 

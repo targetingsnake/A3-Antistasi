@@ -3,7 +3,7 @@ FIX_LINE_NUMBERS()
 //////////////////
 // Basic Items ///
 //////////////////
-lootBasicItem append allMaps + allToolkits + allWatches + allCompasses + allMedikits + allFirstAidKits;
+lootBasicItem append allMaps + allToolKits + allWatches + allCompasses + allMedikits + allFirstAidKits;
 
 /////////////////
 //    NVG'S   ///
