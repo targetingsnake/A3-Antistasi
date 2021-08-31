@@ -28,6 +28,9 @@ class A3A
         class reinitY {};
         class resourcecheck {};
         class tags {};
+
+        class hideObjects {};
+        class buildingChangedHandle {};
     };
 
     class Base

@@ -132,17 +132,20 @@ if (loadLastSave) then {
 
 	private _ruins = missionNamespace getVariable "destroyedBuildings";
 
-	{
-		_x params ["_buildingID", "_ruinType", "_ruinPosW", "_ruinVectorDirW", "_ruinVectorUpW"];
+	private ["_buildingID", "_ruinType", "_ruinPosW", "_ruinVectorUpW", "_ruinVectorDirW"];
 
-		private _building = [_ruinPosW #0, _ruinPosW #1] nearestObject _buildingID;
-		hideObjectGlobal _building;
-		_building enableSimulationGlobal false;
+	[_ruins] remoteExec ["A3A_fnc_hideObjects", 0, true];
+
+	{
+		_buildingID = _x #0;
+		_ruinType = _x #1;
+		_ruinPosW = _x #2;
+		_ruinVectorUp = _x #3;
+		_ruinVectorDir = _x #4;
 
 		private _ruin = _ruinType createVehicle [0, 0, 0];
-
-		_ruin setVectorUp _ruinVectorUpW;
-		_ruin setVectorDir _ruinVectorDirW;
+		_ruin setVectorUp _ruinVectorUp;
+		_ruin setVectorDir _ruinVectorDir;
 		_ruin setPosWorld _ruinPosW;
 
 		_ruin setVariable ["buildingID", _buildingID];
@@ -187,61 +190,7 @@ addMissionEventHandler ["HandleDisconnect",{_this call A3A_fnc_onPlayerDisconnec
 //PlayerDisconnected doesn't get access to the unit, so we shouldn't use it to handle saving.
 addMissionEventHandler ["PlayerDisconnected",{_this call A3A_fnc_onHeadlessClientDisconnect;false}];
 
-addMissionEventHandler
-[
-	"BuildingChanged",
-	{
-
-		_this spawn
-		{
-			params ["_previousObject", "_newObject", "_isRuin"];
-
-			if (_isRuin) then
-			{
-				if (_previousObject in antennas) exitWith {};
-				if (_previousObject in antennasDead) exitWith {};
-
-				private _buildingID = [_previousObject] call
-				{
-					private _objectStr = str (param [0, objNull]);
-					private _startID = (_objectStr find "#") + 2;
-
-					if (_startID > 1) exitWith
-					{
-						private _length = (_objectStr find ":") - _startID;
-
-						parseNumber (_objectStr select [_startID, _length])
-					};
-
-					-1
-				};
-
-				private _newType = typeOf _newObject;
-				private _ruinPosW = getPosWorld _newObject;
-				private _ruinVectorDirW = vectorDirVisual _newObject;
-				private _ruinVectorUpW = vectorUpVisual _newObject;
-
-				private _ruins = missionNamespace getVariable "destroyedBuildings";
-
-				_ruins pushBack [_buildingID, _newType, _ruinPosW, _ruinVectorDirW, _ruinVectorUpW];
-
-				sleep 30;
-
-				hideObjectGlobal _previousObject;
-				_previousObject setDamage [0, false];
-				_previousObject enableSimulationGlobal false;
-
-				private _ruin = _newType createVehicle [0, 0, 0];
-
-				_ruin setVectorUp _ruinVectorUpW;
-				_ruin setVectorDir _ruinVectorDirW;
-				_ruin setPosWorld _ruinPosW;
-
-				_ruin setVariable ["buildingID", _buildingID];
-			};
-		};
-	}
-];
+addMissionEventHandler ["BuildingChanged", A3A_fnc_buildingChangedHandle];
 
 addMissionEventHandler ["EntityKilled", {
 	params ["_victim", "_killer", "_instigator"];
