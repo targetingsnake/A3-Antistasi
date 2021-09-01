@@ -50,6 +50,7 @@ params [
 private _invalidReasons = [];
 private _validClassCaseSensitive = {
     params ["_cfg", "_class"];
+    if (_class isEqualTo "") exitWith { true };
     if !(_class isEqualType "") exitWith {
         _invalidReasons pushBack ("Invalid data type: "+ str _class + " | Data type: "+ typeName _class + " | Expected: String");
         false;
@@ -66,10 +67,11 @@ private _validClassCaseSensitive = {
 };
 
 private _getCompatibleAttachements = {
-    if (isClass _this) then {
-        (configProperties [_this, "true", true]) apply {configName _x};
+    params ["_cfg", "_masterCfg"];
+    if (isClass _cfg) then {
+        (configProperties [_cfg, "true", true]) apply {configName _x};
     } else {
-        getArray _this;
+        getArray _cfg apply { configName (configFile/_masterCfg/_x) };
     };
 };
 
@@ -79,7 +81,7 @@ private _validMuzzle = { //valid class and muzzle compatible with weapon
     if (_muzzle isEqualTo "") exitWith {true};
     if !(["CfgWeapons",_muzzle] call _validClassCaseSensitive) exitWith {false};
 
-    private _compatibleMuzzles = (configFile/"CfgWeapons"/_weapon/"WeaponSlotsInfo"/"MuzzleSlot"/"compatibleItems") call _getCompatibleAttachements;
+    private _compatibleMuzzles = [configFile/"CfgWeapons"/_weapon/"WeaponSlotsInfo"/"MuzzleSlot"/"compatibleItems", "CfgWeapons"] call _getCompatibleAttachements;
     if !(_muzzle in _compatibleMuzzles) exitWith {
         _invalidReasons pushBack ("Muzzle: "+_muzzle+" is incompatible with "+_weapon+" | Comaptible muzzles: "+ str _compatibleMuzzles);
         false;
@@ -91,7 +93,7 @@ private _validRail = { //valid class and rail compatible with weapon
     if (_rail isEqualTo "") exitWith {true};
     if !(["CfgWeapons",_rail] call _validClassCaseSensitive) exitWith {false};
 
-    private _compatibleRails = (configFile/"CfgWeapons"/_weapon/"WeaponSlotsInfo"/"PointerSlot"/"compatibleItems") call _getCompatibleAttachements;
+    private _compatibleRails = [configFile/"CfgWeapons"/_weapon/"WeaponSlotsInfo"/"PointerSlot"/"compatibleItems", "CfgWeapons"] call _getCompatibleAttachements;
     if !(_rail in _compatibleRails) exitWith {
         _invalidReasons pushBack ("Rail: "+_rail+" is incompatible with "+_weapon+" | Comaptible rails: "+ str _compatibleRails);
         false;
@@ -102,7 +104,7 @@ private _validOptic = { //valid class and optic compatible with weapon
     params ["_weapon", "_optic"];
     if (_optic isEqualTo "") exitWith {true};
     if !(["CfgWeapons",_optic] call _validClassCaseSensitive) exitWith {false};
-    private _compatibleOptics = (configFile/"CfgWeapons"/_weapon/"WeaponSlotsInfo"/"CowsSlot"/"compatibleItems") call _getCompatibleAttachements;
+    private _compatibleOptics = [configFile/"CfgWeapons"/_weapon/"WeaponSlotsInfo"/"CowsSlot"/"compatibleItems", "CfgWeapons"] call _getCompatibleAttachements;
     if !(_optic in _compatibleOptics) exitWith {
         _invalidReasons pushBack ("Optic: "+_optic+" is incompatible with "+_weapon+" | Comaptible optics: "+ str _compatibleOptics);
         false;
@@ -124,6 +126,7 @@ private _validateWeaponMagazine = { //valid class and compatible with weapon and
     if (_magazine isEqualTo []) exitWith {true};
 
     _magazine params ["_magClass", "_bulletCount"];
+    if (_magClass isEqualTo "") exitWith {true};
     if !(["CfgMagazines", _magClass] call _validClassCaseSensitive) exitWith {false};
 
     //get all compatible magazines from magazinewells and magazines
@@ -132,6 +135,9 @@ private _validateWeaponMagazine = { //valid class and compatible with weapon and
     private _otherMagCfgs = configProperties [configFile/"CfgWeapons"/_weapon, "isClass _x"];
     _otherMagCfgs = _otherMagCfgs select { isArray (_x/"magazineWell") };
     {_compatibleMagazines append ( (getArray (_x/"magazineWell")) call _magazinesFromMagWells )} forEach _otherMagCfgs;
+
+    _compatibleMagazines = _compatibleMagazines apply { configName (configFile/"CfgMagazines"/_x) }; //deal with wrong case on class name in the magwell or magazine entries
+    _compatibleMagazines = _compatibleMagazines arrayIntersect _compatibleMagazines;
 
     private _maxCount = getNumber (configFile/"CfgMagazines"/_magClass/"count");
     if !(_magClass in _compatibleMagazines && { _bulletCount <= _maxCount }) exitWith {
@@ -145,8 +151,8 @@ private _validBipod = { //valid class and optic compatible with weapon
     params ["_weapon", "_bipod"];
     if (_bipod isEqualTo "") exitWith {true};
     if !(["CfgWeapons",_bipod] call _validClassCaseSensitive) exitWith {false};
-    private _compatibleBipods = (configFile/"CfgWeapons"/_weapon/"WeaponSlotsInfo"/"UnderBarrelSlot"/"compatibleItems") call _getCompatibleAttachements;
-    _compatibleBipods append ((configFile/"CfgWeapons"/_weapon/"WeaponSlotsInfo"/"GripodSlot"/"compatibleItems") call _getCompatibleAttachements);
+    private _compatibleBipods = [configFile/"CfgWeapons"/_weapon/"WeaponSlotsInfo"/"UnderBarrelSlot"/"compatibleItems","CfgWeapons"] call _getCompatibleAttachements;
+    _compatibleBipods append ([configFile/"CfgWeapons"/_weapon/"WeaponSlotsInfo"/"GripodSlot"/"compatibleItems","CfgWeapons"] call _getCompatibleAttachements);
     if !(_bipod in _compatibleBipods) exitWith {
         _invalidReasons pushBack ("Bipod: "+_bipod+" is incompatible with "+_weapon+" | Comaptible bipods: "+ str _compatibleBipods);
         false;
@@ -176,6 +182,7 @@ _validContainerMag = { //magazines within a container is valid
 _validateContainerContents = { //container and its contents are valid
     private _valid = true;
     {
+        if (_x#0 isEqualTo "") exitWith {true};
         if (count _x > 2) then {
             if !(_x call _validContainerMag) then {_valid = false};
         } else {
