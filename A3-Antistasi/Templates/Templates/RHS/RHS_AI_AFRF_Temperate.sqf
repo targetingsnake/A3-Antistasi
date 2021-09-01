@@ -302,7 +302,7 @@ _policeLoadoutData set ["uniforms", ["rhs_uniform_cossack"]];
 _policeLoadoutData set ["vests", ["rhs_6b2_lifchik", "rhs_6b2_chicom"]];
 _policeLoadoutData set ["helmets", ["rhs_cossack_visor_cap", "rhs_cossack_papakha"]];
 _policeLoadoutData set ["rifles", [
-["rhs_weap_akmn", "rhs_acc_dtk", "", "", ["rhs_10Rnd_762x39mm"], [], ""]
+["rhs_weap_akmn", "rhs_acc_dtkakm", "", "", ["rhs_10Rnd_762x39mm"], [], ""]
 ]];
 _policeLoadoutData set ["shotGuns", [
 ["rhs_weap_Izh18", "", "", "", ["rhsgref_1Rnd_00Buck", "rhsgref_1Rnd_Slug"], [], ""]
