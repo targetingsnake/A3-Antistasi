@@ -94,6 +94,7 @@ private _validRail = { //valid class and rail compatible with weapon
     if !(["CfgWeapons",_rail] call _validClassCaseSensitive) exitWith {false};
 
     private _compatibleRails = [configFile/"CfgWeapons"/_weapon/"WeaponSlotsInfo"/"PointerSlot"/"compatibleItems", "CfgWeapons"] call _getCompatibleAttachements;
+    _compatibleRails append ([configFile/"CfgWeapons"/_weapon/"WeaponSlotsInfo"/"AuxPointerSlot"/"compatibleItems","CfgWeapons"] call _getCompatibleAttachements);
     if !(_rail in _compatibleRails) exitWith {
         _invalidReasons pushBack ("Rail: "+_rail+" is incompatible with "+_weapon+" | Comaptible rails: "+ str _compatibleRails);
         false;
