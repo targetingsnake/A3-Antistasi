@@ -168,7 +168,7 @@ _sfLoadoutData set ["NVGs", ["UK3CB_ANPVS7"]];
 
 _sfLoadoutData set ["rifles", [
 ["UK3CB_M16A2", "rhsusf_acc_nt4_black", "", "", ["UK3CB_M16_30rnd_556x45_R", "UK3CB_M16_30rnd_556x45_R", "UK3CB_M16_30rnd_556x45_RT"], [], ""],
-["UK3CB_M14_Railed", "uk3cb_muzzle_snds_m14", "", "", ["UK3CB_M14_20rnd_762x51_G", "UK3CB_M14_20rnd_762x51_G", "UK3CB_M14_20rnd_762x51_GT"], [], ""]
+["UK3CB_M14_Railed", "uk3cb_muzzle_snds_M14", "", "", ["UK3CB_M14_20rnd_762x51_G", "UK3CB_M14_20rnd_762x51_G", "UK3CB_M14_20rnd_762x51_GT"], [], ""]
 ]];
 _sfLoadoutData set ["carbines", [
 ["UK3CB_M16_Carbine", "rhsusf_acc_nt4_black", "", "", ["UK3CB_M16_30rnd_556x45_R", "UK3CB_M16_30rnd_556x45_R", "UK3CB_M16_30rnd_556x45_RT"], [], ""]
@@ -182,13 +182,13 @@ _sfLoadoutData set ["grenadeLaunchers", [
 ["UK3CB_M16A2_UGL", "rhsusf_acc_nt4_black", "", "", ["UK3CB_M16_30rnd_556x45_R", "UK3CB_M16_30rnd_556x45_R", "UK3CB_M16_30rnd_556x45_RT"], ["rhs_mag_M441_HE", "rhs_mag_M441_HE", "rhs_mag_M433_HEDP", "rhs_mag_m714_White"], ""]
 ]];
 _sfLoadoutData set ["machineGuns", [
-["rhs_weap_m249", "rhsusf_acc_nt4_black", "", "", ["rhsusf_200rnd_556x45_mixed_box"], [], "rhsusf_acc_saw_bipod"],
+["rhs_weap_m249", "", "", "", ["rhsusf_200rnd_556x45_mixed_box"], [], "rhsusf_acc_saw_bipod"],
 ["rhs_weap_m249_pip", "rhsusf_acc_nt4_black", "", "", ["rhsusf_200rnd_556x45_mixed_box"], [], "rhsusf_acc_saw_bipod"],
 ["rhs_weap_m240G", "", "", "", ["rhsusf_100Rnd_762x51_m80a1epr", "rhsusf_100Rnd_762x51_m80a1epr", "rhsusf_100Rnd_762x51_m62_tracer"], [], ""]
 ]];
 _sfLoadoutData set ["marksmanRifles", [
-["UK3CB_M14DMR", "uk3cb_muzzle_snds_m14", "", "uk3cb_optic_artel_m14", ["UK3CB_M14_20rnd_762x51_G", "UK3CB_M14_20rnd_762x51_G", "UK3CB_M14_20rnd_762x51_GT"], [], ""],
-["UK3CB_M14DMR_Railed", "uk3cb_muzzle_snds_m14", "", "rhsusf_acc_LEUPOLDMK4", ["UK3CB_M14_20rnd_762x51_G", "UK3CB_M14_20rnd_762x51_G", "UK3CB_M14_20rnd_762x51_GT"], [], ""]
+["UK3CB_M14DMR", "uk3cb_muzzle_snds_M14", "", "uk3cb_optic_artel_m14", ["UK3CB_M14_20rnd_762x51_G", "UK3CB_M14_20rnd_762x51_G", "UK3CB_M14_20rnd_762x51_GT"], [], ""],
+["UK3CB_M14DMR_Railed", "uk3cb_muzzle_snds_M14", "", "rhsusf_acc_LEUPOLDMK4", ["UK3CB_M14_20rnd_762x51_G", "UK3CB_M14_20rnd_762x51_G", "UK3CB_M14_20rnd_762x51_GT"], [], ""]
 ]];
 _sfLoadoutData set ["sniperRifles", [
 ["rhs_weap_m24sws", "rhsusf_acc_m24_silencer_black", "", "rhsusf_acc_M8541", ["rhsusf_5Rnd_762x51_m118_special_Mag", "rhsusf_5Rnd_762x51_m118_special_Mag", "rhsusf_5Rnd_762x51_m62_Mag"], [], "rhsusf_acc_harris_swivel"],
