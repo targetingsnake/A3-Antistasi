@@ -1,9 +1,18 @@
+// TODO UI-update: add header
 // Buys and spawns a High Command group for the commander
 
 // TODO UI-update: add header
 // TODO UI-update: needs refactoring
 
-params [["_typegroup", []], ["_withBackpack", ""]];
+// Note: the old _withBackpack param has been removed due to the squads that used no longer working
+// The squads in question are the Mortar and MG Squads (not to be confused with the 2-man teams of the same type, they still work)
+// These will need to be rewritten before being added back in
+// Vehicle type selection has been moved to the UI stuff since it decides there whether or not to include one
+// as opposed to the old way where it gave a second yes/no prompt asking for it
+#include "..\..\Includes\common.inc"
+FIX_LINE_NUMBERS()
+
+params [["_typeGroup", []], ["_typeVehX", ""]];
 
 // Check if player is commander
 if (player != theBoss) exitWith {
@@ -68,9 +77,6 @@ if (_exit) exitWith {};
 
 
 private _isInfantry = false;
-private _typeVehX = ""; // Vehicle type for the squad, if one is requested
-private _costs = 0; // Money costs
-private _costHR = 0; // HR costs
 private _formatX = []; // Array of the units (types?) in the squad
 private _format = "Squd-"; // Name for the squad
 
@@ -78,38 +84,28 @@ private _format = "Squd-"; // Name for the squad
 private _hr = server getVariable "hr";
 private _resourcesFIA = server getVariable "resourcesFIA";
 
-// Costs calculations, to be moved to a separate function
 if (_typeGroup isEqualType []) then {
 	{
-        // This line has basically no effect at least in vanilla, the two things it selects between are identical
-		private _typeUnit = if (random 20 <= skillFIA) then {_x select 1} else {_x select 0};
+		private _typeUnit = _x select 0;
 		_formatX pushBack _typeUnit;
-		_costs = _costs + (server getVariable _typeUnit);
-        _costHR = _costHR +1
 	} forEach _typeGroup;
-
-	if (count _this > 1) then {
-		if (_withBackpack == "MG") then {_costs = _costs + ([SDKMGStatic] call A3A_fnc_vehiclePrice)};
-		if (_withBackpack == "Mortar") then {_costs = _costs + ([SDKMortar] call A3A_fnc_vehiclePrice)};
-	};
 	_isInfantry = true;
-
 } else {
-	_costs = _costs + (2*(server getVariable staticCrewTeamPlayer)) + ([_typeGroup] call A3A_fnc_vehiclePrice);
-	_costHR = 2;
 
 	if ((_typeGroup == SDKMortar) or (_typeGroup == SDKMGStatic)) then {
 		_isInfantry = true;
 		_formatX = [staticCrewTeamPlayer,staticCrewTeamPlayer];
-	} else {
-		_costs = _costs + ([vehSDKTruck] call A3A_fnc_vehiclePrice)
 	};
 };
 
+// Costs
+([_typeGroup, _typeVehX] call A3A_fnc_getHCSquadPrice) params ["_costs", "_costHR"];
+
 // Can't buy static squads with IFA
-if ((_withBackpack != "") and A3A_hasIFA) exitWith {
+// Needs to be rewritten
+/* if ((_withBackpack != "") and A3A_hasIFA) exitWith {
     ["Recruit Squad", "Your current modset doesn't support packing/unpacking static weapons"] call A3A_fnc_customHint;
-};
+}; */
 
 // Not enough HR
 if (_hr < _costHR) then {
@@ -140,7 +136,7 @@ private _groupX = grpNull;
 private _truckX = objNull;
 
 if (_isInfantry) then {
-    // Infantry squads
+    // Infantry squads, array type
 
     // Sets the spawn position for the squad, random position 30m from HQ pos
 	_pos = [(getMarkerPos respawnTeamPlayer), 30, random 360] call BIS_Fnc_relPos;
@@ -152,7 +148,8 @@ if (_isInfantry) then {
 		if (_typeGroup isEqualTo groupsSDKAT) then {_format = "AT-"};
 		if (_typeGroup isEqualTo groupsSDKSniper) then {_format = "Snpr-"};
 		if (_typeGroup isEqualTo groupsSDKSentry) then {_format = "Stry-"};
-		if (_withBackpack == "MG") then {
+        // Old withbackpck stuff for MG and Mortar squads, needs rewrite
+		/* if (_withBackpack == "MG") then {
 			((units _groupX) select ((count (units _groupX)) - 2)) addBackpackGlobal supportStaticsSDKB2;
 			((units _groupX) select ((count (units _groupX)) - 1)) addBackpackGlobal MGStaticSDKB;
 			_format = "SqMG-";
@@ -162,7 +159,7 @@ if (_isInfantry) then {
 				((units _groupX) select ((count (units _groupX)) - 1)) addBackpackGlobal MortStaticSDKB;
 				_format = "SqMort-";
 			};
-  	    };
+  	    }; */
 	} else {
 		_groupX = [_pos, teamPlayer, _formatX,true] call A3A_fnc_spawnGroup;
 		_groupX setVariable ["staticAutoT",false,true];
@@ -174,7 +171,7 @@ if (_isInfantry) then {
 	_format = format ["%1%2",_format,{side (leader _x) == teamPlayer} count allGroups];
 	_groupX setGroupIdGlobal [_format];
 } else {
-    // Vehicles ?
+    // Vehicles classname type (AA/AT vehicles, mortar/MG teams)
 
 	// workaround for weird bug where AI vehicles with attachments refuse to drive when placed close to road objects
 	_pos = position _road vectorAdd [4 * (sin _roadDirection), 4 * (cos _roadDirection), 0];
@@ -223,52 +220,14 @@ if (_isInfantry) then {
 {[_x] call A3A_fnc_FIAinit} forEach units _groupX;
 theBoss hcSetGroup [_groupX];
 petros directSay "SentGenReinforcementsArrived";
-["Recruit Squad", format ["Group %1 at your command.<br/><br/>Groups are managed from the High Command bar (Default: CTRL+SPACE)<br/><br/>If the group gets stuck, use the AI Control feature to make them start moving. Mounted Static teams tend to get stuck (solving this is WiP)<br/><br/>To assign a vehicle for this group, look at some vehicle, and use Vehicle Squad Mngmt option in Y menu", groupID _groupX]] call A3A_fnc_customHint;
+["Recruit Squad", format [localize "STR_antistasi_recruit_squad_spawn_message", groupID _groupX]] call A3A_fnc_customHint;
 if (!_isInfantry) exitWith {};
 if !(_bypassAI) then {_groupX spawn A3A_fnc_attackDrillAI};
 
-// Set vehicle type based on squad size
-// Currently has no check for if the vehicle actually has enough space
-if (count _formatX == 2) then {
-	_typeVehX = vehSDKBike;
-} else {
-	if (count _formatX > 4) then {
-		_typeVehX = vehSDKTruck;
-	} else {
-		_typeVehX = vehSDKLightUnarmed;
-	};
-};
+// The rest of this only needs to run if you specified a vehicle
+if (_typeVehX isEqualTo "") exitWith {};
 
-// Vehicle price
-_costs = [_typeVehX] call A3A_fnc_vehiclePrice;
-if (_costs > server getVariable "resourcesFIA") exitWith {};
-
-// TODO UI-update: this used to create "veh_query" dialog, aka "add vehicle?", this has been moved to a checkbox in the squad recruit dialog instead
-
-// Possible solutions:
-// Make this take an extra param with the vehicle type?
-// OR
-// Make dialog set vehQuery
-// And then skip all this commented out stuff ?
-/* sleep 1;
-
-disableSerialization;
-
-private _display = findDisplay 100;
-
-if (str (_display) != "no display") then {
-	private _ChildControl = _display displayCtrl 104;
-	_ChildControl  ctrlSetTooltip format ["Buy a vehicle for this squad for %1 €",_costs];
-	_ChildControl = _display displayCtrl 105;
-	_ChildControl  ctrlSetTooltip "Barefoot Infantry";
-};
-
-waitUntil {(!dialog) or (!isNil "vehQuery")};
-if ((!dialog) and (isNil "vehQuery")) exitWith {}; */
-
-vehQuery = nil;
-
-// TODO UI-update: make this use the correct vehicle type for findEmptyPosition
+// TODO: make this use the correct vehicle type for findEmptyPosition?
 _pos = position _road findEmptyPosition [1,30,"B_G_Van_01_transport_F"];
 private _purchasedVehicle = _typeVehX createVehicle _pos;
 _purchasedVehicle setDir _roadDirection;
@@ -277,8 +236,6 @@ _purchasedVehicle setDir _roadDirection;
 _groupX addVehicle _purchasedVehicle;
 _purchasedVehicle setVariable ["owner",_groupX,true];
 
-// Deducting cost (for vehicle?)
-[0, - _costs] remoteExec ["A3A_fnc_resourcesFIA",2];
 leader _groupX assignAsDriver _purchasedVehicle;
 {[_x] orderGetIn true; [_x] allowGetIn true} forEach units _groupX;
 ["Recruit Squad", "Vehicle Purchased"] call A3A_fnc_customHint;

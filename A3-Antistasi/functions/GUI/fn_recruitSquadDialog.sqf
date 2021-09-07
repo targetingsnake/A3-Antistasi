@@ -99,6 +99,24 @@ switch (_mode) do
             _sniperTeamVehicle = [groupsSDKSniper] call A3A_fnc_getHCSquadVehicleType;
         };
 
+        // Set variables for squad and vehicle types on the button
+        _infSquadButton setVariable ["squadType", groupsSDKSquad];
+        _infSquadButton setVariable ["vehicle", _infSquadVehicle];
+        _infTeamButton setVariable ["squadType", groupsSDKmid];
+        _infTeamButton setVariable ["vehicle", _infTeamVehicle];
+        _mgTeamButton setVariable ["squadType", SDKMGStatic];
+        _mgTeamButton setVariable ["vehicle", _mgTeamVehicle];
+        _atTeamButton setVariable ["squadType", groupsSDKAT];
+        _atTeamButton setVariable ["vehicle", _atTeamVehicle];
+        _mortarTeamButton setVariable ["squadType", SDKMortar];
+        _mortarTeamButton setVariable ["vehicle", _mortarTeamVehicle];
+        _sniperTeamButton setVariable ["squadType", groupsSDKSniper];
+        _sniperTeamButton setVariable ["vehicle", _sniperTeamVehicle];
+        _atCarButton setVariable ["squadType", vehSDKAT];
+        _atCarButton setVariable ["vehicle", ""];
+        _aaTruckButton setVariable ["squadType", staticAAteamPlayer];
+        _aaTruckButton setVariable ["vehicle", ""];
+
         // Get prices
         private _infSquadPrice = [groupsSDKSquad, _infSquadVehicle] call A3A_fnc_getHCSquadPrice;
         // private _engSquadPrice = [groupsSDKSquadEng, _engSquadVehicle] call A3A_fnc_getHCSquadPrice;
@@ -108,7 +126,7 @@ switch (_mode) do
         private _mortarTeamPrice = [SDKMortar, _mortarTeamVehicle] call A3A_fnc_getHCSquadPrice;
         private _sniperTeamPrice = [groupsSDKSniper, _sniperTeamVehicle] call A3A_fnc_getHCSquadPrice;
         private _atCarPrice = [vehSDKAT] call A3A_fnc_getHCSquadPrice;
-        private _aaTruckPrice = [staticAAteamPlayer, _infTeamVehicle] call A3A_fnc_getHCSquadPrice;
+        private _aaTruckPrice = [staticAAteamPlayer] call A3A_fnc_getHCSquadPrice;
 
         // Split money and HR from price array
         _infSquadPrice params ["_infSquadMoney", "_infSquadHr"];
@@ -181,6 +199,14 @@ switch (_mode) do
             _aaTruckButton ctrlSetTooltip "You do not have enough money or HR for this group type"; // TODO UI-update: stringtable
             _aaTruckIcon ctrlSetTextColor ([A3A_COLOR_BUTTON_BACKGROUND_DISABLED] call A3A_fnc_configColorToArray);
         };
+    };
+
+    case ("buySquad"):
+    {
+        private _button = (_params # 0) # 0;
+        private _squadType = _button getVariable ["squadType", []];
+        private _vehicle = _button getVariable ["vehicle", ""];
+        [_squadType, _vehicle] spawn A3A_fnc_addFIAsquadHC;
     };
 
     default {

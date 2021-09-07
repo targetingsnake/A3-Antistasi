@@ -12,6 +12,7 @@ private _vehicleType = "";
 if (_squadFormat isEqualType "") exitWith {
     // This just gives a quad for now as MG and Mortar teams are the only
     // teams using this format that also uses separate vehicles
+    // TODO UI-update: only add vic for those exact cases
     vehSDKBike;
 };
 
