@@ -1,16 +1,87 @@
-Version 2.5.0 - xxth August 2021
+Version 2.5.2 - 27th August 2021
+
+Changes from version 2.5.1 to 2.5.2 Antistasi Community Edition
+
+================ Major ================
+  - none
+
+================ Minor ================
+  - none
+
+================ Groundwork ================
+  - none
+
+================ Refactor ================
+  - none
+
+================ Bugfixes ================
+  - Prevent bad unit types being added to garrisons, repairs corrupted saves #2067
+  --> childproofs the system and fixes loading issues on saves with problematic garrisons
+  - Resolved JIP conflict between logistics and garrison static actions #2078 #2085
+  - Changed zoneCheck to use marker size based capture radius #2077
+  --> radius is decreased and distance to marker is taken into account
+  --> people close to the marker can outnumber more people further away from the marker
+  - Fixed missing return value on actionRevive #2075
+  - Fixed issues with the buyable light #2066
+  - Changed garage addVehicle checks order #2068
+  --> also fixes the issue that vehicles could be garaged everywhere with enemies nearby
+  - Fix vehicle kill event handler #2084
+  --> vehicle kill handler got broken in an Arma update, so vehicle kills were not being registered for any purpose
+  - pressing Y (opening the battle menu) during placing cancels the placement
+  - Improved garaging consistency and reliability
+  --> prevents cases of items from vehicle arsenal getting lost when garaging
+
+================ DISCLAIMER ================
+  - Please note that this changelog may contain both spelling/grammatical errors and/or factual errors. Should any factual errors exist, we apologise but with the sheer number of changes made per version it can be easy to lose or mistake a change when writing up the changelog.
+
+
+Version 2.5.1 - 12th August 2021
+
+Changes from version 2.5.0 to 2.5.1 Antistasi Community Edition
+
+================ Major ================
+  - none
+
+================ Minor ================
+  - blocked rebel auto capture - player needs to take the flag manually
+  - ability to toggle on/off the the top bar by using ALT + Home plus disabling the top bar in the garage
+  - added buyable lightsource on the vehicle box for 25€
+  - updated feedback for vehicleBoxHeal
+
+================ Groundwork ================
+  - none
+
+================ Refactor ================
+  - none
+
+================ Bugfixes ================
+  - fixed addVehicleClass lacking source detection
+  - fixed missing remoteExec target causing RPT span in task delete
+  - fixed missing time param in punishment
+  - fixed 2.4.x garrisons not being compatible with 2.5.x
+  - fixed loophole where fog can be broken
+  - fixed attackHQ transport planes
+
+================ DISCLAIMER ================
+  - Please note that this changelog may contain both spelling/grammatical errors and/or factual errors. Should any factual errors exist, we apologise but with the sheer number of changes made per version it can be easy to lose or mistake a change when writing up the changelog.
+
+
+Version 2.5.0 - 10th August 2021
 
 Changes from version 2.4.1 to 2.5.0 Antistasi Community Edition
 
 ================ Major ================
-  - implemented new Garage (under APL-ND license, not MIT) - explanation
+  - singleplayer is disabled for all the missions - please switch to local hosted multiplayer to continue your savegame
+  - implemented new Garage (under APL-ND license, not MIT) - The new garage is a shared garage that replaces both the personal and faction garage.
+     It features full 3D inspection, vehicle state preservation, visual vehicle customisation, vehicle locking, vehicle services, and logistics integration.
+     Some CBA settings have also been added to let players and admins tweak the garage to their preference.
   - implemented Street Artist Navigation Grid Editor (tool for map porting) and changed all systems to work with new navGrids (under APL-ND license, not MIT)
   - fully implemented the SOG Prairie Fire (VN) release into the main repo
   - added new faction templates for 3CB mods
     -> MDF, New Default Occupants on Malden
     -> HIDF, New Default Occupants on Tanoa
-    -> AAF, New Default Occuapnts on Altis
-    -> ANA, New Default Occuapnts on Kunduz (Since its Afganistan)
+    -> AAF, New Default Occupants on Altis
+    -> ANA, New Default Occupants on Kunduz (Since its Afghanistan)
     -> ADA, currently unused
   - adapted main license - please read when planning to rework and publish this mission
     
