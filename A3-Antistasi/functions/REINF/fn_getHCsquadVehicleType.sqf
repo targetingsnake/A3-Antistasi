@@ -1,5 +1,23 @@
-// TODO UI-update: add header
-// Gets classname for vehicle to be used by a HC squad based on squad size
+/*
+Maintainer: DoomMetal
+    Gets the vehicle type to support a High Command group
+
+Arguments:
+    <ARRAY>/<STRING> Type of high command group, can be either an array of loadouts or a vehicle classname.
+
+Return Value:
+    <STRING> Classname for vehicle to be used
+
+Scope: Any
+Environment: Any
+Public: Yes
+Dependencies:
+    None
+
+Example:
+    [groupsSDKSquad] call A3A_fnc_getHCsquadVehicleType
+
+*/
 
 #include "..\..\Includes\common.inc"
 FIX_LINE_NUMBERS()

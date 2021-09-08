@@ -1,7 +1,24 @@
-// TODO UI-update: add header
-// Uses similar params as A3A_fnc_addFIAsquadHC:
-// [Group type, Vehicle type]
-// Returns price in [money, HR]
+/*
+Maintainer: DoomMetal
+    Calculates the price for high command squads and their vehicle (if any)
+
+Arguments:
+    <ARRAY>/<STRING> Type of high command group, can be either an array of loadouts or a vehicle classname.
+    <STRING> Classname for the vehicle type for the group if one is to be purchased. Empty string means no vehicle.
+
+Return Value:
+    <INTEGER, INTEGER> Price in money and HR
+
+Scope: Any
+Environment: Any
+Public: Yes
+Dependencies:
+    None
+
+Example:
+    [groupsSDKSquad, vehSDKTruck] call A3A_fnc_getHCsquadPrice
+
+*/
 
 #include "..\..\Includes\common.inc"
 FIX_LINE_NUMBERS()
