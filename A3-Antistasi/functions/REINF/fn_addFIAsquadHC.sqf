@@ -1,14 +1,33 @@
-// TODO UI-update: add header
-// Buys and spawns a High Command group for the commander
+/*
+Maintainer: DoomMetal
+    Recruits and spawns a High Command group for the commander.
 
-// TODO UI-update: add header
-// TODO UI-update: needs refactoring
+Arguments:
+    <ARRAY>/<STRING> Type of high command group to be recruited, can be either an array of loadouts or a vehicle classname.
+    <STRING> Classname for the vehicle type for the group if one is to be purchased. Empty string means no vehicle.
 
-// Note: the old _withBackpack param has been removed due to the squads that used no longer working
-// The squads in question are the Mortar and MG Squads (not to be confused with the 2-man teams of the same type, they still work)
-// These will need to be rewritten before being added back in
-// Vehicle type selection has been moved to the UI stuff since it decides there whether or not to include one
-// as opposed to the old way where it gave a second yes/no prompt asking for it
+Return Value:
+    Nothing
+
+Scope: Clients, Local Arguments, Local Effect
+Environment: Scheduled
+Public: Yes
+Dependencies:
+    None
+
+Example:
+    [groupsSDKSquad, vehSDKTruck] spawn A3A_fnc_addFIAsquadHC
+
+Rewrite notes:
+    The old _withBackpack param has been removed due to the squads that used no longer working
+    The squads in question are the Mortar and MG Squads (not to be confused with the 2-man teams of the same type, they still work)
+    These will need to be rewritten before being added back in
+    Vehicle type selection has been moved to the UI since it decides there whether or not to include one in a checkbox
+    as opposed to the old way where it gave a second yes/no prompt asking for it.
+    This particular function has no check for if the vehicle can actually hold the entire group,
+    that functionality has been moved to A3A_fnc_getHCSquadVehicleType.
+*/
+
 #include "..\..\Includes\common.inc"
 FIX_LINE_NUMBERS()
 
@@ -16,26 +35,26 @@ params [["_typeGroup", []], ["_typeVehX", ""]];
 
 // Check if player is commander
 if (player != theBoss) exitWith {
-    ["Recruit Squad", "Only the Commander has access to this function"] call A3A_fnc_customHint;
+    [localize "STR_antistasi_recruit_squad_hint_title", localize "STR_antistasi_recruit_squad_hint_commander_only"] call A3A_fnc_customHint;
 };
 
 // Check if HQ is moving
 // Is using the marker alpha really a good way to check this?
 if (markerAlpha respawnTeamPlayer == 0) exitWith {
-    ["Recruit Squad", "You cannot recruit a new squad while you are moving your HQ"] call A3A_fnc_customHint;
+    [localize "STR_antistasi_recruit_squad_hint_title", localize "STR_antistasi_recruit_squad_hint_moving_hq"] call A3A_fnc_customHint;
 };
 
 // Check if the player has a radio
 if (!([player] call A3A_fnc_hasRadio)) exitWith {
     if !(A3A_hasIFA) then {
-        ["Recruit Squad", "You need a radio in your inventory to be able to give orders to other squads"] call A3A_fnc_customHint;
+        [localize "STR_antistasi_recruit_squad_hint_title", localize "STR_antistasi_recruit_squad_hint_no_radio"] call A3A_fnc_customHint;
     } else {
-        ["Recruit Squad", "You need a Radio Man in your group to be able to give orders to other squads"] call A3A_fnc_customHint;
+        [localize "STR_antistasi_recruit_squad_hint_title", localize "STR_antistasi_recruit_squad_hint_no_radio_man"] call A3A_fnc_customHint;
     };
 };
 
 // Check for enemies near petros
-// TODO UI-update: could probably be replaced with a function, there is one for it somewhere
+// TODO: This could probably be replaced with a function
 private _enemyNear = false;
 {
 	if (((side _x == Invaders) or (side _x == Occupants)) and (_x distance petros < 500) and ([_x] call A3A_fnc_canFight) and !(isPlayer _x)) exitWith {
@@ -45,7 +64,7 @@ private _enemyNear = false;
 
 // Check message should probably also be on the flag action/button whichever we end up using
 if (_enemyNear) exitWith {
-    ["Recruit Squad", "You cannot recruit squads with enemies near your HQ"] call A3A_fnc_customHint;
+    [localize "STR_antistasi_recruit_squad_hint_title", localize "STR_antistasi_recruit_squad_hint_enemies_near"] call A3A_fnc_customHint;
 };
 
 // Exit if any of the following checks are preventing you from buying the squad type
@@ -55,19 +74,19 @@ private _exit = false;
 if (_typeGroup isEqualType "") then {
 	if (_typeGroup == "not_supported") then {
         _exit = true;
-        ["Recruit Squad", "The group or vehicle type you requested is not supported in your modset"] call A3A_fnc_customHint;
+        [localize "STR_antistasi_recruit_squad_hint_title", localize "STR_antistasi_recruit_squad_hint_unsupported_modset"] call A3A_fnc_customHint;
     };
 
 	if (A3A_hasIFA and ((_typeGroup == SDKMortar) or (_typeGroup == SDKMGStatic)) and !debug) then {
         _exit = true;
-        ["Recruit Squad", "The group or vehicle type you requested is not supported in your modset"] call A3A_fnc_customHint;
+        [localize "STR_antistasi_recruit_squad_hint_title", localize "STR_antistasi_recruit_squad_hint_unsupported_modset"] call A3A_fnc_customHint;
     };
 };
 
 if (A3A_hasRHS) then {
 	if (_typeGroup isEqualType objNull) then {
 		if (_typeGroup == staticATteamPlayer) then {
-            ["Recruit Squad", "AT Trucks are disabled in RHS - GREF"] call A3A_fnc_customHint;
+            [localize "STR_antistasi_recruit_squad_hint_title", localize "STR_antistasi_recruit_squad_hint_at_disabled_rhsgref"] call A3A_fnc_customHint;
             _exit = true;
         };
 	};
@@ -102,21 +121,21 @@ if (_typeGroup isEqualType []) then {
 ([_typeGroup, _typeVehX] call A3A_fnc_getHCSquadPrice) params ["_costs", "_costHR"];
 
 // Can't buy static squads with IFA
-// Needs to be rewritten
+// Currently disabled, needs to be rewritten along with the MG/Mortar squads
 /* if ((_withBackpack != "") and A3A_hasIFA) exitWith {
-    ["Recruit Squad", "Your current modset doesn't support packing/unpacking static weapons"] call A3A_fnc_customHint;
+    [localize "STR_antistasi_recruit_squad_hint_title", "Your current modset doesn't support packing/unpacking static weapons"] call A3A_fnc_customHint;
 }; */
 
 // Not enough HR
 if (_hr < _costHR) then {
     _exit = true;
-    ["Recruit Squad", format ["You do not have enough HR for this request (%1 required)",_costHR]] call A3A_fnc_customHint;
+    [localize "STR_antistasi_recruit_squad_hint_title", format [localize "STR_antistasi_recruit_squad_hint_insufficient_hr",_costHR]] call A3A_fnc_customHint;
 };
 
 // Not enough money
 if (_resourcesFIA < _costs) then {
     _exit = true;
-    ["Recruit Squad", format ["You do not have enough money for this request (%1 € required)",_costs]] call A3A_fnc_customHint;
+    [localize "STR_antistasi_recruit_squad_hint_title", format [localize "STR_antistasi_recruit_squad_hint_insufficient_money",_costs]] call A3A_fnc_customHint;
 };
 
 if (_exit) exitWith {};
@@ -129,7 +148,8 @@ private _road = [_pos] call A3A_fnc_findNearestGoodRoad;
 private _roadDirection = _road call A3A_fnc_getRoadDirection;
 
 
-// Actual spawning and init begins hereish
+// Actual spawning and init begins here
+// This section is left mostly untouched apart from formatting
 
 _bypassAI = false; // If this gets set to true A3A_fnc_attackDrillAI gets run on the group
 private _groupX = grpNull;
@@ -220,7 +240,7 @@ if (_isInfantry) then {
 {[_x] call A3A_fnc_FIAinit} forEach units _groupX;
 theBoss hcSetGroup [_groupX];
 petros directSay "SentGenReinforcementsArrived";
-["Recruit Squad", format [localize "STR_antistasi_recruit_squad_spawn_message", groupID _groupX]] call A3A_fnc_customHint;
+[localize "STR_antistasi_recruit_squad_hint_title", format [localize "STR_antistasi_recruit_squad_spawn_message", groupID _groupX]] call A3A_fnc_customHint;
 if (!_isInfantry) exitWith {};
 if !(_bypassAI) then {_groupX spawn A3A_fnc_attackDrillAI};
 
@@ -238,5 +258,5 @@ _purchasedVehicle setVariable ["owner",_groupX,true];
 
 leader _groupX assignAsDriver _purchasedVehicle;
 {[_x] orderGetIn true; [_x] allowGetIn true} forEach units _groupX;
-["Recruit Squad", "Vehicle Purchased"] call A3A_fnc_customHint;
+[localize "STR_antistasi_recruit_squad_hint_title", localize "STR_antistasi_recruit_squad_hint_vehicle_purchased"] call A3A_fnc_customHint;
 petros directSay "SentGenBaseUnlockVehicle";

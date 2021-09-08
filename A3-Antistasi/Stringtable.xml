@@ -1037,6 +1037,50 @@
       </Key>
     </Container>
     <Container name="recruit_squad">
+        <Key ID="STR_antistasi_recruit_squad_hint_title">
+          <Original>Recruit Squad</Original>
+          <English>Recruit Squad</English>
+        </Key>
+        <Key ID="STR_antistasi_recruit_squad_hint_commander_only">
+          <Original>Only the Commander has access to this function</Original>
+          <English>Only the Commander has access to this function</English>
+        </Key>
+        <Key ID="STR_antistasi_recruit_squad_hint_moving_hq">
+          <Original>You cannot recruit a new squad while you are moving your HQ</Original>
+          <English>You cannot recruit a new squad while you are moving your HQ</English>
+        </Key>
+        <Key ID="STR_antistasi_recruit_squad_hint_no_radio">
+          <Original>You need a radio in your inventory to be able to give orders to other squads</Original>
+          <English>You need a radio in your inventory to be able to give orders to other squads</English>
+        </Key>
+        <Key ID="STR_antistasi_recruit_squad_hint_no_radio_man">
+          <Original>You need a Radio Man in your group to be able to give orders to other squads</Original>
+          <English>You need a Radio Man in your group to be able to give orders to other squads</English>
+        </Key>
+        <Key ID="STR_antistasi_recruit_squad_hint_enemies_near">
+          <Original>You cannot recruit squads with enemies near your HQ</Original>
+          <English>You cannot recruit squads with enemies near your HQ</English>
+        </Key>
+        <Key ID="STR_antistasi_recruit_squad_hint_unsupported_modset">
+          <Original>The group or vehicle type you requested is not supported in your modset</Original>
+          <English>The group or vehicle type you requested is not supported in your modset</English>
+        </Key>
+        <Key ID="STR_antistasi_recruit_squad_hint_at_disabled_rhsgref">
+          <Original>AT Trucks are disabled in RHS - GREF</Original>
+          <English>AT Trucks are disabled in RHS - GREF</English>
+        </Key>
+        <Key ID="STR_antistasi_recruit_squad_hint_insufficient_hr">
+          <Original>You do not have enough HR for this request (%1 required)</Original>
+          <English>You do not have enough HR for this request (%1 required)</English>
+        </Key>
+        <Key ID="STR_antistasi_recruit_squad_hint_insufficient_money">
+          <Original>You do not have enough money for this request (%1 € required)</Original>
+          <English>You do not have enough money for this request (%1 € required)</English>
+        </Key>
+        <Key ID="STR_antistasi_recruit_squad_hint_vehicle_purchased">
+          <Original>Vehicle Purchased</Original>
+          <English>Vehicle Purchased</English>
+        </Key>
         <Key ID="STR_antistasi_recruit_squad_spawn_message">
           <Original>Group %1 at your command.&lt;br/&gt;&lt;br/&gt;Groups are managed from the High Command bar (Default: CTRL+SPACE)&lt;br/&gt;&lt;br/&gt;If the group gets stuck, use the AI Control feature to make them start moving. Mounted Static teams tend to get stuck (solving this is WiP)&lt;br/&gt;&lt;br/&gt;To assign a vehicle for this group, look at some vehicle, and use Vehicle Squad Mngmt option in Y menu</Original>
           <English>Group %1 at your command.&lt;br/&gt;&lt;br/&gt;Groups are managed from the High Command bar (Default: CTRL+SPACE)&lt;br/&gt;&lt;br/&gt;If the group gets stuck, use the AI Control feature to make them start moving. Mounted Static teams tend to get stuck (solving this is WiP)&lt;br/&gt;&lt;br/&gt;To assign a vehicle for this group, look at some vehicle, and use Vehicle Squad Mngmt option in Y menu</English>
