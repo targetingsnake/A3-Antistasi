@@ -22,18 +22,12 @@ Dependencies:
 Example:
     [_RAData, "Rich Action"] call A3A_fnc_richAction_setMenu;
 */
-#include "richActionData.hpp"
+private _hashmap0 = createHashMap;
 params [
-    ["_RAData",[],[ [] ], [RADataI_count]],
+    ["_RAData", _hashmap0, [_hashmap0]],
     ["_menuText", "", [ "" ]]
 ];
+private _menuTextWrapped = "<t color='#FFFFFF' align='left'>" + _menuText + "</t>    <t color='%1' align='right'>" + A3A_richAction_keyName + "     </t>";
+// The end spaces prevent the keyName from hanging outside of the box.
 
-private _menuTextWrapped = "<t color='#FFFFFF' align='left'>" + _menuText + "</t>    <t color='#83ffffff' align='right'>" + A3A_richAction_keyName + "     </t>";  // The end spaces prevent the keyName from hanging outside of the box.
-
-private _target = _RAData # RADataI_target;
-private _actionID = _RAData # RADataI_actionID;
-private _actionParams = _target actionParams _actionID;  // https://community.bistudio.com/wiki/actionParams
-private _contextForeground = _actionParams #10;
-private _contextBackground = _actionParams #11;
-
-_target setUserActionText [_actionID, _menuTextWrapped, _contextBackground, _contextForeground];
+_RAData set ["menuText", _menuTextWrapped]

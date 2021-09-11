@@ -346,6 +346,7 @@ class A3A
     };
 
     class RichActionAPI {
+        class richAction_createAsBISHA {};
         class richAction_initAnim { preInit=1; };
         class richAction_setContext {};
         class richAction_setMenu {};
@@ -353,12 +354,18 @@ class A3A
 
     class RichActionKernel {
         class richAction_add {};
+        class richAction_idle {};
         class richAction_init { preInit=1; };
-        class richAction_initAnim { preInit=1; };
-        class richAction_onClick {};
-        class richAction_overlayGFX {};
+        class richAction_monitorAppTimeouts;
+        class richAction_newRAData {};
+        class richAction_newRAGfx {};
+        class richAction_overlayGfx {};
         class richAction_render {};
+        class richAction_reportAppError {};
         class richAction_selectAnimFrame {};
+        class richAction_startProgress {};
+        class richAction_superviseAppEvent {};
+        class richAction_terminate {};
     };
 
     class Intel

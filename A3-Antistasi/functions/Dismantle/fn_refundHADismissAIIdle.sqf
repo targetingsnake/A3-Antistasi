@@ -1,5 +1,5 @@
-_shared set ["_state","disabled"];
-private _AISoldier = _shared get "_selectedObject";
+_actionData set ["_state","disabled"];
+private _AISoldier = _actionData get "_selectedObject";
 
 if (player isNotEqualTo leader group player) exitWith {
     _topText = "Not Squad Leader";
@@ -34,7 +34,7 @@ if !([_AISoldier] call A3A_fnc_canFight) exitWith {
 // Apparently server is an object or location? No clue honestly. Extracted from A3-Antistasi/REINF/dismissPlayerGroup.sqf
 private _cost = server getVariable (_AISoldier getVariable "unitType");
 
-_shared set ["_state","idle"];
-_topText = format [A3A_holdAction_holdSpaceTo,"color='#ffae00'","Dismiss Soldier"];
+_actionData set ["_state","idle"];
+_topText = format [A3A_richAction_pressSpaceTo,"color='#ffae00'","Dismiss Soldier"];
 _bottomText = "+1HR, +"+(_cost toFixed 0)+"€";
 _overlayLayers pushBack "_graphics_dismissAI";

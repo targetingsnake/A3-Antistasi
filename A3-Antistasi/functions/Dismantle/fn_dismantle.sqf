@@ -57,7 +57,7 @@ if (isNil {A3A_refund_sellableVehicles}) then {
     A3A_refund_sellableVehicles append vehAA;
     A3A_refund_sellableVehicles append [vehNATOPlane,vehNATOPlaneAA,vehCSATPlane,vehCSATPlaneAA];
 };
-private _shared = createHashMapFromArray [
+private _actionData = createHashMapFromArray [
     ["_idleNextCodeRunTime",0],
     ["_selectedObject",objNull],
     ["_structureCost",0],  // Needs to be saved if structure removal propagated before completionCode.
@@ -67,20 +67,20 @@ private _shared = createHashMapFromArray [
 ];
 
 private _codeIdle = {
-    if ((_shared get "_idleNextCodeRunTime") > serverTime) exitWith {};
-    _shared set ["_idleNextCodeRunTime", serverTime + 1/4];
+    if ((_actionData get "_idleNextCodeRunTime") > serverTime) exitWith {};
+    _actionData set ["_idleNextCodeRunTime", serverTime + 1/4];
 
     private _selectedObject = cursorObject;
-    _shared set ["_selectedObject",_selectedObject];
-    _shared set ["_state","idle"];
-    private _overlayLayers = _shared get "_overlayLayers";
+    _actionData set ["_selectedObject",_selectedObject];
+    _actionData set ["_state","idle"];
+    private _overlayLayers = _actionData get "_overlayLayers";
     _overlayLayers resize 0;
 
     private _topText = "Error: Top text not inserted.";
     private _bottomText = "Error: Bottom text not inserted.";
 
     private _refundType = _selectedObject call A3A_fnc_refundIdentifyRefundType;
-    _shared set ["_refundType",_refundType];
+    _actionData set ["_refundType",_refundType];
     switch (_refundType) do {
         case ("authorisePlayer"): {
         };
@@ -100,21 +100,21 @@ private _codeIdle = {
     if (isNil{Dev_BRSize}) then {
         Dev_BRSize = 1;
     };
-    (_shared get "_graphics_idle") set [1,
-        A3A_holdAction_standardSpacer + "<t font='PuristaMedium' size='1.8'>" + _topText + "</t><br/>" +
+    (_actionData get "_graphics_idle") set [1,
+        A3A_richAction_standardSpacer + "<t font='PuristaMedium' size='1.8'>" + _topText + "</t><br/>" +
         "<t font='RobotoCondensed' size='1.2' valign='top'>" + _bottomText + "</t>"
     ];    // The invisible engineer text makes the numbers centers
 };
 
 private _codeStart = {
-    private _refundType = _shared get "_refundType";
+    private _refundType = _actionData get "_refundType";
     switch (_refundType) do {
         case ("authorisePlayer"): {
         };
         case ("dismantle"): {
-            _shared set ["_codeProgress",A3A_fnc_refundHADismantleProgress];
-            _shared set ["_codeCompleted",A3A_fnc_refundHADismantleCompleted];
-            _shared set ["_codeInterrupted",A3A_fnc_refundHADismantleInterrupted];
+            _actionData set ["_codeProgress",A3A_fnc_refundHADismantleProgress];
+            _actionData set ["_codeCompleted",A3A_fnc_refundHADismantleCompleted];
+            _actionData set ["_codeInterrupted",A3A_fnc_refundHADismantleInterrupted];
             [] call A3A_fnc_refundHADismantleStart;
         };
         case ("sellVehicle"): {
@@ -124,13 +124,13 @@ private _codeStart = {
             [] call A3A_fnc_refundHADismissAIStart;
         };
         case ("exit"): {
-            _shared set ["_dispose",true];
-            _shared set ["_state","idle"];
+            _actionData set ["_dispose",true];
+            _actionData set ["_state","idle"];
         };
     };
 };
 
-_shared insert [
+_actionData insert [
     // Visibility and progress settings
     ["_state","idle"],   // hidden, disabled, idle, progress
     ["_overlayLayers",[]],
@@ -150,22 +150,22 @@ _shared insert [
 
     // Default Text and image animations.
     ["_graphics_idle",[
-        "<t align='left'>Refund Menu</t>   <t color='#ffae00' align='right'>" + A3A_holdAction_keyName + "     </t>",  // Menu Text
-        A3A_holdAction_standardSpacer + "Error: Text Not Inserted",  // On-screen Context Text
-        A3A_holdAction_iconIdle,  // Icon
-        [1,A3A_holdAction_texturesOrbitSegments]  //  12 Frames.  // Background
+        "<t align='left'>Refund Menu</t>   <t color='#ffae00' align='right'>" + A3A_richAction_keyName + "     </t>",  // Menu Text
+        A3A_richAction_standardSpacer + "Error: Text Not Inserted",  // On-screen Context Text
+        A3A_richAction_iconIdle,  // Icon
+        [1,A3A_richAction_texturesOrbitSegments]  //  12 Frames.  // Background
     ]],
     ["_graphics_disabled",[
         nil,
         nil,
         nil,
-        [4,A3A_holdAction_texturesRingBreath]  //  60 Frames.  // Background
+        [4,A3A_richAction_texturesRingBreath]  //  60 Frames.  // Background
     ]],
     ["_graphics_progress",[
         nil /*Load from idle*/,  // Menu Text
-        A3A_holdAction_standardSpacer + "Error: Text Not Inserted",  // On-screen Context Text
+        A3A_richAction_standardSpacer + "Error: Text Not Inserted",  // On-screen Context Text
         "<img image='\a3\ui_f_oldman\Data\IGUI\Cfg\HoldActions\holdAction_market_ca.paa'/>",  // Icon
-        [0,A3A_holdAction_texturesClockwise apply {"<t color='#ffae00'>"+_x+"</t>"}]  //  25 Frames.  // Background
+        [0,A3A_richAction_texturesClockwise apply {"<t color='#ffae00'>"+_x+"</t>"}]  //  25 Frames.  // Background
     ]],
     ["_graphics_dismantle",[
         nil,  // Menu Text
@@ -175,13 +175,13 @@ _shared insert [
     ]],
     ["_graphics_exit",[
         nil,  // Menu Text
-        A3A_holdAction_standardSpacer + "<t font='PuristaMedium' size='1.8'>"+(format [A3A_holdAction_holdSpaceTo,"color='#ffae00'","Exit"]) + "</t><br/><t font='PuristaMedium' size='1.2' valign='top'>No Dismantlable Selected.</t>",  // On-screen Context Text
+        A3A_richAction_standardSpacer + "<t font='PuristaMedium' size='1.8'>"+(format [A3A_richAction_pressSpaceTo,"color='#ffae00'","Exit"]) + "</t><br/><t font='PuristaMedium' size='1.2' valign='top'>No Dismantlable Selected.</t>",  // On-screen Context Text
         "<img image='\A3\Ui_f\data\IGUI\Cfg\HoldActions\holdAction_forceRespawn_ca.paa'/>",  // Icon
-        [4,A3A_holdAction_texturesRingBreath]  //  60 Frames. // Background
+        [4,A3A_richAction_texturesRingBreath]  //  60 Frames. // Background
     ]],
     ["_graphics_tooFar",[
         nil /*Load from idle*/,  // Menu Text
-        A3A_holdAction_standardSpacer + "<t font='PuristaMedium' size='1.8'>Go closer</t>",  // On-screen Context Text
+        A3A_richAction_standardSpacer + "<t font='PuristaMedium' size='1.8'>Go closer</t>",  // On-screen Context Text
         "<img image='\a3\ui_f\data\IGUI\Cfg\HoldActions\holdAction_search_ca.paa'/>",  // Icon
         nil  // Background
     ]],
@@ -195,7 +195,7 @@ _shared insert [
         nil,  // Menu Text
         nil,  // On-screen Context Text
         nil,  // Icon
-        [0,A3A_holdAction_texturesClockwise apply {"<t color='#ffae00'>"+_x+"</t>"}]  // Background
+        [0,A3A_richAction_texturesClockwise apply {"<t color='#ffae00'>"+_x+"</t>"}]  // Background
     ]],
     ["_graphics_dismantleContinue",[
         nil,  // Menu Text
@@ -260,7 +260,7 @@ _shared insert [
 ];
 
 [
-    _shared,
+    _actionData,
     player,
     69,
     "",
@@ -268,6 +268,6 @@ _shared insert [
     false,
     "",
     ""
-] call A3A_fnc_holdAction;
+] call A3A_fnc_richAction;
 
 true;

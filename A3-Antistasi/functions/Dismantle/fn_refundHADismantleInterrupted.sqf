@@ -2,10 +2,10 @@
 #include "dismantleConfig.hpp"
 FIX_LINE_NUMBERS();
 
-_shared get "_lastAnimLifeToken" set [0,false];
+_actionData get "_lastAnimLifeToken" set [0,false];
 player switchMove "";
 
-private _structure = _shared get "_selectedObject";
+private _structure = _actionData get "_selectedObject";
 if (isServer) then {
     [_structure,player,false] call A3A_fnc_dismantleAssist;
 } else {

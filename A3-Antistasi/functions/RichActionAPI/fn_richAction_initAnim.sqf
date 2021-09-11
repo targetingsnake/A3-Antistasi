@@ -10,7 +10,14 @@ Public: No
 
 Example:
     class richAction_initAnim { preInit = 1 };
+
+    isNil A3A_fnc_richAction_initAnim;
 */
+#include "..\..\Includes\common.inc"
+FIX_LINE_NUMBERS()
+if !(isNil{A3A_richAction_initAnim_complete}) exitWith { false };
+if (canSuspend) exitWith { Error("Init must be synchronous!"); };
+A3A_richAction_initAnim_complete = true;
 
 
 // Outer Ring to blank transition. 4 Frames.
@@ -38,7 +45,7 @@ reverse A3A_richAction_texturesOuterRingToRingReverse;
 A3A_customHint_hexChars = ["0","1","2","3","4","5","6","7","8","9","A","B","C","D","E","F"];    // required for A3A_fnc_shader_ratioToHex
 A3A_richAction_texturesRingBreath = [];
 for "_i" from 0 to 59 do {
-    // he clast frame is clipped off to avoid a double full transparent when used in a equal-frame-time loop (Like the one used in A3A_fnc_richAction).
+    // the last frame is clipped off to avoid a double full transparent when used in a equal-frame-time loop (Like the one used in A3A_fnc_richAction_add).
     private _alpha = sin((_i/(59+1)) * 360) * 0.45 + 0.55;
     A3A_richAction_texturesRingBreath pushBack ("<img color='#" + ([_alpha] call A3A_fnc_shader_ratioToHex) + "ffffff' image='\A3\Ui_f\data\IGUI\Cfg\HoldActions\in\in_0_ca.paa'/>");
 };
@@ -54,15 +61,6 @@ A3A_richAction_texturesOrbitSegmentsReverse = +A3A_richAction_texturesOrbitSegme
 reverse A3A_richAction_texturesOrbitSegmentsReverse;
 
 
-// Segments appearing Clockwise. 25 Frames.
-A3A_richAction_texturesClockwise = [];
-for "_i" from 0 to 24 do {
-    A3A_richAction_texturesClockwise pushBack ("<img image='\A3\Ui_f\data\IGUI\Cfg\HoldActions\progress\progress_"+str _i+"_ca.paa'/>");
-};
-A3A_richAction_texturesClockwiseReverse = +A3A_richAction_texturesClockwise;
-reverse A3A_richAction_texturesClockwiseReverse;
-
-
 // All 24 Segments fading out. 12 Frames.
 A3A_richAction_texturesSegmentsFade = [];
 for "_i" from 0 to 24 do {
@@ -72,6 +70,15 @@ A3A_richAction_texturesSegmentsFadeReverse = +A3A_richAction_texturesSegmentsFad
 reverse A3A_richAction_texturesSegmentsFadeReverse;
 
 
+// Segments appearing Clockwise. 25 Frames.
+A3A_richAction_texturesClockwise = [];
+for "_i" from 0 to 24 do {
+    A3A_richAction_texturesClockwise pushBack ("<img image='\A3\Ui_f\data\IGUI\Cfg\HoldActions\progress\progress_"+str _i+"_ca.paa'/>");
+};
+A3A_richAction_texturesClockwiseReverse = +A3A_richAction_texturesClockwise;
+reverse A3A_richAction_texturesClockwiseReverse;
+
+
 // Segments appearing Clockwise with thin base ring. 25 Frames.
 A3A_richAction_texturesClockwiseRing = [];
 for "_i" from 0 to 24 do {
@@ -79,12 +86,6 @@ for "_i" from 0 to 24 do {
 };
 A3A_richAction_texturesClockwiseRingReverse = +A3A_richAction_texturesClockwiseRing;
 reverse A3A_richAction_texturesClockwiseRingReverse;
-
-
-// Long combination of clockwise segments, transition, clockwise with small ring. 55 Frames
-A3A_richAction_texturesClockwiseCombined = A3A_richAction_texturesClockwise + A3A_richAction_texturesOuterRingToRing + A3A_richAction_texturesClockwiseRing;
-A3A_richAction_texturesClockwiseCombinedReverse = +A3A_richAction_texturesClockwiseCombined;
-reverse A3A_richAction_texturesClockwiseCombinedReverse;
 
 
 /// Default Icons

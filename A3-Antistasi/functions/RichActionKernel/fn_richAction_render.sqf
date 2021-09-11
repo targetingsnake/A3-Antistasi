@@ -1,9 +1,9 @@
 /*
 Maintainer: Caleb Serafin
-    Selects the current GFX based on state.
+    Selects the current gfx based on state.
     Selects the current frames of the animations.
     Updates the action with appropriate icon and text.
-    Render frequency is controlled by RADataI_renderSleep.
+    Render frequency is controlled by __RADataI_renderSleep.
 
 Argument: <ARRAY> Rich Action Data
 
@@ -14,41 +14,34 @@ Public: No
 Example:
     _RAData call A3A_fnc_richAction_render;
 */
-#include "richActionData.hpp"
 #include "..\..\Includes\common.inc"
 FIX_LINE_NUMBERS()
 
 private _RAData = _this;
-private _state = _RAData # RADataI_state;
+private _state = _RAData get "state";
 
 if (_state isEqualTo "hidden") exitWith {};
-if (_RAData # RADataI_renderSleepUntil > serverTime) exitWith {};
-_RAData set [RADataI_renderSleepUntil, serverTime + (_RAData # RADataI_renderSleep)];
+if (_RAData get "renderSleepUntil" > serverTime) exitWith {};
+_RAData set ["renderSleepUntil", serverTime + (_RAData get "renderSleep")];
 
-_RAData call (_RAData # RADataI_fnc_onRender);
+_RAData call (_RAData get "fnc_onRender");
 
-private _currentGFXIndex = switch (_state) do {
-    case "disabled": { RADataI_gfx_disabled };
-    case "idle": { RADataI_gfx_idle };
-    case "progress": { RADataI_gfx_progress };
-    default {
-        Error("Illegitimate state found in updateText: "+ _state);
-        _RAData set [RADataI_state,"idle"];
-        RADataI_gfx_idle;
-    };
+if !(("gfx_"+_state) in _RAData) then {
+    Error("Illegitimate state found in updateText: "+ _state);
+    _state = "idle";
+    _RAData set ["state","_state"];
 };
 
-private _overrideGFX = +(_RAData # RADataI_gfx_override);
-private _currentGFX = _RAData # _currentGFXIndex;
-private _finalGFX = [_currentGFX,_overrideGFX] call A3A_fnc_richAction_overlayGFX;
-if (_finalGFX findIf {isNil {_x}} != -1) then {
-    Error("_finalGFX had nil at index "+ str (_finalGFX findIf {isNil {_x}}) +". _finalGFX: "+ str _finalGFX);
-    Error("_currentGFX: "+str _currentGFX);
-};
-(_finalGFX apply {[_RAData, _x] call A3A_fnc_richAction_selectAnimFrame}) params ["_context","_icon","_contextBackground","_background"];
+private _currentGfx = _RAData get ("gfx_"+_state);
+private _overrideGfx = _RAData get "gfx_override";
+private _finalGfx = [_currentGfx,_overrideGfx] call A3A_fnc_richAction_overlayGfx;
 
-private _target = _RAData # RADataI_target;
-private _actionID = _RAData # RADataI_actionID;
-private _menu = (_target actionParams _actionID) #0;  // https://community.bistudio.com/wiki/actionParams
+["context","icon","contextBackground","iconBackground"]
+    apply {[_RAData get "completionRatio", _finalGfx get _x] call A3A_fnc_richAction_selectAnimFrame}
+    params ["_context","_icon","_contextBackground","_iconBackground"];
 
-_target setUserActionText [_actionID, _menu, "<t size='3.5' shadow='0'>"+_background+"</t><br/><t font='RobotoCondensedBold'>"+_contextBackground+"</t>","<t size='3.5'>"+_icon+"</t><br/><t font='RobotoCondensedBold'>"+_context+"</t>"];
+private _target = _RAData get "target";
+private _actionID = _RAData get "actionID";
+private _menuText = format[_RAData get "menuText",["#ffae00","#838383"] select (_state isEqualTo "disabled")];
+
+_target setUserActionText [_actionID, _menuText, "<t size='3.5' shadow='0'>"+_iconBackground+"</t><br/><t font='RobotoCondensedBold'>"+_contextBackground+"</t>","<t size='3.5'>"+_icon+"</t><br/><t font='RobotoCondensedBold'>"+_context+"</t>"];

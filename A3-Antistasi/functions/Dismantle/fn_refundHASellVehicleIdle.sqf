@@ -1,7 +1,7 @@
 
-private _vehicle = _shared get "_selectedObject";
+private _vehicle = _actionData get "_selectedObject";
 
-_shared set ["_state","disabled"];
+_actionData set ["_state","disabled"];
 if (_vehicle distance getMarkerPos respawnTeamPlayer > 50) exitWith {
     _topText = "Too Far";
     _bottomText = "Vehicle must be closer than 50m to HQ marker.";
@@ -42,7 +42,7 @@ if (_cost == 0) exitWith {
     _overlayLayers pushBack "_graphics_tooUnconventional";
 };
 
-_shared set ["_state","idle"];
-_topText = format [A3A_holdAction_holdSpaceTo,"color='#ffae00'","Sell Vehicle"];
+_actionData set ["_state","idle"];
+_topText = format [A3A_richAction_pressSpaceTo,"color='#ffae00'","Sell Vehicle"];
 _bottomText = " +"+(_cost toFixed 0)+"€";
 _overlayLayers pushBack "_graphics_sellVehicle";

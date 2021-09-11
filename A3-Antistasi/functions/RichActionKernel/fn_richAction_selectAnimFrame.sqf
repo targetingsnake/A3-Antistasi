@@ -11,17 +11,14 @@ Arguments:
 Return Value:
     <STRING> The current frame to display.
 
-Scope: Server/Server&HC/Clients/Any, Local Arguments/Global Arguments, Local Effect/Global Effect
-Environment: Scheduled/Unscheduled/Any
-Public: Yes/No
-Dependencies:
-    <STRING> A3A_guerFactionName
-    <SCALER> LBX_lvl1Price
+Environment: Any
+Public: Yes
 
 Example:
     [0.80,"Hello World"] call A3A_fnc_richAction_selectAnimFrame; // "Hello World"
     [0.80,[7,["Never","gonna","give","you","up","Never","gonna","let","you","down","Never","gonna","run","around","and","desert","you"]]] call A3A_fnc_richAction_selectAnimFrame; // Might give you "up"
-    [0.75,[0,["First Quarter","Second Quarter","Third Quarter","Forth Quarter"]]] call A3A_fnc_richAction_selectAnimFrame; // "You can taste it!"
+    [0.7499,[0,["First Quarter","Second Quarter","Third Quarter","Forth Quarter"]]] call A3A_fnc_richAction_selectAnimFrame; // "Third Quarter"
+    [0.75,[0,["First Quarter","Second Quarter","Third Quarter","Forth Quarter"]]] call A3A_fnc_richAction_selectAnimFrame; // "Forth Quarter"
 */
 #include "..\..\Includes\common.inc"
 FIX_LINE_NUMBERS()
@@ -29,7 +26,9 @@ params [
     ["_completionRatio",0 ,[ 0 ]],
     ["_RAAnim", "selectAnimTexture_missing", ["", []], [2]]
 ];
+
 if (_RAAnim isEqualType "") exitWith {_RAAnim};  // Return immediately if static texture.
+
 _RAAnim params [
     ["_duration",0,[ 0 ]],
     ["_textures",[],[ [] ]]

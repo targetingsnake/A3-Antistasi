@@ -5,31 +5,24 @@ Maintainer: Caleb Serafin
     If an empty field is desired, a tag that resolves to nothing should be used ("<t/>").
 
 Arguments:
-    <RAGFX> Base layer.
-    <RAGFX> Override layer.
+    <RAGfx> Base layer.
+    <RAGfx> Override layer.
 
 Return Value:
-    <RAGFX> Final layer.
+    <RAGfx> Final layer.
 
 Scope: Any
 Environment: Any
 Public: Yes
 
 Example:
-    private _finalGFX = [_baseGFX,_overrideGFX] call A3A_fnc_richAction_overlayGFX;
+    private _finalGfx = [_baseGfx,_overrideGfx] call A3A_fnc_richAction_overlayGfx;
 */
-#include "richActionData.hpp"
+private _hashmap0 = createHashMap;
 params [
-    ["_baseGFX", [], [ [] ], [RAGFXI_count]],
-    ["_overrideGFX", [], [ [] ], [RAGFXI_count]]
+    ["_baseGfx", _hashmap0, [_hashmap0]],
+    ["_overrideGfx", _hashmap0, [_hashmap0]]
 ];
-
-private _finalGFX = [];
-{
-    _finalGFX set [_forEachIndex, if (_x isNotEqualTo "") then {
-        _x
-    } else {
-        _baseGraphics #_forEachIndex;
-    }];
-} forEach _overlayGraphics;
-_finalGFX;
+private _finalGfx = +_baseGfx;
+_finalGfx merge _overrideGfx;
+_finalGfx;

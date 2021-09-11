@@ -2,20 +2,20 @@
 #include "dismantleConfig.hpp"
 FIX_LINE_NUMBERS();
 
-private _structure = _shared get "_selectedObject";
+private _structure = _actionData get "_selectedObject";
 
 // Get and save structure data
 (A3A_dismantle_structureJouleCostHM get (typeOf _structure)) params [["_structureJoules",1],["_structureCost",0]];
 private _boundingSphereDiameter = (2 boundingBox _structure)#2;
 private _dismantleRadius = _boundingSphereDiameter/2 * 1.5 + 3;
-_shared set ["_structureJoules",_structureJoules];
-_shared set ["_structureCost",_structureCost];
-_shared set ["_structureRadius",_dismantleRadius];
+_actionData set ["_structureJoules",_structureJoules];
+_actionData set ["_structureCost",_structureCost];
+_actionData set ["_structureRadius",_dismantleRadius];
 
 // Player animation
-_shared get "_lastAnimLifeToken" set [0,false];
+_actionData get "_lastAnimLifeToken" set [0,false];
 private _animLifeToken = [true];
-_shared set ["_lastAnimLifeToken",_animLifeToken];
+_actionData set ["_lastAnimLifeToken",_animLifeToken];
 player playMoveNow selectRandom medicAnims;
 private _animEHID = player addEventHandler [
     "AnimDone",
@@ -56,5 +56,5 @@ if (isServer) then {
     [_structure,player,true] remoteExecCall ["A3A_fnc_dismantleAssist",2];
 };
 
-_shared set ["_completionProgress",_joulesCompleted];
-_shared set ["_completionGoal",_structureJoules];
+_actionData set ["_completionProgress",_joulesCompleted];
+_actionData set ["_completionGoal",_structureJoules];
