@@ -218,8 +218,8 @@ switch (_mode) do
         // Vehicle section is only available to members
         if ([player] call A3A_fnc_isMember) then {
 
-            // Attempt to get vehicle from cursortarget
-            _vehicle = cursorTarget;
+            // Attempt to get vehicle from cursorObject
+            _vehicle = cursorObject; // was cursorTarget
             // TODO UI-update: Add fallback to select the closest eligible vehicle in sight
             // TODO UI-update: Add check for distance
 
@@ -242,6 +242,19 @@ switch (_mode) do
 
                     // TODO UI-update: Disable garage, sell and add to air support buttons
                     // if player is not in range of a friendly location
+
+                    // Change label on lock/unlock depending on vehicle lock state
+                    // To be removed, vehicle locking isn't a thing anymore
+                    /* private _unlockVehicleButton = _display displayCtrl A3A_IDC_UNLOCKVEHICLEBUTTON;
+                    private _vehicleOwner = _vehicle getVariable ["ownerX", nil];
+                    private _vehicleIsLocked = !(isNil "_vehicleOwner");
+                    if (_vehicleIsLocked) then {
+                        _unlockVehicleButton ctrlSetText localize "STR_antistasi_dialogs_main_unlock_vehicle";
+                        _unlockVehicleButton ctrlSetTooltip format ["Vehicle is locked by %1", _vehicleOwner]; // TODO UI-update: localize
+                    } else {
+                        _unlockVehicleButton ctrlSetText localize "STR_antistasi_dialogs_main_lock_vehicle";
+                        _unlockVehicleButton ctrlSetTooltip "";
+                    }; */
 
                     if (player == theBoss) then {
                         // Disable "add to air support" button if vehicle is not eligible

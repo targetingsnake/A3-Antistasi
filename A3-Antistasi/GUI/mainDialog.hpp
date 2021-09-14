@@ -439,29 +439,31 @@ class A3A_MainDialog : A3A_TabbedDialog
             {
               idc = A3A_IDC_GARAGEVEHICLEBUTTON;
               text = $STR_antistasi_dialogs_main_garage_vehicle;
-              onButtonClick = "hint ""Placeholder\nWill use A3A_fnc_garageVehicle when merged"""; // TODO UI-update: Replace placeholder when merging
+              onButtonClick = "closeDialog 0; [cursorObject, clientOwner, call HR_GRG_dLock, player] remoteExecCall ['HR_GRG_fnc_addVehicle',2];";
               x = 32 * GRID_W;
               y = 0 * GRID_H;
               w = 22 * GRID_W;
               h = 12 * GRID_H;
             };
 
-            class UnlockVehicleButton : A3A_Button
-            {
-              idc = A3A_IDC_UNLOCKVEHICLEBUTTON;
-              text = $STR_antistasi_dialogs_main_unlock_vehicle; // Same exists for unlock
-              onButtonClick = "hint ""Placeholder\nWill use A3A_fnc_unlockVehicle when merged"""; // TODO UI-update: Replace placeholder when merging
-              x = 32 * GRID_W;
-              y = 14 * GRID_H;
-              w = 22 * GRID_W;
-              h = 12 * GRID_H;
-            };
+            // TODO UI-update: Vehicle locks/unlocks are no longer a thing outside garage
+            // Either replace this with something else or make the garage button bigger?
+            // class UnlockVehicleButton : A3A_Button
+            // {
+            //   idc = A3A_IDC_UNLOCKVEHICLEBUTTON;
+            //   text = $STR_antistasi_dialogs_main_unlock_vehicle; // Same exists for unlock
+            //   onButtonClick = "hint ""Placeholder\nWill use A3A_fnc_unlockVehicle when merged"""; // TODO UI-update: Replace placeholder when merging
+            //   x = 32 * GRID_W;
+            //   y = 14 * GRID_H;
+            //   w = 22 * GRID_W;
+            //   h = 12 * GRID_H;
+            // };
 
             class SellVehicleButton : A3A_Button
             {
               idc = A3A_IDC_SELLVEHICLEBUTTON;
               text = $STR_antistasi_dialogs_main_sell_vehicle;
-              onButtonClick = "hint ""Placeholder\nWill use A3A_fnc_sellVehicle when merged"""; // TODO UI-update: Replace placeholder when merging
+              onButtonClick = "if (player == theBoss) then {closeDialog 0; nul = [player,cursorObject] remoteExecCall [""A3A_fnc_sellVehicle"",2]} else {[""Sell Vehicle"", ""Only the Commander can sell vehicles""] call A3A_fnc_customHint;};"; // TODO UI-update: Move to fn_playerTab.sqf? this shit is loooong
               x = 56 * GRID_W;
               y = 0 * GRID_H;
               w = 22 * GRID_W;
@@ -472,7 +474,7 @@ class A3A_MainDialog : A3A_TabbedDialog
             {
               idc = A3A_IDC_ADDTOAIRSUPPORTBUTTON;
               text = $STR_antistasi_dialogs_main_add_to_air_support;
-              onButtonClick = "hint ""Placeholder\nWill use A3A_fnc_addBombRun when merged"""; // TODO UI-update: Replace placeholder when merging
+              onButtonClick = "closeDialog 0;nul = [] call A3A_fnc_addBombRun";
               x = 56 * GRID_W;
               y = 14 * GRID_H;
               w = 22 * GRID_W;
