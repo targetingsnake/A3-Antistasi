@@ -223,7 +223,7 @@ class A3A_HqDialog : A3A_DefaultDialog
             class ControlledCitiesText : A3A_Text
             {
               idc = A3A_IDC_CONTROLLEDCITIESTEXT;
-              text = "0/0";
+              text = "";
               tooltip = $STR_antistasi_dialogs_hq_controlled_cities;
               x = 36 * GRID_W;
               y = 6 * GRID_H;
@@ -245,7 +245,7 @@ class A3A_HqDialog : A3A_DefaultDialog
             class ControlledOutpostsText : A3A_Text
             {
               idc = A3A_IDC_CONTROLLEDOUTPOSTSTEXT;
-              text = "0/0";
+              text = "";
               tooltip = $STR_antistasi_dialogs_hq_controlled_outposts;
               x = 53 * GRID_W;
               y = 6 * GRID_H;
@@ -267,7 +267,7 @@ class A3A_HqDialog : A3A_DefaultDialog
             class ControlledAirBasesText : A3A_Text
             {
               idc = A3A_IDC_CONTROLLEDAIRBASESTEXT;
-              text = "0/0";
+              text = "";
               tooltip = $STR_antistasi_dialogs_hq_controlled_airbases;
               x = 70 * GRID_W;
               y = 6 * GRID_H;
@@ -291,7 +291,7 @@ class A3A_HqDialog : A3A_DefaultDialog
             class ControlledResourcesText : A3A_Text
             {
               idc = A3A_IDC_CONTROLLEDRESOURCESTEXT;
-              text = "0/0";
+              text = "";
               tooltip = $STR_antistasi_dialogs_hq_controlled_resources;
               x = 36 * GRID_W;
               y = 11 * GRID_H;
@@ -313,7 +313,7 @@ class A3A_HqDialog : A3A_DefaultDialog
             class ControlledFactoriesText : A3A_Text
             {
               idc = A3A_IDC_CONTROLLEDFACTORIESTEXT;
-              text = "0/0";
+              text = "";
               tooltip = $STR_antistasi_dialogs_hq_controlled_factories;
               x = 53 * GRID_W;
               y = 11 * GRID_H;
@@ -334,8 +334,8 @@ class A3A_HqDialog : A3A_DefaultDialog
 
             class ControlledPortsText : A3A_Text
             {
-              idc = A3A_IDC_CONTROLLEDPORTSTEXT;
-              text = "0/0";
+              idc = A3A_IDC_CONTROLLEDSEAPORTSTEXT;
+              text = "";
               tooltip = $STR_antistasi_dialogs_hq_controlled_seaports;
               x = 70 * GRID_W;
               y = 11 * GRID_H;

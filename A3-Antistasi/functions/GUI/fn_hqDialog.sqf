@@ -195,34 +195,45 @@ switch (_mode) do
     private _invadersAggroText = _display displayCtrl A3A_IDC_INVAGGROTEXT;
     _warLevelText ctrlSetText str tierWar;
     _occupantsFlag ctrlSetText NATOFlagTexture;
-    _occupantsAggroText ctrlSetText ([aggressionOccupants] call A3A_fnc_getAggroLevelString);
+    _occupantsAggroText ctrlSetText ([aggressionLevelOccupants] call A3A_fnc_getAggroLevelString);
     _aggressionStr = localize "STR_antistasi_dialogs_generic_aggression";
     _occupantsFlag ctrlSetToolTip (nameOccupants + " " + _aggressionStr);
     _occupantsAggroText ctrlSetTooltip (nameOccupants + " " + _aggressionStr);
     _invadersFlag ctrlSetText CSATFlagTexture;
-    _invadersAggroText ctrlSetText ([aggressionInvaders] call A3A_fnc_getAggroLevelString);
+    _invadersAggroText ctrlSetText ([aggressionLevelInvaders] call A3A_fnc_getAggroLevelString);
     _invadersFlag ctrlSetToolTip (nameInvaders + " " + _aggressionStr);
     _invadersAggroText ctrlSetTooltip (nameInvaders + " " + _aggressionStr);
 
-    // TODO UI-update: Get actual values here, placeholder totals from Altis
-    private _controlledCities = 5;
-    private _totalCities = 48;
-    private _controlledOutposts = 4;
-    private _totalOutposts = 44;
-    private _controlledAirbases = 3;
-    private _totalAirbases = 6;
-    private _controlledResources = 2;
-    private _totalResources = 8;
-    private _controlledFactories = 1;
-    private _totalFactories = 12;
-    private _controlledSeaPorts = 0;
-    private _totalPorts = 5;
+    // Get location data
+    private _controlledCities = {sidesX getVariable [_x, sideUnknown] == teamPlayer} count citiesX;
+    private _totalCities = count citiesX;
+    private _controlledOutposts = {sidesX getVariable [_x, sideUnknown] == teamPlayer} count outposts;
+    private _totalOutposts = count outposts;
+    private _controlledAirbases = {sidesX getVariable [_x, sideUnknown] == teamPlayer} count airportsX;
+    private _totalAirbases = count airportsX;
+    private _controlledResources = {sidesX getVariable [_x, sideUnknown] == teamPlayer} count resourcesX;
+    private _totalResources = count resourcesX;
+    private _controlledFactories = {sidesX getVariable [_x, sideUnknown] == teamPlayer} count factories;
+    private _totalFactories = count factories;
+    private _controlledSeaports = {sidesX getVariable [_x, sideUnknown] == teamPlayer} count seaports;
+    private _totalSeaports = count seaports;
 
-    private _totalPopulation = totalPopulation; // TODO UI-update: replace with something like A3A_fnc_resourceCheck
-    private _rebelPopulation = rebelPopulation;
-    private _deadPopulation = deadPopulation;
+    // Population calculations
+    private _totalPopulation = 0;
+    private _rebelPopulation = 0;
+    private _deadPopulation = 0;
+    {
+        private _city = _x;
+        private _cityData = server getVariable _city;
+        _cityData params ["_numCiv", "_numVeh", "_supportGov", "_supportReb"];
 
-    // TODO UI-update: Loop through map sites here (citiesX, airportsX, wtfAreOutpostsCalledAgain?, resourcesX, factories, seaports)
+        _totalPopulation = _totalPopulation + _numCiv;
+		_rebelPopulation = _rebelPopulation + (_numCiv * (_supportReb / 100));
+
+        if (_city in destroyedSites) then {
+            _deadPopulation = _deadPopulation + _numCiv;
+        };
+    } forEach citiesX;
 
     // If we aren't changing tooltips runtime we don't need to get the icons here
     /* _controlledCitiesIcon = _display displayCtrl A3A_IDC_CONTROLLEDCITIESICON;
@@ -237,14 +248,14 @@ switch (_mode) do
     _controlledAirbasesText = _display displayCtrl A3A_IDC_CONTROLLEDAIRBASESTEXT;
     _controlledResourcesText = _display displayCtrl A3A_IDC_CONTROLLEDRESOURCESTEXT;
     _controlledFactoriesText = _display displayCtrl A3A_IDC_CONTROLLEDFACTORIESTEXT;
-    _controlledSeaPortsText = _display displayCtrl A3A_IDC_CONTROLLEDSEAPORTSTEXT;
+    _controlledSeaportsText = _display displayCtrl A3A_IDC_CONTROLLEDSEAPORTSTEXT;
 
     _controlledCitiesText ctrlSetText format ["%1/%2", _controlledCities, _totalCities];
     _controlledOutpostsText ctrlSetText format ["%1/%2", _controlledOutposts, _totalOutposts];
     _controlledAirbasesText ctrlSetText format ["%1/%2", _controlledAirbases, _totalAirbases];
     _controlledResourcesText ctrlSetText format ["%1/%2", _controlledResources, _totalResources];
     _controlledFactoriesText ctrlSetText format ["%1/%2", _controlledFactories, _totalFactories];
-    _controlledSeaPortsText ctrlSetText format ["%1/%2", _controlledSeaPorts, _totalPorts];
+    _controlledSeaportsText ctrlSetText format ["%1/%2", _controlledSeaports, _totalSeaports];
 
 
     // Update population status bar
@@ -283,9 +294,7 @@ switch (_mode) do
     private _factionMoney = server getVariable ["resourcesFIA", 0];
     private _factionMoneyText = _display displayCtrl A3A_IDC_FACTIONMONEYTEXT;
     _factionMoneyText ctrlSetText format ["%1 €", _factionMoney];
-
-
-    // TODO UI-update: Update rest section with current ingame time
+    
   };
 
   case ("updateGarrisonTab"):
