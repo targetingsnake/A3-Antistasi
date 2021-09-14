@@ -34,24 +34,26 @@ Example:
 FIX_LINE_NUMBERS()
 params ["_RAData"];
 
-private _beenDisposedToken = _RAData get "hasBeenDisposedToken";
+private _hasBeenDisposedToken = _RAData get "hasBeenDisposedToken";
 
 _RAData set ["dispose",true];
 uiSleep __disposeTimeout;
-if (_beenDisposedToken #0) exitWith {};
+if (_hasBeenDisposedToken #0) exitWith {};
 
-_RAData spawn {
+// If idle code is not responding to dispose, then spawn a process to do it.
+// The reason a new process is spawned is so that a syntax error in the app's fnc_onDispose will not kill this process.
+_RAData spawn {isNil {
     private _RAData = _this;
     _RAData call (_RAData get "fnc_onDispose");
     (_RAData get "target") removeAction (_RAData get "actionID");
     localNamespace setVariable [_RAData get "RAIDName",nil];  // Frees hashmap. Note that key will persist in `allVariables localNamespace`, likely an Arma bug.
     (_RAData get "hasBeenDisposedToken") set [0,true];
-}
+};};
 uiSleep __disposeTimeout;
-if (_beenDisposedToken #0) exitWith {};
+if (_hasBeenDisposedToken #0) exitWith {};
 
-// Does not call app's dispose code as it probably caused a problem.
+// This time it does not call app's dispose code as it probably caused a problem.
 (_RAData get "target") removeAction (_RAData get "actionID");
 localNamespace setVariable [_RAData get "RAIDName",nil];
-_beenDisposedToken set [0,true];
+_hasBeenDisposedToken set [0,true];
 
