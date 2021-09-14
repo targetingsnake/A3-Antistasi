@@ -82,7 +82,7 @@ class A3A_HqDialog : A3A_DefaultDialog
         {
           idc = A3A_IDC_MOVEHQBUTTON;
           text = $STR_antistasi_dialogs_hq_move_hq_button;
-          onButtonClick = "[] call A3A_fnc_moveHQ; closeDialog 0";
+          onButtonClick = "[] spawn A3A_fnc_moveHQ; closeDialog 0";
           sizeEx = GUI_TEXT_SIZE_LARGE;
           x = 20 * GRID_W;
           y = 53 * GRID_H;
@@ -105,7 +105,7 @@ class A3A_HqDialog : A3A_DefaultDialog
           idc = -1;
           text = $STR_antistasi_dialogs_hq_clear_trees_button;
           sizeEx = GUI_TEXT_SIZE_LARGE;
-          onButtonClick = "hint ""Placeholder\nWill use A3A_fnc_clearForest when merged"""; // TODO UI-update: Replace placeholder when merging
+          onButtonClick = "[] spawn A3A_fnc_clearForest";
           x = 20 * GRID_W;
           y = 74 * GRID_H;
           w = 36 * GRID_W;
@@ -536,7 +536,7 @@ class A3A_HqDialog : A3A_DefaultDialog
             {
               idc = -1;
               text = $STR_antistasi_dialogs_hq_train_button;
-              onButtonClick = "hint ""Placeholder\nWill use A3A_fnc_FIAskillAdd when merged"""; // TODO UI-update: Replace placeholder when merging
+              onButtonClick = "[] call A3A_fnc_FIAskillAdd; [""updateMainTab""] call A3A_fnc_hqDialog"; // TODO UI-update: Update tooltip with price
               x = 60 * GRID_W;
               y = 7 * GRID_H;
               w = 22 * GRID_W;
@@ -667,6 +667,7 @@ class A3A_HqDialog : A3A_DefaultDialog
             {
               idc = -1;
               text = $STR_antistasi_dialogs_hq_clear_fog_button;
+              onButtonClick = "[10,[0,0,0]] remoteExec [""setFog"",2];";
               x = 60 * GRID_W;
               y = 7 * GRID_H;
               w = 22 * GRID_W;
@@ -676,8 +677,9 @@ class A3A_HqDialog : A3A_DefaultDialog
             class StopRainButton : A3A_Button
             {
               idc = -1;
-              onButtonClick = "[] call A3A_fnc_stopRain";
               text = $STR_antistasi_dialogs_hq_stop_rain_button;
+              // onButtonClick = "[] call A3A_fnc_stopRain";
+              onButtonClick = "[10,0] remoteExec [""setRain"",2]";
               x = 60 * GRID_W;
               y = 18 * GRID_H;
               w = 22 * GRID_W;

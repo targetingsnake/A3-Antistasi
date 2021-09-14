@@ -30,10 +30,10 @@ switch _typeX do
     };
     case "mission":
     {
-        // Open mission request dialog
-        petros addAction ["Mission Request", {createDialog "A3A_RequestMissionDialog";},nil,0,false,true,"","(isPlayer _this) and (_this == _this getVariable ['owner',objNull]) and ([_this] call A3A_fnc_isMember) and (petros == leader group petros)",4];
         // Open HQ Management dialog
-        petros addAction ["HQ Management", {createDialog "A3A_HqDialog"},nil,0,false,true,"","(_this == theBoss) and (petros == leader group petros)", 4];
+        petros addAction ["HQ Management", {createDialog "A3A_HqDialog"},nil,2,false,true,"","(_this == theBoss) and (petros == leader group petros)", 4];
+        // Open mission request dialog
+        petros addAction ["Mission Request", {createDialog "A3A_RequestMissionDialog";},nil,1,false,true,"","(isPlayer _this) and (_this == _this getVariable ['owner',objNull]) and ([_this] call A3A_fnc_isMember) and (petros == leader group petros)",4];
         petros addAction ["Move this asset", A3A_fnc_moveHQObject,nil,0,false,true,"","(_this == theBoss)"];
     };
     case "truckX":
@@ -128,10 +128,14 @@ switch _typeX do
     };
     case "fireX":
     {
-        fireX addAction ["Rest for 8 Hours", A3A_fnc_skiptime,nil,0,false,true,"","(_this == theBoss)",4];
-        fireX addAction ["Clear Nearby Forest", A3A_fnc_clearForest,nil,0,false,true,"","(_this == theBoss)",4];
-        fireX addAction ["I hate the fog", { [10,[0,0,0]] remoteExec ["setFog",2]; },nil,0,false,true,"","(_this == theBoss)",4];
-        fireX addAction ["Rain rain go away", { [10,0] remoteExec ["setRain",2]; },nil,0,false,true,"","(_this == theBoss)",4];
+        // Rest moved to HQ management menu
+        // fireX addAction ["Rest for 8 Hours", A3A_fnc_skiptime,nil,0,false,true,"","(_this == theBoss)",4];
+        // Clear forest moved to HQ management menu
+        // fireX addAction ["Clear Nearby Forest", A3A_fnc_clearForest,nil,0,false,true,"","(_this == theBoss)",4];
+        // Clear fog moved to HQ management menu
+        // fireX addAction ["I hate the fog", { [10,[0,0,0]] remoteExec ["setFog",2]; },nil,0,false,true,"","(_this == theBoss)",4];
+        // Stop rain moved to HQ management menu
+        // fireX addAction ["Rain rain go away", { [10,0] remoteExec ["setRain",2]; },nil,0,false,true,"","(_this == theBoss)",4];
         fireX addAction ["Move this asset", A3A_fnc_moveHQObject,nil,0,false,true,"","(_this == theBoss)",4];
     };
     case "SDKFlag":
