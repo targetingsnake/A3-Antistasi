@@ -295,6 +295,12 @@ switch (_mode) do
         private _factionMoneyText = _display displayCtrl A3A_IDC_FACTIONMONEYTEXT;
         _factionMoneyText ctrlSetText format ["%1 €", _factionMoney];
 
+        // Faction money slider update
+        private _factionMoneySlider = _display displayCtrl A3A_IDC_FACTIONMONEYSLIDER;
+        _factionMoneySlider sliderSetRange [0,_factionMoney];
+        _factionMoneySlider sliderSetSpeed [100, 100];
+        _factionMoneySlider sliderSetPosition 0;
+
     };
 
     case ("updateGarrisonTab"):
@@ -335,14 +341,14 @@ switch (_mode) do
         // private _type = _outpostData select 1; // TODO UI-update: Remove if not needed
         private _garrison = garrisons getVariable [_selectedMarker, []];
         _garrison params [
-        "_rifleman",
-        "_squadLeader",
-        "_autorifleman",
-        "_grenadier",
-        "_medic",
-        "_mortar",
-        "_marksman",
-        "_at"
+            "_rifleman",
+            "_squadLeader",
+            "_autorifleman",
+            "_grenadier",
+            "_medic",
+            "_mortar",
+            "_marksman",
+            "_at"
         ];
 
         // Get controls
