@@ -1,7 +1,12 @@
-_resourcesFIA = server getVariable "resourcesFIA";
-if (_resourcesFIA < 100) exitWith {["Money Grab", "FIA has not enough resources to grab"] call A3A_fnc_customHint;};
-server setvariable ["resourcesFIA",_resourcesFIA - 100, true];
-[-2,theBoss] call A3A_fnc_playerScoreAdd;
-[100] call A3A_fnc_resourcesPlayer;
+// TODO UI-update: add proper header
+params [["_moneyToTake", 0]];
 
-["Money Grab", format ["You grabbed 100 € from the %1 Money Pool.<br/><br/>This will affect your prestige and status among %1 forces",nameTeamPlayer]] call A3A_fnc_customHint;
+_resourcesFIA = server getVariable "resourcesFIA";
+if (_resourcesFIA < _moneyToTake) exitWith {["Money Grab", "FIA has not enough resources to grab"] call A3A_fnc_customHint;};
+server setvariable ["resourcesFIA",_resourcesFIA - _moneyToTake, true];
+
+// Round this up if floats as a score breaks stuff
+[- (_moneyTotake / 50),theBoss] call A3A_fnc_playerScoreAdd;
+[_moneyToTake] call A3A_fnc_resourcesPlayer;
+
+["Money Grab", format ["You grabbed %1 € from the %2 Money Pool.<br/><br/>This will affect your prestige and status among %2 forces", _moneyTotake ,nameTeamPlayer]] call A3A_fnc_customHint;

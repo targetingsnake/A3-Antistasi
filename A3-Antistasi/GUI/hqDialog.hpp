@@ -599,7 +599,7 @@ class A3A_HqDialog : A3A_DefaultDialog
             {
               idc = A3A_IDC_FACTIONMONEYBUTTON;
               text = $STR_antistasi_dialogs_hq_take_money_button;
-              onButtonClick = "hint ""Placeholder\nWill use A3A_fnc_theBossSteal when merged"""; // TODO UI-update: Replace placeholder when merging
+              onButtonClick = "[""factionMoneyButtonClicked""] call A3A_fnc_hqDialog"; // TODO UI-update: Replace placeholder when merging
               x = 60 * GRID_W;
               y = 19 * GRID_H;
               w = 22 * GRID_W;
