@@ -560,8 +560,8 @@
         <English>Static weapon is not deployed</English>
       </Key>
       <Key ID="STR_antistasi_dialogs_main_hc_no_groups">
-        <Original>&amp;lt;t align='center'&amp;gt;You have no high command groups.&amp;lt;/t&amp;gt;&amp;lt;br /&amp;gt;&amp;lt;t align='center'&amp;gt;You can recruit them at the flag.&amp;lt;/t&amp;gt;</Original>
-        <English>&amp;lt;t align='center'&amp;gt;You have no high command groups.&amp;lt;/t&amp;gt;&amp;lt;br /&amp;gt;&amp;lt;t align='center'&amp;gt;You can recruit them at the flag.&amp;lt;/t&amp;gt;</English>
+        <Original>&lt;t align='center'&gt;You have no high command groups.&lt;/t&gt;&lt;br /&gt;&lt;t align='center'&gt;You can recruit them at the flag.&lt;/t&gt;</Original>
+        <English>&lt;t align='center'&gt;You have no high command groups.&lt;/t&gt;&lt;br /&gt;&lt;t align='center'&gt;You can recruit them at the flag.&lt;/t&gt;</English>
       </Key>
       <Key ID="STR_antistasi_dialogs_main_hc_fire_mission_position_start_label">
         <Original>Start</Original>
