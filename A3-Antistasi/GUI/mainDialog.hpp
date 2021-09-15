@@ -601,7 +601,7 @@ class A3A_MainDialog : A3A_TabbedDialog
                             idc = -1;
                             textureNoShortcut = A3A_Icon_Remotecontrol;
                             tooltip = $STR_antistasi_dialogs_main_remote_control_tooltip;
-                            onButtonClick = "hint ""Totally controlling this dude now""";
+                            onButtonClick = "[""groupRemoteControlButtonClicked""] call A3A_fnc_commanderTab";
                             x = 48 * GRID_W;
                             y = 0 * GRID_H;
                             w = 6 * GRID_W;

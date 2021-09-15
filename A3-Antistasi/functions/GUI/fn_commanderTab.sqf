@@ -701,6 +701,15 @@ switch (_mode) do
         ["update"] call A3A_fnc_commanderTab;
     };
 
+    case ("groupRemoteControlButtonClicked"):
+    {
+        private _display = findDisplay A3A_IDD_MAINDIALOG;
+        private _commanderMap = _display displayCtrl A3A_IDC_COMMANDERMAP;
+        private _group = _commanderMap getVariable ["selectedGroup", grpNull];
+        closeDialog 1;
+        [_group] spawn A3A_fnc_controlHCsquad;
+    };
+
     case ("groupFastTravelButtonClicked"):
     {
         private _display = findDisplay A3A_IDD_MAINDIALOG;

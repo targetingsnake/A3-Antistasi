@@ -1,9 +1,11 @@
+params [["_groupX", grpNull]];
+
 if (player != theBoss) exitWith {["Control Squad", "Only Commander has the ability to control HC units"] call A3A_fnc_customHint;};
 if (!isNil "A3A_FFPun_Jailed" && {(getPlayerUID player) in A3A_FFPun_Jailed}) exitWith {["Control Squad", "Nope. Not happening."] call A3A_fnc_customHint;};
 
-_groups = _this select 0;
+// _groups = _this select 0;
+// _groupX = _groups select 0;
 
-_groupX = _groups select 0;
 _unit = leader _groupX;
 
 if !([_unit] call A3A_fnc_canFight) exitWith {["Control Squad", "You cannot control an unconscious or dead unit"] call A3A_fnc_customHint;};
@@ -64,4 +66,3 @@ player removeEventHandler ["HandleDamage",_eh1];
 (units group theBoss) joinsilent group theBoss;
 group theBoss selectLeader theBoss;
 ["Control Squad", ""] call A3A_fnc_customHint;
-
