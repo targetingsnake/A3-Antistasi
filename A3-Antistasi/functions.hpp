@@ -344,6 +344,8 @@ class A3A
         class donateTab {};
         class fastTravelTab {};
         class fireMissionEH {};
+        class getGroupInfo {};
+        class getGroupVehicle {};
         class getOutpostByMarkerName {};
         class getVehicleCrewCount {};
         class hqDialog {};
