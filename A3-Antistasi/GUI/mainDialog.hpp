@@ -745,6 +745,7 @@ class A3A_MainDialog : A3A_TabbedDialog
                         {
                             idc = -1;
                             text = $STR_antistasi_dialogs_main_hc_dismiss;
+                            onButtonClick = "[""groupDismissButtonClicked""] call A3A_fnc_commanderTab";
                             x = 28 * GRID_W;
                             y = 54 * GRID_H;
                             w = 24 * GRID_W;

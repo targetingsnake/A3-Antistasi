@@ -710,6 +710,19 @@ switch (_mode) do
         [_group] spawn A3A_fnc_controlHCsquad;
     };
 
+    case ("groupDismissButtonClicked"):
+    {
+        private _display = findDisplay A3A_IDD_MAINDIALOG;
+        private _commanderMap = _display displayCtrl A3A_IDC_COMMANDERMAP;
+        private _group = _commanderMap getVariable ["selectedGroup", grpNull];
+        _commanderMap setVariable ["selectedGroup", grpNull];
+        // dismissSquad expects an array of groups since it originally used hcSelected to get them
+        [[_group]] spawn A3A_fnc_dismissSquad;
+        // TODO UI-update: might need a slight delay here, tab gets updated before squad has been completely dismissed
+        // leaving it visible in the list even though it should be gone
+        ["update"] call A3A_fnc_commanderTab;
+    };
+
     case ("groupFastTravelButtonClicked"):
     {
         private _display = findDisplay A3A_IDD_MAINDIALOG;
