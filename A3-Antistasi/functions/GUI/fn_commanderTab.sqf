@@ -739,7 +739,7 @@ switch (_mode) do
         Trace_1("Fire Mission selection changed: %1", _selection);
 
         private _display = findDisplay A3A_IDD_MAINDIALOG;
-        _fireMissionControlsGroup = _display displayCtrl A3A_IDC_FIREMISSONCONTROLSGROUP;
+        private _fireMissionControlsGroup = _display displayCtrl A3A_IDC_FIREMISSONCONTROLSGROUP;
 
 
         switch (_selection) do
@@ -838,6 +838,43 @@ switch (_mode) do
 
         // Update fire mission view to show changes
         ["updateFireMissionView"] call A3A_fnc_commanderTab;
+    };
+
+    case ("fireMissionButtonClicked"):
+    {
+        private _display = findDisplay A3A_IDD_MAINDIALOG;
+        private _fireMissionControlsGroup = _display displayCtrl A3A_IDC_FIREMISSONCONTROLSGROUP;
+
+        // Get params for fire mission from controlsGroup
+        private _heSelected = _fireMissionControlsGroup getVariable ["heSelected", true];
+        private _pointSelected = _fireMissionControlsGroup getVariable ["pointSelected", true];
+        private _roundsNumber = _fireMissionControlsGroup getVariable ["roundsNumber", 0];
+        private _startPos = _fireMissionControlsGroup getVariable ["startPos", []];
+        private _endPos = _fireMissionControlsGroup getVariable ["endPos", []];
+
+        // Debug stuff
+        private _shell = if (_heSelected) then {"HE"} else {"Smoke"};
+        private _type = if (_pointSelected) then {"Point"} else {"Barrage"};
+
+        private _debugStr = format["FIRE MISSION- Shell: %1, Type: %2, Rounds: %3, StartPos: %4, EndPos: %5", _shell, _type, _roundsNumber, _startPos, _endPos];
+        Debug(_debugStr);
+
+        // Set the necessary global variables
+        if (_heSelected) then
+        {
+            typeAmmunition = SDKMortarHEMag;
+        } else {
+            typeAmmunition = SDKMortarSmokeMag;
+        };
+        if (_pointSelected) then
+        {
+            typeArty = "NORMAL";
+        } else {
+            typeArty = "BARRAGE";
+        };
+        roundsX = _roundsNumber;
+
+        
     };
 
     case ("showGarbageCleanOptions"):
