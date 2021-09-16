@@ -294,6 +294,7 @@ class A3A
 
     class EventHandler
     {
+        class addArtilleryDetectionEH {};
         class addArtilleryTrailEH {};
     };
 
@@ -587,6 +588,7 @@ class A3A
         class postmortem {};
         class reDress {};
         class reinfPlayer {};
+        class spawnHCGroup {};
         class stealStatic {};
         class vehiclePrice {};
         class vehStats {};
