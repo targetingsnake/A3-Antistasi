@@ -1142,7 +1142,7 @@ class mission_menu 		{
 		class HQ_button_AS: RscButton
 		{
 			idc = -1;
-			text = $STR_antistasi_dialogs_mission_menu_assasination_missions;
+			text = $STR_antistasi_dialogs_mission_menu_assassination_missions;
 			x = 0.272481 * safezoneW + safezoneX;
 			y = 0.317959 * safezoneH + safezoneY;
 			w = 0.175015 * safezoneW;
