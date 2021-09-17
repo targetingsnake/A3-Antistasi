@@ -2819,8 +2819,8 @@
         <Chinesesimp>可用任务</Chinesesimp>
         <Russian>Доступные миссии</Russian>
       </Key>
-      <Key ID="STR_antistasi_dialogs_mission_menu_assasination_missions">
-        <Original>Assasination Mission</Original>
+      <Key ID="STR_antistasi_dialogs_mission_menu_assassination_missions">
+        <Original>Assassination Mission</Original>
         <Chinesesimp>刺杀任务</Chinesesimp>
         <Russian>Миссия на убийство</Russian>
       </Key>
