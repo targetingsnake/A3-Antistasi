@@ -131,7 +131,7 @@ if (count _positionTel > 0) then
 			//_unit hideObject false;
 		} forEach units _groupX;
 		//if (!_esHC) then {sleep _distanceX};
-		if (!_esHC) then {disableUserInput false;cutText ["You arrived to destination.","BLACK IN",1]} else {["Fast Travel", format ["Group %1 arrived to destination.",groupID _groupX]] call A3A_fnc_customHint;};
+		if (!_esHC) then {disableUserInput false;cutText ["You arrived at the destination.","BLACK IN",1]} else {["Fast Travel", format ["Group %1 arrived to destination.",groupID _groupX]] call A3A_fnc_customHint;};
 		if (_forcedX) then {forcedSpawn = forcedSpawn - [_base]};
 		[] call A3A_fnc_playerLeashRefresh;
 		sleep 5;
@@ -139,7 +139,7 @@ if (count _positionTel > 0) then
 		}
 	else
 		{
-		["Fast Travel", "You must click near marker under your control."] call A3A_fnc_customHint;
+		["Fast Travel", "You must click near a marker under your control."] call A3A_fnc_customHint;
 		};
 	};
 openMap false;
