@@ -14,7 +14,7 @@ Dependencies:
 FIX_LINE_NUMBERS()
 //Map checker
 aridmaps = ["altis","kunduz","malden","tem_anizay","takistan","sara"];
-tropicalmaps = ["tanoa","cam_lao_nam"];
+tropicalmaps = ["tanoa","cam_lao_nam","vn_khe_sanh","khe_sanh"];
 temperatemaps = ["enoch","chernarus_summer","vt7","tembelan"];
 arcticmaps = ["chernarus_winter"];
 //Mod selector
