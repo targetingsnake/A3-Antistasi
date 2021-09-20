@@ -1,3 +1,8 @@
+// TODO UI-update: needs a bit of a cleanup:
+// Put strings in stringtable
+// Make vehicle selection use A3A_fnc_getHCsquadVehicleType
+// Make price calculation use A3A_fnc_getHCsquadPrice
+
 params ["_typeGroup", ["_withBackpck", ""]];
 
 if (player != theBoss) exitWith {["Recruit Squad", "Only the Commander has access to this function."] call A3A_fnc_customHint;};
@@ -115,7 +120,8 @@ if ((_costs + _vehCost) > server getVariable "resourcesFIA") exitWith {
     [_formatX, _idFormat, _special, objNull] spawn A3A_fnc_spawnHCGroup;
 };
 
-createDialog "veh_query";
+// TODO UI-update: clean up this mess
+/* createDialog "veh_query";
 sleep 1;
 disableSerialization;
 private _display = findDisplay 100;
@@ -127,8 +133,10 @@ if (str (_display) != "no display") then {
 	_ChildControl  ctrlSetTooltip "Barefoot Infantry";
 };
 
-waitUntil {(!dialog) or (!isNil "vehQuery")};
-if ((!dialog) and (isNil "vehQuery")) exitWith { [_formatX, _idFormat, _special, objNull] spawn A3A_fnc_spawnHCGroup }; //spawn group call here
+waitUntil {(!dialog) or (!isNil "vehQuery")}; */
+
+// if ((!dialog) and (isNil "vehQuery")) exitWith { [_formatX, _idFormat, _special, objNull] spawn A3A_fnc_spawnHCGroup }; //spawn group call here
+if (isNil "vehQuery") exitWith { [_formatX, _idFormat, _special, objNull] spawn A3A_fnc_spawnHCGroup }; //spawn group call here
 
 vehQuery = nil;
 [_vehType, "HCSquadVehicle", [_formatX, _idFormat, _special], _mounts] call _vehiclePlacementMethod;

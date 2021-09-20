@@ -34,6 +34,9 @@ switch (_mode) do
     {
         Debug("RecruitSquadDialog onLoad starting...");
 
+        // TODO UI-update: part of a temporary fix, to be removed
+        vehQuery = nil;
+
         // Separated because initial "onLoad" needs scheduled env while other updates needs unscheduled
         ["update"] call A3A_fnc_recruitSquadDialog;
 
@@ -206,7 +209,12 @@ switch (_mode) do
         private _button = (_params # 0) # 0;
         private _squadType = _button getVariable ["squadType", []];
         private _vehicle = _button getVariable ["vehicle", ""];
-        [_squadType, _vehicle] spawn A3A_fnc_addFIAsquadHC;
+        // TODO UI-update: Temporary fix so this just works, to be replaced with something more sensible
+        if (_vehicle isNotEqualTo "") then {vehQuery = true};
+        closeDialog 1;
+        // Previous format, to be changed back to this
+        // [_squadType, _vehicle] spawn A3A_fnc_addFIAsquadHC;
+        [_squadType] spawn A3A_fnc_addFIAsquadHC;
     };
 
     default {
