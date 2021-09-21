@@ -90,7 +90,7 @@ if (isNil "LogLevel") then {LogLevel = 4};
     while { count _LOG_remLine >= 1020 } do \
     { \
         private _LOG_cutPoint = _LOG_remLine find [" ", 980]; \
-        if (_LOG_cutPoint == -1) then { _LOG_cutPoint = _LOG_remLine find [",", 980] }; \
+        if (_LOG_cutPoint == -1 or _LOG_cutPoint > 1020) then { _LOG_cutPoint = _LOG_remLine find [",", 980] }; \
         if (_LOG_cutPoint == -1 or _LOG_cutPoint > 1020) then { _LOG_cutPoint = 1020 }; \
         _LOG_outputArray pushBack (_LOG_remLine select [0, _LOG_cutPoint+1]); \
         _LOG_remLine = _LOG_newLineIndicator + (_LOG_remLine select [_LOG_cutPoint+1]); \
