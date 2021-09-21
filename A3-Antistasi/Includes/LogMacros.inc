@@ -89,8 +89,8 @@ if (isNil "LogLevel") then {LogLevel = 4};
     private _LOG_outputArray = []; \
     private _LOG_tempCount = 0; \
     { \
+        _LOG_tempLine = _LOG_tempLine + (if (_LOG_tempCount == 0) then {""} else {" "}) + _x; \
         _LOG_tempCount = _LOG_tempCount + count _x; \
-        _LOG_tempLine = _LOG_tempLine + _x; \
         if (_LOG_tempCount > 980) then { /* Leave some room for exceading word limit and reduce cut off (limit 1023)*/\
             _LOG_tempCount = 0; \
             _LOG_outputArray pushBack ((_LOG_tempLine splitString ",") joinString (","+endl)); \
