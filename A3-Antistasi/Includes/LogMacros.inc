@@ -93,10 +93,10 @@ if (isNil "LogLevel") then {LogLevel = 4};
         _LOG_tempCount = _LOG_tempCount + count _x; \
         if (_LOG_tempCount > 980) then { /* Leave some room for exceading word limit and reduce cut off (limit 1023)*/\
             _LOG_tempCount = 0; \
-            _LOG_outputArray pushBack ((_LOG_tempLine splitString ",") joinString (","+endl)); \
+            _LOG_outputArray pushBack _LOG_tempLine; \
             _LOG_tempLine = _LOG_newLineIndicator; \
         }; \
-    } forEach (LOG_LINE splitString " "); \
+    } forEach (LOG_LINE splitString " ,"); \
     _LOG_outputArray pushBack _LOG_tempLine; \
     _LOG_outputArray \
 }
