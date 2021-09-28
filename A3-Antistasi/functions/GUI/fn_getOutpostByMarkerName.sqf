@@ -6,8 +6,8 @@ params ["_marker"];
 
 _outpost = [];
 {
-  if (_x  isEqualTo _marker) then {
-    _outpost = _x;
-  };
+    if (_x  isEqualTo _marker) then {
+        _outpost = _x;
+    };
 } forEach markersX;
 _outpost;

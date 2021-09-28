@@ -36,9 +36,10 @@ private _pulseSpeed = 0.5;
 private _data = _map getVariable ["selectMarkerData", []];
 
 // If only position is specified, initialize radius and pulse direction
-if (count _data == 1) then {
-  _data pushBack _minRadius;
-  _data pushBack 0;
+if (count _data == 1) then
+{
+    _data pushBack _minRadius;
+    _data pushBack 0;
 };
 
 // Exit if no/wrong data
@@ -46,26 +47,28 @@ if (count _data != 3) exitWith {nil};
 _data params ["_position", "_radius", "_dir"];
 
 // Update pulsing
-if (_dir == 0) then {
-  _radius = _radius - _pulseSpeed;
-  if (_radius < _minRadius) then {
-    _dir = 1; // Reverse direction
-  };
+if (_dir == 0) then
+{
+    _radius = _radius - _pulseSpeed;
+    if (_radius < _minRadius) then {
+        _dir = 1; // Reverse direction
+    };
 } else {
-  _radius = _radius + _pulseSpeed;
-  if (_radius > _maxRadius) then {
-    _dir = 0;
-  };
+    _radius = _radius + _pulseSpeed;
+    if (_radius > _maxRadius) then
+    {
+        _dir = 0;
+    };
 };
 _map setVariable ["selectMarkerData", [_position, _radius, _dir]];
 
 private _color = [A3A_COLOR_SELECT_MARKER] call A3A_fnc_configColorToArray;
 
 _map drawIcon [
-  A3A_Select_Marker,
-  _color,
-  _position,
-  _radius,
-  _radius,
-  0
+A3A_Select_Marker,
+_color,
+_position,
+_radius,
+_radius,
+0
 ];

@@ -27,64 +27,66 @@ params[["_mode",""], ["_params",[]]];
 
 switch (_mode) do
 {
-  case ("missionButtonClicked"):
-  {
-    // Params: 1 : Mission type (AS, DES etc...)
-    Trace("Request mission button clicked");
-
-    // TODO UI-update: Check for member / commander etc
-    // if (([player] call A3A_fnc_isMember) or (not(isPlayer theBoss))) then {};
-
-    if (count _params != 1) exitWith {Error("Invalid parameter count for missionButtonClicked. Got %1, expected 1", count _params)};
-    private _missionType = _params select 0;
-
-    // TODO UI-update: Replace with [""MISSIONTYPE"", clientOwner] remoteExec [""A3A_fnc_missionRequest"", 2]
-    switch (_missionType) do
+    case ("missionButtonClicked"):
     {
-      case ("AS"):
-      {
-        hint "Placeholder: Requesting Assasination mission";
-      };
+        // Params: 1 : Mission type (AS, DES etc...)
+        Trace("Request mission button clicked");
 
-      case ("CONVOY"):
-      {
-        hint "Placeholder: Requesting Convoy Ambush mission";
-      };
+        // TODO UI-update: Check for member / commander etc
+        // if (([player] call A3A_fnc_isMember) or (not(isPlayer theBoss))) then {};
 
-      case ("DES"):
-      {
-        hint "Placeholder: Requesting Destroy mission";
-      };
+        if (count _params != 1) exitWith {Error("Invalid parameter count for missionButtonClicked. Got %1, expected 1", count _params)};
+        private _missionType = _params select 0;
 
-      case ("CON"):
-      {
-        hint "Placeholder: Requesting Conquest mission";
-      };
+        // TODO UI-update: Replace with [""MISSIONTYPE"", clientOwner] remoteExec [""A3A_fnc_missionRequest"", 2]
+        switch (_missionType) do
+        {
+            case ("AS"):
+            {
+                hint "Placeholder: Requesting Assasination mission";
+            };
 
-      case ("LOG"):
-      {
-        hint "Placeholder: Requesting Logistics mission";
-      };
+            case ("CONVOY"):
+            {
+                hint "Placeholder: Requesting Convoy Ambush mission";
+            };
 
-      case ("SUPP"):
-      {
-        hint "Placeholder: Requesting Support mission";
-      };
+            case ("DES"):
+            {
+                hint "Placeholder: Requesting Destroy mission";
+            };
 
-      case ("RES"):
-      {
-        hint "Placeholder: Requesting Rescue mission";
-      };
+            case ("CON"):
+            {
+                hint "Placeholder: Requesting Conquest mission";
+            };
 
-      default {
-        Error_1("Mission type does not exist: %1", _type);
-      };
+            case ("LOG"):
+            {
+                hint "Placeholder: Requesting Logistics mission";
+            };
+
+            case ("SUPP"):
+            {
+                hint "Placeholder: Requesting Support mission";
+            };
+
+            case ("RES"):
+            {
+                hint "Placeholder: Requesting Rescue mission";
+            };
+
+            default
+            {
+                Error_1("Mission type does not exist: %1", _type);
+            };
+        };
+
     };
 
-  };
-
-  default {
-      // Log error if attempting to call a mode that doesn't exist
-      Error_1("Request Mission dialog mode does not exist: %1", _mode);
-  };
+    default
+    {
+        // Log error if attempting to call a mode that doesn't exist
+        Error_1("Request Mission dialog mode does not exist: %1", _mode);
+    };
 };

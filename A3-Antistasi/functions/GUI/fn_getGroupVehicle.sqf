@@ -26,26 +26,29 @@ FIX_LINE_NUMBERS()
 params [["_groupX",grpNull]];
 
 
-if !((typeName _groupX) isEqualTo "GROUP") exitWith {
-  Error_1("%1 is not a group", _groupX);
-  objNull;
+if !((typeName _groupX) isEqualTo "GROUP") exitWith
+{
+    Error_1("%1 is not a group", _groupX);
+    objNull;
 };
 
-if (isNull _groupX) exitWith {
-  Error("Group is null");
-  objNull;
+if (isNull _groupX) exitWith
+{
+    Error("Group is null");
+    objNull;
 };
 
 _vehicle = objNull;
 {
-  _owner = _x getVariable "owner";
-  if (!isNil "_owner") then {if (_owner == _groupX) exitWith {_vehicle = _x}};
+    _owner = _x getVariable "owner";
+    if (!isNil "_owner") then {if (_owner == _groupX) exitWith {_vehicle = _x}};
 } forEach vehicles;
 
-if (isNull _vehicle) then {
-  {
-    if ((vehicle _x != _x) and (_x == driver _x) and !(vehicle _x isKindOf "StaticWeapon")) exitWith {_vehicle = vehicle _x};
-  } forEach units _groupX;
+if (isNull _vehicle) then
+{
+    {
+        if ((vehicle _x != _x) and (_x == driver _x) and !(vehicle _x isKindOf "StaticWeapon")) exitWith {_vehicle = vehicle _x};
+    } forEach units _groupX;
 };
 
 _vehicle
