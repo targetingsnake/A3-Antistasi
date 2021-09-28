@@ -1,7 +1,6 @@
 /*
 Maintainer: DoomMetal
     Handles controls on the Request Mission dialog.
-    // TODO UI-update: This might not need to be this complicated unless we're changing the dialog to be dynamic
 
 Arguments:
     <STRING> Mode
@@ -17,7 +16,7 @@ Dependencies:
     None
 
 Example:
-    ["missionButtonClicked"] call A3A_fnc_requestMissionDialog;
+    ["missionButtonClicked", ["CON"]] call A3A_fnc_requestMissionDialog;
 */
 
 #include "..\..\Includes\common.inc"
@@ -32,55 +31,38 @@ switch (_mode) do
         // Params: 1 : Mission type (AS, DES etc...)
         Trace("Request mission button clicked");
 
-        // TODO UI-update: Check for member / commander etc
-        // if (([player] call A3A_fnc_isMember) or (not(isPlayer theBoss))) then {};
+        // Check for member / commander
+        if !(([player] call A3A_fnc_isMember) or (not(isPlayer theBoss))) exitWith
+        {
+            ["Mission Request", "Only Player Commander has access to this function."] call A3A_fnc_customHint; // TODO UI-update: Stringtable this
+            closeDialog 2;
+        };
 
+        // Check param count
         if (count _params != 1) exitWith {Error("Invalid parameter count for missionButtonClicked. Got %1, expected 1", count _params)};
         private _missionType = _params select 0;
 
-        // TODO UI-update: Replace with [""MISSIONTYPE"", clientOwner] remoteExec [""A3A_fnc_missionRequest"", 2]
-        switch (_missionType) do
+        // Check if mission type exists
+        private _missionTypes = [
+            "AS",
+            "CONVOY",
+            "DES",
+            "CON",
+            "LOG",
+            "SUPP",
+            "RES"
+        ];
+
+        if !(_missionType in _missionTypes) exitWith
         {
-            case ("AS"):
-            {
-                hint "Placeholder: Requesting Assasination mission";
-            };
-
-            case ("CONVOY"):
-            {
-                hint "Placeholder: Requesting Convoy Ambush mission";
-            };
-
-            case ("DES"):
-            {
-                hint "Placeholder: Requesting Destroy mission";
-            };
-
-            case ("CON"):
-            {
-                hint "Placeholder: Requesting Conquest mission";
-            };
-
-            case ("LOG"):
-            {
-                hint "Placeholder: Requesting Logistics mission";
-            };
-
-            case ("SUPP"):
-            {
-                hint "Placeholder: Requesting Support mission";
-            };
-
-            case ("RES"):
-            {
-                hint "Placeholder: Requesting Rescue mission";
-            };
-
-            default
-            {
-                Error_1("Mission type does not exist: %1", _type);
-            };
+            Error_1("Mission type does not exist: %1", _missionType);
+            closeDialog 2;
         };
+
+        // Request mission
+        [_missionType, clientOwner] remoteExec ["A3A_fnc_missionRequest", 2];
+
+        closeDialog 1;
 
     };
 

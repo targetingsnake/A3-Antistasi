@@ -25,7 +25,7 @@ class A3A_RequestMissionDialog : A3A_DefaultDialog
         class ConquestIcon : A3A_Picture
         {
           idc = -1;
-          colorBackground[] = {0,0,0,0};
+          colorBackground[] = A3A_COLOR_TRANSPARENT;
           text = A3A_Icon_Conquest;
           x = 15 * GRID_W;
           y = 14 * GRID_H;
@@ -49,7 +49,7 @@ class A3A_RequestMissionDialog : A3A_DefaultDialog
         class DestroyIcon : A3A_Picture
         {
           idc = -1;
-          colorBackground[] = {0,0,0,0};
+          colorBackground[] = A3A_COLOR_TRANSPARENT;
           text = A3A_Icon_Destroy;
           x = 53 * GRID_W;
           y = 14 * GRID_H;
@@ -96,7 +96,7 @@ class A3A_RequestMissionDialog : A3A_DefaultDialog
         class ConvoyIcon : A3A_Picture
         {
           idc = -1;
-          colorBackground[] = {0,0,0,0};
+          colorBackground[] = A3A_COLOR_TRANSPARENT;
           text = A3A_Icon_Convoy_Ambush;
           x = 129 * GRID_W;
           y = 14 * GRID_H;
@@ -120,7 +120,7 @@ class A3A_RequestMissionDialog : A3A_DefaultDialog
         class RescueIcon : A3A_Picture
         {
           idc = -1;
-          colorBackground[] = {0,0,0,0};
+          colorBackground[] = A3A_COLOR_TRANSPARENT;
           text = A3A_Icon_Rescue;
           x = 34 * GRID_W;
           y = 56 * GRID_H;
@@ -144,7 +144,7 @@ class A3A_RequestMissionDialog : A3A_DefaultDialog
         class LogisticsIcon : A3A_Picture
         {
           idc = -1;
-          colorBackground[] = {0,0,0,0};
+          colorBackground[] = A3A_COLOR_TRANSPARENT;
           text = A3A_Icon_Logistics;
           x = 72 * GRID_W;
           y = 56 * GRID_H;
@@ -168,7 +168,7 @@ class A3A_RequestMissionDialog : A3A_DefaultDialog
         class SupportIcon : A3A_Picture
         {
           idc = -1;
-          colorBackground[] = {0,0,0,0};
+          colorBackground[] = A3A_COLOR_TRANSPARENT;
           text = A3A_Icon_Support;
           x = 110 * GRID_W;
           y = 56 * GRID_H;
