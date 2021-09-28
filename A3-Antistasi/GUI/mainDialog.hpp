@@ -1213,7 +1213,7 @@ class A3A_MainDialog : A3A_TabbedDialog
                         {
                             idc = -1;
                             text = $STR_antistasi_dialogs_main_garbage_clean_all;
-                            onButtonClick = "hint ""Garbage cleaning entire map""; closeDialog 2;"; // TODO UI-update: Use actual Garbage Clean HQ function
+                            onButtonClick = "[""garbageCleanMapButtonClicked""] call A3A_fnc_commanderTab";
                             x = 0 * GRID_W;
                             y = 0 * GRID_H;
                             w = 24 * GRID_W;
@@ -1224,7 +1224,7 @@ class A3A_MainDialog : A3A_TabbedDialog
                         {
                             idc = -1;
                             text = $STR_antistasi_dialogs_main_garbage_clean_hq;
-                            onButtonClick = "hint ""Garbage cleaning HQ""; closeDialog 2;"; // TODO UI-update: Use actual Garbage Clean HQ function
+                            onButtonClick = "[""garbageCleanHqButtonClicked""] call A3A_fnc_commanderTab";
                             x = 26 * GRID_W;
                             y = 0 * GRID_H;
                             w = 24 * GRID_W;

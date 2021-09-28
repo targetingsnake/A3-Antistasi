@@ -874,7 +874,7 @@ switch (_mode) do
         };
         roundsX = _roundsNumber;
 
-        
+
     };
 
     case ("showGarbageCleanOptions"):
@@ -890,6 +890,23 @@ switch (_mode) do
         // Show garbage clean controlsGroup
         private _garbageCleanControlsGroup = _display displayCtrl A3A_IDC_GARBAGECLEANCONTROLSGROUP;
         _garbageCleanControlsGroup ctrlShow true;
+    };
+
+    case ("garbageCleanMapButtonClicked"):
+    {
+        closedialog 1;
+        if (player == theBoss) then
+        {
+            [] remoteExec ["A3A_fnc_garbageCleaner",2];
+        } else {
+            ["Garbage Cleaner", "Only Player Commander has access to this function."] call A3A_fnc_customHint; // TODO UI-update: stringtable this
+        };
+    };
+
+    case ("garbageCleanHqButtonClicked"):
+    {
+        closeDialog 2;
+        ["Garbage Cleaner", "HQ only garbage clean yet to be implemented."] call A3A_fnc_customHint;
     };
 
     default
