@@ -1,4 +1,4 @@
-_veh = cursortarget;
+_veh = _this select 0;
 
 if (isNull _veh) exitWith {["Airstrike", "You are not looking at a vehicle."] call A3A_fnc_customHint;};
 

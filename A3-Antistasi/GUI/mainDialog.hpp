@@ -475,7 +475,7 @@ class A3A_MainDialog : A3A_TabbedDialog
                         {
                             idc = A3A_IDC_ADDTOAIRSUPPORTBUTTON;
                             text = $STR_antistasi_dialogs_main_add_to_air_support;
-                            onButtonClick = "closeDialog 0;nul = [] call A3A_fnc_addBombRun";
+                            onButtonClick = "closeDialog 0;nul = [cursorObject] call A3A_fnc_addBombRun";
                             x = 56 * GRID_W;
                             y = 14 * GRID_H;
                             w = 22 * GRID_W;
@@ -2073,7 +2073,7 @@ class A3A_MainDialog : A3A_TabbedDialog
                 {
                     idc = A3A_IDC_AIRSUPPORTHEBUTTON;
                     text = $STR_antistasi_dialogs_main_air_support_he_bombs;
-                    onButtonClick = "hint ""Placeholder\nWill use A3A_fnc_NATObomb when merged"""; // TODO UI-update: Replace placeholder when merging
+                    onButtonClick = "closeDialog 0;[""HE""] spawn A3A_fnc_NATObomb;";
                     x = 16 * GRID_W;
                     y = 74 * GRID_H;
                     w = 32 * GRID_W;
@@ -2094,7 +2094,7 @@ class A3A_MainDialog : A3A_TabbedDialog
                 {
                     idc = A3A_IDC_AIRSUPPORTCARPETBUTTON;
                     text = $STR_antistasi_dialogs_main_air_support_carpet_bombing;
-                    onButtonClick = "hint ""Placeholder\nWill use A3A_fnc_NATObomb when merged"""; // TODO UI-update: Replace placeholder when merging
+                    onButtonClick = "closeDialog 0;[""CLUSTER""] spawn A3A_fnc_NATObomb;";
                     x = 64 * GRID_W;
                     y = 74 * GRID_H;
                     w = 32 * GRID_W;
@@ -2115,7 +2115,7 @@ class A3A_MainDialog : A3A_TabbedDialog
                 {
                     idc = A3A_IDC_AIRSUPPORTNAPALMBUTTON;
                     text = $STR_antistasi_dialogs_main_air_support_napalm;
-                    onButtonClick = "hint ""Placeholder\nWill use A3A_fnc_NATObomb when merged"""; // TODO UI-update: Replace placeholder when merging
+                    onButtonClick = "closeDialog 0;[""NAPALM""] spawn A3A_fnc_NATObomb;";
                     x = 112 * GRID_W;
                     y = 74 * GRID_H;
                     w = 32 * GRID_W;
