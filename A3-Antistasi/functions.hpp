@@ -584,6 +584,7 @@ class A3A
         class garrisonAdd {};
         class getHCsquadPrice {};
         class getHCSquadVehicleType {};
+        class mineDialog {};
         class NATObomb {};
         class NATOQuadbike {};
         class postmortem {};

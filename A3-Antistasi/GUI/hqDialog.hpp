@@ -1390,7 +1390,7 @@ class A3A_HqDialog : A3A_DefaultDialog
                     y = 16 * GRID_H;
                     w = 60 * GRID_W;
                     h = 6 * GRID_H;
-                }
+                };
 
                 class ApersMinefieldIcon : A3A_Picture
                 {
@@ -1406,7 +1406,7 @@ class A3A_HqDialog : A3A_DefaultDialog
                 {
                     idc = -1;
                     text = $STR_antistasi_dialogs_hq_minefields_apers_mines_button;
-                    onButtonClick = "hint ""Placeholder\nWill use A3A_fnc_buildMinefield when merged"""; // TODO UI-update: Replace placeholder when merging
+                    onButtonClick = "closeDialog 0;[""APERSMine""] spawn A3A_fnc_mineDialog";
                     sizeEx = GUI_TEXT_SIZE_LARGE;
                     x = 36 * GRID_W;
                     y = 54 * GRID_H;
@@ -1429,7 +1429,7 @@ class A3A_HqDialog : A3A_DefaultDialog
                 {
                     idc = -1;
                     text = $STR_antistasi_dialogs_hq_minefields_at_mines_button;
-                    onButtonClick = "hint ""Placeholder\nWill use A3A_fnc_buildMinefield when merged"""; // TODO UI-update: Replace placeholder when merging
+                    onButtonClick = "closeDialog 0; [""ATMine""] spawn A3A_fnc_mineDialog";
                     sizeEx = GUI_TEXT_SIZE_LARGE;
                     x = 84 * GRID_W;
                     y = 54 * GRID_H;
@@ -1441,7 +1441,7 @@ class A3A_HqDialog : A3A_DefaultDialog
                 {
                     idc = -1;
                     text = $STR_antistasi_dialogs_hq_minefields_remove_minefield_button;
-                    onButtonClick = "hint ""Placeholder\nWill use A3A_fnc_mineSweep when merged"""; // TODO UI-update: Replace placeholder when merging
+                    onButtonClick = "closeDialog 0; [""delete""] spawn A3A_fnc_mineDialog;";
                     sizeEx = GUI_TEXT_SIZE_LARGE;
                     x = 52 * GRID_W;
                     y = 80 * GRID_H;
