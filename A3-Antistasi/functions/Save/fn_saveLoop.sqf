@@ -87,7 +87,7 @@ _vehInGarage = _vehInGarage + vehInGarage;
 				_backpck = backpack _friendX;
 				if (_backpck != "") then {
                     private _assemblesTo = getText (configFile/"CfgVehicles"/_backpck/"assembleInfo"/"assembleTo");
-                    if (_backpck isNotEqualTo "") then {_resourcesBackground = _resourcesBackground + ([_assemblesTo] call A3A_fnc_vehiclePrice)};
+                    if (_backpck isNotEqualTo "") then {_resourcesBackground = _resourcesBackground + ([_assemblesTo] call A3A_fnc_vehiclePrice)/2};
 				};
 				if (vehicle _friendX != _friendX) then {
 					_veh = vehicle _friendX;
