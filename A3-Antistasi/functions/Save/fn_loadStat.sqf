@@ -145,13 +145,26 @@ if (_varName in _specialVarLoads) then {
     };
     if (_varName == 'garrison') then {
 
-        //correct case name look up
-        private _loadoutNames = createHashMapFromArray ((
-            keys FactionGetOrDefault(occ,"loadouts",createHashMap)
-            + keys FactionGetOrDefault(inv,"loadouts",createHashMap)
-            + keys FactionGetOrDefault(reb,"loadouts",createHashMap)
-            + keys FactionGetOrDefault(civ,"loadouts",createHashMap)
-        ) apply {[toLower _x, _x]} );
+				destroyedBuildings pushBack _building;
+			};
+		} forEach _varValue;
+	};
+	if (_varName == 'minesX') then {
+		for "_i" from 0 to (count _varvalue) - 1 do {
+			(_varvalue select _i) params ["_typeMine", "_posMine", "_detected", "_dirMine"];
+			private _mineX = createVehicle [_typeMine, _posMine, [], 0, "CAN_COLLIDE"];
+			if !(isNil "_dirMine") then { _mineX setDir _dirMine };
+			{_x revealMine _mineX} forEach _detected;
+		};
+	};
+	if (_varName == 'garrison') then {
+		{
+            private _loadoutNames = createHashMapFromArray ((
+                keys FactionGetOrDefault(occ,"loadouts",createHashMap)
+                + keys FactionGetOrDefault(inv,"loadouts",createHashMap)
+                + keys FactionGetOrDefault(reb,"loadouts",createHashMap)
+                + keys FactionGetOrDefault(civ,"loadouts",createHashMap)
+            ) apply {[toLower _x, _x]} );
 
         {
             private _garrison = [];
@@ -212,117 +225,107 @@ if (_varName in _specialVarLoads) then {
             antennasDead pushBack _antenna;
             _antenna removeAllEventHandlers "Killed";
 
-            private _ruin = [_antenna] call BIS_fnc_createRuin;
-
-            if !(isNull _ruin) then {
-                //JIP on the _ruin, as repairRuinedBuilding will delete the ruin.
-                [_antenna, true] remoteExec ["hideObject", 0, _ruin];
-            } else {
-                Error("Loading Antennas: Unable to create ruin for %1", typeOf _antenna);
-            };
-
-            deleteMarker _mrk;
-        };
-        publicVariable "antennas";
-        publicVariable "antennasDead";
-    };
-    if (_varname == 'prestigeOPFOR') then {
-        for "_i" from 0 to (count citiesX) - 1 do {
-            _city = citiesX select _i;
-            _dataX = server getVariable _city;
-            _numCiv = _dataX select 0;
-            _numVeh = _dataX select 1;
-            _prestigeOPFOR = _varvalue select _i;
-            _prestigeBLUFOR = _dataX select 3;
-            _dataX = [_numCiv,_numVeh,_prestigeOPFOR,_prestigeBLUFOR];
-            server setVariable [_city,_dataX,true];
-        };
-    };
-    if (_varname == 'prestigeBLUFOR') then {
-        for "_i" from 0 to (count citiesX) - 1 do {
-            _city = citiesX select _i;
-            _dataX = server getVariable _city;
-            _numCiv = _dataX select 0;
-            _numVeh = _dataX select 1;
-            _prestigeOPFOR = _dataX select 2;
-            _prestigeBLUFOR = _varvalue select _i;
-            _dataX = [_numCiv,_numVeh,_prestigeOPFOR,_prestigeBLUFOR];
-            server setVariable [_city,_dataX,true];
-        };
-    };
-    if (_varname == 'idlebases') then {
-        {
-            server setVariable [(_x select 0),(_x select 1),true];
-        } forEach _varValue;
-    };
-    if (_varname == 'idleassets') then {
-        {
-            timer setVariable [(_x select 0),(_x select 1),true];
-        } forEach _varValue;
-    };
-    if (_varname == 'killZones') then {
-        {
-            killZones setVariable [(_x select 0),(_x select 1),true];
-        } forEach _varValue;
-    };
-    if (_varName == 'posHQ') then {
-        _posHQ = if (count _varValue >3) then {_varValue select 0} else {_varValue};
-        {
-            if (getMarkerPos _x distance _posHQ < 1000) then {
-                sidesX setVariable [_x,teamPlayer,true];
-            };
-        } forEach controlsX;
-        respawnTeamPlayer setMarkerPos _posHQ;
-        posHQ = getMarkerPos respawnTeamPlayer;
-        petros setPos _posHQ;
-        "Synd_HQ" setMarkerPos _posHQ;
-        if (chopForest) then {
-            if (!isMultiplayer) then {{ _x hideObject true } foreach (nearestTerrainObjects [position petros,["tree","bush"],70])} else {{ _x hideObjectGlobal true } foreach (nearestTerrainObjects [position petros,["tree","bush"],70])};
-        };
-        if (count _varValue == 3) then {
-            [] spawn A3A_fnc_buildHQ;
-        } else {
-            fireX setPos (_varValue select 1);
-            boxX setDir ((_varValue select 2) select 0);
-            boxX setPos ((_varValue select 2) select 1);
-            mapX setDir ((_varValue select 3) select 0);
-            mapX setPos ((_varValue select 3) select 1);
-            flagX setPos (_varValue select 4);
-            vehicleBox setDir ((_varValue select 5) select 0);
-            vehicleBox setPos ((_varValue select 5) select 1);
-        };
-        {_x setPos _posHQ} forEach ((call A3A_fnc_playableUnits) select {side _x == teamPlayer});
-    };
-    if (_varname == 'staticsX') then {
-        for "_i" from 0 to (count _varvalue) - 1 do {
-            _typeVehX = _varvalue select _i select 0;
-            _posVeh = _varvalue select _i select 1;
-            _xVectorUp = _varvalue select _i select 2;
-            _xVectorDir = _varvalue select _i select 3;
-            private _veh = createVehicle [_typeVehX,[0,0,1000],[],0,"CAN_COLLIDE"];
-            // This is only here to handle old save states. Could be removed after a few version itterations. -Hazey
-            if ((_varvalue select _i select 2) isEqualType 0) then { // We have to check number because old save state might still be using getDir. -Hazey
-                _dirVeh = _varvalue select _i select 2;
-                _veh setDir _dirVeh;
-                _veh setVectorUp surfaceNormal (_posVeh);
-                _veh setPosATL _posVeh;
-            } else {
-                if (A3A_saveVersion >= 20401) then { _veh setPosWorld _posVeh } else { _veh setPosATL _posVeh };
-                _veh setVectorDirAndUp [_xVectorDir,_xVectorUp];
-            };
-            [_veh, teamPlayer] call A3A_fnc_AIVEHinit;
-            if ((_veh isKindOf "StaticWeapon") or (_veh isKindOf "Building")) then {
-                staticsToSave pushBack _veh;
-            }
-            else {
-                [_veh] spawn A3A_fnc_vehDespawner;
-            };
-        };
-        publicVariable "staticsToSave";
-    };
-    if (_varname == 'tasks') then {
-        {
-            if (_x == "rebelAttack") then {
+			deleteMarker _mrk;
+		};
+		publicVariable "antennas";
+		publicVariable "antennasDead";
+	};
+	if (_varname == 'prestigeOPFOR') then {
+		for "_i" from 0 to (count citiesX) - 1 do {
+			_city = citiesX select _i;
+			_dataX = server getVariable _city;
+			_numCiv = _dataX select 0;
+			_numVeh = _dataX select 1;
+			_prestigeOPFOR = _varvalue select _i;
+			_prestigeBLUFOR = _dataX select 3;
+			_dataX = [_numCiv,_numVeh,_prestigeOPFOR,_prestigeBLUFOR];
+			server setVariable [_city,_dataX,true];
+		};
+	};
+	if (_varname == 'prestigeBLUFOR') then {
+		for "_i" from 0 to (count citiesX) - 1 do {
+			_city = citiesX select _i;
+			_dataX = server getVariable _city;
+			_numCiv = _dataX select 0;
+			_numVeh = _dataX select 1;
+			_prestigeOPFOR = _dataX select 2;
+			_prestigeBLUFOR = _varvalue select _i;
+			_dataX = [_numCiv,_numVeh,_prestigeOPFOR,_prestigeBLUFOR];
+			server setVariable [_city,_dataX,true];
+		};
+	};
+	if (_varname == 'idlebases') then {
+		{
+			server setVariable [(_x select 0),(_x select 1),true];
+		} forEach _varValue;
+	};
+	if (_varname == 'idleassets') then {
+		{
+			timer setVariable [(_x select 0),(_x select 1),true];
+		} forEach _varValue;
+	};
+	if (_varname == 'killZones') then {
+		{
+			killZones setVariable [(_x select 0),(_x select 1),true];
+		} forEach _varValue;
+	};
+	if (_varName == 'posHQ') then {
+		_posHQ = if (count _varValue >3) then {_varValue select 0} else {_varValue};
+		{
+			if (getMarkerPos _x distance _posHQ < 1000) then {
+				sidesX setVariable [_x,teamPlayer,true];
+			};
+		} forEach controlsX;
+		respawnTeamPlayer setMarkerPos _posHQ;
+		posHQ = getMarkerPos respawnTeamPlayer;
+		petros setPos _posHQ;
+		"Synd_HQ" setMarkerPos _posHQ;
+		if (chopForest) then {
+			if (!isMultiplayer) then {{ _x hideObject true } foreach (nearestTerrainObjects [position petros,["tree","bush"],70])} else {{ _x hideObjectGlobal true } foreach (nearestTerrainObjects [position petros,["tree","bush"],70])};
+		};
+		if (count _varValue == 3) then {
+			[] spawn A3A_fnc_buildHQ;
+		} else {
+			fireX setPos (_varValue select 1);
+			boxX setDir ((_varValue select 2) select 0);
+			boxX setPos ((_varValue select 2) select 1);
+			mapX setDir ((_varValue select 3) select 0);
+			mapX setPos ((_varValue select 3) select 1);
+			flagX setPos (_varValue select 4);
+			vehicleBox setDir ((_varValue select 5) select 0);
+			vehicleBox setPos ((_varValue select 5) select 1);
+		};
+		{_x setPos _posHQ} forEach ((call A3A_fnc_playableUnits) select {side _x == teamPlayer});
+	};
+	if (_varname == 'staticsX') then {
+		for "_i" from 0 to (count _varvalue) - 1 do {
+            (_varValue#_i) params ["_typeVehX", "_posVeh", "_xVectorUp", "_xVectorDir", "_state"];
+			private _veh = createVehicle [_typeVehX,[0,0,1000],[],0,"CAN_COLLIDE"];
+			// This is only here to handle old save states. Could be removed after a few version itterations. -Hazey
+			if (_xVectorUp isEqualType 0) then { // We have to check number because old save state might still be using getDir. -Hazey
+				_veh setDir _xVectorUp; //is direction due to old save
+				_veh setVectorUp surfaceNormal (_posVeh);
+				_veh setPosATL _posVeh;
+			} else {
+				if (A3A_saveVersion >= 20401) then { _veh setPosWorld _posVeh } else { _veh setPosATL _posVeh };
+				_veh setVectorDirAndUp [_xVectorDir,_xVectorUp];
+			};
+			[_veh, teamPlayer] call A3A_fnc_AIVEHinit;
+			if ((_veh isKindOf "StaticWeapon") or (_veh isKindOf "Building")) then {
+				staticsToSave pushBack _veh;
+			}
+			else {
+                if (!isNil "_state") then {
+                    [_veh, _state] call HR_GRG_fnc_setState;
+                };
+				[_veh] spawn A3A_fnc_vehDespawner;
+			};
+		};
+		publicVariable "staticsToSave";
+	};
+	if (_varname == 'tasks') then {
+		{
+			if (_x == "rebelAttack") then {
                 if(attackCountdownInvaders > attackCountdownOccupants) then
                 {
                     [Invaders] spawn A3A_fnc_rebelAttack;

@@ -185,9 +185,7 @@ private _otherEquipmentArrayNames = [
 	"invaderBackpackDevice",
 	"occupantBackpackDevice",
 	"rebelBackpackDevice",
-	"civilianBackpackDevice",
-	"diveGear",
-	"flyGear"
+	"civilianBackpackDevice"
 ];
 
 DECLARE_SERVER_VAR(otherEquipmentArrayNames, _otherEquipmentArrayNames);
@@ -430,6 +428,7 @@ server setVariable [FactionGet(reb,"vehicleTruck"),300,true];
 {server setVariable [_x,700,true]} forEach [FactionGet(reb,"vehicleLightArmed"),FactionGet(reb,"vehicleAT")];
 {server setVariable [_x,400,true]} forEach [FactionGet(reb,"staticMG"),FactionGet(reb,"vehicleBoat"),FactionGet(reb,"vehicleRepair")];
 {server setVariable [_x,800,true]} forEach [FactionGet(reb,"staticMortar"),FactionGet(reb,"staticAT"),FactionGet(reb,"staticAA")];
+server setVariable [FactionGet(reb,"vehicleAA"), 1100, true]; // should be vehSDKTruck + staticAAteamPlayer otherwise things will break
 
 ///////////////////////
 //     GARRISONS    ///

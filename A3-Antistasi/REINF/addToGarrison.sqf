@@ -7,7 +7,7 @@ _thingX = _this select 0;
 
 onMapSingleClick "positionTel = _pos";
 
-["Garrison", "Select the zone on which sending the selected troops as garrison"] call A3A_fnc_customHint;
+["Garrison", "Select the zone on which sending the selected troops as garrison."] call A3A_fnc_customHint;
 
 waitUntil {sleep 0.5; (count positionTel > 0) or (not visiblemap)};
 onMapSingleClick "";
@@ -18,11 +18,11 @@ _positionTel = positionTel;
 
 _nearX = [markersX,_positionTel] call BIS_fnc_nearestPosition;
 
-if !(_positionTel inArea _nearX) exitWith {["Garrison", "You must click near a marked zone"] call A3A_fnc_customHint;};
+if !(_positionTel inArea _nearX) exitWith {["Garrison", "You must click near a marked zone."] call A3A_fnc_customHint;};
 
-if (not(sidesX getVariable [_nearX,sideUnknown] == teamPlayer)) exitWith {["Garrison", format ["That zone does not belong to %1",FactionGet(reb,"name")]] call A3A_fnc_customHint;};
+if (not(sidesX getVariable [_nearX,sideUnknown] == teamPlayer)) exitWith {["Garrison", format ["That zone does not belong to %1.",FactionGet(reb,"name")]] call A3A_fnc_customHint;};
 
-if ((_nearX in outpostsFIA) and !(isOnRoad getMarkerPos _nearX)) exitWith {["Garrison", "You cannot manage garrisons on this kind of zone"] call A3A_fnc_customHint;};
+if ((_nearX in outpostsFIA) and !(isOnRoad getMarkerPos _nearX)) exitWith {["Garrison", "You cannot manage garrisons on this kind of zone."] call A3A_fnc_customHint;};
 
 _thingX = _this select 0;
 
@@ -46,14 +46,14 @@ private _alreadyInGarrison = false;
 	private _garrisondIn = _x getVariable "markerX";
 	if !(isNil "_garrisondIn") then {_alreadyInGarrison = true};
 } forEach _unitsX;
-if _alreadyInGarrison exitWith {["Garrison", "The units selected already are in a garrison"] call A3A_fnc_customHint};
+if _alreadyInGarrison exitWith {["Garrison", "The units selected already are in a garrison."] call A3A_fnc_customHint};
 
-if ((groupID _groupX == "MineF") or (groupID _groupX == "Post") or (isPlayer(leader _groupX))) exitWith {["Garrison", "You cannot garrison player led, Watchpost, Roadblocks or Minefield building squads"] call A3A_fnc_customHint;};
+if ((groupID _groupX == "MineF") or (groupID _groupX == "Post") or (isPlayer(leader _groupX))) exitWith {["Garrison", "You cannot garrison player led, Watchpost, Roadblocks or Minefield building squads."] call A3A_fnc_customHint;};
 
 {
 	if (isPlayer _x or !alive _x) exitWith {_leave = true};
 } forEach _unitsX;
-if (_leave) exitWith {["Garrison", "Dead or player-controlled units cannot be added to any garrison"] call A3A_fnc_customHint;};
+if (_leave) exitWith {["Garrison", "Dead or player-controlled units cannot be added to any garrison."] call A3A_fnc_customHint;};
 
 {
 	private _unitType = _x getVariable "unitType";
@@ -62,7 +62,7 @@ if (_leave) exitWith {["Garrison", "Dead or player-controlled units cannot be ad
         or (_unitType in arrayCivs)
     ) exitWith {_leave = true}
 } forEach _unitsX;
-if (_leave) exitWith {["Garrison", "Static crewmen, prisoners, refugees, Petros or unknown units cannot be added to any garrison"] call A3A_fnc_customHint;};
+if (_leave) exitWith {["Garrison", "Static crewmen, prisoners, refugees, Petros or unknown units cannot be added to any garrison."] call A3A_fnc_customHint;};
 
 
 if (isNull _groupX) then
@@ -70,12 +70,12 @@ if (isNull _groupX) then
 	_groupX = createGroup teamPlayer;
 	_unitsX joinSilent _groupX;
 	//{arrayids = arrayids + [name _x]} forEach _unitsX;
-	["Garrison", "Adding units to garrison"] call A3A_fnc_customHint;
+	["Garrison", "Adding units to garrison."] call A3A_fnc_customHint;
 	if !(A3A_hasIFA) then {{arrayids pushBackUnique (name _x)} forEach _unitsX};
 	}
 else
 	{
-	["Garrison", format ["Adding %1 squad to garrison", groupID _groupX]] call A3A_fnc_customHint;
+	["Garrison", format ["Adding %1 squad to garrison.", groupID _groupX]] call A3A_fnc_customHint;
 	theBoss hcRemoveGroup _groupX;
 	};
 
@@ -171,5 +171,5 @@ else
 		};
 	} forEach _unitsX;
 	theBoss hcSetGroup [_groupX];
-	["Garrison", format ["Group %1 is back to HC control because the zone which was pointed to garrison has been lost",groupID _groupX]] call A3A_fnc_customHint;
+	["Garrison", format ["Group %1 is back to HC control because the zone which was pointed to garrison has been lost.",groupID _groupX]] call A3A_fnc_customHint;
 	};

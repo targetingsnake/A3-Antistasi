@@ -5,7 +5,7 @@ if (!isServer) exitWith {
     Error("Miscalled server-only function");
 };
 
-if (savingServer) exitWith {["Save Game", "Server data save is still in progress"] remoteExecCall ["A3A_fnc_customHint",theBoss]};
+if (savingServer) exitWith {["Save Game", "Server data save is still in progress..."] remoteExecCall ["A3A_fnc_customHint",theBoss]};
 savingServer = true;
 Info("Starting persistent save");
 ["Persistent Save","Starting persistent save..."] remoteExec ["A3A_fnc_customHint",0,false];
@@ -121,7 +121,8 @@ _arrayEst = [];
 			_posVeh = getPosWorld _veh;
 			_xVectorUp = vectorUp _veh;
 			_xVectorDir = vectorDir _veh;
-			_arrayEst pushBack [_typeVehX,_posVeh,_xVectorUp,_xVectorDir];
+            private _state = [_veh] call HR_GRG_fnc_getState;
+			_arrayEst pushBack [_typeVehX,_posVeh,_xVectorUp,_xVectorDir, _state];
 		};
 	};
 } forEach vehicles - [boxX,flagX,fireX,vehicleBox,mapX];
@@ -173,7 +174,10 @@ _wurzelGarrison = [];
 ["usesWurzelGarrison", true] call A3A_fnc_setStatVariable;
 
 _arrayMines = [];
+private _mineChance = 500 / (500 max count allMines);
 {
+	// randomly discard mines down to ~500 to avoid ballooning saves
+	if (random 1 > _mineChance) then { continue };
 	_typeMine = typeOf _x;
 	_posMine = getPos _x;
 	_dirMine = getDir _x;
@@ -187,7 +191,7 @@ _arrayMines = [];
 	if (_x mineDetectedBy Invaders) then {
 		_detected pushBack Invaders
 	};
-	_arrayMines = _arrayMines + [[_typeMine,_posMine,_detected,_dirMine]];
+	_arrayMines pushBack [_typeMine,_posMine,_detected,_dirMine];
 } forEach allMines;
 
 ["minesX", _arrayMines] call A3A_fnc_setStatVariable;
@@ -223,7 +227,7 @@ _dataX = [];
 _dataX = [];
 {
 	_dataX pushBack [_x,timer getVariable _x];
-} forEach (FactionGet(all,"vehiclesAttack") + FactionGet(all,"vehiclesPlanes") + FactionGet(all,"vehiclesHelisAttack"));
+} forEach (FactionGet(all,"vehiclesAttack") + FactionGet(all,"vehiclesArtillery") + FactionGet(reb,"vehiclesAA") + FactionGet(all,"vehiclesPlanes") + FactionGet(all,"vehiclesHelisAttack") + FactionGet(occ,"StaticAT") + FactionGet(occ,"StaticAA") + FactionGet(inv,"StaticAT") + FactionGet(inv,"StaticAA") + FactionGet(occ,"vehiclesGunBoats") + FactionGet(inv,"vehiclesGunBoats"));
 
 ["idleassets",_dataX] call A3A_fnc_setStatVariable;
 

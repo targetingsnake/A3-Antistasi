@@ -15,7 +15,7 @@ waitUntil {!dialog};
 if (!isNil "loadLastSave" && {!loadLastSave}) then {
 	_nul=createDialog "diff_menu";
 	waitUntil {dialog};
-	["Load Save", "Choose a difficulty level"] call A3A_fnc_customHint;
+	["Load Save", "Choose a difficulty level."] call A3A_fnc_customHint;
 	waitUntil {!dialog};
 
 	// Set default SP params before initParams runs, where different from MP
@@ -49,7 +49,7 @@ if (!isNil "loadLastSave" && {!loadLastSave}) then {
 
 	_nul= createDialog "gameMode_menu";
 	waitUntil {dialog};
-	["Load Save", "Choose a Game Mode"] call A3A_fnc_customHint;
+	["Load Save", "Choose a Game Mode."] call A3A_fnc_customHint;
 	waitUntil {!dialog};
 	if (isNil "gamemode") then {gamemode = 1};
 };

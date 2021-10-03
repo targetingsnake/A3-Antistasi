@@ -20,7 +20,7 @@ params ["_unit"];
 
 //check to make sure that the player is not spamming
 private _lastTimePurchase = _unit getVariable["LightCooldown",time];
-if (_lastTimePurchase > time) exitwith {["Light Purchase", format ["You already bought one, wait %1 seconds before you can buy another", ceil (_lastTimePurchase - time)]] call A3A_fnc_customHint;};
+if (_lastTimePurchase > time) exitwith {["Light Purchase", format ["You already bought one, wait %1 seconds before you can buy another.", ceil (_lastTimePurchase - time)]] call A3A_fnc_customHint;};
 
 //find out if we have money
 private _resourceFIA = player getVariable ["moneyX", 0];
