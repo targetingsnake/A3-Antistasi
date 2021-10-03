@@ -55,6 +55,7 @@ if ((groupID _groupX == "MineF") or (groupID _groupX == "Post") or (isPlayer(lea
 } forEach _unitsX;
 if (_leave) exitWith {["Garrison", "Dead or player-controlled units cannot be added to any garrison."] call A3A_fnc_customHint;};
 
+private _rebGroupData = FactionGet(reb,"groups");
 {
 	private _unitType = _x getVariable "unitType";
 	if (
