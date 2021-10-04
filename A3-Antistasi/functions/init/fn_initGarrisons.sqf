@@ -160,8 +160,8 @@ if (gameMode == 1) then
             _controlsCSAT = ["control_1", "control_2", "control_3", "control_4", "control_5", "control_6", "control_7", "control_8", "control_9", "control_10", "control_11", "control_12", "control_13", "control_14", "control_15", "control_16", "control_17", "control_18", "control_19", "control_20", "control_21", "control_22", "control_23", "control_24", "control_25", "control_26", "control_27", "control_28", "control_29"];
 		};
 		case "vn_khe_sanh": {
-			_mrkCSAT = ["airport_2", "airport_3"]; //needs to be filled
-            _controlsCSAT = []; //needs to be filled
+			_mrkCSAT = ["airport_2", "airport_3", "outpost_11", "outpost_12", "outpost_13", "outpost_14", "outpost_15", "outpost_16", "outpost_17", "outpost_18", "outpost_19", "outpost_20", "outpost_21", "resource_1", "resource_2", "resource_3", "resource_5", "resource_6", "resource_21", "seaport_4", "factory_5", "factory_6"]; //needs to be filled
+            _controlsCSAT = ["control_1", "control_2", "control_3", "control_4", "control_5", "control_6", "control_7", "control_8", "control_9", "control_10", "control_11", "control_12", "control_13", "control_14", "control_15", "control_16", "control_17", "control_18", "control_19", "control_20"]; //needs to be filled
 		}
 	};
     _controlsNATO = _controlsNATO - _controlsCSAT;

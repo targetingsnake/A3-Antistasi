@@ -136,7 +136,7 @@ switch (toLower worldName) do {
 		[["Khesanhvil",586,"NameCity"],["Paca",36,"NameVillage"],["Tanloan",22,"NameVillage"],["Axau",16,"NameVillage"],
 		["Xiso",308,"NameVillage"],["XiMi",200,"NameVillage"],["Xino",185,"NameVillage"],["PalienKhun",16,"NameVillage"],
 		["Koso",153,"NameVillage"],["KoNo",110,"NameVillage"],["KoWe",175,"NameVillage"],["BanNeme",72,"NameVillage"],["Avau",8,"NameVillage"],
-		["ToRout",108,"NameVillage"],["RoRo",32,"NameVillage"],["ABung",19,"NameVillage"],["Tavouac",401,"NameVillage"],
+		["ToRout",108,"NameVillage"],["RoRo",32,"NameVillage"],["Tavouac",401,"NameVillage"],
 		["Palo",236,"NameVillage"],["Thanh",28,"NameVillage"],["AHo",20,"NameVillage"],["XingEa",79,"NameVillage"],
 		["Xingwe",116,"NameVillage"],["ACoi",415,"NameVillage"],["Dan",212,"NameVillage"],["Bahy",18,"NameVillage"],
 		["HaiPhuc",17,"NameVillage"],["HaiTan",115,"NameVillage"],["Donque",20,"NameVillage"],["Hamy",12,"NameVillage"],
@@ -174,7 +174,7 @@ private ["_nameX", "_roads", "_numCiv", "_roadsProv", "_roadcon", "_dmrk", "_inf
  ""sangha"", ""hoxanx"", ""congtroi"", ""boave"", ""longhai"", ""honba"", ""kiemtra"", ""baibiendiep"", ""nuocbun"", ""cantho"",
  ""nhenden"", ""soctrang"", ""mekongdelta"", ""tampep"", ""segbegat"", ""che"", ""tandi"", ""lahot"", ""alieng"", ""thiengling"",
  ""phaonoi"", ""timho"", ""quyen"", ""caloi"", ""thuphac"", ""diemdang"", ""bandao"", ""mantau"",""dongxa"", ""tauphabang"", ""horgoat"",
- ""samsong"", ""muylai"", ""caymo"", ""docon"", ""paradiseisland"", ""mien"", ""giuaho"", ""daotrai""])"
+ ""samsong"", ""muylai"", ""caymo"", ""docon"", ""paradiseisland"", ""mien"", ""giuaho"", ""daotrai"", ""ABung""])"
 configClasses (configfile >> "CfgWorlds" >> worldName >> "Names") apply {
 
 	_nameX = configName _x;
