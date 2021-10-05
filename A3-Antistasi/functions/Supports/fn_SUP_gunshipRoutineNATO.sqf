@@ -53,7 +53,7 @@ _gunship addEventHandler
         {
             if(isNull _heavyTarget) exitWith {};
             _target = getPosASL _heavyTarget;
-            _target = (_target vectorAdd [0,0,30]) apply {_x + (random 15) - 7.5};
+            _target = (_target vectorAdd [0,0,40]) apply {_x + (random 15) - 7.5};
         };
         if(_weapon == "cannon_105mm_VTOL_01") then
         {
@@ -96,6 +96,7 @@ if !(_gunship getVariable ["InArea", false]) exitWith
 {
     Debug_1("%1 has been destroyed before reaching the area", _supportName);
     //Gunship destroyed before reaching the area
+    [_supportName, Occupants] call A3A_fnc_endSupport;
 };
 
 _gunship setVariable ["IsActive", true];
@@ -369,11 +370,11 @@ while {_lifeTime > 0} do
         {
             if(_x isKindOf "Man") then
             {
-                ((side group _x) in [teamPlayer, Occupants]) && {[_x] call A3A_fnc_canFight}
+                ((side group _x) in [teamPlayer, Invaders]) && {[_x] call A3A_fnc_canFight}
             }
             else
             {
-                (alive _x) && {(isNull driver _x) || {(side group driver _x) in [teamPlayer, Occupants]}}
+                (alive _x) && {(isNull driver _x) || {(side group driver _x) in [teamPlayer, Invaders]}}
             }
         };
         Debug_2("%1 found %2 targets in its area", _supportName, count _targets);
