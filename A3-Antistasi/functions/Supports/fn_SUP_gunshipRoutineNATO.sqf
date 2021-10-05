@@ -53,7 +53,7 @@ _gunship addEventHandler
         {
             if(isNull _heavyTarget) exitWith {};
             _target = getPosASL _heavyTarget;
-            _target = (_target vectorAdd [0,0,40]) apply {_x + (random 15) - 7.5};
+            _target = (_target vectorAdd [0,0,35]) apply {_x + (random 25) - 12.5};
         };
         if(_weapon == "cannon_105mm_VTOL_01") then
         {
@@ -62,6 +62,8 @@ _gunship addEventHandler
             _target = (_target vectorAdd [0,0,10]) apply {_x + (random 2) - 1};
             _gunship setWeaponReloadingTime [_gunner, _weapon, 0.3];
         };
+
+        if(count _target == 0) exitWith {};
 
         private _speed = (speed _projectile)/3.6;
         private _dir = vectorNormalized (_target vectorDiff (getPosASL _projectile));
@@ -74,7 +76,6 @@ private _targetList = server getVariable [format ["%1_targets", _supportName], [
 private _reveal = _targetList select 0 select 1;
 
 private _supportMarker = format ["%1_coverage", _supportName];
-private _supportPos = getMarkerPos _supportMarker;
 
 private _textMarker = createMarker [format ["%1_text", _supportName], _supportPos];
 _textMarker setMarkerShape "ICON";
@@ -115,7 +116,7 @@ private _heavyGunnerList = [];
 [_gunship, _mainGunnerList, _mainGunner, _supportName] spawn
 {
     #include "..\..\Includes\common.inc"
-FIX_LINE_NUMBERS()
+    FIX_LINE_NUMBERS()
     params ["_gunship", "_mainGunnerList", "_mainGunner", "_supportName"];
 
     private _fnc_executeFireOrder =
@@ -230,7 +231,7 @@ FIX_LINE_NUMBERS()
 [_gunship, _heavyGunnerList, _heavyGunner, _supportName] spawn
 {
     #include "..\..\Includes\common.inc"
-FIX_LINE_NUMBERS()
+    FIX_LINE_NUMBERS()
     params ["_gunship", "_mainGunnerList", "_heavyGunner", "_supportName"];
 
     private _fnc_executeFireOrder =
@@ -374,7 +375,7 @@ while {_lifeTime > 0} do
             }
             else
             {
-                (alive _x) && {(isNull driver _x) || {(side group driver _x) in [teamPlayer, Invaders]}}
+                (alive _x) && {(_x getVariable ["ownerSide", sideUnknown]) in [teamPlayer, Invaders] || {(side group driver _x) in [teamPlayer, Invaders]}}
             }
         };
         Debug_2("%1 found %2 targets in its area", _supportName, count _targets);
@@ -440,7 +441,7 @@ while {_lifeTime > 0} do
     //Retreating
     if(_gunship getVariable ["Retreat", false]) exitWith
     {
-        Info("%1 met heavy resistance, retreating", _supportName);
+        Info_1("%1 met heavy resistance, retreating", _supportName);
         _gunship setVariable ["currentTargetMainGunner", objNull];
         _gunship setVariable ["currentTargetHeavyGunner", objNull];
     };
@@ -456,6 +457,8 @@ while {_lifeTime > 0} do
     sleep 10;
     _lifeTime = _lifeTime - 10;
 };
+
+Debug_1("%1 support has ended, returns to base now", _supportName);
 
 _gunship setVariable ["IsActive", false];
 
