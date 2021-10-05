@@ -458,13 +458,12 @@ while {_lifeTime > 0} do
     _lifeTime = _lifeTime - 10;
 };
 
-Debug_1("%1 support has ended, returns to base now", _supportName);
-
 _gunship setVariable ["IsActive", false];
 
 //Have the plane fly back home
 if (alive _gunship) then
 {
+    Info_1("%1 support has ended, returns to base now", _supportName);
     private _wpBase = _strikeGroup addWaypoint [(getMarkerPos _airport) vectorAdd [0, 0, 1000], 0];
     _wpBase setWaypointType "MOVE";
     _wpBase setWaypointBehaviour "CARELESS";
