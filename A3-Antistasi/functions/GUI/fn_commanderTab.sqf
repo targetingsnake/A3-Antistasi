@@ -844,8 +844,10 @@ switch (_mode) do
     {
         private _display = findDisplay A3A_IDD_MAINDIALOG;
         private _fireMissionControlsGroup = _display displayCtrl A3A_IDC_FIREMISSONCONTROLSGROUP;
+        private _commanderMap = _display displayCtrl A3A_IDC_COMMANDERMAP;
 
         // Get params for fire mission from controlsGroup
+        private _group = _commanderMap getVariable ["selectedGroup", grpNull];
         private _heSelected = _fireMissionControlsGroup getVariable ["heSelected", true];
         private _pointSelected = _fireMissionControlsGroup getVariable ["pointSelected", true];
         private _roundsNumber = _fireMissionControlsGroup getVariable ["roundsNumber", 0];
@@ -856,10 +858,11 @@ switch (_mode) do
         private _shell = if (_heSelected) then {"HE"} else {"Smoke"};
         private _type = if (_pointSelected) then {"Point"} else {"Barrage"};
 
-        private _debugStr = format["FIRE MISSION- Shell: %1, Type: %2, Rounds: %3, StartPos: %4, EndPos: %5", _shell, _type, _roundsNumber, _startPos, _endPos];
-        Debug(_debugStr);
+        // private _debugStr = format["FIRE MISSION- Shell: %1, Type: %2, Rounds: %3, StartPos: %4, EndPos: %5", _shell, _type, _roundsNumber, _startPos, _endPos];
+        // Debug(_debugStr);
 
         // Set the necessary global variables
+        Debug_1("_heSelected: %1", _heSelected);
         if (_heSelected) then
         {
             typeAmmunition = SDKMortarHEMag;
@@ -874,7 +877,12 @@ switch (_mode) do
         };
         roundsX = _roundsNumber;
 
+        positionTel = _startPos;
+        if (typeArty == "BARRAGE") then {
+            positionTel2 = _endPos;
+        };
 
+        [[_group]] spawn A3A_fnc_artySupport;
     };
 
     case ("showGarbageCleanOptions"):

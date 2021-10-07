@@ -131,7 +131,7 @@ class A3A
         class airbomb {};
         class AIreactOnKill {};
         class artillery {};
-        // class artySupport {}; // TODO UI-update: to be replaced with in-ui things
+        class artySupport {};
         class askHelp {};
         class assaultBuilding {};
         class attackDrillAI {};
