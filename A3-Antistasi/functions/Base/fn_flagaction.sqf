@@ -86,7 +86,7 @@ switch _typeX do
             {
                 removeAllActions _flag;
                 if (player == player getVariable ["owner",player]) then {[] call SA_Add_Player_Tow_Actions};
-                call A3A_fnc_initLootToCrate;
+                if (lootToCrateEnabled) then {call A3A_fnc_initLootToCrate};
                 call A3A_fnc_dropObject;
             }
             else
@@ -135,7 +135,7 @@ switch _typeX do
         // Clear fog moved to HQ management menu
         // fireX addAction ["I hate the fog", { [10,[0,0,0]] remoteExec ["setFog",2]; },nil,0,false,true,"","(_this == theBoss)",4];
         // Stop rain moved to HQ management menu
-        // fireX addAction ["Rain rain go away", { [10,0] remoteExec ["setRain",2]; },nil,0,false,true,"","(_this == theBoss)",4];
+        // fireX addAction ["Rain rain go away", { [10,0] remoteExec ["setRain",2]; [60,0.25] remoteExec ["setOvercast",2] },nil,0,false,true,"","(_this == theBoss)",4];
         fireX addAction ["Move this asset", A3A_fnc_moveHQObject,nil,0,false,true,"","(_this == theBoss)",4];
     };
     case "SDKFlag":
