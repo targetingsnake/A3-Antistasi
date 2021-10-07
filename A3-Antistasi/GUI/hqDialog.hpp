@@ -715,7 +715,7 @@ class A3A_HqDialog : A3A_DefaultDialog
             // Set zoom levels
             scaleMin = 0.2; // 0.2 = Smallest scale showing the 100m grid
             scaleDefault = 0.325; // 0.325 = Largest scale forests still are visible
-            scaleMax = 2; // 2 = Max zoom level
+            scaleMax = 1; // 2 = Max zoom level
         };
 
         class GarrisonTab : A3A_DefaultControlsGroup

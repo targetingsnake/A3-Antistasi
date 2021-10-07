@@ -114,6 +114,17 @@ switch (_mode) do
 
 
         Debug("MainDialog onLoad complete.");
+
+        // TODO UI-update: temp. map control debug stuff, remove when done
+        _nul = [] spawn {
+            while {dialog} do {
+                _display = findDisplay 7000;
+                _commanderMap = _display displayCtrl 7201;
+                _mapScale = ctrlMapScale _commanderMap;
+                diag_log(format ["MAP SCALE: %1", _mapScale]);
+                sleep 1;
+            };
+        };
     };
 
     case ("onUnload"):
