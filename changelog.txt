@@ -50,11 +50,10 @@ Changes from version 2.5.2 to 2.5.3 Antistasi Community Edition
   - Fixed broken object carrying #2109
   - Fixed scaling and bugs plus added logging on economicsAI #2110
   - Fixed Petros having no ammunition by giving him a vest #2111
-  - Fixed QRFs and singleAttacks being limited by incorrent maxUnits check #2113
+  - Fixed QRFs and singleAttacks being limited by incorrect maxUnits check #2113
   - Fixed simulated attacks massively overfilling garrisons #2116
   - Added more explanations to parameters #2120
   - Fixed multiple issues regarding mortar type checking and locality #2125
-  - Fixed error in minefield saving #2127
   - Fixed typos and punctuations in customHints #2131
   - Fixed incorrect attack countdown incrementing #2135
   - Fixed imbalance between the difficulty settings #2136
@@ -64,6 +63,7 @@ Changes from version 2.5.2 to 2.5.3 Antistasi Community Edition
   - Fixed airborne troops being able to flip flags #2148
   - Fixed exploit where commander could become permanently undercover #2149
   - Fixed multiple bugs with squad/vehicle pricing #2151
+  - Fixed garage feedback displaying on wrong clients #2156
   - Added setOvercast functionality on rain-removal #2157
   - Fixed lamp drop action not being added after respawn #2157
   - Fixed not removing undercover status when placing ACE explosives #2158
