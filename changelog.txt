@@ -29,18 +29,6 @@ Changes from version 2.5.2 to 2.5.3 Antistasi Community Edition
   - Garaging now only is possible at locations with flipable flags #2107
   --> Airports, outposts, Seaports, Factories, Resources
   - Updated the VN templates based on the SOG Prairie Fire update 1.1 #2126
-  - Rework of punishment attacks #2119
-  --> Punishment attacks no longer sent against occupant-controlled towns.
-  --> Player scaling added to delay time and attacker vehicle count.
-  --> Improved vehicle choice and maxUnits control, ensure 2+ transports.
-  --> Defender ("civilian") count non-linearised, splits to groups of 4.
-  --> Removed civInit from defenders, so that they shoot and don't affect aggro.
-  --> Use combat landing in preference to fastrope, remove slow landing.
-  --> Simplified termination conditions.
-  --> Results only adjust support of nearby cities.
-  --> Destroyed cities are now coloured black on the map.
-  --> Destroyed cities are now invader-side, to prevent some weird spawning.
-  --> Destroyed cities no longer switch side, provide rebel HR or resources.
 
 ================ Groundwork ================
   - Implements logging of logs over the char limit and arrays #2081 - #2137
@@ -53,7 +41,7 @@ Changes from version 2.5.2 to 2.5.3 Antistasi Community Edition
 ================ Bugfixes ================
 
   - Fixed inability to garage vehicles when player host was inside a vehicle #2100
-  - Moved singleAttack and patrolReinf logging server #2102
+  - Moved singleAttack and patrolReinf logging to server #2102
   - Fixed fastrope spawning corpses underground after being hit whilst fastroping #2103
   - Fixed allowCrewInImmobile not being applied to convoy vehicles #2105
   - Fixed vehicle pools not being properly saved #2106
@@ -65,14 +53,13 @@ Changes from version 2.5.2 to 2.5.3 Antistasi Community Edition
   - Fixed QRFs and singleAttacks being limited by incorrent maxUnits check #2113
   - Fixed simulated attacks massively overfilling garrisons #2116
   - Added more explanations to parameters #2120
-  - Fixed multiple issues regarding mortat type checking and locality #2125
+  - Fixed multiple issues regarding mortar type checking and locality #2125
   - Fixed error in minefield saving #2127
   - Fixed typos and punctuations in customHints #2131
   - Fixed incorrect attack countdown incrementing #2135
-  - Fixed imbalance betweel the difficulty settings #2136
+  - Fixed imbalance between the difficulty settings #2136
   - Fixed bad exitWith in resourceCheck causing incorrect losses #2141
-  - Fixed singleAttack early-exit logging #2143
-  - Fixed degenerate hebaviour in rebelAttack #2144
+  - Fixed degenerate behaviour in rebelAttack #2144
   - Reduced capture response delay time #2147
   - Fixed airborne troops being able to flip flags #2148
   - Fixed exploit where commander could become permanently undercover #2149
