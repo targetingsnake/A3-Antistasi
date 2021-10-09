@@ -70,7 +70,7 @@ if ({(alive _x) and (_x distance _positionTel < 10)} count units _groupX > 0) th
 	_mrk setMarkerText _textX;
 	if (_isRoad) then
 		{
-		_garrison = [_groupData get "staticCrew", _groupData get "AT"];
+		_garrison = (_groupData get "staticCrew") + (_groupData get "AT");
 		garrison setVariable [_mrk,_garrison,true];
 		};
 	}
