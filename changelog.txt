@@ -11,7 +11,7 @@ Changes from version 2.5.2 to 2.5.3 Antistasi Community Edition
   --> Removed civInit from defenders, so that they shoot and don't affect aggro.
   --> Use combat landing in preference to fastrope, remove slow landing.
   --> Simplified termination conditions.
-  --> Results only adjust support of nearby cities.
+  --> Results now only adjust support of nearby cities.
   --> Destroyed cities are now coloured black on the map.
   --> Destroyed cities are now invader-side, to prevent some weird spawning.
   --> Destroyed cities no longer switch side, provide rebel HR or resources.
@@ -26,7 +26,7 @@ Changes from version 2.5.2 to 2.5.3 Antistasi Community Edition
   - Added player-count based balance for QRFs / singleAttack / wavedCA #2124
 
 ================ Minor ================
-  - Garaging now only is possible at locations with flipable flags #2107
+  - Garaging now only is possible at locations with flipable flags and at HQ #2107
   --> Airports, outposts, Seaports, Factories, Resources
   - Updated the VN templates based on the SOG Prairie Fire update 1.1 #2126
 
