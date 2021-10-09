@@ -2,6 +2,7 @@ if (!isServer and hasInterface) exitWith{};
 #include "..\..\Includes\common.inc"
 FIX_LINE_NUMBERS()
 private _groupData = FactionGet(reb,"groups");
+#define OccAndInv(VAR) (FactionGet(occ,VAR) + FactionGet(inv,VAR))
 private ["_markerX","_vehiclesX","_groups","_soldiers","_positionX","_staticsX","_garrison"];
 
 _markerX = _this select 0;
@@ -98,7 +99,7 @@ if ((_groupData get "staticCrew") in _garrison) then
 	private _index = _garrison findIf {_x isEqualTo (_groupData get "Mil")};
 	if (_index == -1) exitWith {};
 	private _unit = objNull;
-	if (typeOf _x in (OccAndInv("vehiclesArtillery") + OccAndInv("staticMortars") + FactionGet(reb, "staticMortars"))) then
+	if (typeOf _x in ( OccAndInv("vehiclesArtillery") + OccAndInv("staticMortars") + FactionGet(reb, "staticMortars") )) then
 	{
 		if (isNull _groupMortars) then { _groupMortars = createGroup teamPlayer };
 		_unit = [_groupMortars, (_garrison select _index), _positionX, [], 0, "NONE"] call A3A_fnc_createUnit;

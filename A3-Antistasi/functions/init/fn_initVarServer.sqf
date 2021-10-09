@@ -428,8 +428,9 @@ server setVariable [FactionGet(reb,"vehicleTruck"),300,true];
 {server setVariable [_x,700,true]} forEach [FactionGet(reb,"vehicleLightArmed"),FactionGet(reb,"vehicleAT")];
 {server setVariable [_x,400,true]} forEach [FactionGet(reb,"staticMG"),FactionGet(reb,"vehicleBoat"),FactionGet(reb,"vehicleRepair")];
 {server setVariable [_x,800,true]} forEach [FactionGet(reb,"staticMortar"),FactionGet(reb,"staticAT"),FactionGet(reb,"staticAA")];
-server setVariable [FactionGet(reb,"vehicleAA"), 1100, true]; // should be vehSDKTruck + staticAAteamPlayer otherwise things will break
-
+if (FactionGet(reb,"vehicleAA") isNotEqualTo "") then {
+    server setVariable [FactionGet(reb,"vehicleAA"), 1100, true]; // should be vehSDKTruck + staticAAteamPlayer otherwise things will break
+};
 ///////////////////////
 //     GARRISONS    ///
 ///////////////////////

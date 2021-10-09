@@ -143,20 +143,6 @@ if (_varName in _specialVarLoads) then {
             };
         };
     };
-    if (_varName == 'garrison') then {
-
-				destroyedBuildings pushBack _building;
-			};
-		} forEach _varValue;
-	};
-	if (_varName == 'minesX') then {
-		for "_i" from 0 to (count _varvalue) - 1 do {
-			(_varvalue select _i) params ["_typeMine", "_posMine", "_detected", "_dirMine"];
-			private _mineX = createVehicle [_typeMine, _posMine, [], 0, "CAN_COLLIDE"];
-			if !(isNil "_dirMine") then { _mineX setDir _dirMine };
-			{_x revealMine _mineX} forEach _detected;
-		};
-	};
 	if (_varName == 'garrison') then {
 		{
             private _loadoutNames = createHashMapFromArray ((
