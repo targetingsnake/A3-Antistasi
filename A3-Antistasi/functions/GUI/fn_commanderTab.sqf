@@ -450,9 +450,46 @@ switch (_mode) do
 
 
         // Update rounds count
-        // TODO UI-update: Actually get rounds count from squad
-        private _heRoundsCount = 40;
-        private _smokeRoundsCount = 24;
+        private _commanderMap = _display displayCtrl A3A_IDC_COMMANDERMAP;
+        private _group = _commanderMap getVariable ["selectedGroup", grpNull];
+        private _units = units _group;
+
+        SDKMortarHEMag;
+        SDKMortarSmokeMag;
+
+        private _heRoundsCount = 0;
+        private _smokeRoundsCount = 0;
+
+        private _checkedVehicles = [];
+
+        {
+            private _veh = vehicle _x;
+            if ((_veh != _x) and (not(_veh in _checkedVehicles))) then
+            {
+                if (( "Artillery" in (getArray (configfile >> "CfgVehicles" >> typeOf _veh >> "availableForSupportTypes")))) then
+                {
+                    if ((canFire _veh) and (alive _veh)) then
+                    {
+                        {
+                            if (_x # 0 == SDKMortarHEMag) then
+                            {
+                                _heRoundsCount = _heRoundsCount + _x # 1;
+                            };
+
+                            if (_x # 0 == SDKMortarSmokeMag) then
+                            {
+                                _smokeRoundsCount = _smokeRoundsCount + _x # 1;
+                            };
+                        } forEach magazinesAmmo _veh;
+
+                        _checkedVehicles pushBack _veh;
+                    };
+                };
+            };
+        } forEach _units;
+
+        // TODO UI-update: check if unit is ready to fire etc, or do we already do that?
+
         _fireMissionControlsGroup setVariable ["availableHeRounds", _heRoundsCount];
         _fireMissionControlsGroup setVariable ["availableSmokeRounds", _smokeRoundsCount];
 
