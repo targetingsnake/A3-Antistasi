@@ -128,7 +128,7 @@ if (_side == civilian) then
 	}];
 };
 
-if(_typeX in (OccAndInv("vehiclesArtillery") + OccAndInv("staticMortars") + FactionGet(reb, "staticMortars")) ) then
+if(_typeX in (OccAndInv("vehiclesArtillery") + FactionGet(all, "staticMortars")) ) then
 {
     [_veh] call A3A_fnc_addArtilleryTrailEH;
 	[_veh] remoteExec ["A3A_fnc_addArtilleryDetectionEH", 2];

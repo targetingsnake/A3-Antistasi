@@ -136,6 +136,10 @@ _groups set ["militia_Squad", _militiaSquads#0];
 
 //police
 _groups set ["police", [_groups get "police_Officer", _groups get "police_Grunt"]];
+_groups set ["police_Squad", [
+    _groups get "police_Officer", _groups get "police_Grunt", _groups get "police_Grunt", _groups get "police_Grunt"
+    , _groups get "police_Grunt", _groups get "police_Grunt", _groups get "police_Grunt", _groups get "police_Grunt"
+]];
 
 SaveGroupData
 };

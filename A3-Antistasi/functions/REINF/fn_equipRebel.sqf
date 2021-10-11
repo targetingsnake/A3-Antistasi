@@ -41,7 +41,7 @@ private _unitClass = _unit getVariable "unitType";
 private _groupData = FactionGet(reb,"groups");
 #define GROUP(VAR) (_groupData get VAR)
 switch (true) do {
-	case (_unitClass in GROUP("Sniper")): {
+	case (_unitClass isEqualTo GROUP("Sniper")): {
 		if (count unlockedSniperRifles > 0) then {
 			[_unit, selectRandom unlockedSniperRifles, 8] call _addWeaponAndMags;
 			if (count unlockedOptics > 0) then {
@@ -94,7 +94,7 @@ switch (true) do {
 			_unit addItemToBackpack _x;
 		} forEach _medItems;
 	};
-	case (_unitClass in GROUP("LAT")): {
+	case (_unitClass isEqualTo GROUP("LAT")): {
 		[_unit,unlockedRifles] call A3A_fnc_randomRifle;
 		if !(unlockedAT isEqualTo []) then {
 			[_unit, selectRandom unlockedAT, 4] call _addWeaponAndMags;
@@ -105,7 +105,7 @@ switch (true) do {
 		};
 	};
 	// squad leaders and
-	case (_unitClass in GROUP("SL")): {
+	case (_unitClass isEqualTo GROUP("SL")): {
 		[_unit,unlockedRifles] call A3A_fnc_randomRifle;
 		if (_recruitType == 1) then {_unit linkItem selectrandom (unlockedRadios)};
 	};

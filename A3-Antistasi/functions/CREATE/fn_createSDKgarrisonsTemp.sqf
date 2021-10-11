@@ -26,11 +26,11 @@ if (_typeX isEqualType "") then {
     if (_typeX isEqualTo (_groupData get "Mil")) then { [_markerX] remoteExec ["A3A_fnc_updateRebelStatics", 2] };
 
     if (_typeX == (_groupData get "staticCrew")) then {
-    private _veh = FactionGet(reb,"staticMortar") createVehicle _positionX;
-    _nul=[_veh] execVM "scripts\UPSMON\MON_artillery_add.sqf";//TODO need delete UPSMON link
-    _unit assignAsGunner _veh;
-    _unit moveInGunner _veh;
-    [_veh, teamPlayer] call A3A_fnc_AIVEHinit;
+        private _veh = FactionGet(reb,"staticMortar") createVehicle _positionX;
+        _nul=[_veh] execVM "scripts\UPSMON\MON_artillery_add.sqf";//TODO need delete UPSMON link
+        _unit assignAsGunner _veh;
+        _unit moveInGunner _veh;
+        [_veh, teamPlayer] call A3A_fnc_AIVEHinit;
     };
 
     if (_groups isEqualTo []) then {

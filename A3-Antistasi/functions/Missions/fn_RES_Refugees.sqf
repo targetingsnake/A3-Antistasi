@@ -136,10 +136,7 @@ else
 	else
 		{
 		_groupX = createGroup Occupants;
-		_groupX = [getPos _houseX,Occupants,[
-            _groupData get "police_Officer", _groupData get "police_Grunt", _groupData get "police_Grunt", _groupData get "police_Grunt"
-            , _groupData get "police_Grunt", _groupData get "police_Grunt", _groupData get "police_Grunt", _groupData get "police_Grunt"
-        ]] call A3A_fnc_spawnGroup;
+		_groupX = [getPos _houseX,Occupants,_groupData get "police_Squad"] call A3A_fnc_spawnGroup;
 		};
 	if (random 10 < 2.5) then
 		{

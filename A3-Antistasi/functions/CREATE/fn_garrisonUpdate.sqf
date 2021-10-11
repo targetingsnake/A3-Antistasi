@@ -26,7 +26,7 @@ _exit = false;
     if (isNil _x) exitWith {_exit = true}
 } forEach ["_typeX","_sideX","_markerX","_modeX"];
 if (_exit) exitWith {
-    Error_4("Failed to update Garrison with params:%1",_this);
+    Error_1("Failed to update Garrison with params:%1",_this);
 };
 
 waitUntil {!garrisonIsChanging};
