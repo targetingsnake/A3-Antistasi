@@ -336,7 +336,7 @@ switch (_mode) do
 
         // Get the data from the marker
         private _position = getMarkerPos _selectedMarker;
-        private _garrisonName = markerText _selectedMarker; // TODO: Only works for cities now, and only barely
+        private _garrisonName = [_selectedMarker] call A3A_fnc_getLocationMarkerName;
         private _garrison = garrison getVariable [_selectedMarker, []];
 
         // Get garrison counts

@@ -32,7 +32,7 @@ private _outpostIconData = [];
 {
     private _marker = _x;
     private _type = _marker call A3A_fnc_getLocationMarkerType;
-    private _name = markerText _marker;
+    private _name = [_marker] call A3A_fnc_getLocationMarkerName;
     private _pos = getMarkerPos _marker;
     private _side = sidesX getVariable [_marker,sideUnknown];
     private _color = [1,0.5,1,1];

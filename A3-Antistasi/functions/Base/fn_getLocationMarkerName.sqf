@@ -15,7 +15,6 @@ private _markerName = switch (_markerType) do {
     };
 
     case ("city"): {
-        // Do something smart to get the proper city name here
         private _location = nearestLocations [getMarkerPos _marker, ["NameCityCapital", "NameCity", "NameVillage", "CityCenter"], 100] # 0;
         text _location;
     };
@@ -39,6 +38,8 @@ private _markerName = switch (_markerType) do {
     case ("outpost"): {
         "Outpost";
     };
+
+    // TODO: case for roadblocks etc
 
     default {
         "UNSUPPORTED MARKER TYPE";
