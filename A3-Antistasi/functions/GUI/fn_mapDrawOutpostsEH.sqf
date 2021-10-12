@@ -33,6 +33,11 @@ private _fadeStart = 0.5; // Zoom level to start fading out
 private _fadeEnd = 0.75; // Zoom level where it's completely transparent
 private _alpha = ((1 - ((_mapScale - _fadeStart) / (_fadeEnd - _fadeStart))) max 0) min 1;
 
+// Calculate zoom level dependent marker size
+private _minMarkerSize = 16;
+private _maxMarkerSize = 32;
+private _markerSize = ((_maxMarkerSize + (_minMarkerSize - _maxMarkerSize) * ((_mapScale - _fadeStart) / (_fadeEnd - _fadeStart))) max _minMarkerSize) min _maxMarkerSize;
+
 // Get marker data
 private _outpostIconData = [];
 {
@@ -112,8 +117,8 @@ private _outpostIconData = [];
         _icon, // texture
         _color,
         _pos,
-        32, // width
-        32, // height
+        _markerSize, // width
+        _markerSize, // height
         0, // angle
         "", // text
         0 // shadow (outline if 2)
@@ -125,8 +130,8 @@ private _outpostIconData = [];
         "#(rgb,1,1,1)color(0,0,0,0)", // the icon itself is transparent
         _color, // colour
         _pos, // position
-        32, // width
-        32, // height
+        _markerSize, // width
+        _markerSize, // height
         0, // angle
         _name, // text
         2 // shadow (outline if 2)
