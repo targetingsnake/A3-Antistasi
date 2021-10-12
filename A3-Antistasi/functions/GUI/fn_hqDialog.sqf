@@ -336,20 +336,18 @@ switch (_mode) do
 
         // Get the data from the marker
         private _position = getMarkerPos _selectedMarker;
-        private _garrisonName = markerText _selectedMarker;
-        private _outpostData = [_selectedMarker] call A3A_fnc_getOutpostByMarkerName;
-        // private _type = _outpostData select 1; // TODO UI-update: Remove if not needed
-        private _garrison = garrisons getVariable [_selectedMarker, []];
-        _garrison params [
-            "_rifleman",
-            "_squadLeader",
-            "_autorifleman",
-            "_grenadier",
-            "_medic",
-            "_mortar",
-            "_marksman",
-            "_at"
-        ];
+        private _garrisonName = markerText _selectedMarker; // TODO: Only works for cities now, and only barely
+        private _garrison = garrison getVariable [_selectedMarker, []];
+
+        // Get garrison counts
+        private _rifleman = {_x in SDKMil} count _garrison;
+        private _squadLeader = {_x in SDKSL} count _garrison;
+        private _autorifleman = {_x in SDKMG} count _garrison;
+        private _grenadier = {_x in SDKGL} count _garrison;
+        private _medic = {_x in SDKMedic} count _garrison;
+        private _mortar = {_x in staticCrewTeamPlayer} count _garrison;
+        private _marksman = {_x in SDKSniper} count _garrison;
+        private _at = {_x in SDKATman} count _garrison;
 
         // Get controls
         private _garrisonTitle = _display displayCtrl A3A_IDC_GARRISONTITLE;
