@@ -27,6 +27,12 @@
 
 params ["_map"];
 
+// Calculate zoom level dependent transparency
+private _mapScale = ctrlMapScale _map;
+private _fadeStart = 0.5; // Zoom level to start fading out
+private _fadeEnd = 0.75; // Zoom level where it's completely transparent
+private _alpha = ((1 - ((_mapScale - _fadeStart) / (_fadeEnd - _fadeStart))) max 0) min 1;
+
 // Get marker data
 private _outpostIconData = [];
 {
@@ -58,6 +64,8 @@ private _outpostIconData = [];
             _color = ["Map", "Unknown"] call BIS_fnc_displayColorGet;
         };
     };
+
+    private _fadedColor = [_color # 0, _color # 1, _color # 2, _alpha];
 
     private _icon = switch (_type) do {
         case ("hq"): {
@@ -93,33 +101,34 @@ private _outpostIconData = [];
         };
     };
 
-    _outpostIconData pushBack [_name, _pos, _icon, _color];
+    _outpostIconData pushBack [_name, _pos, _type, _icon, _color, _fadedColor];
 } forEach airportsX + resourcesX + factories + outposts + seaports + citiesX + ["Synd_HQ"];
 // TODO UI-update: add user placed roadblocks/outposts to the above list
 
 {
     // Draw icon
-    _x params ["_name", "_pos", "_icon", "_color"];
+    _x params ["_name", "_pos", "_type", "_icon", "_color", "_fadedColor"];
     _map drawIcon [
-    _icon, // texture
-    _color,
-    _pos,
-    32, // width
-    32, // height
-    0, // angle
-    "", // text
-    0 // shadow (outline if 2)
+        _icon, // texture
+        _color,
+        _pos,
+        32, // width
+        32, // height
+        0, // angle
+        "", // text
+        0 // shadow (outline if 2)
     ];
 
     // Draw text
+    if !(_type isEqualTo "city") then {_color = _fadedColor};
     _map drawIcon [
-    "#(rgb,1,1,1)color(0,0,0,0)", // transparent
-    _color, // colour
-    _pos, // position
-    32, // width
-    32, // height
-    0, // angle
-    _name, // text
-    2 // shadow (outline if 2)
+        "#(rgb,1,1,1)color(0,0,0,0)", // the icon itself is transparent
+        _color, // colour
+        _pos, // position
+        32, // width
+        32, // height
+        0, // angle
+        _name, // text
+        2 // shadow (outline if 2)
     ];
 } forEach _outpostIconData;
