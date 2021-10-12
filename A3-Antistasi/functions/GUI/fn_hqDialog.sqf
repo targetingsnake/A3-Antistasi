@@ -582,65 +582,48 @@ switch (_mode) do
     case ("garrisonAdd"):
     {
         private _type = _params select 0;
-        private _num = _params select 1;
+        private _selectedMarker = _garrisonMap getVariable ["selectedMarker", ""];
 
-        private _text = "";
-        private _typeIndex = -1;
-        switch (_type) do
+        private _unitType = switch (_type) do
         {
             case ("rifleman"): {
-                _text = _display displayCtrl A3A_IDC_RIFLEMANNUMBER;
-                _typeIndex = 0;
+                SDKMil;
             };
             case ("squadleader"): {
-                _text = _display displayCtrl A3A_IDC_SQUADLEADERNUMBER;
-                _typeIndex = 1;
+                SDKSL;
             };
             case ("autorifleman"): {
-                _text = _display displayCtrl A3A_IDC_AUTORIFLEMANNUMBER;
-                _typeIndex = 2;
+                SDKMG;
             };
             case ("grenadier"): {
-                _text = _display displayCtrl A3A_IDC_GRENADIERNUMBER;
-                _typeIndex = 3;
+                SDKGL;
             };
             case ("medic"): {
-                _text = _display displayCtrl A3A_IDC_MEDICNUMBER;
-                _typeIndex = 4;
+                SDKMedic;
             };
             case ("mortar"): {
-                _text = _display displayCtrl A3A_IDC_MORTARNUMBER;
-                _typeIndex = 5;
+                staticCrewTeamPlayer;
             };
             case ("marksman"): {
-                _text = _display displayCtrl A3A_IDC_MARKSMANNUMBER;
-                _typeIndex = 6;
+                SDKSniper;
             };
             case ("at"): {
-                _text = _display displayCtrl A3A_IDC_ATNUMBER;
-                _typeIndex = 7;
+                SDKATman;
             };
         };
 
-        private _val = parseNumber (ctrlText _text);
-        private _newVal = _val + _num;
-        _newVal = 0 max _newVal;
+        [_unitType, _selectedMarker] spawn A3A_fnc_garrisonAdd;
 
-        // Update garrison in outpost array
-        private _selectedMarker = _garrisonMap getVariable "selectedMarker";
-        if (_typeIndex != -1) then {
-            {
-                if (_x isEqualTo _selectedMarker) then {
-                    private _garrison = garrisons getVariable [_selectedMarker, []];
-                    _garrison set [_typeIndex, _newVal];
-                    garrisons setVariable [_selectedMarker, _garrison];
-                };
-            } forEach markersX;
-        };
-
-        _text ctrlSetText str _newVal;
+        sleep 1; // TODO UI-update: bad hack to make it correctly update the UI with the new number
 
         ["updateGarrisonTab"] call A3A_fnc_hqDialog;
+    };
+
+    case ("garrisonRemove"):
+    {
+        private _type = _params select 0;
+        Debug_1("Removing %1 from garrison");
+        // TODO UI-update: implement this
     };
 
     case ("dismissGarrison"):

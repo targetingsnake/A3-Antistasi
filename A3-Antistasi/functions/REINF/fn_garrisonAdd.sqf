@@ -23,7 +23,7 @@ else
 
 if (_costs > _resourcesFIA) exitWith {["Garrisons", format ["You do not have enough money for this kind of unit (%1 € needed).",_costs]] call A3A_fnc_customHint;};
 
-_markerX = positionXGarr;
+_markerX = _this select 1;
 
 if ((_typeX == staticCrewTeamPlayer) and (_markerX in outpostsFIA)) exitWith {["Garrisons", "You cannot add mortars to a Roadblock garrison."] call A3A_fnc_customHint;};
 
@@ -45,7 +45,8 @@ waitUntil {(_countX < count (garrison getVariable [_markerX, []])) or (sidesX ge
 
 if (sidesX getVariable [_markerX,sideUnknown] == teamPlayer) then
 	{
-	["Garrisons", format ["Soldier recruited.%1",[_markerX] call A3A_fnc_garrisonInfo]] call A3A_fnc_customHint;
+    // TODO UI-update: remove this eventually
+	//["Garrisons", format ["Soldier recruited.%1",[_markerX] call A3A_fnc_garrisonInfo]] call A3A_fnc_customHint;
 
 	if (spawner getVariable _markerX != 2) then
 		{
