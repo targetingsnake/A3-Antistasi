@@ -349,7 +349,6 @@ class A3A
         class fireMissionEH {};
         class getGroupInfo {};
         class getGroupVehicle {};
-        class getOutpostByMarkerName {};
         class getVehicleCrewCount {};
         class hqDialog {};
         class mainDialog {};
