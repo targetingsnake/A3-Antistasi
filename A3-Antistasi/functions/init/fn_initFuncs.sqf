@@ -4,6 +4,7 @@ FIX_LINE_NUMBERS()
 Info("initFuncs started");
 
 [] call compile preprocessFileLineNumbers "scripts\Init_UPSMON.sqf";
+[] call compile preprocessFileLineNumbers "VcomAI\VcomInit.sqf";
 boxX call jn_fnc_arsenal_init;
 
 Info("initFuncs completed");
