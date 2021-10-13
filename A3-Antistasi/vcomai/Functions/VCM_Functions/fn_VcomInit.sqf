@@ -11,23 +11,23 @@ if (isServer) then
 {
 	if (isFilePatchingEnabled) then
 	{
-		
-		private _path = "\userconfig\VCOM_AI\AISettingsV3.4.1.hpp";
-		
+
+		private _path = "\userconfig\VCOM_AI\AISettingsV3.hpp";
+
 		if (fileExists _path) then
 		{
-			[] call compile preprocessFileLineNumbers "\userconfig\VCOM_AI\AISettingsV3.4.1.hpp";
-			[Vcm_Settings] remoteExec ["VCM_PublicScript",0,false];		
+			[] call compile preprocessFileLineNumbers "\userconfig\VCOM_AI\AISettingsV3.hpp";
+			[Vcm_Settings] remoteExec ["VCM_PublicScript",0,false];
 		}
 		else
 		{
-			[] call compile preprocessFileLineNumbers "Vcom\Functions\VCOMAI_DefaultSettings.sqf";
-			[Vcm_Settings] remoteExec ["VCM_PublicScript",0,false];			
+			[] call compile preprocessFileLineNumbers "vcomai\Functions\VCOMAI_DefaultSettings.sqf";
+			[Vcm_Settings] remoteExec ["VCM_PublicScript",0,false];
 		};
 	}
 	else
 	{
-			[] call compile preprocessFileLineNumbers "Vcom\Functions\VCOMAI_DefaultSettings.sqf";
+			[] call compile preprocessFileLineNumbers "vcomai\Functions\VCOMAI_DefaultSettings.sqf";
 			[Vcm_Settings] remoteExec ["VCM_PublicScript",0,false];
 	};
 };
@@ -50,8 +50,4 @@ Vcm_SM = compileFinal "(_this select 0) switchMove (_this select 1);";
 Vcm_PAN = compileFinal "(_this select 0) playActionNow (_this select 1);";
 VCOM_MINEARRAY = [];
 VCM_CoverQueue = [];
-
-
-
-
-
+diag_log "VcomInit finished.";

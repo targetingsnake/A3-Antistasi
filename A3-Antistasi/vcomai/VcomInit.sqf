@@ -8,11 +8,11 @@ if (isServer) then
 {
 	if (isFilePatchingEnabled) then
 	{
-		private _Filecheck = loadFile STRINGIFY(VCOM_PREFIX\userconfig\VCOM_AI\AISettingsV3.4.1.hpp);
+		private _Filecheck = loadFile STRINGIFY(VCOM_PREFIX\userconfig\VCOM_AI\AISettingsV3.hpp);
 
 		if !(_FileCheck isEqualTo "") then
 		{
-			[] call compile preprocessFileLineNumbers STRINGIFY(VCOM_PREFIX\userconfig\VCOM_AI\AISettingsV3.4.1.hpp);
+			[] call compile preprocessFileLineNumbers STRINGIFY(VCOM_PREFIX\userconfig\VCOM_AI\AISettingsV3.hpp);
 			[Vcm_Settings] remoteExec ["VCM_PublicScript",0,false];
 		}
 		else
@@ -89,3 +89,5 @@ VCOM_MINEARRAY = [];
 		sleep 10;
 	};
 };
+
+diag_log "VcomInit finished.";
