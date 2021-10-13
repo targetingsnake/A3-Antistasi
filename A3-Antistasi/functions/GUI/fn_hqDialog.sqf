@@ -432,15 +432,15 @@ switch (_mode) do
         if (_marksman < 1) then {_marksmanSubButton ctrlEnable false};
         if (_at < 1) then {_atSubButton ctrlEnable false};
 
-        // TODO UI-update: Placeholder prices, replace with server getVariable ["SDKx"] on merge
-        _riflemanPrice = 50;
-        _squadLeaderPrice = 150;
-        _autoriflemanPrice = 75;
-        _grenadierPrice = 75;
-        _medicPrice = 100;
-        _mortarPrice = 650;
-        _marksmanPrice = 100;
-        _atPrice = 100;
+        // Get prices
+        _riflemanPrice = server getVariable (SDKMil # 0);
+        _squadLeaderPrice = server getVariable (SDKSL # 0);
+        _autoriflemanPrice = server getVariable (SDKMG # 0);
+        _grenadierPrice = server getVariable (SDKGL # 0);
+        _medicPrice = server getVariable (SDKMedic # 0);
+        _mortarPrice = (server getVariable staticCrewTeamPlayer) + ([SDKMortar] call A3A_fnc_vehiclePrice);
+        _marksmanPrice = server getVariable (SDKSniper # 0);
+        _atPrice = server getVariable (SDKATman # 0);
 
         // Update price labels
         _riflemanPriceText = _display displayCtrl A3A_IDC_RIFLEMANPRICE;
