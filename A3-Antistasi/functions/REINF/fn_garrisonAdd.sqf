@@ -25,6 +25,11 @@ if (_costs > _resourcesFIA) exitWith {["Garrisons", format ["You do not have eno
 
 _markerX = _this select 1;
 
+if (not(sidesX getVariable [_markerX,sideUnknown] == teamPlayer)) exitWith
+{
+    ["Garrisons", format ["That zone does not belong to %1.",nameTeamPlayer]] call A3A_fnc_customHint;
+};
+
 if ((_typeX == staticCrewTeamPlayer) and (_markerX in outpostsFIA)) exitWith {["Garrisons", "You cannot add mortars to a Roadblock garrison."] call A3A_fnc_customHint;};
 
 _positionX = getMarkerPos _markerX;
