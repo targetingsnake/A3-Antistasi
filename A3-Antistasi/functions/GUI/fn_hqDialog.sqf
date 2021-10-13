@@ -630,7 +630,10 @@ switch (_mode) do
     {
         // TODO UI-update: on merge replace this with actual antistasi function
         Trace("Dismissing garrison");
+
         private _selectedMarker = _garrisonMap getVariable ["selectedMarker", ""];
+        [_selectedMarker] spawn A3A_fnc_dismissGarrison;
+        /* private _selectedMarker = _garrisonMap getVariable ["selectedMarker", ""];
         if (_selectedMarker isEqualTo "") exitWith {Error("Dismiss garrison: No marker selected")};
 
         // Set all garrison values to 0
@@ -638,7 +641,9 @@ switch (_mode) do
             if (_x == _selectedMarker) then {
                 garrisons setVariable [_x, [0,0,0,0,0,0,0,0]];
             };
-        } forEach markersX;
+        } forEach markersX; */
+
+        sleep 1; // Same stupd hack as before, need to fix this
 
         ["updateGarrisonTab"] call A3A_fnc_hqDialog;
     };

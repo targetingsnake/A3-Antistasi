@@ -578,6 +578,7 @@ class A3A
         // class build {}; // Moved to functions/Build
         class buildCreateVehicleCallback {};
         class buildMinefield {};
+        class dismissGarrison {};
         class enemyNearCheck {};
         class equipRebel {};
         class FIAinit {};

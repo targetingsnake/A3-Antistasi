@@ -1340,7 +1340,7 @@ class A3A_HqDialog : A3A_DefaultDialog
                 {
                     idc = A3A_IDC_DISMISSGARRISONBUTTON;
                     text = $STR_antistasi_dialogs_hq_garrisons_dismiss_garrison_button;
-                    onButtonClick = "[""dismissGarrison""] call A3A_fnc_hqDialog";
+                    onButtonClick = "[""dismissGarrison""] spawn A3A_fnc_hqDialog";
                     x = 38 * GRID_W;
                     y = 60 * GRID_H;
                     w = 22 * GRID_W;
