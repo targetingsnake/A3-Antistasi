@@ -72,30 +72,6 @@ if (_side in [Occupants, Invaders]) then {
     _faction set ["vehiclesAttack", (_faction get "vehiclesAPCs") + (_faction get "vehiclesTanks")];
     _faction set ["vehiclesBoats", (_faction get "vehiclesGunBoats") + (_faction get "vehiclesTransportBoats")];
     _faction set ["vehiclesTransportHelis", (_faction get "vehiclesHelisLight") + (_faction get "vehiclesHelisTransport")];
-    _faction set ["vehiclesNormal",
-        (_faction get "vehiclesLight")
-        + (_faction get "vehiclesTrucks")
-        + (_faction get "vehiclesAmmoTrucks")
-        + (_faction get "vehiclesRepairTrucks")
-        + (_faction get "vehiclesFuelTrucks")
-        + (_faction get "vehiclesMedical")
-    ];
-    _faction set ["vehiclesAir",
-        (_faction get "vehiclesHelisLight")
-        + (_faction get "vehiclesHelisTransport")
-        + (_faction get "vehiclesPlanesCAS")
-        + (_faction get "vehiclesPlanesAA")
-        + (_faction get "vehiclesPlanesTransport")
-    ];
-};
-
-if (_side isEqualTo civilian) then {
-    civVehCommonData = _faction get "vehiclesCivCar";
-    civVehRepairData = _faction get "vehiclesCivRepair";
-    civVehMedicalData = _faction get "vehiclesCivMedical";
-    civVehRefuelData = _faction get "vehiclesCivFuel";
-    civBoatData = _faction get "vehiclesCivBoat";
-    civVehIndustrialData = _faction get "vehiclesCivIndustrial";
 };
 
 _faction;

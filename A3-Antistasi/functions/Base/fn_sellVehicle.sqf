@@ -61,7 +61,13 @@ private _costs = call {
         or (_typeX in [FactionGet(reb,"vehicleCivBoat"),FactionGet(reb,"vehicleCivCar"),FactionGet(reb,"vehicleCivTruck")])
     ) exitWith {25};
     if (
-        (_typeX in FactionGet(all,"vehiclesNormal"))
+        _typeX in (OccAndInv("vehiclesLight")
+            + OccAndInv("vehiclesTrucks")
+            + OccAndInv("vehiclesAmmoTrucks")
+            + OccAndInv("vehiclesRepairTrucks")
+            + OccAndInv("vehiclesFuelTrucks")
+            + OccAndInv("vehiclesMedical")
+        )
         or (_typeX in FactionGet(all,"vehiclesBoats"))
         or (_typeX in FactionGet(all,"vehiclesAmmoTrucks"))
     ) exitWith {100};

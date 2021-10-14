@@ -361,8 +361,8 @@ if (A3A_hasACE) then
 	} forEach (
         _playerUnits
         + (_groupData get "squadEng") // SL, GL, militia, mg, exp, lat, eng, medic
-        + (_groupData get "sniper")
-        + [_groupData get "unarmed", _groupData get "staticCrew", _groupData get "Petros"]
+        + (_groupData get "Sniper")
+        + [_groupData get "Unarmed", _groupData get "staticCrew", _groupData get "Petros"]
     );
 };
 

@@ -41,13 +41,13 @@ if (_prefix in ["occ", "inv"]) exitWith {
 //singular units
 _groups set ["grunt", unit(military, "Rifleman")];
 _groups set ["bodyGuard", unit(military, "Rifleman")];
-_groups set ["marksman", unit(military, "Marksman")];
+_groups set ["Marksman", unit(military, "Marksman")];
 _groups set ["staticCrew", unit(military, "Rifleman")];
 
 _groups set ["official", unit(other, "Official")];
 _groups set ["traitor", unit(other, "Traitor")];
 _groups set ["crew", unit(other, "Crew")];
-_groups set ["unarmed", unit(other, "Unarmed")];
+_groups set ["Unarmed", unit(other, "Unarmed")];
 _groups set ["pilot", unit(other, "Pilot")];
 
 _groups set ["militia_Rifleman", unit(militia, "Rifleman")];
@@ -58,9 +58,9 @@ _groups set ["police_Grunt", unit(police, "Standard")];
 
 //military
 _groups set ["sentry", [unit(military, "Grenadier"), unit(military, "Rifleman")]];
-_groups set ["sniper", [unit(military, "Sniper"), unit(military, "Rifleman")]];
+_groups set ["Sniper", [unit(military, "Sniper"), unit(military, "Rifleman")]];
 _groups set ["pilots", double( _groups get "pilot" )];
-_groups set ["small", [_groups get "sentry", _groups get "sniper"]];
+_groups set ["small", [_groups get "sentry", _groups get "Sniper"]];
 _groups set ["AA", [unit(military, "SquadLeader"), unit(military, "AA"), unit(military, "AA"), unit(military, "Rifleman")]];
 _groups set ["AT", [unit(military, "SquadLeader"), unit(military, "AT"), unit(military, "AT"), unit(military, "Rifleman")]];
 _groups set ["medium", [

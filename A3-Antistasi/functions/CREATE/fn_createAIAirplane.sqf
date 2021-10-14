@@ -1,5 +1,6 @@
 #include "..\..\Includes\common.inc"
 FIX_LINE_NUMBERS()
+#define OccAndInv(VAR) (FactionGet(occ, VAR) + FactionGet(inv, VAR))
 if (!isServer and hasInterface) exitWith{};
 
 private ["_pos","_markerX","_vehiclesX","_groups","_soldiers","_busy","_buildings","_pos1","_pos2","_groupX","_countX","_typeVehX","_veh","_unit","_arrayVehAAF","_nVeh","_frontierX","_size","_ang","_mrk","_typeGroup","_flagX","_dog","_typeUnit","_garrison","_sideX","_cfg","_max","_vehicle","_vehCrew","_groupVeh","_roads","_dist","_road","_roadscon","_roadcon","_dirveh","_bunker","_typeGroup"];
@@ -117,13 +118,13 @@ if (_patrol) then
 	while {_countX < 4} do
 	{
 		_arraygroups = _groupData get "small";
-		if ([_markerX,false] call A3A_fnc_fogCheck < 0.3) then {_arraygroups = _arraygroups - (_groupData get "sniper")};
+		if ([_markerX,false] call A3A_fnc_fogCheck < 0.3) then {_arraygroups = _arraygroups - (_groupData get "Sniper")};
 		_typeGroup = selectRandom _arraygroups;
 		_groupX = [_positionX,_sideX, _typeGroup,false,true] call A3A_fnc_spawnGroup;
 		if !(isNull _groupX) then
 		{
 			sleep 1;
-			if ((random 10 < 2.5) and (not(_typeGroup in (_groupData get "sniper")))) then
+			if ((random 10 < 2.5) and (not(_typeGroup in (_groupData get "Sniper")))) then
 			{
 				_dog = [_groupX, "Fin_random_F",_positionX,[],0,"FORM"] call A3A_fnc_createUnit;
 				[_dog] spawn A3A_fnc_guardDog;
@@ -206,7 +207,13 @@ if (!_busy) then
 		{
 			if !(_runwaySpawnLocation isEqualTo []) then
 			{
-				_typeVehX = selectRandom ((_faction get "vehiclesAir") select {[_x] call A3A_fnc_vehAvailable});
+				_typeVehX = selectRandom ((
+                    (_faction get "vehiclesHelisLight")
+                    + (_faction get "vehiclesHelisTransport")
+                    + (_faction get "vehiclesPlanesCAS")
+                    + (_faction get "vehiclesPlanesAA")
+                    + (_faction get "vehiclesPlanesTransport")
+                ) select {[_x] call A3A_fnc_vehAvailable});
 				_veh = createVehicle [_typeVehX, _pos, [],3, "NONE"];
 				_veh setDir (_ang);
 				_pos = [_pos, 50,_ang] call BIS_fnc_relPos;
@@ -267,7 +274,7 @@ if (!_busy) then
 	};
 };
 
-_arrayVehAAF = _faction get "vehiclesNormal";
+_arrayVehAAF = OccAndInv("vehiclesLight") + OccAndInv("vehiclesTrucks") + OccAndInv("vehiclesAmmoTrucks") + OccAndInv("vehiclesRepairTrucks") + OccAndInv("vehiclesFuelTrucks") + OccAndInv("vehiclesMedical");
 _countX = 0;
 
 while {_countX < _nVeh && {_countX < 3}} do

@@ -71,7 +71,7 @@ Info("Identifying vehicle types");
 //Occ&Inv X vehicles
 setVar("vehiclesPolice", OccAndInv("vehiclesPolice"));
 setVar("vehiclesAttack", OccAndInv("vehiclesAttack") );
-setVar("vehiclesPlanes", OccAndInv("vehiclesAir") + [Reb("vehiclePlane")] );
+setVar("vehiclesPlanes", (_faction get "vehiclesPlanesCAS") + (_faction get "vehiclesPlanesAA") + (_faction get "vehiclesPlanesTransport") + [Reb("vehiclePlane")] );
 setVar("vehiclesAttackHelis", OccAndInv("vehiclesHelisAttack") );
 setVar("vehiclesUAVs", OccAndInv("uavsAttack")+ OccAndInv("uavsPortable") );
 setVar("vehiclesAmmoTrucks", OccAndInv("vehiclesAmmoTrucks") );
@@ -80,24 +80,6 @@ setVar("vehiclesTanks", OccAndInv("vehiclesTanks"));
 setVar("vehiclesAA", OccAndInv("vehiclesAA") );
 setVar("vehiclesTransportAir", OccAndInv("vehiclesTransportHelis") + OccAndInv("vehiclesPlanesTransport") );
 setVar("vehiclesArtillery", OccAndInv("vehiclesArtillery"));
-
-//normal vehicles
-private _vehNormal = //would be nice to have a reasoning for the "normal" veh list elements
-OccAndInv("vehiclesNormal")
-+ OccAndInv("vehiclesCargoTrucks")
-+ OccAndInv("vehiclesMilitiaCars")
-+ OccAndInv("vehiclesMilitiaTrucks")
-+ OccAndInv("vehiclesMilitiaLightArmed")
-+ OccAndInv("vehiclesPolice")
-+ OccAndInv("vehiclesBasic")
-+ [ //reb vehicles are not arrays (yet 😉)
-    Reb("vehicleBasic")
-    , Reb("vehicleTruck")
-    , Reb("vehicleRepair")
-    , Reb("vehicleLightArmed")
-    , Reb("vehicleAT")
-];
-setVar("vehiclesNormal", _vehNormal);
 
 private _vehMilitia = OccAndInv("vehiclesMilitiaCars")
 + OccAndInv("vehiclesMilitiaTrucks")
@@ -140,7 +122,12 @@ setVar("vehiclesArmor", _vehArmor);
 
 //vehicles that the AI have "unlimited" of
 private _vehUnlimited =
-OccAndInv("vehiclesNormal")
+OccAndInv("vehiclesLight")
++ OccAndInv("vehiclesTrucks")
++ OccAndInv("vehiclesAmmoTrucks")
++ OccAndInv("vehiclesRepairTrucks")
++ OccAndInv("vehiclesFuelTrucks")
++ OccAndInv("vehiclesMedical")
 + OccAndInv("vehiclesTransportBoats")
 + OccAndInv("vehiclesHelisLight")
 + OccAndInv("uavsAttack")

@@ -7,22 +7,7 @@ params ["_faction", "_side", "_templatePath"];
 //===========|
 private _printInvalidReasons = {
     if (_invalidReasons isEqualTo []) exitWith {};
-
-    private _failedText = _templatePath+" Template validation failed for:" + endl;
-    private _count = count _failedText;
-    _printStack = {
-        Error(_failedText + LogNewLine);
-        _failedText = endl;
-        _count = 0;
-    };
-
-    {
-        if (_count > 1023) then _printStack;
-        private _newLine = LogNewLine + _x + endl;
-        _failedText = _failedText + _newLine;
-        _count = _count + count _newLine;
-    } forEach _invalidReasons;
-    call _printStack;
+    Error(_templatePath+" Template validation failed for:" + endl + LogNewLine + (_invalidReasons joinString (endl + LogNewLine)));
 };
 
 private _validClassCaseSensitive = {
