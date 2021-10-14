@@ -584,6 +584,7 @@ class A3A
         class FIAinit {};
         class FIAskillAdd {};
         class garrisonAdd {};
+        class garrisonRemove {};
         class getHCsquadPrice {};
         class getHCSquadVehicleType {};
         class mineDialog {};

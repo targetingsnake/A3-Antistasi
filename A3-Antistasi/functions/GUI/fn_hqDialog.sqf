@@ -622,8 +622,42 @@ switch (_mode) do
     case ("garrisonRemove"):
     {
         private _type = _params select 0;
-        Debug_1("Removing %1 from garrison");
-        // TODO UI-update: implement this
+        private _selectedMarker = _garrisonMap getVariable ["selectedMarker", ""];
+
+        private _unitType = switch (_type) do
+        {
+            case ("rifleman"): {
+                SDKMil;
+            };
+            case ("squadleader"): {
+                SDKSL;
+            };
+            case ("autorifleman"): {
+                SDKMG;
+            };
+            case ("grenadier"): {
+                SDKGL;
+            };
+            case ("medic"): {
+                SDKMedic;
+            };
+            case ("mortar"): {
+                staticCrewTeamPlayer;
+            };
+            case ("marksman"): {
+                SDKSniper;
+            };
+            case ("at"): {
+                SDKATman;
+            };
+        };
+        
+        Debug_2("Calling A3A_fnc_garrisonRemove with [%1,%2]", _unitType, _selectedMarker);
+        [_unitType, _selectedMarker] spawn A3A_fnc_garrisonRemove;
+
+        sleep 1; // TODO UI-update: bad hack to make it correctly update the UI with the new number
+
+        ["updateGarrisonTab"] call A3A_fnc_hqDialog;
     };
 
     case ("dismissGarrison"):
