@@ -657,7 +657,7 @@ class A3A_HqDialog : A3A_DefaultDialog
                         {
                             idc = -1;
                             text = $STR_antistasi_dialogs_hq_rest_button;
-                            onButtonClick = "[""debugChangeTime""] spawn A3A_fnc_hqDialog;";
+                            onButtonClick = "[""skipTime""] spawn A3A_fnc_hqDialog;";
                             x = 41 * GRID_W; // 108
                             y = 20 * GRID_H;
                             w = 16 * GRID_W;
