@@ -713,7 +713,7 @@ class A3A_HqDialog : A3A_DefaultDialog
             alphaFadeEndScale = 3.0;
 
             // Set zoom levels
-            scaleMin = 0.2; // 0.2 = Smallest scale showing the 100m grid
+            scaleMin = 0.05; // 0.2 = Smallest scale showing the 100m grid
             scaleDefault = 0.325; // 0.325 = Largest scale forests still are visible
             scaleMax = 1; // 2 = Max zoom level
         };

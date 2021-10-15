@@ -34,7 +34,7 @@ private _fadeEnd = 0.75; // Zoom level where it's completely transparent
 private _alpha = ((1 - ((_mapScale - _fadeStart) / (_fadeEnd - _fadeStart))) max 0) min 1;
 
 // Calculate zoom level dependent marker size
-private _minMarkerSize = 16;
+private _minMarkerSize = 12;
 private _maxMarkerSize = 32;
 private _markerSize = ((_maxMarkerSize + (_minMarkerSize - _maxMarkerSize) * ((_mapScale - _fadeStart) / (_fadeEnd - _fadeStart))) max _minMarkerSize) min _maxMarkerSize;
 
@@ -73,45 +73,48 @@ private _outpostIconData = [];
 
     private _fadedColor = [_color # 0, _color # 1, _color # 2, _alpha];
 
-    private _icon = switch (_type) do {
-        case ("hq"): {
-            A3A_missionRootPath + A3A_Icon_Map_HQ;
-        };
+    private _icon = A3A_missionRootPath + A3A_Icon_Map_Blank;
+    if (_mapScale < _fadeEnd) then {
+        _icon = switch (_type) do {
+            case ("hq"): {
+                A3A_missionRootPath + A3A_Icon_Map_HQ;
+            };
 
-        case ("city"): {
-            A3A_missionRootPath + A3A_Icon_Map_City;
-        };
+            case ("city"): {
+                A3A_missionRootPath + A3A_Icon_Map_City;
+            };
 
-        case ("factory"): {
-            A3A_missionRootPath + A3A_Icon_Map_Factory;
-        };
+            case ("factory"): {
+                A3A_missionRootPath + A3A_Icon_Map_Factory;
+            };
 
-        case ("resource"): {
-            A3A_missionRootPath + A3A_Icon_Map_Resource;
-        };
+            case ("resource"): {
+                A3A_missionRootPath + A3A_Icon_Map_Resource;
+            };
 
-        case ("seaport"): {
-            A3A_missionRootPath + A3A_Icon_Map_Seaport;
-        };
+            case ("seaport"): {
+                A3A_missionRootPath + A3A_Icon_Map_Seaport;
+            };
 
-        case ("airport"): {
-            A3A_missionRootPath + A3A_Icon_Map_Airport;
-        };
+            case ("airport"): {
+                A3A_missionRootPath + A3A_Icon_Map_Airport;
+            };
 
-        case ("outpost"): {
-            A3A_missionRootPath + A3A_Icon_Map_Outpost;
-        };
+            case ("outpost"): {
+                A3A_missionRootPath + A3A_Icon_Map_Outpost;
+            };
 
-        case ("watchpost"): {
-            A3A_missionRootPath + A3A_Icon_Map_Watchpost;
-        };
+            case ("watchpost"): {
+                A3A_missionRootPath + A3A_Icon_Map_Watchpost;
+            };
 
-        case ("roadblock"): {
-            A3A_missionRootPath + A3A_Icon_Map_Roadblock;
-        };
+            case ("roadblock"): {
+                A3A_missionRootPath + A3A_Icon_Map_Roadblock;
+            };
 
-        default {
-            "\A3\ui_f\data\Map\Markers\Military\flag_CA.paa";
+            default {
+                "\A3\ui_f\data\Map\Markers\Military\flag_CA.paa";
+            };
         };
     };
 
