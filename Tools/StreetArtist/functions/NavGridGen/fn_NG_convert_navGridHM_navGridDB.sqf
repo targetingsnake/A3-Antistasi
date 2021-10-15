@@ -25,13 +25,35 @@ params [
 private _navGridDB = [];
 private _posIndexHM = createHashMapFromArray (keys _navGridHM apply {
     private _struct = _navGridHM get _x;
-    [_x,_navGridDB pushBack [+(_struct#0),_struct#1,_struct#2,+(_struct#3)]] // Copy values, positions will not be copied
+    [_x,_navGridDB pushBack [+(_struct#0),_struct#1,_struct#2,_struct#3]] // Copy values, positions will not be copied, the connections are copied later.
 });
 
+private _error_foundUnknownConnection = false;
+
 {
+    private _posLabelledConnections = _x#3;  // Copy as the original will be emptied
+    private _indexLabelledConnections = [];  // index Name referes to final state, right now its pos labelled.
+    _x set [3,_indexLabelledConnections];
+    
     {
-        _x set [0,_posIndexHM get (_x#0)]
-    } forEach _x#3;  // _connections
+        if (isNil {_x#0}) then {
+            _error_foundUnknownConnection = true;
+            continue;
+        };
+        private _connectedRoadIndex = _posIndexHM getOrDefault [_x#0, -1];
+        if (_connectedRoadIndex >= 0) then {
+            _indexLabelledConnections pushBack [_connectedRoadIndex,_x#1,_x#2];
+        } else {
+            _error_foundUnknownConnection = true;
+        }
+    } forEach _posLabelledConnections;
 } forEach _navGridDB;
+
+if (_error_foundUnknownConnection) then {
+    private _errorTile = "navGridHm to DB";
+    private _errorDetails = "Warning: Unknown connections were removed from the DB, please re-import to check that all roads are connected properly.";
+    [1,_errorTile+" | "+_errorDetails,"fn_NG_convert_navGridHM_navGridDB.sqf"] call A3A_fnc_log;
+    [_errorTile,_errorDetails,true,600] call A3A_fnc_customHint;
+};
 
 _navGridDB;
