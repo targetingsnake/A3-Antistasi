@@ -103,11 +103,11 @@ private _outpostIconData = [];
         };
 
         case ("watchpost"): {
-            A3A_missionRootPath + A3A_Icon_Map_Seaport; // TODO UI-update: Make watchpost icon
+            A3A_missionRootPath + A3A_Icon_Map_Watchpost;
         };
 
         case ("roadblock"): {
-            A3A_missionRootPath + A3A_Icon_Map_Factory; // TODO UI-update: Make roadblock icon
+            A3A_missionRootPath + A3A_Icon_Map_Roadblock;
         };
 
         default {

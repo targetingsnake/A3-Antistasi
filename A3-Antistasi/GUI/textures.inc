@@ -82,12 +82,15 @@ Maintainer: DoomMetal
 #define A3A_Icon_Support "GUI\textures\icon_support.paa"
 
 // New map icons
+#define A3A_Icon_Map_Blank "GUI\textures\icon_map_blank.paa"
 #define A3A_Icon_Map_City "GUI\textures\icon_map_city.paa"
 #define A3A_Icon_Map_Factory "GUI\textures\icon_map_factory.paa"
 #define A3A_Icon_Map_Resource "GUI\textures\icon_map_resource.paa"
 #define A3A_Icon_Map_Airport "GUI\textures\icon_map_airport.paa"
 #define A3A_Icon_Map_Seaport "GUI\textures\icon_map_seaport.paa"
 #define A3A_Icon_Map_Outpost "GUI\textures\icon_map_outpost.paa"
+#define A3A_Icon_Map_Roadblock "GUI\textures\icon_map_roadblock.paa"
+#define A3A_Icon_Map_Watchpost "GUI\textures\icon_map_watchpost.paa"
 #define A3A_Icon_Map_HQ "GUI\textures\icon_map_hq.paa"
 
 
