@@ -44,16 +44,17 @@ private _error_foundUnknownConnection = false;
         if (_connectedRoadIndex >= 0) then {
             _indexLabelledConnections pushBack [_connectedRoadIndex,_x#1,_x#2];
         } else {
+            [1,"navGridHm to DB | Could not find position " + str (_x#0),"fn_NG_convert_navGridHM_navGridDB"] call A3A_fnc_log;
             _error_foundUnknownConnection = true;
         }
     } forEach _posLabelledConnections;
 } forEach _navGridDB;
 
 if (_error_foundUnknownConnection) then {
-    private _errorTile = "navGridHm to DB";
+    private _errorTitle = "navGridHm to DB";
     private _errorDetails = "Warning: Unknown connections were removed from the DB, please re-import to check that all roads are connected properly.";
-    [1,_errorTile+" | "+_errorDetails,"fn_NG_convert_navGridHM_navGridDB.sqf"] call A3A_fnc_log;
-    [_errorTile,_errorDetails,true,600] call A3A_fnc_customHint;
+    [1,_errorTitle+" | "+_errorDetails,"fn_NG_convert_navGridHM_navGridDB"] call A3A_fnc_log;
+    [_errorTitle,_errorDetails,true,600] call A3A_fnc_customHint;
 };
 
 _navGridDB;
