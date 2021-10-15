@@ -705,6 +705,18 @@ switch (_mode) do
         closeDialog 1;
     };
 
+    case ("buildWatchpost"):
+    {
+        closeDialog 1;
+        ["create"] spawn A3A_fnc_outpostDialog;
+    };
+
+    case ("removeWatchpost"):
+    {
+        // TODO UI-update: this was apparently deprecated and uses dismiss garrison instead, considering replacing/removing this button
+        closeDialog 1;
+    };
+
     default
     {
         // Log error if attempting to call a mode that doesn't exist

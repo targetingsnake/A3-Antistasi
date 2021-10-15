@@ -849,13 +849,13 @@
         <Original>Dismiss Garrison</Original>
         <English>Dismiss Garrison</English>
       </Key>
-      <Key ID="STR_antistasi_dialogs_hq_garrisons_build_outpost_button">
-        <Original>Build Outpost</Original>
-        <English>Build Outpost</English>
+      <Key ID="STR_antistasi_dialogs_hq_garrisons_build_watchpost_button">
+        <Original>Build Watchpost</Original>
+        <English>Build Watchpost</English>
       </Key>
-      <Key ID="STR_antistasi_dialogs_hq_garrisons_remove_outpost_button">
-        <Original>Remove Outpost</Original>
-        <English>Remove Outpost</English>
+      <Key ID="STR_antistasi_dialogs_hq_garrisons_remove_watchpost_button">
+        <Original>Remove Watchpost</Original>
+        <English>Remove Watchpost</English>
       </Key>
       <Key ID="STR_antistasi_dialogs_hq_rest_text">
         <Original>Rest for %1.</Original>
