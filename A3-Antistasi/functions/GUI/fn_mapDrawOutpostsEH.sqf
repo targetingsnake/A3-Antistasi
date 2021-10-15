@@ -46,8 +46,9 @@ private _outpostIconData = [];
     private _name = [_marker] call A3A_fnc_getLocationMarkerName;
     private _pos = getMarkerPos _marker;
     private _side = sidesX getVariable [_marker,sideUnknown];
-    private _color = [1,0.5,1,1];
+    private _color = [1,1,1,1];
 
+    // TODO UI-update: add color for dead cities
     switch (_side) do {
         case (teamPlayer): {
             _color = ["Map", "Independent"] call BIS_fnc_displayColorGet;
@@ -101,14 +102,23 @@ private _outpostIconData = [];
             A3A_missionRootPath + A3A_Icon_Map_Outpost;
         };
 
+        case ("watchpost"): {
+            A3A_missionRootPath + A3A_Icon_Map_Seaport; // TODO UI-update: Make watchpost icon
+        };
+
+        case ("roadblock"): {
+            A3A_missionRootPath + A3A_Icon_Map_Factory; // TODO UI-update: Make roadblock icon
+        };
+
         default {
             "\A3\ui_f\data\Map\Markers\Military\flag_CA.paa";
         };
     };
 
     _outpostIconData pushBack [_name, _pos, _type, _icon, _color, _fadedColor];
-} forEach airportsX + resourcesX + factories + outposts + seaports + citiesX + ["Synd_HQ"];
-// TODO UI-update: add user placed roadblocks/outposts to the above list
+} forEach airportsX + resourcesX + factories + outposts + seaports + citiesX + outpostsFIA + ["Synd_HQ"];
+
+// TODO UI-update: add warning symbol for outposts under attack/enemies near
 
 {
     // Draw icon

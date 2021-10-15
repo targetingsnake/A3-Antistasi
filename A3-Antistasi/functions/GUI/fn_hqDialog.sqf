@@ -556,11 +556,13 @@ switch (_mode) do
 
     case ("garrisonMapClicked"):
     {
+        // TODO UI-update: Clicking away from outposts should deselect current outpost
         Debug_1("Garrison map clicked: %1", _params);
         // Find closest marker to the clicked position
         _params params ["_clickedPosition"];
         private _clickedWorldPosition = _garrisonMap ctrlMapScreenToWorld _clickedPosition;
-        private _selectedMarker = [markersX, _clickedWorldPosition] call BIS_fnc_nearestPosition;
+        private _garrisonableLocations = airportsX + resourcesX + factories + outposts + seaports + citiesX + outpostsFIA + ["Synd_HQ"];
+        private _selectedMarker = [_garrisonableLocations, _clickedWorldPosition] call BIS_fnc_nearestPosition;
         Debug_1("Selected marker: %1", _selectedMarker);
 
         _markerMapPosition = _garrisonMap ctrlMapWorldToScreen (getMarkerPos _selectedMarker);

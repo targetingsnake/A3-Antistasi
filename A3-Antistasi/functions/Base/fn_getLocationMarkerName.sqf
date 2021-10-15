@@ -39,7 +39,13 @@ private _markerName = switch (_markerType) do {
         "Outpost";
     };
 
-    // TODO: case for roadblocks etc
+    case ("watchpost"): {
+        "Watchpost";
+    };
+
+    case ("roadblock"): {
+        "Roadblock";
+    };
 
     default {
         "UNSUPPORTED MARKER TYPE";
