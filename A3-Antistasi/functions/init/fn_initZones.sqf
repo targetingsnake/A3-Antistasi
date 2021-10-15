@@ -170,11 +170,14 @@ private ["_nameX", "_roads", "_numCiv", "_roadsProv", "_roadcon", "_dmrk", "_inf
 ""23"", ""toipela"", ""hirvela"", ""Kuusela"", ""Niemela"", ""fob4"", ""daumau"", ""fob1"", ""quanloi"", ""stagingarea"", ""fob2"",
 ""pleimei"", ""fob6"", ""berchtesgaden"", ""fob3"", ""khegio"", ""fob5"", ""thudridge"", ""halongnavybase"", ""plainofjars"", ""pleikuboatbase"",
 ""banhoang"", ""vinhau"", ""kechau"", ""quanbo"", ""huecitadel"", ""bimat"", ""danthemthem"", ""daophai"", ""phuquoc"", ""dharmadocks"",
- ""dharma"", ""patmep"", ""phokham"", ""rungcung"", ""tiengtai"", ""vacang"", ""hanoi3"", ""saigonport"", ""ansungsong"", ""vanchu"",
- ""sangha"", ""hoxanx"", ""congtroi"", ""boave"", ""longhai"", ""honba"", ""kiemtra"", ""baibiendiep"", ""nuocbun"", ""cantho"",
- ""nhenden"", ""soctrang"", ""mekongdelta"", ""tampep"", ""segbegat"", ""che"", ""tandi"", ""lahot"", ""alieng"", ""thiengling"",
- ""phaonoi"", ""timho"", ""quyen"", ""caloi"", ""thuphac"", ""diemdang"", ""bandao"", ""mantau"",""dongxa"", ""tauphabang"", ""horgoat"",
- ""samsong"", ""muylai"", ""caymo"", ""docon"", ""paradiseisland"", ""mien"", ""giuaho"", ""daotrai"", ""ABung""])"
+""dharma"", ""patmep"", ""phokham"", ""rungcung"", ""tiengtai"", ""vacang"", ""hanoi3"", ""saigonport"", ""ansungsong"", ""vanchu"",
+""sangha"", ""hoxanx"", ""congtroi"", ""boave"", ""longhai"", ""honba"", ""kiemtra"", ""baibiendiep"", ""nuocbun"", ""cantho"",
+""nhenden"", ""soctrang"", ""mekongdelta"", ""tampep"", ""segbegat"", ""che"", ""tandi"", ""lahot"", ""alieng"", ""thiengling"",
+""phaonoi"", ""timho"", ""quyen"", ""caloi"", ""thuphac"", ""diemdang"", ""bandao"", ""mantau"",""dongxa"", ""tauphabang"", ""horgoat"",
+""samsong"", ""muylai"", ""caymo"", ""docon"", ""paradiseisland"", ""mien"", ""giuaho"", ""daotrai"",
+""Paca"", ""Kate"", ""Hinlap"", ""XomBau"", ""XingEa"", ""AnMy"", ""That"", ""Tanloan"", ""Avian"", ""Kengkep"", ""MuTa"",
+""KoNo"", ""Paxia"", ""KoWe"", ""LiemCong"", ""SonGiang"", ""Nongno"", ""Tansoum"", ""Hindam"", ""AnDinh"", ""Lapoung"", ""Xingwe"", ""MuTa"",
+""Bengdan"", ""Napang"", ""Khoyamep"", ""Donvay"", ""Palo"", ""Lukdong"", ""Xino"", ""Xombatu"", ""Xombolu"", ""Gnavay""])"
 configClasses (configfile >> "CfgWorlds" >> worldName >> "Names") apply {
 
 	_nameX = configName _x;
