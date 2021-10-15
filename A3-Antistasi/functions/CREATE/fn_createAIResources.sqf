@@ -137,7 +137,6 @@ if (_patrol) then
 				[_dog] spawn A3A_fnc_guardDog;
 				sleep 1;
 			};
-			_nul = [leader _groupX, _mrk, "SAFE","SPAWNED", "RANDOM","NOVEH2"] execVM "scripts\UPSMON.sqf";//TODO need delete UPSMON link
 			_groups pushBack _groupX;
 			{[_x,_markerX] call A3A_fnc_NATOinit; _soldiers pushBack _x} forEach units _groupX;
 		};
@@ -177,7 +176,6 @@ if (not(_markerX in destroyedSites)) then
 				}];
 		};
 		//_nul = [_markerX,_civs] spawn destroyCheck;
-		_nul = [leader _groupX, _markerX, "SAFE", "SPAWNED","NOFOLLOW", "NOSHARE","DORELAX","NOVEH2"] execVM "scripts\UPSMON.sqf";//TODO need delete UPSMON link
 	};
 };
 
@@ -215,7 +213,7 @@ while {_countX <= _radiusX} do
 };
 
 for "_i" from 0 to (count _array - 1) do
-	{
+{
 	_groupX = if (_i == 0) then
 	{
 		[_positionX,_sideX, (_array select _i),true,false] call A3A_fnc_spawnGroup
@@ -229,16 +227,7 @@ for "_i" from 0 to (count _array - 1) do
 		[_x,_markerX] call A3A_fnc_NATOinit;
 		_soldiers pushBack _x;
 	} forEach units _groupX;
-	if (_i == 0) then
-	{
-		//Can't we just precompile this and call this like every other funtion? Would save some time
-		_nul = [leader _groupX, _markerX, "SAFE", "RANDOMUP","SPAWNED", "NOVEH2", "NOFOLLOW"] execVM "scripts\UPSMON.sqf";
-	}
-	else
-	{
-		_nul = [leader _groupX, _markerX, "SAFE","SPAWNED", "RANDOM","NOVEH2", "NOFOLLOW"] execVM "scripts\UPSMON.sqf";
-	};
-	};//TODO need delete UPSMON link
+};
 
 waitUntil {sleep 1; (spawner getVariable _markerX == 2)};
 

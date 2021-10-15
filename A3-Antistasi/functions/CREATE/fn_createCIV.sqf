@@ -130,7 +130,6 @@ if ((random 100 < ((aggressionOccupants) + (aggressionInvaders))) and (spawner g
 	_civ = [_groupX, "C_journalist_F", _pos, [],0, "NONE"] call A3A_fnc_createUnit;
 	_nul = [_civ] spawn A3A_fnc_CIVinit;
 	_civs pushBack _civ;
-	_nul = [_civ, _markerX, "SAFE", "SPAWNED","NOFOLLOW", "NOVEH2","NOSHARE","DoRelax"] execVM "scripts\UPSMON.sqf";//TODO need delete UPSMON link
 	};
 
 

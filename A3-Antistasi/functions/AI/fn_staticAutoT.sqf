@@ -15,7 +15,7 @@ if ((typeOf _static == SDKMortar) and (isMultiPlayer)) exitWith {["Static Auto T
 if (_groupX getVariable "staticAutoT") exitWith
 	{
 	_groupX setVariable ["staticAutoT",false,true];
-	if (typeOf _static == SDKMortar) then {_groupX setvariable ["UPSMON_Removegroup",true]};
+	//if (typeOf _static == SDKMortar) then {_groupX setvariable ["UPSMON_Removegroup",true]};
 	sleep 5;
 	["Static Auto Target", format ["Mounted Static Squad %1 set to Auto Target Mode OFF.", groupID _groupX]] call A3A_fnc_customHint;
 	};
@@ -23,7 +23,7 @@ if (_groupX getVariable "staticAutoT") exitWith
 ["Static Auto Target", format ["Mounted Static Squad %1 set to Auto Target Mode ON.", groupID _groupX]] call A3A_fnc_customHint;
 _groupX setVariable ["staticAutoT",true,true];
 
-if (typeOf _static == SDKMortar) exitWith {_nul=[_static] execVM "scripts\UPSMON\MON_artillery_add.sqf";};//TODO delete UPSMON link
+//if (typeOf _static == SDKMortar) exitWith {_nul=[_static] execVM "scripts\UPSMON\MON_artillery_add.sqf";};//TODO delete UPSMON link
 _LeaderX = leader _groupX;
 _truckX = vehicle _LeaderX;
 _boy = gunner _static;
