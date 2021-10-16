@@ -28,7 +28,7 @@ private _fnc_reportHaltingError = {
     params [["_details","!Sub Error, error details failed to created.", [ "" ]]];
     private _errorTitle = "navRoadHM to Grid";
     [1,_errorTitle+" | "+_details,"fn_NG_convert_navRoadHM_navGridHM"] call A3A_fnc_log;
-    [_errorTitle,_details,true,600] call A3A_fnc_customHint;
+    [_errorTitle,"Please check RPT.<br/>" + _details,true,600] call A3A_fnc_customHint;
 };
 private _fnc_reportMinorError = {
     params [["_details","!Sub Error, error details failed to created.", [ "" ]]];
@@ -83,8 +83,8 @@ while {count _nameUnprocessedHM != 0} do {
     private _nextNames = [_newName];// Array<road string>
 
     while {count _nextNames != 0} do {
-        //private _diag_sub_counter = count _navFlatHM;
-        //("Completion &lt;" + ((100 * _diag_sub_counter /_diag_totalSegments) toFixed 1) + "% &gt; Processing segment &lt;" + (str _diag_sub_counter) + " / " + (str _diag_totalSegments) + "&gt;") call _fnc_diag_render;
+        private _diag_sub_counter = count _navFlatHM;
+        ("Completion &lt;" + ((100 * _diag_sub_counter /_diag_totalSegments) toFixed 1) + "% &gt; Node &lt;" + (str _diag_sub_counter) + " / " + (str _diag_totalSegments) + "&gt;") call _fnc_diag_render;
 
         private _currentNames = _nextNames; // Array<struct>
         _nextNames = [];
