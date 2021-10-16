@@ -270,7 +270,7 @@ if (!isNull _antenna) then
 			_posF = _pos getPos [1,_dir];
 			_posF set [2,24.3];
 		};
-        _typeUnit = _groupData get (if (_isFIA) then {"militia_Marksman"} else {"marksman"});
+        _typeUnit = _groupData get (if (_isFIA) then {"militia_Marksman"} else {"Marksman"});
 		_unit = [_groupX, _typeUnit, _positionX, [], _dir, "NONE"] call A3A_fnc_createUnit;
 		_unit setPosATL _posF;
 		_unit forceSpeed 0;
