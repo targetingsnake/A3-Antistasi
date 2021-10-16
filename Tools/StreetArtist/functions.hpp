@@ -1,4 +1,13 @@
 class A3A {
+    class Model {
+        class NG_navRoad_assert {};
+        class NG_navRoad_connect {};
+        class NG_navRoad_disconnect {};
+        class NG_navRoad_getPeers {};
+        class NG_navRoad_isConnected {};
+        class NG_navRoadHM_assert {};
+        class NG_navRoadHM_remove {};
+    }
     class NavGridDraw {
         class NG_draw_connection {};
         class NG_draw_deleteAll {};
