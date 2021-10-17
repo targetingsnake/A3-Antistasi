@@ -71,7 +71,7 @@ Info("Identifying vehicle types");
 //Occ&Inv X vehicles
 setVar("vehiclesPolice", OccAndInv("vehiclesPolice"));
 setVar("vehiclesAttack", OccAndInv("vehiclesAttack") );
-setVar("vehiclesPlanes", (_faction get "vehiclesPlanesCAS") + (_faction get "vehiclesPlanesAA") + (_faction get "vehiclesPlanesTransport") + [Reb("vehiclePlane")] );
+setVar("vehiclesPlanes", OccAndInv("vehiclesPlanesCAS") + OccAndInv("vehiclesPlanesAA") + OccAndInv("vehiclesPlanesTransport") + [Reb("vehiclePlane")] );
 setVar("vehiclesAttackHelis", OccAndInv("vehiclesHelisAttack") );
 setVar("vehiclesUAVs", OccAndInv("uavsAttack")+ OccAndInv("uavsPortable") );
 setVar("vehiclesAmmoTrucks", OccAndInv("vehiclesAmmoTrucks") );
