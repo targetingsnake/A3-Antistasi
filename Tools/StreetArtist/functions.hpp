@@ -49,6 +49,7 @@ class A3A {
         class NGSA_import {};
         class NGSA_insertMiddleNode {};
         class NGSA_main {};
+        class NGSA_mainDialog {};
         class NGSA_navGridHM_refresh_islandID {};
         class NGSA_node_disconnect {};
         class NGSA_onKeyDown {};

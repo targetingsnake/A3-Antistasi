@@ -63,6 +63,7 @@ if !(_startEmpty) then {
 };
 if (_exit) exitWith {
     A3A_NGSA_instanceLock = nil;
+    [] spawn A3A_fnc_NGSA_mainDialog;
 };
 
 
@@ -73,3 +74,6 @@ private _navGridPosRegionHM = [_navGridHM] call A3A_fnc_NGSA_posRegionHM_generat
 [nil,false,false] call A3A_fnc_NG_draw_main;
 [_navGridHM,_navGridPosRegionHM] call A3A_fnc_NGSA_EH_add;
 call A3A_fnc_NGSA_refreshMarkerOrder;
+
+
+openMap true;

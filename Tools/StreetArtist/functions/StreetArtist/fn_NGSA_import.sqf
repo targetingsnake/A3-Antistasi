@@ -29,7 +29,7 @@ private _fnc_diag_render = { // call _fnc_diag_render;
 
 //private _navGridDB_formatted = copyFromClipboard; // Disabled in multiplayer :'(
 if !(createDialog "A3A_NG_import_dialogue") exitWith {
-    throw ["CreateDialogFailed","Failed to create A3A_NG_import_dialogue."];
+    ["CreateDialogFailed","Failed to create A3A_NG_import_dialogue.",false,500] call A3A_fnc_customHint;
     [];
 };
 
