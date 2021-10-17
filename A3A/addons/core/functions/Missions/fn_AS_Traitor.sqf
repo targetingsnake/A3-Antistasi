@@ -105,16 +105,7 @@ _mrk setMarkerColorLocal "ColorRed";
 _mrk setMarkerBrushLocal "DiagGrid";
 _mrk setMarkerAlphaLocal 0;
 
-_typeGroup = if (random 10 < tierWar) then {_groupData get "squad"} else {[
-    _groupData get "police_Officer"
-    ,_groupData get "police_Grunt"
-    ,_groupData get "police_Grunt"
-    ,_groupData get "police_Grunt"
-    ,_groupData get "police_Grunt"
-    ,_groupData get "police_Grunt"
-    ,_groupData get "police_Grunt"
-    ,_groupData get "police_Grunt"
-]};
+_typeGroup = if (random 10 < tierWar) then {_groupData get "squad"} else {_groupData get "police_Squad"};
 _groupX = [_positionX,Occupants, _typeGroup] call A3A_fnc_spawnGroup;
 sleep 1;
 if (random 10 < 2.5) then

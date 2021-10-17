@@ -101,13 +101,13 @@ if (_patrol) then
 	while {_countX < 4} do
 	{
         _arrayGroups = _groupData get (if (_isFIA) then {"militia_Small"} else {"small"});
-		if ([_markerX,false] call A3A_fnc_fogCheck < 0.3) then {_arraygroups = _arraygroups - (_groupData get "sniper")};
+		if ([_markerX,false] call A3A_fnc_fogCheck < 0.3) then {_arraygroups = _arraygroups - (_groupData get "Sniper")};
 		_typeGroup = selectRandom _arraygroups;
 		_groupX = [_positionX,_sideX, _typeGroup,false,true] call A3A_fnc_spawnGroup;
 		if !(isNull _groupX) then
 		{
 			sleep 1;
-			if ((random 10 < 2.5) and (not(_typeGroup in (_groupData get "sniper")))) then
+			if ((random 10 < 2.5) and (not(_typeGroup in (_groupData get "Sniper")))) then
 			{
 				_dog = [_groupX, "Fin_random_F",_positionX,[],0,"FORM"] call A3A_fnc_createUnit;
 				[_dog] spawn A3A_fnc_guardDog;

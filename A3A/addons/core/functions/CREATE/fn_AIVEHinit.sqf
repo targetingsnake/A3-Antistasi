@@ -40,7 +40,13 @@ _veh call A3A_fnc_vehicleTextureSync;
 
 private _typeX = typeOf _veh;
 if (
-    (_typeX in FactionGet(all,"vehiclesNormal"))
+    _typeX in (OccAndInv("vehiclesLight")
+        + OccAndInv("vehiclesTrucks")
+        + OccAndInv("vehiclesAmmoTrucks")
+        + OccAndInv("vehiclesRepairTrucks")
+        + OccAndInv("vehiclesFuelTrucks")
+        + OccAndInv("vehiclesMedical")
+    )
     or (_typeX in FactionGet(all,"vehiclesAttack"))
     or (_typeX in FactionGet(all,"vehiclesBoats"))
     or (_typeX in FactionGet(all,"vehiclesAA"))) then
@@ -77,7 +83,7 @@ if (
 }
 else
 {
-	if (_typeX in FactionGet(all,"vehiclesPlanes")) then
+	if ( _typeX in (FactionGet(all,"vehiclesPlanes") + FactionGet("vehiclesHelisLight") + FactionGet("vehiclesHelisTransport")) ) then
 	{
 		_veh addEventHandler ["GetIn",
 		{
@@ -128,7 +134,7 @@ if (_side == civilian) then
 	}];
 };
 
-if(_typeX in (OccAndInv("vehiclesArtillery") + OccAndInv("staticMortars") + FactionGet(reb, "staticMortars")) ) then
+if(_typeX in (OccAndInv("vehiclesArtillery") + FactionGet(all, "staticMortars")) ) then
 {
     [_veh] call A3A_fnc_addArtilleryTrailEH;
 	[_veh] remoteExec ["A3A_fnc_addArtilleryDetectionEH", 2];

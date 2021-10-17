@@ -6,6 +6,7 @@ _mrkDestination = _this select 0;
 _mrkOrigin = _this select 1;
 _numberX = _this select 2;
 _sideX = _this select 3;
+private _faction = Faction(_sideX);
 ServerInfo_4("Spawning PatrolReinf. Dest:%1, Orig:%2, Size:%3, Side: %4",_mrkDestination,_mrkOrigin,_numberX,_sideX);
 _posDestination = getMarkerPos _mrkDestination;
 _posOrigin = getMarkerPos _mrkOrigin;

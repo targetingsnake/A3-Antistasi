@@ -270,6 +270,13 @@ player addEventHandler ["GetInMan", {
 	};
 }];
 
+if (A3A_hasACE) then {
+    ["ace_explosives_place", {
+        params ["_explosive","_dir","_pitch","_unit"];
+		if (_unit == player) then { player setCaptive false };
+    }] call CBA_fnc_addEventHandler;
+};
+
 call A3A_fnc_initUndercover;
 
 if (isMultiplayer) then {
@@ -361,8 +368,8 @@ if (A3A_hasACE) then
 	} forEach (
         _playerUnits
         + (_groupData get "squadEng") // SL, GL, militia, mg, exp, lat, eng, medic
-        + (_groupData get "sniper")
-        + [_groupData get "unarmed", _groupData get "staticCrew", _groupData get "Petros"]
+        + (_groupData get "Sniper")
+        + [_groupData get "Unarmed", _groupData get "staticCrew", _groupData get "Petros"]
     );
 };
 

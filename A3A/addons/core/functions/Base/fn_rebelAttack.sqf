@@ -256,6 +256,7 @@ private _fnc_flipMarker =
     params ["_side", "_marker"];
     Info_2("Autowin %1 for side %2 to avoid unnecessary calculations", _marker, _side);
     [_side, _marker] spawn A3A_fnc_markerChange;
+    private _groupData = FactionGetGroups(_side);
     sleep 10;
     private _maxTroops = 12 max round ((0.5 + random 0.5) * ([_marker] call A3A_fnc_garrisonSize));
     private _soldiers = [];

@@ -125,7 +125,7 @@ while {_reason == ""} do
             _reason = "NoFly";
         };
 
-        if ((_vehType != FactionGet(reb,"vehicleCivHeli")) && (!(_vehType in FactionGet(reb,"vehicleCivHeli")))) then
+        if ((_vehType != FactionGet(reb,"vehicleCivHeli")) && (!(_vehType isEqualTo FactionGet(reb,"vehicleCivBoat")))) then
         {
             if (!(isOnRoad position _veh) && {count (_veh nearRoads 50) == 0}) then
             {

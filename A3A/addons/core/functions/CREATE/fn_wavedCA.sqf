@@ -70,7 +70,7 @@ private _vehPoolAirSupport = [];
 private _vehPoolAirTransport = [];
 
 // unlimited vehicle types, for later use
-private _typePatrolHelis = _faction get "vehiclesHelisLight";
+private _typesPatrolHelis = _faction get "vehiclesHelisLight";
 private _typesTruck = _faction get "vehiclesTrucks";
 private _typesMRAP = _faction get "vehiclesLightArmed";
 
@@ -139,7 +139,7 @@ call {
 
 	// Fill out with patrol helis
 	private _patrolHeliCount = 8 - ceil (tierWar / 2);
-	for "_i" from 1 to (_patrolHeliCount) do { _vehPoolAirTransport pushBack (selectRandom _typePatrolHelis) };
+	for "_i" from 1 to (_patrolHeliCount) do { _vehPoolAirTransport pushBack (selectRandom _typesPatrolHelis) };
 };
 
 Debug_1("Land vehicle pool: %1", _vehPoolLand);
@@ -519,7 +519,7 @@ while {(_waves > 0)} do
 		}
 		else {
 			if (count _vehPoolAirTransport == 0) then {
-				for "_i" from 1 to 10 do { _vehPoolAirTransport pushBack (selectRandom _typePatrolHelis) };
+				for "_i" from 1 to 10 do { _vehPoolAirTransport pushBack (selectRandom _typesPatrolHelis) };
                 Info("Attack ran out of air transports");
 				_waves = 0;
 			};

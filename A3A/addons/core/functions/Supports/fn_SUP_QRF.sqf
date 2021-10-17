@@ -78,7 +78,7 @@ if ((_posOrigin distance2D _posDestination < distanceForLandAttack) && {[_posOri
 {
     //The attack will be carried out by land and air vehicles
 	_vehPool = [_side] call A3A_fnc_getVehiclePoolForQRFs;
-    _replacement = (_faction get "vehiclesHelisLight") + (_faction get "vehiclesHelisTransport") + (_faction get "vehiclesTrucks") + (_faction get "vehiclesHelisTransport");
+    _replacement = (_faction get "vehiclesHelisLight") + (_faction get "vehiclesHelisTransport") + (_faction get "vehiclesTrucks");
 }
 else
 {

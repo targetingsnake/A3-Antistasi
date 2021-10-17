@@ -99,7 +99,7 @@ if ((_groupData get "staticCrew") in _garrison) then
 	private _index = _garrison findIf {_x isEqualTo (_groupData get "Mil")};
 	if (_index == -1) exitWith {};
 	private _unit = objNull;
-	if (typeOf _x in ( OccAndInv("vehiclesArtillery") + OccAndInv("staticMortars") + FactionGet(reb, "staticMortars") )) then
+	if (typeOf _x in ( OccAndInv("vehiclesArtillery") + FactionGet(all,"staticMortars") )) then
 	{
 		if (isNull _groupMortars) then { _groupMortars = createGroup teamPlayer };
 		_unit = [_groupMortars, (_garrison select _index), _positionX, [], 0, "NONE"] call A3A_fnc_createUnit;
