@@ -19,7 +19,7 @@ Example:
 
 License: MIT License
 */
-#include "..\..\Includes\common.inc"
+#include "..\..\script_component.hpp"
 params ["_config"];
 if (!isClass _config) exitWith { Error_1("Not a config: ", _config); [] };
 
