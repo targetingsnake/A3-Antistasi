@@ -83,7 +83,7 @@ if (
 }
 else
 {
-	if ( _typeX in (FactionGet(all,"vehiclesPlanes") + FactionGet("vehiclesHelisLight") + FactionGet("vehiclesHelisTransport")) ) then
+	if ( _typeX in (FactionGet(all,"vehiclesPlanes") + FactionGet(all,"vehiclesHelisLight") + FactionGet(all,"vehiclesHelisTransport")) ) then
 	{
 		_veh addEventHandler ["GetIn",
 		{
