@@ -133,32 +133,24 @@ switch (toLower worldName) do {
     // needs to be overhauled and checked
 	case "vn_khe_sanh": {
 		{server setVariable [_x select 0,_x select 1]} forEach
-		[["Khesanhvil",586,"NameCity"],["Paca",36,"NameVillage"],["Tanloan",22,"NameVillage"],["Axau",16,"NameVillage"],
-		["Xiso",308,"NameVillage"],["XiMi",200,"NameVillage"],["Xino",185,"NameVillage"],["PalienKhun",16,"NameVillage"],
-		["Koso",153,"NameVillage"],["KoNo",110,"NameVillage"],["KoWe",175,"NameVillage"],["BanNeme",72,"NameVillage"],["Avau",8,"NameVillage"],
-		["ToRout",108,"NameVillage"],["RoRo",32,"NameVillage"],["Tavouac",401,"NameVillage"],
-		["Palo",236,"NameVillage"],["Thanh",28,"NameVillage"],["AHo",20,"NameVillage"],["XingEa",79,"NameVillage"],
-		["Xingwe",116,"NameVillage"],["ACoi",415,"NameVillage"],["Dan",212,"NameVillage"],["Bahy",18,"NameVillage"],
-		["HaiPhuc",17,"NameVillage"],["HaiTan",115,"NameVillage"],["Donque",20,"NameVillage"],["Hamy",12,"NameVillage"],
-		["BichNam",14,"NameVillage"],["Bolieu",31,"NameVillage"],["Raoha",14,"NameVillage"],["NhiHa",11,"NameVillage"],
-		["GioHai",145,"NameVillage"],["AnMy",6,"NameVillage"],["Kok",13,"NameVillage"],["HopTac",394,"NameVillage"],
-		["CoSo",445,"NameVillage"],["Cola",430,"NameVillage"],["Seina",96,"NameVillage"],["Viski",6,"NameVillage"],
-		["LiemCong",36,"NameVillage"],["MuTa",36,"NameVillage"],["NamHung",251,"NameVillage"],["VinhTu",66,"NameVillage"],
-		["ThaiLai",238,"NameVillage"],["XomBau",52,"NameVillage"],["Lako",28,"NameVillage"],["pagnouy",48,"NameVillage"],
-		["Avian",282,"NameVillage"],["Sadoun",11,"NameVillage"],["Salen",12,"NameVillage"],["Lousalia",21,"NameVillage"],
-		["Paxiou",6,"NameVillage"],["Hinlap",52,"NameVillage"],["Khoyamep",49,"NameVillage"],["Gnavay",13,"NameVillage"],
-		["Gnavet",23,"NameVillage"],["Napang",29,"NameVillage"],["Kate",44,"NameVillage"],["Xok",7,"NameVillage"],
-		["Soy",339,"NameVillage"],["SonGiang",44,"NameVillage"],["SonXuan",7,"NameVillage"],["AnDinh",339,"NameVillage"],
-		["Nabo",536,"NameVillage"],["Tuan",193,"NameVillage"],["Naxok",114,"NameVillage"],["That",86,"NameVillage"],
-		["Koanphan",117,"NameVillage"],["Phonsang",11,"NameVillage"],["Louang",21,"NameVillage"],["Phonsi",73,"NameVillage"],
-		["Pomkhoun",38,"NameVillage"],["Doy",57,"NameVillage"],["Nase",53,"NameVillage"],["Nadou",33,"NameVillage"],
-		["Cukty",10,"NameVillage"],["HoaThanh",16,"NameVillage"],["CuYang",63,"NameVillage"],["Ploy",14,"NameVillage"],
-		["Thongxa",6,"NameVillage"],["Kang",9,"NameVillage"],["Lapoung",27,"NameVillage"],["Pasom",20,"NameVillage"],
-		["Lukdong",122,"NameVillage"],["Pakpong",368,"NameVillage"],["Donxat",340,"NameVillage"],["Vangkoy",37,"NameVillage"],
-		["Xeku",109,"NameVillage"],["Nalao",44,"NameVillage"],["Kouthi",143,"NameVillage"],["Kengkep",172,"NameVillage"],
-		["Nasano",40,"NameVillage"],["Naxuak",330,"NameVillage"],["Dantete",15,"NameVillage"],["Donvay",11,"NameVillage"],
-		["Nonghano",4,"NameVillage"],["Nongno",20,"NameVillage"],["Tansoum",12,"NameVillage"],["Hindam",20,"NameVillage"],
-		["Phailom",63,"NameVillage"],["Saoven",10,"NameVillage"],["Prao",62,"NameVillage"],["Talu",24,"NameVillage"]];
+		[["Khesanhvil",586,"NameCity"],["Axau",25,"NameVillage"],["Xiso",200,"NameVillage"],["PalienKhun",25,"NameVillage"],
+		["Koso",153,"NameVillage"],["BanNeme",72,"NameVillage"],["Avau",25,"NameVillage"],["ToRout",108,"NameVillage"],
+		["RoRo",32,"NameVillage"],["Tavouac",200,"NameVillage"],["Thanh",28,"NameVillage"],["AHo",25,"NameVillage"],
+		["ACoi",200,"NameVillage"],["Dan",200,"NameVillage"],["Bahy",25,"NameVillage"],["HaiPhuc",25,"NameVillage"],
+		["HaiTan",115,"NameVillage"],["Donque",25,"NameVillage"],["Hamy",25,"NameVillage"],["BichNam",25,"NameVillage"],
+		["Bolieu",31,"NameVillage"],["Raoha",25,"NameVillage"],["NhiHa",25,"NameVillage"],["GioHai",145,"NameVillage"],
+		["Kok",25,"NameVillage"],["HopTac",200,"NameVillage"],["CoSo",200,"NameVillage"],["Cola",200,"NameVillage"],
+		["Seina",96,"NameVillage"],["Viski",25,"NameVillage"],["NamHung",200,"NameVillage"],["VinhTu",66,"NameVillage"],
+		["ThaiLai",200,"NameVillage"],["Lako",28,"NameVillage"],["pagnouy",48,"NameVillage"],["Sadoun",25,"NameVillage"],
+		["Salen",25,"NameVillage"],["Lousalia",25,"NameVillage"],["Paxiou",25,"NameVillage"],["Gnavet",25,"NameVillage"],
+		["Xok",25,"NameVillage"],["Soy",200,"NameVillage"],["SonXuan",25,"NameVillage"],["Nabo",200,"NameVillage"],
+		["Tuan",193,"NameVillage"],["Naxok",114,"NameVillage"],["Koanphan",117,"NameVillage"],["Phonsang",25,"NameVillage"],
+		["Louang",25,"NameVillage"],["Phonsi",73,"NameVillage"],["Pomkhoun",38,"NameVillage"],["Doy",57,"NameVillage"],
+		["Nase",53,"NameVillage"],["Nadou",33,"NameVillage"],["Cukty",25,"NameVillage"],["HoaThanh",25,"NameVillage"],
+		["CuYang",63,"NameVillage"],["Ploy",25,"NameVillage"],["Thongxa",25,"NameVillage"],["Kang",25,"NameVillage"],
+		["Pasom",25,"NameVillage"],["Donxat",200,"NameVillage"],["Vangkoy",37,"NameVillage"],["Nalao",44,"NameVillage"],
+		["Kouthi",143,"NameVillage"],["Nasano",40,"NameVillage"],["Naxuak",200,"NameVillage"],["Dantete",25,"NameVillage"],
+		["Nonghano",25,"NameVillage"],["Saoven",25,"NameVillage"],["Prao",62,"NameVillage"],["Talu",25,"NameVillage"]];
 	};
 };
     //Disables Towns/Villages, Names can be found in configFile >> "CfgWorlds" >> "WORLDNAME" >> "Names"
@@ -176,8 +168,9 @@ private ["_nameX", "_roads", "_numCiv", "_roadsProv", "_roadcon", "_dmrk", "_inf
 ""phaonoi"", ""timho"", ""quyen"", ""caloi"", ""thuphac"", ""diemdang"", ""bandao"", ""mantau"",""dongxa"", ""tauphabang"", ""horgoat"",
 ""samsong"", ""muylai"", ""caymo"", ""docon"", ""paradiseisland"", ""mien"", ""giuaho"", ""daotrai"",
 ""Paca"", ""Kate"", ""Hinlap"", ""XomBau"", ""XingEa"", ""AnMy"", ""That"", ""Tanloan"", ""Avian"", ""Kengkep"", ""MuTa"",
-""KoNo"", ""Paxia"", ""KoWe"", ""LiemCong"", ""SonGiang"", ""Nongno"", ""Tansoum"", ""Hindam"", ""AnDinh"", ""Lapoung"", ""Xingwe"", ""MuTa"",
-""Bengdan"", ""Napang"", ""Khoyamep"", ""Donvay"", ""Palo"", ""Lukdong"", ""Xino"", ""Xombatu"", ""Xombolu"", ""Gnavay""])"
+""KoNo"", ""Paxia"", ""KoWe"", ""LiemCong"", ""SonGiang"", ""Nongno"", ""Tansoum"", ""Hindam"", ""AnDinh"", ""Lapoung"", ""Xingwe"",
+""Bengdan"", ""Napang"", ""Khoyamep"", ""Donvay"", ""Palo"", ""Lukdong"", ""Xino"", ""Xombatu"", ""Xombolu"", ""Gnavay"",
+""Xombolou"", ""Xomcon"", ""Pakpong"", ""XiMi"", ""Xeku"", ""Xombong"", ""Phailom""])"
 configClasses (configfile >> "CfgWorlds" >> worldName >> "Names") apply {
 
 	_nameX = configName _x;
