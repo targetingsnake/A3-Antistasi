@@ -38,7 +38,7 @@ waitUntil {
     !dialog;
 };
 
-if (isNil {A3A_NG_import_NGDB_formatted}) exitWith {
+if (isNil {A3A_NG_import_NGDB_formatted} || {!(A3A_NG_import_NGDB_formatted isEqualType "")}) exitWith {
     _diag_step_main = "Import cancelled by closing dialogue.";
     call _fnc_diag_render;
     [];

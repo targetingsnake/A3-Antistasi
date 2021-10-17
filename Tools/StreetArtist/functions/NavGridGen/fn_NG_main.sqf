@@ -34,16 +34,28 @@ Example:
     To avoid regenerating the nev grid for drawing, you can omit A3A_fnc_NG_main after running it once. Or import from clipboard if this is a new map load.
     [] spawn A3A_fnc_NGSA_import_clipboard;
 */
+if (!canSuspend) exitWith {
+    private _arguments = [_this,[]] select (isNil {_this});
+    _arguments spawn A3A_fnc_NG_main;
+};
+private _exit = isNil {
+    if (isNil {A3A_NG_instanceLock}) then {
+        A3A_NG_instanceLock = true;
+        false;  // make isNil false.
+    } else {
+        nil;
+    };
+};
+if (_exit) exitWith {
+    ["Already Running", "The Navgrid Generator editor has already started.", false, 600] call A3A_fnc_customHint;
+};
+
 
 params [
     ["_flatMaxDrift",50,[ 0 ]],
     ["_juncMergeDistance",15,[ 0 ]],
     ["_autoEdit",true,[ true ]]
 ];
-
-if (!canSuspend) exitWith {
-    throw ["NotScheduledEnvironment","Please execute NG_main in a scheduled environment as it is a long process: `[] spawn A3A_fnc_NG_main;`."];
-};
 
 private _fnc_diag_report = {
     params ["_diag_step_main","_diag_step_sub"];

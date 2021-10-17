@@ -23,7 +23,7 @@ See [Steet Artist Editor](https://github.com/official-antistasi-community/A3-Ant
 ***
 ***
 
-# 🗺 Generate navGridDB & open the Street Artist Editor
+# 🗺 Generate navGridDB & open the StreetArtist Editor
 Executing `[] spawn A3A_fnc_NG_main` will run with default settings.<br/>
 Looking down gives the best performance during this process. You can lower render distance if it helps.<br/>
 However, you may need to tweak some arguments depending on the simplification level required for the map.<br/>
@@ -32,17 +32,28 @@ However, you may need to tweak some arguments depending on the simplification le
 2.  <SCALAR> Junctions are only merged if within this distance from each other. (Default = 15)
 3.  <BOOLEAN> True to automatically start the StreetArtist Editor. (Default = true)
 
-So running with default settings would also look like this `[50,15,true] spawn A3A_fnc_NG_main;`<br/>
 To run with default and not edit use `[nil,nil,false] spawn A3A_fnc_NG_main;`<br/>
 Max drift is not the only thing that affects road simplification: It will only simplify if the nearestTerrainObject from its position will still return one of it's neighbouring roads. This prevents virtual convoys that are trying to spawn vehicles from jumping to another nearby road because that is the closest navGrid node.<br/>
 
-# 📥 Import navGridDB & open the Street Artist Editor
+### 🔄 Multiple Simplification Iterations
+Sometimes a map's roads might be complex and messay. As a tempory solution you can increase the simplification steps to cut down a few nodes and connections. Before running `A3A_fnc_NG_main` Set the variable `A3A_NGSA_generation_simplifyLoops = 5;` or a smaller number. More than 5 loops ussually don't make any impact on the nav grid.<br/>
+This is complimented well by increasing the junction merge distance to `20` metres. Note that if the junction merge distance is too large, urban areas might have intersections merge (But this can be fixed in the StreetArtist Editor).
+### ☢ Data Model Assertions
+If you discover a map that causes StreetArtist to produce errors and corrupted data, well done! If you want to fix the problem yourself, great! You can set `A3A_NGSA_navRoad_assert = true;` and `A3A_NGSA_navRoadHM_assert = true;` before running `A3A_fnc_NG_main`. This will ussually take 10x longer to run, but it will show you where data corruption first appears.
+
+# ✏ Directly open the StreetArtist Editor
+## 📥 Import Exising navGridDB
 If you have already generated a navGridDB before loading the world and you do not want to regenerate it again: you can use the import function to load it into Arma 3 for viewing or editing.
 
 1. Local exec `[] spawn A3A_fnc_NGSA_main` in the debug console.
 2. Press `Continue` to close debug console. (If you press `Esc`, you will close the import dialogue!)
 3. Switch to real-life and open the navGridDB file and Copy everything.
 4. Switch to Arma 3 and paste it into the editBox and press the the import button.<br/>
+
+## 🏜 Start Fresh from a Empty Grid
+
+1. Local exec `[true] spawn A3A_fnc_NGSA_main` in the debug console.
+
 # 🔎 Further Reading
 See [Steet Artist Editor](https://github.com/official-antistasi-community/A3-Antistasi/wiki/Street-Artist-Editor) for A3-Antistasi navGrid Guidelines (and GIFs!).<br/>
 You can find further satisfying and accurate documentation on all sorts of things by looking into the headers of files in `./functions/StreetArtist/`.
