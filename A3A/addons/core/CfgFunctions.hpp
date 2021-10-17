@@ -272,6 +272,7 @@ class CfgFunctions
             file = QPATHTOFOLDER(functions\Debugging);
             class deleteEmptyGroupsOnSide {};
             class installSchrodingersBuildingFix {};
+            class prepFunctions {};
             class spawnDebuggingLoop {};
         };
 

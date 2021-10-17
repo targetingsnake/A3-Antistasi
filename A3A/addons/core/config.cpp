@@ -14,12 +14,27 @@ class CfgPatches {
     };
 };
 
-#include "CfgFunctions.hpp"
-
 class A3A
 {
     #include "Templates.hpp"
+
+#if __A3_DEBUG__
+    #include "CfgFunctions.hpp"
+#endif
 };
+
+#if __A3_DEBUG__
+    class CfgFunctions {
+        class A3A {
+            class Debugging {
+                file = QPATHTOFOLDER(functions\Debugging);
+                class prepFunctions { preInit = 1; };
+            };
+        };
+    };
+#else
+    #include "CfgFunctions.hpp"
+#endif
 
 #include "defines.hpp"
 #include "dialogs.hpp"
