@@ -29,6 +29,7 @@ class A3A
             class Debugging {
                 file = QPATHTOFOLDER(functions\Debugging);
                 class prepFunctions { preInit = 1; };
+                class runPostInitFuncs { postInit = 1 };
             };
         };
     };
