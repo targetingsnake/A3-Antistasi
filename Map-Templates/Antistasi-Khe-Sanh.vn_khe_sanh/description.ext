@@ -1,9 +1,9 @@
 #include "MissionDescription\master.hpp"
 
-OnLoadName = $STR_antistasi_mission_info_khe_sanh_mapname_short_text;
-OnLoadMission = $STR_antistasi_mission_info_khe_sanh_blurb_text;
-briefingName = $STR_antistasi_mission_info_khe_sanh_mapname_text;
-overviewText = $STR_antistasi_mission_info_khe_sanh_description_text;
+OnLoadName = $STR_antistasi_mission_info_vn_khe_sanh_mapname_short_text;
+OnLoadMission = $STR_antistasi_mission_info_vn_khe_sanh_blurb_text;
+briefingName = $STR_antistasi_mission_info_vn_khe_sanh_mapname_text;
+overviewText = $STR_antistasi_mission_info_vn_khe_sanh_description_text;
 
 class CfgFunctions
 {
