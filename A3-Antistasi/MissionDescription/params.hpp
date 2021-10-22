@@ -113,7 +113,7 @@ class Params
     {
         title = "Vehicle Accuracy";
         values[] = {9999,0,250,1000,2500,5000};
-        texts[] = {"Default (No nerf - Normal behaviour)", "No nerf - Normal behaviour", "Slight nerf", "Balanced nerf - Makes infantry viable", "Heavy nerf", "Extreme nerf - Vehicles will nearly never hit"};
+        texts[] = {"Load from save (No nerf - Normal behaviour)", "No nerf - Normal behaviour", "Slight nerf", "Balanced nerf - Makes infantry viable", "Heavy nerf", "Extreme nerf - Vehicles will nearly never hit"};
         default = 9999;
     };
     class unlockItem

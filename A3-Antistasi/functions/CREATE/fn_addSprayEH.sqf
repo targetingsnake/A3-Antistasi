@@ -16,14 +16,13 @@ Dependencies:
 Example:
     [_myCar] spawn A3A_fnc_addSprayEH;
 */
+#include "..\..\Includes\common.inc"
+FIX_LINE_NUMBERS()
 
 params
 [
     ["_vehicle", objNull, [objNull]]
-]
-
-#include "..\..\Includes\common.inc"
-FIX_LINE_NUMBERS()
+];
 
 //No nerf needed, dont add EHs
 if (accuracyMult == 0) exitWith {};
@@ -75,11 +74,13 @@ _vehicle addEventHandler
         params ["_vehicle", "_isLocal"];
         if (_isLocal) then
         {
+            Debug_2("Vehicle %1 switched locality to local client %2", typeOf _vehicle, clientOwner);
             [_vehicle] call A3A_fnc_addSprayEH;
         }
         else
         {
             //Does it need to JIP? Shouldnt, as a new joined player will get the EH when the car becomes local to him
+            Debug_1("Vehicle %1 switched locality to non local client, sending remote exec", typeOf _vehicle);
             [_vehicle] remoteExec ["A3A_fnc_addSprayEH", _vehicle]
         };
     }

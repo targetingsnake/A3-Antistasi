@@ -12,6 +12,8 @@ FIX_LINE_NUMBERS()
 params ["_veh", "_side"];
 if (isNil "_veh") exitWith {};
 
+Debug_2("Initialising vehicle %1 on client %2 now", typeOf _veh, clientOwner);
+
 if !(isNil { _veh getVariable "ownerSide" }) exitWith
 {
 	// vehicle already initialized, just swap side and exit
@@ -39,7 +41,6 @@ _veh call A3A_fnc_vehicleTextureSync;
 
 //Adds the vehicle weapon nerf
 [_veh] call A3A_fnc_addSprayEH;
-
 
 private _typeX = typeOf _veh;
 if ((_typeX in vehNormal) or (_typeX in vehAttack) or (_typeX in vehBoats) or (_typeX in vehAA)) then
