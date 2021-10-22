@@ -212,6 +212,7 @@ class A3A
 	class CREATE
 	{
         class AAFroadPatrol {};
+        class addSprayEH {};
         class airportCanAttack {};
         class AIVEHinit {};
         class ambientCivs {};
