@@ -1,5 +1,5 @@
 if (!(isNil "placingVehicle") && {placingVehicle}) exitWith {["Build Info", "You can't build while placing something."] call A3A_fnc_customHint;};
-if (player != player getVariable ["owner",objNull]) exitWith {["Build Info", "You cannot construct anything while controlling AI"] call A3A_fnc_customHint;};
+if (player != player getVariable ["owner",objNull]) exitWith {["Build Info", "You cannot construct anything while controlling AI."] call A3A_fnc_customHint;};
 
 build_engineerSelected = objNull;
 
@@ -51,13 +51,13 @@ if (isNull build_engineerSelected && count _otherPlayerEngineers > 0) then {
 
 if (isNull build_engineerSelected) then {
 	if (count _aiEngineers > 0 && player != leader player) exitWith {
-		_abortMessage =	_abortMessage + "Only squad leaders can order AI to build";
+		_abortMessage =	_abortMessage + "Only squad leaders can order AI to build.";
 	};
 
 	{
 		if ([_x] call A3A_fnc_canFight && !([_x] call _engineerIsBusy)) exitWith {
 			build_engineerSelected = _x;
-			_abortMessage = _abortMessage + format ["Ordering %1 to build", _x];
+			_abortMessage = _abortMessage + format ["Ordering %1 to build.", _x];
 		};
 	} forEach _aiEngineers;
 
@@ -73,7 +73,7 @@ if (isNull build_engineerSelected ||
 };
 
 build_type = _this select 0;
-build_time = 60;
+A3A_build_time = 60;
 build_cost = 0;
 private _playerDir = getDir player;
 private _playerPosition = position player;
@@ -82,63 +82,29 @@ switch build_type do
 	{
 	case "ST":
 		{
-		if (count (nearestTerrainObjects [player, ["House"], 70]) > 3) then
-			{
-			_classX = selectRandom ["Land_GarbageWashingMachine_F","Land_JunkPile_F","Land_Barricade_01_4m_F"];
-			}
-		else
-			{
-			if (count (nearestTerrainObjects [player,["tree"],70]) > 8) then
-				{
-				_classX = "Land_WoodPile_F";
-				}
-			else
-				{
-				_classX = "CraterLong_small";
-				};
-			};
+		_classX = "Land_Barricade_01_4m_F";
+		A3A_build_time = 45;
 		};
 	case "MT":
 		{
-		build_time = 60;
-		if (count (nearestTerrainObjects [player, ["House"], 70]) > 3) then
-			{
-			_classX = "Land_Barricade_01_10m_F";
-			}
-		else
-			{
-			if (count (nearestTerrainObjects [player,["tree"],70]) > 8) then
-				{
-				_classX = "Land_WoodPile_large_F";
-				}
-			else
-				{
-				_classX = selectRandom ["Land_BagFence_01_long_green_F","Land_SandbagBarricade_01_half_F"];
-				};
-			};
+		A3A_build_time = 60;
+		_classX = "Land_SandbagBarricade_01_half_F";
 		};
 	case "RB":
 		{
-		build_time = 100;
-		if (count (nearestTerrainObjects [player, ["House"], 70]) > 3) then
-			{
-			_classX = "Land_Tyres_F";
-			}
-		else
-			{
-			_classX = "Land_TimberPile_01_F";
-			};
+		A3A_build_time = 100;	
+		_classX = "Land_Tyres_F";
 		};
 	case "SB":
 		{
-		build_time = 60;
+		A3A_build_time = 60;
 		_classX = "Land_BagBunker_01_small_green_F";
 		build_cost = 100;
 		};
 	case "CB":
 		{
-		build_time = 120;
-		_classX = "Land_PillboxBunker_01_big_F";
+		A3A_build_time = 120;
+		_classX = "Land_Bunker_01_tall_F";
 		build_cost = 300;
 		};
 	};
@@ -152,7 +118,7 @@ if ((build_type == "SB") or (build_type == "CB")) then
 	if (build_cost > _resourcesFIA) then
 		{
 		_leave = true;
-		_textX = format ["You do not have enough money for this construction (%1 € needed)",build_cost]
+		_textX = format ["You do not have enough money for this construction (%1 € needed).",build_cost]
 		}
 	else
 		{
@@ -161,7 +127,7 @@ if ((build_type == "SB") or (build_type == "CB")) then
 		if (!(_playerPosition inArea build_nearestFriendlyMarker)) then
 			{
 			_leave = true;
-			_textX = "You cannot build a bunker outside a controlled zone";
+			_textX = "You cannot build a bunker outside a controlled zone.";
 			build_nearestFriendlyMarker = nil;
 			};
 		};
@@ -170,4 +136,4 @@ if ((build_type == "SB") or (build_type == "CB")) then
 if (_leave) exitWith {["Build Info", format ["%1",_textX]] call A3A_fnc_customHint;};
 
 //START PLACEMENT HERE
-[_classX, [], [], nil, false, "BUILDSTRUCTURE"] call HR_GRG_fnc_confirmPlacement;
+[_classX, "BUILDSTRUCTURE"] call HR_GRG_fnc_confirmPlacement;

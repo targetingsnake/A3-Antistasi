@@ -23,7 +23,7 @@
     License: MIT License
 */
 params [["_object", objNull, [objNull]]];
-{
-    !isNull _x
-    && {!("#" in typeOf _x)} //example "#particleSource"
-} count attachedObjects _object;
+
+count ([_object] call A3A_fnc_attachedObjects);
+
+

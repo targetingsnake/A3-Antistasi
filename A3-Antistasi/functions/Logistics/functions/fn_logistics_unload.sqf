@@ -31,10 +31,14 @@ if (isNull _vehicle) exitWith {};//vehicle deleted before unload was triggered
 if !(
     ((gunner _cargo) isEqualTo _cargo)
     or ((gunner _cargo) isEqualTo objNull)
-) exitWith {["Logistics", "Can't unload a static that's mounted"] remoteExec ["A3A_fnc_customHint", remoteExecutedOwner]};
+) exitWith {["Logistics", "Can't unload a static that's mounted."] remoteExec ["A3A_fnc_customHint", remoteExecutedOwner]};
 
-if (_vehicle getVariable ["LoadingCargo", false]) exitWith {["Logistics", "Cargo is already being unloaded from the vehicle"] remoteExec ["A3A_fnc_customHint", remoteExecutedOwner]};
+if (_vehicle getVariable ["LoadingCargo", false]) exitWith {["Logistics", "Cargo is already being unloaded from the vehicle."] remoteExec ["A3A_fnc_customHint", remoteExecutedOwner]};
 _vehicle setVariable ["LoadingCargo",true,true];
+
+//object string for jip
+private _objStringCargo = str _cargo splitString ":" joinString "";
+private _objStringVehicle = str _vehicle splitString ":" joinString "";
 
 //update list of nodes on vehicle
 _updateList = {
@@ -90,7 +94,7 @@ if !(_cargo isEqualTo objNull) then {//cargo not deleted
     } forEach A3A_logistics_weapons;
 
     if (_weapon) then {
-        [_vehicle, _cargo] remoteExecCall ["A3A_fnc_logistics_removeWeaponAction",0];
+        [_vehicle, _cargo, "A3A_Logistics_weaponAction_" + _objStringCargo] remoteExecCall ["A3A_fnc_logistics_removeWeaponAction",0];
         player setCaptive false; //break undercover for unloading weapon
     };
     _cargo setVariable ["AttachmentOffset", nil, true];
@@ -123,8 +127,8 @@ if !(_cargo isEqualTo objNull) then {//cargo not deleted
 if (isNull _cargo || isNull _vehicle) exitWith {};//vehicle or cargo deleted
 
 //unlock seats
-[_cargo, false] remoteExec ["A3A_fnc_logistics_toggleLock", 0, _cargo];
-[_vehicle, false, _seats] remoteExec ["A3A_fnc_logistics_toggleLock", 0, _vehicle];
+[_cargo, false] remoteExec ["A3A_fnc_logistics_toggleLock", 0, "A3A_Logistics_toggleLock" + _objStringCargo];
+[_vehicle, false, _seats] remoteExec ["A3A_fnc_logistics_toggleLock", 0, "A3A_Logistics_toggleLock" + _objStringVehicle];
 
 //update list
 _loaded deleteAt 0;

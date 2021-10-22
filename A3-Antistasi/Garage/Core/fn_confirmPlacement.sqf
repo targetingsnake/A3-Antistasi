@@ -5,10 +5,12 @@
 
     Arguments:
     0. <String> className of vehicle
-    1. <Array>  Arrays of [className of Mount, Index of mount in garage]
-    2. <Array>  Pylons
-    2. <Struct/nil> Vehicle state (optional)
-    3. <Bool>   use garage vehicle pool for placement (optional: default true)
+    1. <String> callback name (optional)(see HR_GRG_fnc_callbackHandler for code)
+    2. <Any>    Arguments for the callback (optional)
+    3. <Array>  Arrays of [className of Mount, Index of mount in garage] (optional) (internal)
+    4. <Array>  Pylons (optional)
+    5. <Struct/nil> Vehicle state (optional)
+    6. <Bool>   use garage vehicle pool for placement (optional: default false)
 
     Return Value:
     <nil>
@@ -25,11 +27,12 @@
 #include "\a3\ui_f\hpp\definedikcodes.inc"
 params [
     ["_class", "", [""]]
+    , ["_callBack", ""]
+    , ["_callBackArgs", []]
     , ["_mounts", [], [[]]]
     , ["_pylons", [], [[]]]
     , "_state"
-    , ["_useGRGPool", true, [true]]
-    , ["_callBack", ""]
+    , ["_useGRGPool", false, [false]]
 ];
 
 if (!isClass (configFile >> "CfgVehicles" >> _class)) exitWith {HR_GRG_placing = false};
@@ -45,10 +48,12 @@ HR_GRG_keyQ = false;
 HR_GRG_keyE = false;
 HR_GRG_validPlacement = 0;
 HR_GRG_CP_mounts = _mounts;
-HR_GRG_CP_pylons = if (!isNil "_pylons") then {_pylons} else {[]};
+HR_GRG_CP_pylons = _pylons;
 HR_GRG_usePool = _useGRGPool;
-HR_GRG_CP_callBack = if (HR_GRG_usePool) then {""} else {_callBack};
+HR_GRG_CP_callBack = [_callBack, _callBackArgs];
 HR_GRG_callBackFeedback = "";
+HR_GRG_EH_EF = -1;
+HR_GRG_EH_keyDown = -1;
 
 //define private use function
 HR_GRG_cleanUp = {
@@ -231,7 +236,7 @@ HR_GRG_EH_keyDown = findDisplay 46 displayAddEventHandler ["KeyDown", {
     };
 
     //complete or cancel placement
-    if (_key in [DIK_ESCAPE, DIK_RETURN, DIK_SPACE]) then {
+    if (_key in [DIK_ESCAPE, DIK_RETURN, DIK_SPACE, DIK_Y]) then {
         _return = true;
 
         //get type from display vehicle, and private copies of pos and dir
@@ -276,7 +281,7 @@ HR_GRG_EH_keyDown = findDisplay 46 displayAddEventHandler ["KeyDown", {
             _veh call HR_GRG_fnc_vehInit;
             if !(HR_GRG_usePool) then { [_veh,HR_GRG_CP_callBack, "Placed"] call HR_GRG_fnc_callbackHandler };
 
-            true;
+            true && (_key isNotEqualTo DIK_Y);
         } else { false };
         //handle garage pool changes
         if (HR_GRG_usePool) then {

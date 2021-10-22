@@ -13,6 +13,7 @@ class A3A
         class initFuncs {};
         class initGarrisons {};
         class initParams {};
+        class initPreJIP { preInit = 1; };
         class initSpawnPlaces {};
 
         class initVar {};
@@ -37,75 +38,76 @@ class A3A
         class addHC {};
         class addTimeForIdle {};
         class aggressionUpdateLoop {};
-		class AILoadInfo {};
+        class AILoadInfo {};
         class airspaceControl {};
-		class rebelAttack {};
-		class blackout {};
-		class buildHQ {};
+        class rebelAttack {};
+        class blackout {};
+        class buildHQ {};
         class calculateAggression {};
         class canMoveHQ {};
         class chooseAttackType {};
-		class citiesToCivPatrol {};
-		class citySupportChange {};
-		class commsMP {};
+        class citiesToCivPatrol {};
+        class citySupportChange {};
+        class commsMP {};
         class createBreachChargeText {};
-		class createControls {};
-		class createOutpostsFIA {};
-		class createPetros {};
-		class deleteControls {};
-		class destroyCity {};
-		class distance {};
-		class distanceUnits {};
-		class economicsAI {};
-		class ejectPvPPlayerIfInvalidVehicle {};
-		class FIAradio {};
+        class createControls {};
+        class createOutpostsFIA {};
+        class createPetros {};
+        class deleteControls {};
+        class destroyCity {};
+        class distance {};
+        class distanceUnits {};
+        class economicsAI {};
+        class ejectPvPPlayerIfInvalidVehicle {};
+        class FIAradio {};
         class findBaseForQRF {};
-		class findBasesForConvoy {};
-		class findNearestGoodRoad {};
-		class flagaction {};
-		class fogCheck {};
-		class garbageCleaner {};
-		class garrisonInfo {};
+        class findBasesForConvoy {};
+        class findNearestGoodRoad {};
+        class flagaction {};
+        class fogCheck {};
+        class garbageCleaner {};
+        class garrisonInfo {};
         class getAggroLevelString {};
+        class getPlayerScale {};
         class getVehiclePoolForAttacks {};
         class getVehiclePoolForQRFs {};
-		class vehicleBoxHeal {};
-		class initPetros {};
-		class isFrontline {};
-		class arePositionsConnected {};
-		class joinMultipleGroups {};
-		class keys {};
-		class localizar {};
-		class location {};
+        class vehicleBoxHeal {};
+        class initPetros {};
+        class isFrontline {};
+        class arePositionsConnected {};
+        class joinMultipleGroups {};
+        class keys {};
+        class localizar {};
+        class location {};
         class lockStatic {};
-		class logPerformance {};
-		class markerChange {};
-		class moveHQ {};
-		class mrkUpdate {};
-		class mrkWIN {};
-		class NATOFT {};
-		class numericRank {};
-		class onHeadlessClientDisconnect {};
-		class onPlayerDisconnect {};
-		class outpostDialog {};
-		class patrolDestinations {};
-		class placementSelection {};
-		class playableUnits {};
-		class getSideRadioTowerInfluence {};
-		class powerReorg {};
-		class radioCheck {};
-		class rebuildAssets {};
-		class rebuildRadioTower {};
-		class relocateHQObjects {};
-		class remUnitCount {};
-		class repairRuinedBuilding {};
-		class resourceCheckSkipTime {};
-		class resourcesFIA {};
-		class returnMuzzle {};
-		class revealToPlayer {};
-		class scheduler {};
-		class sellVehicle {};
-		class setMarkerAlphaForSide {};
+        class logPerformance {};
+        class markerChange {};
+        class moveHQ {};
+        class mrkUpdate {};
+        class mrkWIN {};
+        class NATOFT {};
+        class numericRank {};
+        class onHeadlessClientDisconnect {};
+        class onPlayerDisconnect {};
+        class outpostDialog {};
+        class patrolDestinations {};
+        class placementSelection {};
+        class playableUnits {};
+        class getSideRadioTowerInfluence {};
+        class powerReorg {};
+        class radioCheck {};
+        class rebuildAssets {};
+        class rebuildRadioTower {};
+        class relocateHQObjects {};
+        class remUnitCount {};
+        class repairRuinedBuilding {};
+        class resourceCheckSkipTime {};
+        class resourcesFIA {};
+        class returnMuzzle {};
+        class revealToPlayer {};
+        class scheduler {};
+        class sellVehicle {};
+        class setMarkerAlphaForSide {};
         class setPlaneLoadout {};
         class singlePlayerBlackScreenWarning {};
         class sizeMarker {};
@@ -209,8 +211,8 @@ class A3A
         class spawnConvoyLine {};
     };
 
-	class CREATE
-	{
+    class CREATE
+    {
         class AAFroadPatrol {};
         class addSprayEH {};
         class airportCanAttack {};
@@ -266,7 +268,7 @@ class A3A
         class vehKilledOrCaptured {};
         class wavedCA {};
         class WPCreate {};
-	};
+    };
 
     class Debugging
     {
@@ -297,6 +299,7 @@ class A3A
 
     class EventHandler
     {
+        class addArtilleryDetectionEH {};
         class addArtilleryTrailEH {};
     };
 
@@ -347,21 +350,21 @@ class A3A
     };
 
     class Loadouts
-	{
-		file = "functions\Templates\Loadouts";
-		class loadout_setBackpack {};
-		class loadout_addEquipment {};
-		class loadout_setHelmet {};
-		class loadout_addItems {};
-		class loadout_additionalMuzzleMags {};
-		class loadout_setUniform {};
-		class loadout_setVest {};
-		class loadout_setWeapon {};
-		class loadout_builder {};
-		class loadout_createBase {};
-		class loadout_defaultWeaponMag {};
-		class loadout_itemLoad {};
-	};
+    {
+        file = "functions\Templates\Loadouts";
+        class loadout_setBackpack {};
+        class loadout_addEquipment {};
+        class loadout_setHelmet {};
+        class loadout_addItems {};
+        class loadout_additionalMuzzleMags {};
+        class loadout_setUniform {};
+        class loadout_setVest {};
+        class loadout_setWeapon {};
+        class loadout_builder {};
+        class loadout_createBase {};
+        class loadout_defaultWeaponMag {};
+        class loadout_itemLoad {};
+    };
 
     class Logistics
     {
@@ -439,6 +442,7 @@ class A3A
     class Ammunition
     {
         class ACEpvpReDress {};
+        class allMagazines {};
         class ammunitionTransfer {};
         class arsenalManage {};
         class categoryOverrides {};
@@ -552,6 +556,7 @@ class A3A
         class postmortem {};
         class reDress {};
         class reinfPlayer {};
+        class spawnHCGroup {};
         class stealStatic {};
         class vehiclePrice {};
         class vehStats {};
@@ -658,9 +663,9 @@ class A3A
     class Templates
     {
         class aceModCompat {};
-		class compatibilityLoadFaction {};
-		class getLoadout {};
-		class loadFaction {};
+        class compatibilityLoadFaction {};
+        class getLoadout {};
+        class loadFaction {};
         class ifaModCompat {};
         class rhsModCompat {};
     };
@@ -681,6 +686,15 @@ class A3A
         class shader_ratioToHex {};
         class updateInfoBarShown {};
         class disableInfoBar {};
+    };
+    class uintToHex
+    {
+        file = "functions\Utility\uintToHex";
+        class uint12ToHex {};
+        class uint16ToHex {};
+        class uint20ToHex {};
+        class uint24ToHex {};
+        class uintToHexGenTables {};
     };
 
     class Undercover
@@ -708,8 +722,11 @@ class A3A
     };
 
     class UtilityItems {
-        class spawnLight {};
-        class initUtilityItems {};
+        class carryItem {};
+        class initMovableObject {};
         class rotateItem {};
+        class spawnLight {};
+        class attachedObjects {};
+        class dropObject {};
     };
 };
