@@ -1,4 +1,4 @@
-#include "..\Includes\common.inc"
+#include "..\..\Includes\common.inc"
 FIX_LINE_NUMBERS()
 //if (!isServer) exitWith{};
 private ["_groups","_hr","_resourcesFIA","_wp","_groupX","_veh","_leave"];

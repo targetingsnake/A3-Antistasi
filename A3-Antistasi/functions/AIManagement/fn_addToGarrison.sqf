@@ -1,4 +1,4 @@
-#include "..\Includes\common.inc"
+#include "..\..\Includes\common.inc"
 FIX_LINE_NUMBERS()
 private ["_positionTel","_nearX","_thingX","_groupX","_unitsX","_leave"];
 if (!visibleMap) then {openMap true};
