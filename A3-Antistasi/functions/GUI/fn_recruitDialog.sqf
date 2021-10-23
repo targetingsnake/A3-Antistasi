@@ -62,14 +62,14 @@ switch (_mode) do
         private _bombSpecialistButton = _display displayCtrl  A3A_IDC_RECRUITBOMBSPECIALISTBUTTON;
 
         // Get unit prices
-        private _militiamanPrice = server getVariable SDKMil;
-        private _autoriflemanPrice = server getVariable SDKMG;
-        private _grenadierPrice = server getVariable SDKGL;
-        private _antitankPrice = server getVariable SDKATman;
-        private _medicPrice = server getVariable SDKMedic;
-        private _marksmanPrice = server getVariable SDKSniper;
-        private _engineerPrice = server getVariable SDKEng;
-        private _bombSpecialistPrice = server getVariable SDKExp;
+        private _militiamanPrice = server getVariable FactionGet(reb,"unitRifle");
+        private _autoriflemanPrice = server getVariable FactionGet(reb,"unitMG");
+        private _grenadierPrice = server getVariable FactionGet(reb,"unitGL");
+        private _antitankPrice = server getVariable FactionGet(reb,"unitLAT");
+        private _medicPrice = server getVariable FactionGet(reb,"unitMedic");
+        private _marksmanPrice = server getVariable FactionGet(reb,"unitSniper");
+        private _engineerPrice = server getVariable FactionGet(reb,"unitEng");
+        private _bombSpecialistPrice = server getVariable FactionGet(reb,"unitExp");
 
         // Update price labels
         _militiamanPriceText ctrlSetText ((str _militiamanPrice) + "€");
