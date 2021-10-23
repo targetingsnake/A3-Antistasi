@@ -17,7 +17,7 @@ Dependencies:
     None
 
 Example:
-    ["onLoad"] spawn A3A_fnc_mainDialog; // initialization
+    ["onLoad"] spawn A3A_fnc_buyVehicleDialog; // initialization
 */
 
 #include "..\..\GUI\ids.inc"
@@ -41,10 +41,10 @@ switch (_mode) do
 
         // Add civ vehicles to the list
         private _civilianVehicles = [
-            civCar,
-            civTruck,
-            civHeli,
-            civBoat
+            A3A_faction_reb get 'vehicleCivCar',
+            A3A_faction_reb get 'vehicleCivTruck',
+            A3A_faction_reb get 'vehicleCivHeli',
+            A3A_faction_reb get 'vehicleCivBoat'
         ];
 
         {
@@ -54,14 +54,14 @@ switch (_mode) do
 
         // Add military vehicles to the list
         private _militaryVehicles = [
-            vehSDKBike,
-            vehSDKLightUnarmed,
-            vehSDKTruck,
-            vehSDKLightArmed,
-            SDKMGStatic,
-            SDKMortar,
-            staticATteamPlayer,
-            staticAAteamPlayer
+            A3A_faction_reb get 'vehicleBasic',
+            A3A_faction_reb get 'vehicleLightUnarmed',
+            A3A_faction_reb get 'vehicleTruck',
+            A3A_faction_reb get 'vehicleLightArmed',
+            A3A_faction_reb get 'staticMG',
+            A3A_faction_reb get 'staticMortar',
+            A3A_faction_reb get 'staticAT',
+            A3A_faction_reb get 'staticAA'
         ];
 
         {
