@@ -1,4 +1,6 @@
 // TODO UI-update: rename and possibly move this to a more appropriate location
+#include "..\..\Includes\common.inc"
+FIX_LINE_NUMBERS()
 
 private ["_typeX","_costs","_positionTel","_quantity","_quantityMax"];
 
@@ -8,11 +10,11 @@ if (!([player] call A3A_fnc_hasRadio)) exitWith {if !(A3A_hasIFA) then {["Minefi
 
 _typeX = _this select 0;
 
-_costs = (2*(server getVariable (SDKExp select 0))) + ([vehSDKTruck] call A3A_fnc_vehiclePrice);
+_costs = 2 * (server getVariable FactionGet(reb,"unitExp")) + ([FactionGet(reb,"vehicleTruck")] call A3A_fnc_vehiclePrice);
 _hr = 2;
 if (_typeX == "delete") then
 	{
-	_costs = _costs - (server getVariable (SDKExp select 0));
+	_costs = _costs - (server getVariable FactionGet(reb,"unitExp"));
 	_hr = 1;
 	};
 if ((server getVariable "resourcesFIA" < _costs) or (server getVariable "hr" < _hr)) exitWith {["Minefields", format ["Not enough resources to recruit a mine deploying team (%1 € and %2 HR needed).",_costs,_hr]] call A3A_fnc_customHint;};
@@ -28,11 +30,11 @@ if (_typeX == "delete") exitWith
 _pool = jna_dataList select IDC_RSCDISPLAYARSENAL_TAB_CARGOPUT;
 _quantity = 0;
 _quantityMax = 40;
-_typeM =APERSMineMag;
+_typeM = FactionGet(reb,"mineAPERS");
 if (_typeX == "ATMine") then
 	{
 	_quantityMax = 20;
-	_typeM = ATMineMag;
+	_typeM = FactionGet(reb,"mineAT");
 	};
 
 {

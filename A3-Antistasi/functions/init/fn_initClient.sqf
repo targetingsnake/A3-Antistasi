@@ -1,5 +1,6 @@
 #include "..\..\Includes\common.inc"
 FIX_LINE_NUMBERS()
+#define OccAndInv(VAR) (FactionGet(occ,VAR) + FactionGet(inv,VAR))
 
 //Make sure logLevel is always initialised.
 //This should be overridden by the server, as appropriate. Hence the nil check.
@@ -33,6 +34,7 @@ if (!hasInterface) exitWith {
 
 waitUntil {!isNull player};
 waitUntil {player == player};
+
 //Disable player saving until they're fully ready, and have chosen whether to load their save.
 player setVariable ["canSave", false, true];
 
@@ -46,6 +48,7 @@ else {
 	// SP or hosted, initFuncs/var run in serverInit
 	waitUntil {sleep 0.5;(!isNil "serverInitDone")};
 };
+private _side = side group player;
 [] execVM "briefing.sqf";
 
 _isJip = _this select 1;
@@ -145,7 +148,7 @@ player addEventHandler ["InventoryOpened", {
 	if (captive _playerX) then {
 		_containerX = _this select 1;
 		_typeX = typeOf _containerX;
-		if (((_containerX isKindOf "Man") and (!alive _containerX)) or (_typeX == NATOAmmoBox) or (_typeX == CSATAmmoBox)) then {
+		if (((_containerX isKindOf "Man") and (!alive _containerX)) or (_typeX isEqualTo OccAndInv("ammoBox"))) then {
 			if ({if (((side _x== Invaders) or (side _x== Occupants)) and (_x knowsAbout _playerX > 1.4)) exitWith {1}} count allUnits > 0) then{
 				[_playerX,false] remoteExec ["setCaptive",0,_playerX];
 				_playerX setCaptive false;
@@ -354,14 +357,13 @@ if (A3A_hasACE) then
 	};
 	// Remove group join action from all rebel unit types
 	// Need to compile the menus first, because ACE delays creating menus until a unit of that class is created
-	private _playerUnits = ["I_G_soldier_F", "I_G_Soldier_TL_F", "I_G_Soldier_AR_F", "I_G_medic_F", "I_G_engineer_F", "I_G_Soldier_GL_F" /*greenfor*/,
-		"B_G_soldier_F", "B_G_Soldier_TL_F", "B_G_Soldier_AR_F", "B_G_medic_F", "B_G_engineer_F", "B_G_Soldier_GL_F" /*bluefor*/];
+	private _unitTypes = ["I_G_soldier_F", "I_G_Soldier_TL_F", "I_G_Soldier_AR_F", "I_G_medic_F", "I_G_engineer_F", "I_G_Soldier_GL_F"];
 	{
 		[_x] call ace_interact_menu_fnc_compileMenu;
 		[_x] call ace_interact_menu_fnc_compileMenuSelfAction;
 		[_x, 1,["ACE_SelfActions", "ACE_TeamManagement", "ACE_LeaveGroup"]] call ace_interact_menu_fnc_removeActionFromClass;
 		[_x, 0,["ACE_MainActions", "ACE_JoinGroup"]] call ace_interact_menu_fnc_removeActionFromClass;
-	} forEach (_playerUnits + [typePetros, staticCrewTeamPlayer, SDKUnarmed] + SDKSniper + SDKATman + SDKMedic + SDKMG + SDKExp + SDKGL + SDKMil + SDKSL + SDKEng);
+	} forEach _unitTypes;			// TODO: add raw unit types from new templates
 };
 
 boxX allowDamage false;

@@ -1,4 +1,6 @@
-// TODO UI-update: add proper header
+#include "..\..\Includes\common.inc"
+FIX_LINE_NUMBERS()
+
 params [["_moneyToTake", 0]];
 
 _resourcesFIA = server getVariable "resourcesFIA";
@@ -9,4 +11,4 @@ server setvariable ["resourcesFIA",_resourcesFIA - _moneyToTake, true];
 [- (_moneyTotake / 50),theBoss] call A3A_fnc_playerScoreAdd;
 [_moneyToTake] call A3A_fnc_resourcesPlayer;
 
-["Money Grab", format ["You grabbed %1 € from the %2 Money Pool.<br/><br/>This will affect your prestige and status among %2 forces.", _moneyTotake ,nameTeamPlayer]] call A3A_fnc_customHint;
+["Money Grab", format ["You grabbed %1 € from the %2 Money Pool.<br/><br/>This will affect your prestige and status among %2 forces.", _moneyTotake ,FactionGet(reb,"name")]] call A3A_fnc_customHint;
