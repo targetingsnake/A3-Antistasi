@@ -16,7 +16,7 @@ if ([_sideX] call A3A_fnc_remUnitCount < _numberX) exitWith {
 };
 
 _land = if (_posOrigin distance _posDestination > distanceForLandAttack) then {false} else {true};
-_typeGroup = selectRandom (_groupData get (if (_numberX == 4) then {"medium"} else {"squads"}));
+_typeGroup = selectRandom (_faction get (if (_numberX == 4) then {"groupsMedium"} else {"groupsSquads"}));
 _typeVehX = "";
 if (_land) then
 {
@@ -25,7 +25,8 @@ if (_land) then
 else
 {
 	_vehPool = (_faction get "vehiclesHelisLight") + (_faction get "vehiclesHelisTransport") + (_faction get "vehiclesPlanesTransport");
-    _vehPool = _vehPool arrayIntersect _vehPool;//ensure unique classnames
+    _vehPool = _vehPool arrayIntersect _vehPool; //ensure unique classnames
+	_vehPool = _vehPool select { [_x] call A3A_fnc_vehAvailable };
 	if ((_numberX > 4) and (count _vehPool > 1) and !A3A_hasIFA) then {_vehPool = _vehPool - (_faction get "vehiclesHelisLight")};
 	//_vehPool = _vehPool select {(_x isKindOf "Helicopter") and (_x in vehFastRope)};
 	_typeVehX = selectRandom _vehPool;

@@ -17,7 +17,7 @@ Example:
 
 License: MIT License
 */
-#include "..\..\..\script_component.hpp"
+#include "..\..\..\Includes\common.inc"
 FIX_LINE_NUMBERS()
 params ["_faction", "_templatePath"];
 private _failedLoadouts = createHashMap;

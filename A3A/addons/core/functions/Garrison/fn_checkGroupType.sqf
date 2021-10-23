@@ -19,10 +19,10 @@ private _occGroupData = FactionGet(occ, "groups");
 private _invGroupData = FactionGet(occ, "groups");
 
 //Tanks are always combined with an AT team
-if(_vehicle == "LAND_TANK") exitWith {(_group == _occGroupData get "AT" || {_group == _invGroupData get "AT"})};
+if(_vehicle == "LAND_TANK") exitWith {_group == FactionGet(occ,"groupAT") || _group == FactionGet(inv,"groupAT")};
 
 //AA is always combined with an AA team
-if(_vehicle == "LAND_AIR") exitWith {(_group == _occGroupData get "AA" || {_group == _invGroupData get "AA"})};
+if(_vehicle == "LAND_AIR") exitWith {_group == FactionGet(occ,"groupAA") || _group == FactionGet(inv,"groupAA")};
 
 //Check group size to determine
 if(_preference == "SQUAD") then

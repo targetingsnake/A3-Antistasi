@@ -3,9 +3,6 @@ FIX_LINE_NUMBERS()
 //Original Author: Barbolani
 //Edited and updated by the Antstasi Community Development Team
 
-#include "..\..\script_component.hpp"
-FIX_LINE_NUMBERS()
-
 params [["_timeInHours", 1/6], ["_occScale", 1], ["_invScale", 1.2]];
 
 // Increase one type by _increase*_typeCoeff, if total of types is lower than _baseCap*_typeCoeff

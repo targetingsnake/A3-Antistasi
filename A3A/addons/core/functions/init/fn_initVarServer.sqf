@@ -390,11 +390,11 @@ if (A3A_hasACRE && startWithLongRangeRadio) then {FactionGet(reb,"initialRebelEq
 ////////////////////////////////////
 
 Info("Creating pricelist");
-private _rebGroups = FactionGet(reb,"groups");
-server setVariable [_rebGroups get "Mil",50,true];
-{server setVariable [_x,75,true]} forEach ((_rebGroups get "Tier1") - [_rebGroups get "Mil"]);
-{server setVariable [_x,100,true]} forEach (_rebGroups get "Tier2");
-{server setVariable [_x,150,true]} forEach (_rebGroups get "Tier3");
+{server setVariable [_x,50,true]} forEach [FactionGet(reb,"unitRifle"), FactionGet(reb,"unitCrew")];
+{server setVariable [_x,75,true]} forEach [FactionGet(reb,"unitMG"), FactionGet(reb,"unitGL"), FactionGet(reb,"unitLAT")];
+{server setVariable [_x,100,true]} forEach [FactionGet(reb,"unitMedic"), FactionGet(reb,"unitExp"), FactionGet(reb,"unitEng")];
+{server setVariable [_x,150,true]} forEach [FactionGet(reb,"unitSL"), FactionGet(reb,"unitSniper")];
+
 {timer setVariable [_x,3,true]} forEach (FactionGet(occ,"staticAT") + FactionGet(occ,"staticAA"));
 {timer setVariable [_x,6,true]} forEach (FactionGet(inv,"staticAT") + FactionGet(inv,"staticAA"));
 {timer setVariable [_x,0,true]} forEach FactionGet(occ,"vehiclesAPCs");
@@ -410,11 +410,11 @@ server setVariable [_rebGroups get "Mil",50,true];
 {timer setVariable [_x,0,true]} forEach FactionGet(occ,"vehiclesPlanesAA");
 {timer setVariable [_x,10,true]} forEach FactionGet(inv,"vehiclesPlanesAA");
 {timer setVariable [_x,1,true]} forEach FactionGet(occ,"vehiclesPlanesTransport");
-{timer setVariable [_x,1,true]} forEach (FactionGet(occ,"vehiclesTransportHelis") - FactionGet(occ,"vehiclesHelisLight"));
-{timer setVariable [_x,1,true]} forEach FactionGet(inv,"vehiclesPlanesTransport");
-{timer setVariable [_x,10,true]} forEach (FactionGet(inv,"vehiclesTransportHelis") - FactionGet(occ,"vehiclesHelisLight"));
-{timer setVariable [_x,0,true]} forEach FactionGet(occ,"vehiclesAttackHelis");
-{timer setVariable [_x,10,true]} forEach FactionGet(inv,"vehiclesAttackHelis");
+{timer setVariable [_x,1,true]} forEach FactionGet(occ,"vehiclesHelisTransport");
+{timer setVariable [_x,10,true]} forEach FactionGet(inv,"vehiclesPlanesTransport");
+{timer setVariable [_x,10,true]} forEach FactionGet(inv,"vehiclesHelisTransport");
+{timer setVariable [_x,0,true]} forEach FactionGet(occ,"vehiclesHelisAttack");
+{timer setVariable [_x,10,true]} forEach FactionGet(inv,"vehiclesHelisAttack");
 {timer setVariable [_x,0,true]} forEach FactionGet(occ, "vehiclesArtillery");
 {timer setVariable [_x,5,true]} forEach FactionGet(inv, "vehiclesArtillery");
 
