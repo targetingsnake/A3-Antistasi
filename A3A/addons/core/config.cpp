@@ -27,7 +27,7 @@ class A3A
     class CfgFunctions {
         class A3A {
             class Debugging {
-                file = QPATHTOFOLDER(functions\Debugging);
+                file = QPATHTOFOLDER(functions\Debug);
                 class prepFunctions { preInit = 1; };
                 class runPostInitFuncs { postInit = 1 };
             };
