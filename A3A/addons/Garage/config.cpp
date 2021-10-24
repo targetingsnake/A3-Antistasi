@@ -15,4 +15,11 @@ class CfgPatches {
 };
 
 #include "Dialogs.hpp"
-#include "CfgFunctions.hpp"
+
+#if __A3_DEBUG__
+    class A3A {
+        #include "CfgFunctions.hpp"
+    };
+#else
+    #include "CfgFunctions.hpp"
+#endif
