@@ -80,6 +80,10 @@
     #define Log_Trace
 #endif
 
+#ifndef VARDEF
+    #define VARDEF(Var, Def) (if (isNil #Var) then {Def} else {Var})
+#endif
+
 //line limit handler
 #define _LOG_breakUpLogLine(LOG_LINE) call { \
     if (count LOG_LINE < 1020) exitWith {[LOG_LINE]}; \
