@@ -269,8 +269,8 @@ class CfgFunctions
             class WPCreate {};
         };
 
-        class Debug {
-            file = QPATHTOFOLDER(functions\Debug);
+        class debug {
+            file = QPATHTOFOLDER(functions\debug);
             class deleteEmptyGroupsOnSide {};
             class installSchrodingersBuildingFix {};
             class prepFunctions {};

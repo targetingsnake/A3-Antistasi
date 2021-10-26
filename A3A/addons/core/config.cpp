@@ -14,8 +14,7 @@ class CfgPatches {
     };
 };
 
-class A3A
-{
+class A3A {
     #include "Templates.hpp"
 
 #if __A3_DEBUG__
@@ -26,10 +25,10 @@ class A3A
 #if __A3_DEBUG__
     class CfgFunctions {
         class A3A {
-            class Debugging {
-                file = QPATHTOFOLDER(functions\Debug);
+            class debug {
+                file = QPATHTOFOLDER(functions\debug);
                 class prepFunctions { preInit = 1; };
-                class runPostInitFuncs { postInit = 1 };
+                class runPostInitFuncs { postInit = 1; };
             };
         };
     };
