@@ -6,7 +6,6 @@ private ["_banco","_markerX","_difficultX","_leave","_contactX","_groupContact",
 FIX_LINE_NUMBERS()
 _banco = _this select 0;
 _markerX = [citiesX,_banco] call BIS_fnc_nearestPosition;
-private _groupData = FactionGet(occ, "groups");
 
 _difficultX = if (random 10 < tierWar) then {true} else {false};
 _leave = false;

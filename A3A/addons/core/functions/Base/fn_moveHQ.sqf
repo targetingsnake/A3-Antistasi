@@ -32,7 +32,6 @@ private _possible = [] call A3A_fnc_canMoveHQ;
 if !(_possible#0) exitWith {};
 
 [petros,"remove"] remoteExec ["A3A_fnc_flagaction",0];
-private _groupData = FactionGet(reb,"groups");
 private _groupPetros = group petros;
 [petros] join theBoss;
 deleteGroup _groupPetros;

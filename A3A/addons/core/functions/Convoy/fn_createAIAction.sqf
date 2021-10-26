@@ -490,7 +490,7 @@ if(_type == "convoy") then
 //      missionsX pushBack ["CONVOY","CREATED"]; publicVariable "missionsX";
 
         sleep (_timeLimit * 60);
-        _crewUnits = _groupData get "crew";
+        _crewUnits = _faction get "unitCrew";
 
         //Creating convoy lead vehicle
         _typeVehLead = if (_side == Occupants && _isEasy) then {_faction get "vehiclesPolice"} else {selectRandom (_faction get "vehiclesLightArmed")};

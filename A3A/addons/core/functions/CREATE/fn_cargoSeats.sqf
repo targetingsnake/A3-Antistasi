@@ -4,7 +4,6 @@ private _filename = "fn_cargoSeats";
 params ["_veh", "_sideX"];
 
 private _faction = Faction(_sideX);
-private _groupData = FactionGetGroups(_sideX);
 private _isMilitia = _veh in ((_faction get "vehiclesMilitiaLightArmed") + (_faction get "vehiclesMilitiaTrucks") + (_faction get "vehiclesMilitiaCars"));
 
 private _totalSeats = [_veh, true] call BIS_fnc_crewCount; // Number of total seats: crew + non-FFV cargo/passengers + FFV cargo/passengers

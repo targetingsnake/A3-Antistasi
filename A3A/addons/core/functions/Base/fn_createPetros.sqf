@@ -2,7 +2,6 @@
 FIX_LINE_NUMBERS()
 params [["_location", []]];
 
-private _groupData = FactionGet(reb, "groups");
 private _oldPetros = if (isNil "petros") then {objNull} else {petros};
 private _groupPetros = if (!isNull _oldPetros && {side group _oldPetros == teamPlayer}) then {group _oldPetros} else {createGroup teamPlayer};
 

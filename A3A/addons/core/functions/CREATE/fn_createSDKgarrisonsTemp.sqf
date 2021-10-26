@@ -1,7 +1,6 @@
 #include "..\..\script_component.hpp"
 FIX_LINE_NUMBERS()
 // Create a new rebel unit in a garrison that's already spawned
-private _groupData = FactionGet(reb,"groups");
 _markerX = _this select 0;
 _typeX = _this select 1;
 _positionX = getMarkerPos _markerX;
@@ -38,7 +37,6 @@ if (_typeX isEqualType "") then {
     };
 
     [_unit,_markerX] spawn {
-        private _groupData = FactionGet(reb,"groups");
         private _unit = _this select 0;
         private _markerX = _this select 1;
         waitUntil {sleep 1; (spawner getVariable _markerX == 2)};

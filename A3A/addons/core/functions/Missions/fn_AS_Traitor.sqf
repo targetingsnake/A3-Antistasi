@@ -10,7 +10,6 @@ _contactX = objNull;
 _groupContact = grpNull;
 _tsk = "";
 _tsk1 = "";
-private _groupData = FactionGet(occ,"groups");
 
 _positionX = getMarkerPos _markerX;
 
