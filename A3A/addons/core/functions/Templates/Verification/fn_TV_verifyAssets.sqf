@@ -1,4 +1,4 @@
-#include "..\..\..\Includes\common.inc"
+#include "..\..\..\script_component.hpp"
 FIX_LINE_NUMBERS()
 params ["_faction", "_side", "_templatePath"];
 
@@ -7,7 +7,7 @@ params ["_faction", "_side", "_templatePath"];
 //===========|
 private _printInvalidReasons = {
     if (_invalidReasons isEqualTo []) exitWith {};
-    Error(_templatePath+" Template validation failed for:" + endl + LogNewLine + (_invalidReasons joinString (endl + LogNewLine)));
+    Error(_templatePath+" Template validation failed for:" + endl + _LOG_newLineIndicator + (_invalidReasons joinString (endl + _LOG_newLineIndicator)));
 };
 
 private _validClassCaseSensitive = {

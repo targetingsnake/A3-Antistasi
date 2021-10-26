@@ -16,7 +16,7 @@ Example:
 
 License: MIT License
 */
-#include "..\..\Includes\common.inc"
+#include "..\..\script_component.hpp"
 FIX_LINE_NUMBERS()
 
 #define OccAndInv(VAR) (FactionGetOrDefault(occ, VAR, []) + FactionGetOrDefault(inv, VAR, []))
