@@ -19,34 +19,72 @@ Example: call A3A_fnc_prepFunctions;
 
 License: MIT License
 */
-params [["_skipPreInit", false, [true]]];
+private _skipPreInit = false;
 
-private _getHeader = {
-    switch (_this) do {
-        case -1: {""}; //no header
-        case 0: {
-            format ["private _fnc_scriptNameParent = if (isNil '_fnc_scriptName') then { '%1' } else { _fnc_scriptName };
-            scriptName '%1';", _funcName];
-        }; //default header
-        case 1: {
-            private _defaultHeader = format [
-                "private _fnc_scriptNameParent = if (isNil '_fnc_scriptName') then {'%1'} else {_fnc_scriptName};
-                private _fnc_scriptName = '%1';
-                scriptName _fnc_scriptName;"
-            , _funcName];
+//Headers (optimised headers by Killzone_Kid)
+private _headerNoDebug = "
+    private _fnc_scriptNameParent = if (isNil '_fnc_scriptName') then {'%1'} else {_fnc_scriptName};
+    private _fnc_scriptName = '%1';
+    scriptName _fnc_scriptName;
+";
+private _headerSaveScriptMap = "
+    private _fnc_scriptMap = if (isNil '_fnc_scriptMap') then {[_fnc_scriptName]} else {_fnc_scriptMap + [_fnc_scriptName]};
+";
+private _headerLogScriptMap = "
+    textLogFormat ['%1 : %2', _fnc_scriptMap joinString ' >> ', _this];
+";
+private _headerSystem = "
+    private _fnc_scriptNameParent = if (isNil '_fnc_scriptName') then {'%1'} else {_fnc_scriptName};
+    scriptName '%1';
+";
 
-            private _debugMode = uinamespace getVariable ["bis_fnc_initFunctions_debugMode",0];
-            if (_debugMode > 0) then {_defaultHeader = _defaultHeader + "private _fnc_scriptMap = if (isNil '_fnc_scriptMap') then {[_fnc_scriptName]} else {_fnc_scriptMap + [_fnc_scriptName]};"};
-            if (_debugMode > 1) then {_defaultHeader = _defaultHeader + "textLogFormat ['%1 : %2', _fnc_scriptMap joinString ' >> ', _this];"};
+//--- Compose headers based on current debug mode
+private _debug = uinamespace getvariable ["bis_fnc_initFunctions_debugMode", 0];
+private _headerDefault = switch _debug do {
 
-            _defaultHeader;
-        }; //debug header
-        default {""}; //invalid header value,
+    //--- 0 - Debug mode off
+    default {
+        _headerNoDebug
+    };
+
+    //--- 1 - Save script map (order of executed functions) to '_fnc_scriptMap' variable
+    case 1: {
+        _headerNoDebug + _headerSaveScriptMap
+    };
+
+    //--- 2 - Save script map and log it
+    case 2: {
+        _headerNoDebug + _headerSaveScriptMap + _headerLogScriptMap
     };
 };
 
+//compile function (credit to BI: Karel Moricky)
+_fncCompile = {
+    //      Func name,  file,      headerType
+    params ["_fncVar", "_fncPath", "_fncHeader"];
+
+    private _header = switch _fncHeader do {
+
+        //--- No header (used in low-level functions, like 'fired' event handlers for every weapon)
+        case -1: { "" };
+
+        //--- System functions' header (rewrite default header based on debug mode)
+        case 1: { _headerSystem };
+
+        //--- Full header
+        default { _headerDefault };
+    };
+
+    //--- Extend error report by including name of the function responsible
+    private _debugHeaderExtended = format ["%4%1line 1 ""%2 [%3]""%4", "#", _fncPath, _fncVar, toString [13,10]];
+    private _debugMessage = "Log: [Functions]%1 | %2";
+
+    compile (format [_header, _fncVar, _debugMessage] + _debugHeaderExtended + preprocessFile _fncPath);
+
+};
+
 private _preInitFuncs = [];
-private A3A_postInitFuncs = [];
+A3A_postInitFuncs = [];
 {
     //Tag scope
     private _tag = configName _x;
@@ -64,7 +102,7 @@ private A3A_postInitFuncs = [];
             private _funcName = configName _x;
             private _func = _tag + "_fnc_" + _funcName;
 
-            private _ext = if (getText (_x/"ext") isNotEqualTo "") then {".sqf"} else {getText (_x/"ext")};
+            private _ext = if (getText (_x/"ext") isEqualTo "") then {".sqf"} else {getText (_x/"ext")};
             private _file = _path + "\fn_" + _funcName + _ext;
             if (getText (_x/"file") isNotEqualTo "") then { _file = getText (_x/"file") };
 
@@ -74,9 +112,12 @@ private A3A_postInitFuncs = [];
             //allways recompiles so ignore that attribute
             //preStart dosnt support live edit and would only trigger on game start anyways so no point in support here either
 
-            private _header = (getNumber (_x/"headerType")) call _getHeader;
+            if (_ext isEqualTo ".fsm") then {
+                missionNamespace setVariable [_func, compile format ["%1_fsm = _this execfsm '%2'; %1_fsm",_func,_file]];
+                continue;
+            };
 
-            missionNamespace setVariable [ _func, compile (_header + preprocessFileLineNumbers _file) ];
+            missionNamespace setVariable [_func, [_func, _file, getNumber (_x/"headerType")] call _fncCompile];
         } forEach ("true" configClasses _x);
 
     } forEach ("true" configClasses _x);
