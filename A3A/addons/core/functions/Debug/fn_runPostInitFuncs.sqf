@@ -16,7 +16,9 @@ Example:
 
 License: MIT License
 */
-if (isNil "A3A_postInitFuncs" || { !(A3A_postInitFuncs isEqualType []) }) exitWith { false };
-{ call (missionNamespace getVariable _x) } forEach A3A_postInitFuncs;
+if !( isClass (missionConfigFile/"A3A") ) exitWith { false }; //dont run code unless we are in a A3A mission
+if (isNil "A3A_postInitFuncs" || { !(A3A_postInitFuncs isEqualType []) }) exitWith { false }; //if someone messed with postInitFuncs list or it wasnt created abort
+
+{ call (missionNamespace getVariable _x) } forEach A3A_postInitFuncs; //run postInit funcs
 
 true
