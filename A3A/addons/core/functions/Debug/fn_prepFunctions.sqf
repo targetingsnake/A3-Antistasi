@@ -6,7 +6,7 @@ Description:
 
     runs preInit funcs that are compiled aswell and defines A3A_postInitFuncs for postInit funcs to be run
 
-Arguments: <bool> skip running PreInit after compilation (optional - Default: false)
+Arguments: <string> if "preInit" run preInit funcs
 
 Return Value: <Bool> compiled
 
@@ -19,7 +19,8 @@ Example: call A3A_fnc_prepFunctions;
 
 License: MIT License
 */
-private _skipPreInit = false;
+private _callType = param [0, "", [""]];
+private _skipPreInit = if (_callType isEqualTo "preInit") then {false} else {true};
 
 //Headers (optimised headers by Killzone_Kid)
 private _headerNoDebug = "
