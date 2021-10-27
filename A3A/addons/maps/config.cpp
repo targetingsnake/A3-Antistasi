@@ -14,27 +14,6 @@ class CfgPatches {
     };
 };
 
-class A3A
-{
-    class NavGrid
-    {
-        altis = "\x\A3A\addons\maps\Antistasi_Altis.Altis\Navigation\altisNavGrid.sqf";
-        tem_anizay = "\x\A3A\addons\maps\Antistasi_Anizay.tem_anizay\Navigation\tem_anizayNavGrid.sqf";
-        cam_lao_nam = "\x\A3A\addons\maps\Antistasi_CamLaoNam.cam_lao_nam\Navigation\cam_lao_namNavGrid.sqf";
-        chernarus_summer = "\x\A3A\addons\maps\Antistasi_Chernarus.chernarus_summer\Navigation\chernarus_summerNavGrid.sqf";
-        chernarus_winter = "\x\A3A\addons\maps\Antistasi_ChernarusWinter.chernarus_winter\Navigation\chernarus_winterNavGrid.sqf";
-        kunduz = "\x\A3A\addons\maps\Antistasi_Kunduz.Kunduz\Navigation\kunduzNavGrid.sqf";
-        enoch = "\x\A3A\addons\maps\Antistasi_Livonia.Enoch\Navigation\enochNavGrid.sqf";
-        malden = "\x\A3A\addons\maps\Antistasi_Malden.Malden\Navigation\maldenNavGrid.sqf";
-        sara = "\x\A3A\addons\maps\Antistasi_Sahrani.sara\Navigation\saraNavGrid.sqf";
-        stratis = "\x\A3A\addons\maps\Antistasi_Stratis.Stratis\Navigation\stratisNavGrid.sqf";
-        takistan = "\x\A3A\addons\maps\Antistasi_Takistan.takistan\Navigation\takistanNavGrid.sqf";
-        tembelan = "\x\A3A\addons\maps\Antistasi_Tembelan_Island.Tembelan\Navigation\tembelanNavGrid.sqf";
-        vt7 = "\x\A3A\addons\maps\Antistasi_Virolahti.vt7\Navigation\vt7NavGrid.sqf";
-        tanoa = "\x\A3A\addons\maps\Antistasi_WotP.Tanoa\Navigation\tanoaNavGrid.sqf";
-    };
-};
-
 class CfgMissions
 {
     class MPMissions
