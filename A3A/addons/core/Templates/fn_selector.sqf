@@ -141,7 +141,7 @@ call compile preprocessFileLineNumbers (_nodes deleteAt -1);
 
 {
     _x call A3A_fnc_loadAddon;
-    Info_2("Loading addon: %1 for side: %2",_this#1,_this#1);
+    Info_2("Loading addon: %1 for side: %2",_this#1,_this#0);
 } forEach _addons;
 
 call A3A_fnc_compileMissionAssets;
