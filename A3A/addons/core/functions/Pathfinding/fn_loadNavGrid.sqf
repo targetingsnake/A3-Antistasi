@@ -28,7 +28,7 @@ if !(isNil "roadDataDone") exitWith
 
 Info("Started loading nav grid");
 
-private _path = getText (configFile/"A3A"/"NavGrid"/toLower worldName);
+private _path = format [ EQPATHTOFOLDER(maps,Antistasi_%1.%1\navGrid.sqf), worldName];
 private _abort = false;
 try
 {
