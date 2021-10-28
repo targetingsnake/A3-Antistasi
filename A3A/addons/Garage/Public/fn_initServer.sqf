@@ -18,6 +18,8 @@
 
     License: APL-ND
 */
+if !(isClass (missionConfigFile/"A3A")) exitWith {};//not A3 Antistasi mission
+
 #include "config.inc"
 #include "defines.inc"
 FIX_LINE_NUMBERS()
