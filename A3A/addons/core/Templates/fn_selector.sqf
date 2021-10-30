@@ -114,8 +114,8 @@ Debug_3("Templates detected | AI: %1 | Reb: %2 | Civ: %3", _AI, _Reb, _Civ);
 Debug_1("Addons detected: %1", _addons);
 
 //temp solution as current structure depends on vanilla nodes to define arrays
-private _vanillaNodes = _nodes find {"Vanilla" in _x};
-call compile preprocessFileLineNumbers (_nodes deleteAt -1);
+private _vanillaNodes = _nodes findIf {"Vanilla" in _x};
+call compile preprocessFileLineNumbers (_nodes deleteAt _vanillaNodes);
 {
     call compile preprocessFileLineNumbers _x;
     Info_1("Loading logistic nodes: %1", _x);
