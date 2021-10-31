@@ -15,14 +15,17 @@ private _fnc_gatherTemplates = {
     params ["_type", ["_pool", []]]; //_pool and _nodes are modified
     if (isClass (_x/_type)) then {
         private _fileNameComposition = [_modset, _type];
-
-        if (count ("true" configClasses (_x/_type)) > 0) then {
+        private _countClasses = count ("true" configClasses (_x/_type));
+        if (_countClasses > 0) then {
 
             { //example: Vanilla_AI_CSAT.sqf
                 private _faction = configName _x;
                 private _fileNameComposition = +_fileNameComposition;
                 if (toLower _faction isEqualTo "camo") then {
-                    if (count ("true" configClasses (_x/_type)) > 1) then { continue };
+                    if (_countClasses > 1) then { continue };
+
+                    private _camo = if (isClass (_x/_worldName)) then { getText (_x/_worldName) } else { getText (_x/"Default") };
+                    _fileNameComposition pushBack _camo;
                 } else {
                     _fileNameComposition pushBack _faction;
                 };
