@@ -21,8 +21,11 @@ private _fnc_gatherTemplates = {
             { //example: Vanilla_AI_CSAT.sqf
                 private _faction = configName _x;
                 private _fileNameComposition = +_fileNameComposition;
-                if (toLower _faction isEqualTo "camo") then { continue };
-                _fileNameComposition pushBack _faction;
+                if (toLower _faction isEqualTo "camo") then {
+                    if (count ("true" configClasses (_x/_type)) > 1) then { continue };
+                } else {
+                    _fileNameComposition pushBack _faction;
+                };
 
                 if (isClass (_x/"file")) then { //file overwrite (absolute path, excluding file extention)
                     _fileNameComposition = [getText (_x/"file")];
