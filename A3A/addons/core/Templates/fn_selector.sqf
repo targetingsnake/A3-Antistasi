@@ -71,7 +71,7 @@ private _templates = configFile/"A3A"/"Templates";
     //check required addons are loaded
     if !(_x call _fnc_requirementMeet) then { continue };
 
-    private _variantOf = getText (_x/"_variantOf"); // sub faction of a faction
+    private _variantOf = getText (_x/"variantOf"); // sub faction of a faction
     private _modset = if (_variantOf isNotEqualTo "") then {_variantOf} else {configName _x};
     private _rootPath = getText (_x/"path") + "\";
 
