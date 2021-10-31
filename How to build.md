@@ -3,7 +3,7 @@
 * install Arma 3 Tools in the same steam library that Arma 3 is installed
 ## With Vs code Arma Dev Extension
 ### First time setup
-* Install extesnion from [markedplace](https://marketplace.visualstudio.com/items?itemName=ole1986.arma-dev)
+* Install extension from [markedplace](https://marketplace.visualstudio.com/items?itemName=ole1986.arma-dev)
 * configure the extension from the Antistasi workspace by opening the command pallet <kbd>Ctrl</kbd>/<kbd>⌘</kbd> + <kbd>P</kbd> and running the `Arma 3: configure` command
 * fill in the configuration `.json` file something like this
 ```json
@@ -50,7 +50,7 @@ arma should start with everything ready for you, (the logging alternate will ope
 * click options
   * add to `List of files to copy directly` this line `*.p3d;*.paa;*.hpp;*.sqf`
   * click the tree dots next to `Path to project folder` and navigate to the repository's `A3A` folder
-  * optionaly add a path to a `.biprivatekey` for signing, this allows you to leave key verification on for dedicated server testing
+  * optionally add a path to a `.biprivatekey` for signing, this allows you to leave key verification on for dedicated server testing
 * back in the main window, add a source directory, this will be in turn each addon folder in `repository -> A3A -> addons -> {folder to build}`
 * and add a destination folder, this would be for example `repository -> build -> @A3A -> addons`
 * ensure for testing that it dosnt binarize the files
