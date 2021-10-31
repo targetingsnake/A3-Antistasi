@@ -4,7 +4,7 @@
 ## With Vs code Arma Dev Extension
 ### First time setup
 * Install extesnion from [markedplace](https://marketplace.visualstudio.com/items?itemName=ole1986.arma-dev)
-* configure the extension from the workplace (<kbd>Ctrl</kbd>/<kbd>⌘</kbd> + <kbd>P</kbd> -> A3ma 3: configure)
+* configure the extension from the Antistasi workspace by opening the command pallet <kbd>Ctrl</kbd>/<kbd>⌘</kbd> + <kbd>P</kbd> and running the `Arma 3: configure` command
 * fill in the configuration `.json` file something like this
 ```json
 {
@@ -40,7 +40,7 @@ let args = [
             ];
 ```
 * now run the `Arma 3: Build` command, this will output into your build folder with packed addons (and signed if you have a key designated)
-* run the `Arma 3: Toggle code live` command this wil create symlinked folders in your arma directory for filepatching, allowing "live editing" of code, by editing the source files (dosnt include anything processed by the config.cpp)
+* run the `Arma 3: Toggle code live` command this will create symlinked folders in your arma directory for filepatching, allowing "live editing" of code, by editing the source files (dosnt include anything processed by the config.cpp)
 * run the `Arma 3: Run client` or `Arma 3: Run client (with logging)` command
 arma should start with everything ready for you, (the logging alternate will open the rpt thats created on arma launch)
 
@@ -49,7 +49,7 @@ arma should start with everything ready for you, (the logging alternate will ope
 * open `Addon Builder` from `Arma 3 Tools`
 * click options
   * add to `List of files to copy directly` this line `*.p3d;*.paa;*.hpp;*.sqf`
-  * click the tree dots next to `Path to project folder` and navigate to the repositoris `A3A` folder
+  * click the tree dots next to `Path to project folder` and navigate to the repository's `A3A` folder
   * optionaly add a path to a `.biprivatekey` for signing, this allows you to leave key verification on for dedicated server testing
 * back in the main window, add a source directory, this will be in turn each addon folder in `repository -> A3A -> addons -> {folder to build}`
 * and add a destination folder, this would be for example `repository -> build -> @A3A -> addons`
