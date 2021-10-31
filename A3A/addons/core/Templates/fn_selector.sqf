@@ -24,7 +24,7 @@ private _fnc_gatherTemplates = {
                 if (toLower _faction isEqualTo "camo") then {
                     if (_countClasses > 1) then { continue };
 
-                    private _camo = if (isClass (_x/_worldName)) then { getText (_x/_worldName) } else { getText (_x/"Default") };
+                    private _camo = if (getText (_x/_worldName) isNotEqualTo "") then { getText (_x/_worldName) } else { getText (_x/"Default") };
                     _fileNameComposition pushBack _camo;
                 } else {
                     _fileNameComposition pushBack _faction;
@@ -35,7 +35,7 @@ private _fnc_gatherTemplates = {
                 };
 
                 if (isClass (_x/"camo")) then { //example: Vanilla_AI_CSAT_Arid.sqf
-                    private _camo = if (isClass (_x/"camo"/_worldName)) then { getText (_x/"camo"/_worldName) } else { getText (_x/"camo"/"Default") };
+                    private _camo = if (getText (_x/"camo"/_worldName) isNotEqualTo "") then { getText (_x/"camo"/_worldName) } else { getText (_x/"camo"/"Default") };
                     _fileNameComposition pushBack _camo;
                 };
                 if (isClass (_x/"file")) then { //file overwrite (absolute path, excluding file extention)
