@@ -1,13 +1,22 @@
+// call compileScript ["functions\Utility\KeyCache\Tests\unitTest_garbageCollector_longFpsStressTest.sqf"];
+
+#include "..\config.hpp"
+#include "..\..\..\..\Includes\common.inc"
+FIX_LINE_NUMBERS()
 
 private _reporterContext = [];
 private _fnc_reporter = {
     params ["_context","_text"];
     ["UnitTest KeyCache-GC", _text] call A3A_fnc_customHint;
-    diag_log text ((systemTimeUTC call A3A_fnc_systemTime_format_S) + " | UnitTest | GarbageCollector | " + _text);
+    Info("UnitTest | KeyCache GarbageCollector | " + _text);
 };
 A3A_keyCache_unitTest_directoryPath = "functions\Utility\KeyCache\Tests\";
 
-
+if (!isNil {Dev_unitTestInProgress}) exitWith {
+    Error("Previous unit test still running");
+    "Previous unit test still running";
+};
+Dev_unitTestInProgress = true;
 Dev_longFpsStressTestHandle = [_fnc_reporter,_reporterContext] spawn {
     //// Setup
     params ["_fnc_reporter","_reporterContext"];
@@ -20,11 +29,12 @@ Dev_longFpsStressTestHandle = [_fnc_reporter,_reporterContext] spawn {
     };
 
     "confirmUnitTest" call A3A_fnc_keyCache_init;
-    A3A_keyCache_GC_generations #0 set [2,10];
-    A3A_keyCache_GC_generations #1 set [2,30];
-    A3A_keyCache_GC_generations #2 set [2,90];
+    private _keyCache_GC_generations = __keyCache_getVar(A3A_keyCache_GC_generations);
+    _keyCache_GC_generations #0 set [2,10];
+    _keyCache_GC_generations #1 set [2,30];
+    _keyCache_GC_generations #2 set [2,90];
 
-    private _keyCache_DB = localNamespace getVariable ["A3A_keyCache_DB", nil];
+    private _keyCache_DB = __keyCache_getVar(A3A_keyCache_DB);
     ["GivingGCsIdleTime", ""] call _fnc_logFPS;
 
     "confirmUnitTest" call A3A_fnc_keyCache_startGarbageCollectors;
@@ -33,7 +43,7 @@ Dev_longFpsStressTestHandle = [_fnc_reporter,_reporterContext] spawn {
     ["BaselineTaken", ""] call _fnc_logFPS;
 
 
-    private _amountOfMillionStressItems = 68;
+    private _amountOfMillionStressItems = 69;
     private _stressItemTotal = "/"+ (_amountOfMillionStressItems toFixed 1) +" Million";
     private _randomTTLsWeighted = [5,0.75, 15,0.20, 45,0.05];
     for "_j" from 0 to 10*_amountOfMillionStressItems -1 step 1 do {
@@ -41,7 +51,7 @@ Dev_longFpsStressTestHandle = [_fnc_reporter,_reporterContext] spawn {
             for "_l" from _k to _k + 10000-1 do {
                 private _name = (str _j) + (_l toFixed 0);
                 private _TTL = selectRandomWeighted _randomTTLsWeighted;
-                _keyCache_DB set [_name, [nil,A3A_keyCache_defaultTTL,serverTime + _TTL]];
+                _keyCache_DB set [_name, [nil,_TTL,serverTime + _TTL]];
                 _name call A3A_fnc_keyCache_registerForGC;
             };
             //uiSleep 0.01; Processed at max speed anyway.
@@ -68,4 +78,6 @@ Dev_longFpsStressTestHandle = [_fnc_reporter,_reporterContext] spawn {
     //// Clean Up
     call compileScript [A3A_keyCache_unitTest_directoryPath+"unitTestUtility_revertInit.sqf"];
     call compileScript [A3A_keyCache_unitTest_directoryPath+"unitTestUtility_revertStartGarbageCollectors.sqf"];
+    Dev_unitTestInProgress = nil;
 };
+"Unit Test Started";

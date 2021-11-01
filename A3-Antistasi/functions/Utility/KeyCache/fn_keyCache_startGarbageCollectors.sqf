@@ -20,7 +20,13 @@ if (_confirmUnitTest isNotEqualTo "confirmUnitTest") exitWith { ServerError_1("U
 #endif
 FIX_LINE_NUMBERS()
 
-if (!isNil "A3A_keyCache_startGarbageCollector") exitWith { ServerError("Invoked Twice"); };
-A3A_keyCache_garbageCollection = true;
+if (!isNil {__keyCache_getVar(A3A_keyCache_garbageCollection)}) exitWith { ServerError("Invoked Twice"); };
+__keyCache_setVar(A3A_keyCache_garbageCollection, true);
 
-A3A_keyCache_garbageCollectorHandles = [0,1,2] apply {[_x] spawn A3A_fnc_keyCache_garbageCollector;};
+// Start a GC for each of the ones listed in init.
+private _keyCache_GC_generations = __keyCache_getVar(A3A_keyCache_GC_generations);
+private _keyCache_garbageCollectorHandles = [];
+for "_i" from 0 to count _keyCache_GC_generations-1 do {
+    _keyCache_garbageCollectorHandles pushBack ([_i] spawn A3A_fnc_keyCache_garbageCollector);
+};
+__keyCache_setVar(A3A_keyCache_garbageCollectorHandles, _keyCache_garbageCollectorHandles);

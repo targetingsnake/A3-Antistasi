@@ -11,47 +11,37 @@ FIX_LINE_NUMBERS()
 #endif
 FIX_LINE_NUMBERS()
 
-if (!isNil "A3A_keyCache_init") exitWith { ServerError("Invoked Twice"); };
-A3A_keyCache_init = true;
+if (!isNil {__keyCache_getVar(A3A_keyCache_init)}) exitWith { ServerError("Invoked Twice"); };
+__keyCache_setVar(A3A_keyCache_init, true);
 
+// Main Key DB used for translations
+__keyCache_setVar(A3A_keyCache_DB, createHashMap);
 
-private _keyCache_DB = createHashMap;
-localNamespace setVariable ["A3A_keyCache_DB", _keyCache_DB];
-
-
-A3A_keyCache_defaultTTL = 120;
+// Default Time to live.
+private _keyCache_defaultTTL = 120;
 if (isServer) then {
     // A little longer to ensure that the client's translations go stale before the server.
-    A3A_keyCache_defaultTTL = 1.20 * A3A_keyCache_defaultTTL;
+    _keyCache_defaultTTL = 1.20 * _keyCache_defaultTTL;
 };
+__keyCache_setVar(A3A_keyCache_defaultTTL, _keyCache_defaultTTL);
 
-A3A_keyCache_GC_minSpanSize = 10;  // Minimum items in each chunk.
+// Minimum amount of items in a processed span of a chunk
+private _keyCache_GC_minSpanSize = 10;
+__keyCache_setVar(A3A_keyCache_GC_minSpanSize, _keyCache_GC_minSpanSize);
 
+// Settings for Each garbage collector generation.
 //  _x params ["_allBuckets","_newestBucket","_totalPeriod","_bucketsAmount","_promotedGeneration"];  // <ARRAY>, <ARRAY>, <SCALAR>, <SCALAR>, <SCALAR>
-A3A_keyCache_GC_generations = [
+private _keyCache_GC_generations = [
     [  // Gen0
-        [],
-        [],
-        2*A3A_keyCache_defaultTTL,
-        3,
-        1
+        [], [], 2*_keyCache_defaultTTL, 3, 1
     ],
     [  // Gen1
-        [],
-        [],
-        5*A3A_keyCache_defaultTTL,
-        3,
-        2
+        [], [], 5*_keyCache_defaultTTL, 3, 2
     ],
     [  // Gen2
-        [],
-        [],
-        12.5*A3A_keyCache_defaultTTL,
-        1,
-        2
+        [], [], 12.5*_keyCache_defaultTTL, 1, 2
     ]
 ];
-
 {
     _x params ["_allBuckets","_newestBucket","_totalPeriod","_bucketsAmount","_promotedGeneration"];
 
@@ -59,6 +49,9 @@ A3A_keyCache_GC_generations = [
         _allBuckets pushBack [];
     };
     _x set [1, _allBuckets #(_bucketsAmount -1)];
-} forEach A3A_keyCache_GC_generations;
+} forEach _keyCache_GC_generations;
+__keyCache_setVar(A3A_keyCache_GC_generations, _keyCache_GC_generations);
 
-A3A_keyCache_GC_gen0NewestBucket = A3A_keyCache_GC_generations#0#1;
+// Shortcut for registering an object for Garbage Collection checks.
+private _keyCache_GC_gen0NewestBucket = _keyCache_GC_generations#0#1;
+__keyCache_setVar(A3A_keyCache_GC_gen0NewestBucket, _keyCache_GC_gen0NewestBucket);

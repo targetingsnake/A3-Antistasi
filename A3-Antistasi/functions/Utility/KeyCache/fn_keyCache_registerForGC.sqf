@@ -14,4 +14,5 @@ Dependencies:
 Example:
     "HelloWorld" call A3A_fnc_keyCache_registerForGC;
 */
-A3A_keyCache_GC_gen0NewestBucket pushBack _this;
+#include "config.hpp"
+__keyCache_getVar(A3A_keyCache_GC_gen0NewestBucket) pushBack _this;

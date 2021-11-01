@@ -9,7 +9,7 @@ Scope: All
 Environment: Scheduled
 Public: No
 Dependencies:
-    <HASHMAP> "A3A_keyCache_DB" in localNamespace
+    <HASHMAP> A3A_keyCache_DB
     <ARRAY> A3A_keyCache_GC_generations
     <ARRAY> A3A_keyCache_GC_gen0NewestBucket
 
@@ -28,17 +28,19 @@ params [
 // Offset start of different generations.
 uiSleep random 10;
 #endif
-#undef __keyCache_unitTestMode
 FIX_LINE_NUMBERS()
+private _keyCache_GC_generations = __keyCache_getVar(A3A_keyCache_GC_generations);
 
 // Keep reference to local variable to avoid continuously using getVariable
-private _keyCache_DB = localNamespace getVariable "A3A_keyCache_DB";
+private _keyCache_DB = __keyCache_getVar(A3A_keyCache_DB);
 
-if (_generationNumber >= count A3A_keyCache_GC_generations) exitWith {
+
+
+if (_generationNumber >= count _keyCache_GC_generations) exitWith {
     ServerError_1("Invalid Generation (%1)", _generationNumber);
 };
 
-private _GC_generation = A3A_keyCache_GC_generations #_generationNumber;
+private _GC_generation = _keyCache_GC_generations #_generationNumber;
 
 // Whole process is thread-safe, no isNil blocks needed.
 while {true} do {
@@ -49,11 +51,11 @@ while {true} do {
     _newBucket = [];
     _GC_generation set [1,_newBucket];
     if (_generationNumber == 0) then {  // Special case for registerForGC speed 😉
-        A3A_keyCache_GC_gen0NewestBucket = _newBucket;
+        __keyCache_setVar(A3A_keyCache_GC_gen0NewestBucket, _newBucket);
     };
     _allBuckets pushBack _newBucket;
 
-    private _promotedGenerationReference = A3A_keyCache_GC_generations #_promotedGeneration;
+    private _promotedGenerationReference = _keyCache_GC_generations #_promotedGeneration;
 
     // Grab oldest bucket.
     private _currentBucket = _allBuckets deleteAt 0;
@@ -73,7 +75,7 @@ while {true} do {
 
 
     // Calculate span sizes
-    private _spanSize = A3A_keyCache_GC_minSpanSize;
+    private _spanSize = __keyCache_getVar(A3A_keyCache_GC_minSpanSize);
     private _spanAmount = ceil (_count / _spanSize);
     private _spanPeriod = _bucketPeriod / _spanAmount;
 

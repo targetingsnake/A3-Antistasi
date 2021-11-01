@@ -1,34 +1,44 @@
+// call compileScript ["functions\Utility\KeyCache\Tests\unitTest_garbageCollector_basicPromotion.sqf"];
+
+#include "..\config.hpp"
+#include "..\..\..\..\Includes\common.inc"
+FIX_LINE_NUMBERS()
 
 private _reporterContext = [];
 private _fnc_reporter = {
     params ["_context","_text"];
     ["UnitTest KeyCache-GC", _text] call A3A_fnc_customHint;
-    diag_log text ((systemTimeUTC call A3A_fnc_systemTime_format_S) + " | UnitTest | GarbageCollector | " + _text);
+    Info("UnitTest | KeyCache GarbageCollector | " + _text);
 };
 A3A_keyCache_unitTest_directoryPath = "functions\Utility\KeyCache\Tests\";
 
 
+if (!isNil {Dev_unitTestInProgress}) exitWith {
+    Error("Previous unit test still running");
+    "Previous unit test still running";
+};
+Dev_unitTestInProgress = true;
 Dev_basicPromotionTestHandle = [_fnc_reporter,_reporterContext] spawn {
     //// Setup
     params ["_fnc_reporter","_reporterContext"];
     "confirmUnitTest" call A3A_fnc_keyCache_init;
 
-    private _keyCache_DB = createHashMap;
-    localNamespace setVariable ["A3A_keyCache_DB", _keyCache_DB];
+    private _keyCache_DB = __keyCache_getVar(A3A_keyCache_DB);
     _keyCache_DB set ["Test123", [
         "value",
         100,
         serverTime + 100
     ]];
 
-    A3A_keyCache_GC_gen0NewestBucket = [];
+    private _keyCache_GC_gen0NewestBucket = [];
+    __keyCache_setVar(A3A_keyCache_GC_gen0NewestBucket, _keyCache_GC_gen0NewestBucket);
     private _gen1TopBucket = [];
 
     //  _x params ["_allBuckets","_newestBucket","_totalPeriod","_bucketsAmount","_promotedGeneration"];  // <ARRAY>, <ARRAY>, <SCALAR>, <SCALAR>, <SCALAR>
-    A3A_keyCache_GC_generations = [
+    private _keyCache_GC_generations = [
         [  // Gen0
-            [A3A_keyCache_GC_gen0NewestBucket],
-            A3A_keyCache_GC_gen0NewestBucket,
+            [_keyCache_GC_gen0NewestBucket],
+            _keyCache_GC_gen0NewestBucket,
             0.001,
             1,
             1
@@ -41,6 +51,8 @@ Dev_basicPromotionTestHandle = [_fnc_reporter,_reporterContext] spawn {
             1
         ]
     ];
+    __keyCache_setVar(A3A_keyCache_GC_generations, _keyCache_GC_generations);
+
     private _GCHandle = [0] spawn A3A_fnc_keyCache_garbageCollector;
     uiSleep 1;
     "Test123" call A3A_fnc_keyCache_registerForGC;
@@ -64,4 +76,6 @@ Dev_basicPromotionTestHandle = [_fnc_reporter,_reporterContext] spawn {
     //// Clean Up
     terminate _GCHandle;
     call compileScript [A3A_keyCache_unitTest_directoryPath+"unitTestUtility_revertInit.sqf"];
+    Dev_unitTestInProgress = nil;
 };
+"Unit Test Started";
