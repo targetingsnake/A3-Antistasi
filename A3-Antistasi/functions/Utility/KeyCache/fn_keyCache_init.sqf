@@ -1,5 +1,15 @@
-// Recommended to init preJIP.
-// call A3A_fnc_keyCache_init;
+/*
+Maintainer: Caleb Serafin
+    Initialises variables and settings used keyCache.
+    Recommended to run pre-JIP.
+
+Scope: All Machines, Local Effect
+Environment: Any
+Public: No
+
+Example:
+    call A3A_fnc_keyCache_init;
+*/
 #include "config.hpp"
 #include "..\..\..\Includes\common.inc"
 FIX_LINE_NUMBERS()
