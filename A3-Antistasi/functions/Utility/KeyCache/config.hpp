@@ -1,6 +1,6 @@
 
 // Disables startGarbageCollectors.
-#define __keyCache_unitTestMode
+//#define __keyCache_unitTestMode
 
 // Store and access varaibles in localNamespace. Minor lookup overhead is added.
 #define __keyCache_security_publicVariableInjection
