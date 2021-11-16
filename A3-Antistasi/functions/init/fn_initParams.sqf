@@ -36,6 +36,7 @@ A3A_paramTable = [
     ["playerMarkersEnabled", "pMarkers", [], true],
     ["allowUnfairSupports", "allowUnfairSupports", [], false],
     ["allowFuturisticSupports", "allowFuturisticSupports", [], false],
+    ["allowCasSupport", "allowCasSupport", [], true],
 
     ["allowDLCKart", "Kart", ["server"], false],
     ["allowDLCMark", "Mark", ["server"], false],

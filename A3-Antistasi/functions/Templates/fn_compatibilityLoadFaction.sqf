@@ -198,13 +198,22 @@ if (_side isEqualTo east) then {
 	vehCSATRBoat = _faction getVariable "vehiclesTransportBoats" select 0;
 	vehCSATBoats = [vehCSATBoat, vehCSATRBoat] + (_faction getVariable "vehiclesAmphibious");
 
-	vehCSATPlane = _faction getVariable "vehiclesPlanesCAS" select 0;
+	if (allowCasSupport) then {
+		vehCSATPlane = _faction getVariable "vehiclesPlanesCAS" select 0;
+	} else {
+		vehCSATPlane = [];
+	};
+
 	vehCSATPlaneAA = _faction getVariable "vehiclesPlanesAA" select 0;
 	vehCSATTransportPlanes = _faction getVariable "vehiclesPlanesTransport";
 
 	vehCSATPatrolHeli = _faction getVariable "vehiclesHelisLight" select 0;
 	vehCSATTransportHelis = (_faction getVariable "vehiclesHelisLight") + (_faction getVariable "vehiclesHelisTransport");
-	vehCSATAttackHelis = _faction getVariable "vehiclesHelisAttack";
+	if (allowCasSupport) then {
+		vehCSATAttackHelis = _faction getVariable "vehiclesHelisAttack";
+	} else {
+		vehCSATAttackHelis = [];
+	};
 
 	vehCSATUAV = _faction getVariable "uavsAttack" select 0;
 	vehCSATUAVSmall = _faction getVariable "uavsPortable" select 0;
@@ -391,13 +400,22 @@ if (_side isEqualTo west) then {
 	vehNATORBoat = _faction getVariable "vehiclesTransportBoats" select 0;
 	vehNATOBoats = [vehNATOBoat, vehNATORBoat] + (_faction getVariable "vehiclesAmphibious");
 
-	vehNATOPlane = _faction getVariable "vehiclesPlanesCAS" select 0;
+	if (allowCasSupport) then {
+		vehNATOPlane = _faction getVariable "vehiclesPlanesCAS" select 0;
+	} else {
+		vehNATOPlane = [];
+	};
+
 	vehNATOPlaneAA = _faction getVariable "vehiclesPlanesAA" select 0;
 	vehNATOTransportPlanes = _faction getVariable "vehiclesPlanesTransport";
 
 	vehNATOPatrolHeli = _faction getVariable "vehiclesHelisLight" select 0;
 	vehNATOTransportHelis = (_faction getVariable "vehiclesHelisLight") + (_faction getVariable "vehiclesHelisTransport");
-	vehNATOAttackHelis = _faction getVariable "vehiclesHelisAttack";
+	if (allowCasSupport) then {
+		vehNATOAttackHelis = _faction getVariable "vehiclesHelisAttack";
+	} else {
+		vehNATOAttackHelis = [];
+	};
 
 	vehNATOUAV = _faction getVariable "uavsAttack" select 0;
 	vehNATOUAVSmall = _faction getVariable "uavsPortable" select 0;

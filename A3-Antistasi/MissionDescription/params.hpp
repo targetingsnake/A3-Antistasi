@@ -332,14 +332,21 @@ class Params
         values[] = {9999, 0, 1};
         texts[] = {"Load from save (Default: Not Allowed)", "Not allowed", "Allowed"};
         default = 9999;
-    }
+    };
     class allowFuturisticSupports
     {
         title = "[Experimental - Use at own risk](Requires unfair supports) Allow futuristic supports to be used by the enemy";
         values[] = {9999, 0, 1};
         texts[] = {"Load from save (Default: Not Allowed)", "Not allowed", "Allowed"};
         default = 9999;
-    }
+    };
+    class allowCasSupport
+    {
+        title = "[Experimental - Use at own risk]Disable CAS";
+        values[] = {9999, 0, 1};
+        texts[] = {"Load from save (Default: Allowed)", "Not allowed", "Allowed"};
+        default = 9999;
+    };
     class CrateOptions
     {
         title = "LOOT CRATE OPTIONS";
