@@ -79,7 +79,7 @@ class Params
         title = "Enable Commander Switch (highest ranked player)";
         values[] = {9999,1,0};
         texts[] = {"Load from save (Default: Yes)","Yes","No"};
-        default = 9999;
+        default = 0;
     };
     class tkPunish
     {
@@ -114,7 +114,7 @@ class Params
         title = "Number of the same item required to unlock";
         values[] = {9999,15,25,40,1e6};
         texts[] = {"Load from save (Default: 25)","15","25","40","1 000 000"};
-        default = 9999;
+        default = 15;
     };
     class memberOnlyMagLimit
     {
@@ -149,35 +149,35 @@ class Params
         title = "Fast Travel Targets Allowed";
         values[] = {9999,0,1};
         texts[] = {"Load from save (Default: Airports & HQ)","Any friendly position","Only Airports & HQ"};
-        default = 9999;
+        default = 0;
     };
     class napalmEnabled
     {
         title = "Enable Napalm Bombing for AI";
         values[] = {9999,0,1};
         texts[] = {"Load from save (Default: No)","No","Yes"};
-        default = 9999;
+        default = 1;
     };
     class unlockedUnlimitedAmmo
     {
         title = "Do Unlocked Weapons Automatically Unlock Their Standard Magazine?";
         values[] = {9999,1,0};
         texts[] = {"Load from save (Default: No)","Yes","No"};
-        default = 9999;
+        default = 1;
     };
     class allowGuidedLaunchers
     {
         title = "Should Guided Launchers become unlocked?";
         values[] = {9999,1,0};
         texts[] = {"Load from save (Default: No)","Yes","No"};
-        default = 9999;
+        default = 1;
     };
     class allowUnlockedExplosives
     {
         title = "Should Explosives become unlocked?";
         values[] = {9999,1,0};
         texts[] = {"Load from save (Default: No)","Yes","No"};
-        default = 9999;
+        default = 1;
     };
     class startWithLongRangeRadio
     {
@@ -191,7 +191,7 @@ class Params
         title = "Chance of helmet loss on headshots";
         values[] = {9999,0,33,66,100};
         texts[] = {"Load from save (Default: Sometimes)","Never","Sometimes","Often","Always"};
-        default = 9999;
+        default = 0;
     };
     class Spacer10
     {
@@ -226,49 +226,49 @@ class Params
         title = "Allow Items and Vehicles from Karts DLC?";
         values[] = {9999,1,0};
         texts[] = {"Load from save (Default: No)","Yes","No"};
-        default = 9999;
+        default = 1;
     };
     class Mark
     {
         title = "Allow Items and Vehicles from Marksman DLC?";
         values[] = {9999,1,0};
         texts[] = {"Load from save (Default: No)","Yes","No"};
-        default = 9999;
+        default = 1;
     };
     class Heli
     {
         title = "Allow Items and Vehicles from Heli DLC?";
         values[] = {9999,1,0};
         texts[] = {"Load from save (Default: No)","Yes","No"};
-        default = 9999;
+        default = 1;
     };
     class Expansion
     {
         title = "Allow Items and Vehicles from Apex DLC?";
         values[] = {9999,1,0};
         texts[] = {"Load from save (Default: No)","Yes","No"};
-        default = 9999;
+        default = 1;
     };
     class Jets
     {
         title = "Allow Items and Vehicles from Jets DLC?";
         values[] = {9999,1,0};
         texts[] = {"Load from save (Default: No)","Yes","No"};
-        default = 9999;
+        default = 1;
     };
     class Orange
     {
         title = "Allow Items and Vehicles from Laws of War DLC?";
         values[] = {9999,1,0};
         texts[] = {"Load from save (Default: No)","Yes","No"};
-        default = 9999;
+        default = 1;
     };
     class Tanks
     {
         title = "Allow Items and Vehicles from Tanks DLC?";
         values[] = {9999,1,0};
         texts[] = {"Load from save (Default: No)","Yes","No"};
-        default = 9999;
+        default = 1;
     };
     class GlobMob
     {
@@ -282,14 +282,14 @@ class Params
         title = "Allow Items and Vehicles from Contact DLC?";
         values[] = {9999,1,0};
         texts[] = {"Load from save (Default: No)","Yes","No"};
-        default = 9999;
+        default = 1;
     };
     class AoW
     {
         title = "Allow Art of War DLC?";
         values[] = {9999,1,0};
         texts[] =  {"Load from save (Default: No)","Yes","No"};
-        default = 9999;
+        default = 1;
     };
         class VN
     {
@@ -343,9 +343,9 @@ class Params
     class allowCasSupport
     {
         title = "[Experimental - Use at own risk]Disable CAS";
-        values[] = {9999, 0, 1};
-        texts[] = {"Load from save (Default: Allowed)", "Not allowed", "Allowed"};
-        default = 9999;
+        values[] = {9999, 1, 0};
+        texts[] = {"Load from save (Default: Allowed)", "Allowed", "Not Allowed"};
+        default = 0;
     };
     class CrateOptions
     {
@@ -366,7 +366,7 @@ class Params
         title = "Decrease loot quantity as player count increases? (Yes is recommended for balance reasons)";
         values[] = {9999, 0, 1};
         texts[] = {"Load from save (Default: True)", "False", "True"};
-        default = 9999;
+        default = 0;
     };
     class crateWepTypeMax
     {
@@ -380,7 +380,7 @@ class Params
         title = "Maximum Weapon Quantity in Crates";
         values[] = {9999,0,1,3,5,8,10,15};
         texts[] = {"Load from save (Default: 8)","None","1","3","5","8","10","15"};
-        default = 9999;
+        default = 15;
     };
     class Spacer1
     {
@@ -401,7 +401,7 @@ class Params
         title = "Maximum Item Quantity in Crates";
         values[] = {9999,0,1,3,5,10,15};
         texts[] = {"Load from save (Default: 5)","None","1","3","5","10","15"};
-        default = 9999;
+        default = 15;
     };
     class Spacer2
     {
@@ -422,7 +422,7 @@ class Params
         title = "Maximum Ammo Quantity in Crates";
         values[] = {9999,0,1,3,5,10,15,20,25,30};
         texts[] = {"Load from save (Default: 20)","None","1","3","5","10","15","20","25","30"};
-        default = 9999;
+        default = 15;
     };
     class Spacer3
     {
@@ -443,7 +443,7 @@ class Params
         title = "Maximum Explosive Quantity in Crates";
         values[] = {9999,0,1,3,5,10,15};
         texts[] = {"Load from save (Default: 5)","None","1","3","5","10","15"};
-        default = 9999;
+        default = 15;
     };
     class Spacer4
     {
@@ -464,7 +464,7 @@ class Params
         title = "Maximum Attachment Quantity in Crates";
         values[] = {9999,0,1,3,5,10,15,20,25,30};
         texts[] = {"Load from save (Default: 15)","None","1","3","5","10","15","20","25","30"};
-        default = 9999;
+        default = 15;
     };
     class Spacer5
     {
@@ -485,7 +485,7 @@ class Params
         title = "Maximum Backpack Quantity in Crates";
         values[] = {9999,0,1,3,5,10,15};
         texts[] = {"Load from save (Default: 3)","None","1","3","5","10","15"};
-        default = 9999;
+        default = 15;
     };
     class Spacer6
     {
@@ -506,7 +506,7 @@ class Params
         title = "Maximum Vest Quantity in Crates";
         values[] = {9999,0,1,3,5,10,15};
         texts[] = {"Load from save (Default: 3)","None","1","3","5","10","15"};
-        default = 9999;
+        default = 15;
     };
     class Spacer7
     {
@@ -527,7 +527,7 @@ class Params
         title = "Maximum Helmet Quantity in Crates";
         values[] = {9999,0,1,3,5,10,15};
         texts[] = {"Load from save (Default: 0)","None","1","3","5","10","15"};
-        default = 9999;
+        default = 15;
     };
     class Spacer8
     {
@@ -548,6 +548,6 @@ class Params
         title = "Maximum Device Backpack Quantity in Crates";
         values[] = {9999,0,1,3,5,10,15};
         texts[] = {"Load from save (Default: 3)","None","1","3","5","10","15"};
-        default = 9999;
+        default = 15;
     };
 };
