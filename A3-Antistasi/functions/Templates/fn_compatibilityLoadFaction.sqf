@@ -199,14 +199,12 @@ if (_side isEqualTo east) then {
 	vehCSATBoats = [vehCSATBoat, vehCSATRBoat] + (_faction getVariable "vehiclesAmphibious");
 
 	vehCSATPlane = _faction getVariable "vehiclesPlanesCAS" select 0;
-
 	vehCSATPlaneAA = _faction getVariable "vehiclesPlanesAA" select 0;
 	vehCSATTransportPlanes = _faction getVariable "vehiclesPlanesTransport";
 
 	vehCSATPatrolHeli = _faction getVariable "vehiclesHelisLight" select 0;
 	vehCSATTransportHelis = (_faction getVariable "vehiclesHelisLight") + (_faction getVariable "vehiclesHelisTransport");
 	vehCSATAttackHelis = _faction getVariable "vehiclesHelisAttack";
-	
 
 	vehCSATUAV = _faction getVariable "uavsAttack" select 0;
 	vehCSATUAVSmall = _faction getVariable "uavsPortable" select 0;
@@ -392,8 +390,8 @@ if (_side isEqualTo west) then {
 	vehNATOBoat = _faction getVariable "vehiclesGunboats" select 0;
 	vehNATORBoat = _faction getVariable "vehiclesTransportBoats" select 0;
 	vehNATOBoats = [vehNATOBoat, vehNATORBoat] + (_faction getVariable "vehiclesAmphibious");
-	vehNATOPlane = _faction getVariable "vehiclesPlanesCAS" select 0;
 
+	vehNATOPlane = _faction getVariable "vehiclesPlanesCAS" select 0;
 	vehNATOPlaneAA = _faction getVariable "vehiclesPlanesAA" select 0;
 	vehNATOTransportPlanes = _faction getVariable "vehiclesPlanesTransport";
 
@@ -528,5 +526,3 @@ if (_side isEqualTo civilian) then {
 	civBoatData = _faction getVariable "vehiclesCivBoat";
 	civVehIndustrialData = _faction getVariable "vehiclesCivIndustrial";
 };
-
-_faction;
