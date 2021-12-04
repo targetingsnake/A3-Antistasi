@@ -340,13 +340,6 @@ class Params
         texts[] = {"Load from save (Default: Not Allowed)", "Not allowed", "Allowed"};
         default = 9999;
     };
-    class allowCasSupport
-    {
-        title = "[Experimental - Use at own risk]Disable CAS";
-        values[] = {9999, 1, 0};
-        texts[] = {"Load from save (Default: Allowed)", "Allowed", "Not Allowed"};
-        default = 0;
-    };
     class CrateOptions
     {
         title = "LOOT CRATE OPTIONS";
