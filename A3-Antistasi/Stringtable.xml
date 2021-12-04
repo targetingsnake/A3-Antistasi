@@ -1125,16 +1125,16 @@
         <Chinesesimp>在砧板和压辊之间。</Chinesesimp>
       </Key>
       <Key ID="STR_antistasi_mission_info_chernawinter_mapname_short_text">
-        <Original>Antistasi Chernarus Winter</Original>
-        <English>Antistasi Chernarus Winter</English>
-        <Russian>Antistasi Чернорусь Зима</Russian>
-        <Chinesesimp>Antistasi Chernarus Winter</Chinesesimp>
+        <Original>Antistasi Chernarus Winter - LCAS</Original>
+        <English>Antistasi Chernarus Winter - LCAS</English>
+        <Russian>Antistasi Чернорусь Зима - LCAS</Russian>
+        <Chinesesimp>Antistasi Chernarus Winter - LCAS</Chinesesimp>
       </Key>
       <Key ID="STR_antistasi_mission_info_chernawinter_mapname_text">
-        <Original>Antistasi - Chilled revolt</Original>
-        <English>Antistasi - Chilled revolt</English>
-        <Russian>Antistasi - Зимнее восстание</Russian>
-        <Chinesesimp>Antistasi - 冰冷的反抗</Chinesesimp>
+        <Original>Antistasi - Chilled revolt - LCAS</Original>
+        <English>Antistasi - Chilled revolt - LCAS</English>
+        <Russian>Antistasi - Зимнее восстание - LCAS</Russian>
+        <Chinesesimp>Antistasi - 冰冷的反抗 - LCAS</Chinesesimp>
       </Key>
       <Key ID="STR_antistasi_mission_info_chernawinter_description_text">
         <Original>Be the Resistance Leader. Fight against a superior enemy in technology, number, assets and vehicles. Use guerrilla tactics in a totally dynamic world, with around 18 sidemissions, everywhere, anytime, anything.</Original>

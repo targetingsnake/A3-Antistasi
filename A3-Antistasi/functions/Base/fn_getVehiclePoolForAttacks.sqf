@@ -162,8 +162,8 @@ switch (tierWar) do
         {
             _vehicleSelection =
             [
-                [vehCSATAPC, 14],
-                [vehCSATTransportHelis, 15],
+                [vehCSATAPC, 39],
+                [vehCSATTransportHelis, 10],
                 [vehCSATAA, 10],
                 [vehCSATAttackHelis, 1],
                 [vehCSATTank, 25],

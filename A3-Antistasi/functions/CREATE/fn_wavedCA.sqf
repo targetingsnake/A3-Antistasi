@@ -194,7 +194,7 @@ while {(_waves > 0)} do
 	private _nVehLand = 0;
 	if !(_posOriginLand isEqualTo []) then
 	{
-		_nVehLand = ceil (_nVeh / 2);			// spawn >half ground, <half air
+		_nVehLand = ceil (_nVeh / 1.2);			// spawn >half ground, <half air
 		_road = [_posDestination] call A3A_fnc_findNearestGoodRoad;
 		_countX = 1;
 		_landPosBlacklist = [];
@@ -448,7 +448,7 @@ while {(_waves > 0)} do
 	private _nVehAir = _nVeh;
 	if !(_posOriginLand isEqualTo []) then {
 		sleep ((_posOrigin distance _posDestination)/15);			// give land vehicles a head start
-		_nVehAir = floor (_nVeh / 2);								// fill out with air vehicles
+		_nVehAir = _nVeh - ceil (_nVeh / 1.2);								// fill out with air vehicles
 	};
 	_posGround = [_posOrigin select 0,_posOrigin select 1,0];
 	_posOrigin set [2,300];
@@ -467,7 +467,7 @@ while {(_waves > 0)} do
 	_airSupport = _airSupport select { canMove _x };
 
 	// Fill air supports up to half wave size, minimum +1
-	private _countNewSupport = 1 max (floor (_nVeh / 2) - count _airSupport);
+	private _countNewSupport = 1 max ((_nVeh - ceil (_nVeh / 1.2)) - count _airSupport);
     Debug_1("Spawning %1 new support aircraft", _countNewSupport);
 
 	if (_countNewSupport > count _vehPoolAirSupport) then {
