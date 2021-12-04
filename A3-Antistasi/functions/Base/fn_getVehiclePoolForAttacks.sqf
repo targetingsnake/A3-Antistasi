@@ -28,9 +28,9 @@ switch (tierWar) do
             _vehicleSelection =
             [
                 [vehNATOLightArmed, 15],
-                [vehNATOTrucks, 10],
-                [vehNATOPatrolHeli, 25],
-                [vehNATOAPC, 35],
+                [vehNATOTrucks, 30],
+                [vehNATOPatrolHeli, 15],
+                [vehNATOAPC, 25],
                 [vehNATOTransportHelis, 15]
             ];
         };
@@ -38,11 +38,11 @@ switch (tierWar) do
         {
             _vehicleSelection =
             [
-                [vehCSATTrucks, 5],
+                [vehCSATTrucks, 35],
                 [vehCSATLightArmed, 15],
-                [vehCSATPatrolHeli, 25],
-                [vehCSATAPC, 30],
-                [vehCSATTransportHelis, 25]
+                [vehCSATPatrolHeli, 15],
+                [vehCSATAPC, 25],
+                [vehCSATTransportHelis, 15]
             ];
         };
     };
@@ -52,10 +52,10 @@ switch (tierWar) do
         {
             _vehicleSelection =
             [
-                [vehNATOLightArmed, 15],
-                [vehNATOPatrolHeli, 25],
+                [vehNATOLightArmed, 40],
+                [vehNATOPatrolHeli, 5],
                 [vehNATOAPC, 40],
-                [vehNATOTransportHelis, 20]
+                [vehNATOTransportHelis, 15]
             ];
         };
         if(_side == Invaders) then
@@ -63,9 +63,9 @@ switch (tierWar) do
             _vehicleSelection =
             [
                 [vehCSATPatrolHeli, 15],
-                [vehCSATAPC, 40],
-                [vehCSATTransportHelis, 35],
-                [vehCSATAA, 10]
+                [vehCSATAPC, 55],
+                [vehCSATTransportHelis, 15],
+                [vehCSATAA, 15]
             ];
         };
     };
@@ -76,9 +76,9 @@ switch (tierWar) do
             _vehicleSelection =
             [
                 [vehNATOPatrolHeli, 15],
-                [vehNATOAPC, 35],
-                [vehNATOTransportHelis, 40],
-                [vehNATOAA, 10]
+                [vehNATOAPC, 55],
+                [vehNATOTransportHelis, 15],
+                [vehNATOAA, 15]
             ];
         };
         if(_side == Invaders) then
@@ -86,10 +86,10 @@ switch (tierWar) do
             _vehicleSelection =
             [
                 [vehCSATPatrolHeli, 5],
-                [vehCSATAPC, 35],
-                [vehCSATTransportHelis, 30],
+                [vehCSATAPC, 64],
+                [vehCSATTransportHelis, 15],
                 [vehCSATAA, 15],
-                [vehCSATAttackHelis, 15]
+                [vehCSATAttackHelis, 1]
             ];
         };
     };
@@ -99,22 +99,22 @@ switch (tierWar) do
         {
             _vehicleSelection =
             [
-                [vehNATOAPC, 30],
-                [vehNATOTransportHelis, 40],
+                [vehNATOAPC, 64],
+                [vehNATOTransportHelis, 20],
                 [vehNATOAA, 15],
-                [vehNATOAttackHelis, 15]
+                [vehNATOAttackHelis, 1]
             ];
         };
         if(_side == Invaders) then
         {
             _vehicleSelection =
             [
-                [vehCSATAPC, 15],
+                [vehCSATAPC, 34],
                 [vehCSATTransportHelis, 15],
                 [vehCSATAA, 15],
-                [vehCSATAttackHelis, 20],
-                [vehCSATTank, 15],
-                [vehCSATTransportPlanes, 20]
+                [vehCSATAttackHelis, 1],
+                [vehCSATTank, 25],
+                [vehCSATTransportPlanes, 10]
             ];
         };
     };
@@ -124,22 +124,22 @@ switch (tierWar) do
         {
             _vehicleSelection =
             [
-                [vehNATOAPC, 20],
+                [vehNATOAPC, 39],
                 [vehNATOTransportHelis, 20],
                 [vehNATOAA, 15],
-                [vehNATOAttackHelis, 30],
-                [vehNATOTank, 15]
+                [vehNATOAttackHelis, 1],
+                [vehNATOTank, 25]
             ];
         };
         if(_side == Invaders) then
         {
             _vehicleSelection =
             [
-                [vehCSATAPC, 15],
+                [vehCSATAPC, 34],
                 [vehCSATTransportHelis, 10],
                 [vehCSATAA, 15],
-                [vehCSATAttackHelis, 15],
-                [vehCSATTank, 20],
+                [vehCSATAttackHelis, 1],
+                [vehCSATTank, 25],
                 [vehCSATTransportPlanes, 15]
             ];
         };
@@ -150,11 +150,11 @@ switch (tierWar) do
         {
             _vehicleSelection =
             [
-                [vehNATOAPC, 15],
+                [vehNATOAPC, 39],
                 [vehNATOTransportHelis, 10],
                 [vehNATOAA, 10],
-                [vehNATOAttackHelis, 20],
-                [vehNATOTank, 15],
+                [vehNATOAttackHelis, 1],
+                [vehNATOTank, 25],
                 [vehNATOTransportPlanes, 15]
             ];
         };
@@ -162,11 +162,11 @@ switch (tierWar) do
         {
             _vehicleSelection =
             [
-                [vehCSATAPC, 10],
-                [vehCSATTransportHelis, 5],
+                [vehCSATAPC, 14],
+                [vehCSATTransportHelis, 15],
                 [vehCSATAA, 10],
-                [vehCSATAttackHelis, 20],
-                [vehCSATTank, 20],
+                [vehCSATAttackHelis, 1],
+                [vehCSATTank, 25],
                 [vehCSATTransportPlanes, 15]
             ];
         };
@@ -177,10 +177,10 @@ switch (tierWar) do
         {
             _vehicleSelection =
             [
-                [vehNATOAPC, 10],
+                [vehNATOAPC, 39],
                 [vehNATOTransportHelis, 10],
-                [vehNATOAA, 5],
-                [vehNATOAttackHelis, 20],
+                [vehNATOAA, 15],
+                [vehNATOAttackHelis, 1],
                 [vehNATOTank, 20],
                 [vehNATOTransportPlanes, 15]
             ];
@@ -189,10 +189,10 @@ switch (tierWar) do
         {
             _vehicleSelection =
             [
-                [vehCSATAPC, 10],
+                [vehCSATAPC, 54],
                 [vehCSATAA, 10],
-                [vehCSATAttackHelis, 25],
-                [vehCSATTank, 25],
+                [vehCSATAttackHelis, 1],
+                [vehCSATTank, 20],
                 [vehCSATTransportPlanes, 15]
             ];
         };
@@ -203,11 +203,11 @@ switch (tierWar) do
         {
             _vehicleSelection =
             [
-                [vehNATOAPC, 10],
+                [vehNATOAPC, 44],
                 [vehNATOTransportHelis, 10],
                 [vehNATOAA, 5],
-                [vehNATOAttackHelis, 20],
-                [vehNATOTank, 20],
+                [vehNATOAttackHelis, 1],
+                [vehNATOTank, 25],
                 [vehNATOTransportPlanes, 15]
             ];
         };
@@ -215,10 +215,10 @@ switch (tierWar) do
         {
             _vehicleSelection =
             [
-                [vehCSATAPC, 10],
+                [vehCSATAPC, 44],
                 [vehCSATAA, 10],
-                [vehCSATAttackHelis, 25],
-                [vehCSATTank, 25],
+                [vehCSATAttackHelis, 1],
+                [vehCSATTank, 30],
                 [vehCSATTransportPlanes, 15]
             ];
         };
@@ -229,11 +229,11 @@ switch (tierWar) do
         {
             _vehicleSelection =
             [
-                [vehNATOAPC, 10],
+                [vehNATOAPC, 44],
                 [vehNATOTransportHelis, 10],
                 [vehNATOAA, 5],
-                [vehNATOAttackHelis, 20],
-                [vehNATOTank, 20],
+                [vehNATOAttackHelis, 1],
+                [vehNATOTank, 25],
                 [vehNATOTransportPlanes, 15]
             ];
         };
@@ -241,10 +241,10 @@ switch (tierWar) do
         {
             _vehicleSelection =
             [
-                [vehCSATAPC, 10],
+                [vehCSATAPC, 44],
                 [vehCSATAA, 10],
-                [vehCSATAttackHelis, 25],
-                [vehCSATTank, 25],
+                [vehCSATAttackHelis, 1],
+                [vehCSATTank, 30],
                 [vehCSATTransportPlanes, 15]
             ];
         };
@@ -255,11 +255,11 @@ switch (tierWar) do
         {
             _vehicleSelection =
             [
-                [vehNATOAPC, 10],
+                [vehNATOAPC, 44],
                 [vehNATOTransportHelis, 10],
                 [vehNATOAA, 5],
-                [vehNATOAttackHelis, 20],
-                [vehNATOTank, 20],
+                [vehNATOAttackHelis, 1],
+                [vehNATOTank, 25],
                 [vehNATOTransportPlanes, 15]
             ];
         };
@@ -267,10 +267,10 @@ switch (tierWar) do
         {
             _vehicleSelection =
             [
-                [vehCSATAPC, 10],
+                [vehCSATAPC, 44],
                 [vehCSATAA, 10],
-                [vehCSATAttackHelis, 25],
-                [vehCSATTank, 25],
+                [vehCSATAttackHelis, 1],
+                [vehCSATTank, 30],
                 [vehCSATTransportPlanes, 15]
             ];
         };

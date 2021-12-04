@@ -46,7 +46,7 @@ DECLARE_SERVER_VAR(distanceSPWN2, distanceSPWN*0.5);
 //The furthest distance the AI can attack from using helicopters or planes
 DECLARE_SERVER_VAR(distanceForAirAttack, 10000);
 //The furthest distance the AI can attack from using trucks and armour
-DECLARE_SERVER_VAR(distanceForLandAttack, if (A3A_hasIFA) then {5000} else {3000});
+DECLARE_SERVER_VAR(distanceForLandAttack, if (A3A_hasIFA) then {5000} else {6000});
 //Max units we aim to spawn in. It's not very strictly adhered to.
 //DECLARE_SERVER_VAR(maxUnits, 140);
 
