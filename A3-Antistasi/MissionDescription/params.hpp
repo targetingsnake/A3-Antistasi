@@ -275,7 +275,7 @@ class Params
         title = "Allow Items and Vehicles from Global Mobilization DLC?";
         values[] = {9999,1,0};
         texts[] = {"Load from save (Default: No)","Yes","No"};
-        default = 9999;
+        default = 1;
     };
     class Enoch
     {

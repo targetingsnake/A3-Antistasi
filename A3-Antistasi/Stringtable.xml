@@ -867,18 +867,18 @@
     </Container>
     <Container name="mission_info">
       <Key ID="STR_antistasi_mission_info_altis_mapname_short_text">
-        <Original>Antistasi Altis</Original>
-        <English>Antistasi Altis</English>
-        <Russian>Antistasi Алтис</Russian>
-        <Chinesesimp>Antistasi Altis</Chinesesimp>
+        <Original>Antistasi Altis - LCAS</Original>
+        <English>Antistasi Alti - LCAS</English>
+        <Russian>Antistasi Алтис - LCAS</Russian>
+        <Chinesesimp>Antistasi Altis - LCAS</Chinesesimp>
       </Key>
       <Key ID="STR_antistasi_mission_info_altis_mapname_text">
-        <Original>Antistasi - Liberation of Altis</Original>
-        <English>Antistasi - Liberation of Altis</English>
-        <French>Antistasi - Libération d'Altis</French>
-        <Korean>Antistasi - Altis 해방</Korean>
-        <Chinesesimp>Antistasi - 解放 Altis</Chinesesimp>
-        <Russian>Antistasi - Освобождение Алтиса</Russian>
+        <Original>Antistasi - Liberation of Altis - LCAS</Original>
+        <English>Antistasi - Liberation of Altis - LCAS</English>
+        <French>Antistasi - Libération d'Altis - LCAS</French>
+        <Korean>Antistasi - Altis 해방 - LCAS</Korean>
+        <Chinesesimp>Antistasi - 解放 Altis - LCAS</Chinesesimp>
+        <Russian>Antistasi - Освобождение Алтиса - LCAS</Russian>
       </Key>
       <Key ID="STR_antistasi_mission_info_altis_description_text">
         <Original>Be the Resistance Leader. Fight against a superior enemy in technology, number, assets and vehicles. Use guerrilla tactics in a totally dynamic world, with around 18 sidemissions, everywhere, anytime, anything.</Original>
@@ -901,14 +901,14 @@
         <Russian>Потому что нет ничего важнее свободы.</Russian>
       </Key>
       <Key ID="STR_antistasi_mission_info_altisB_mapname_short_text">
-        <Original>Antistasi Altis (BLUFOR)</Original>
-        <English>Antistasi Altis (BLUFOR)</English>
-        <Chinesesimp>Antistasi Altis (蓝方)</Chinesesimp>
+        <Original>Antistasi Altis (BLUFOR) - LCAS</Original>
+        <English>Antistasi Altis (BLUFOR) - LCAS</English>
+        <Chinesesimp>Antistasi Altis (蓝方) - LCAS</Chinesesimp>
       </Key>
       <Key ID="STR_antistasi_mission_info_altisB_mapname_text">
-        <Original>Antistasi - Liberation of Altis (BLUFOR)</Original>
-        <English>Antistasi - Liberation of Altis (BLUFOR)</English>
-        <Chinesesimp>Antistasi - 解放 Altis (蓝方)</Chinesesimp>
+        <Original>Antistasi - Liberation of Altis (BLUFOR) - LCAS</Original>
+        <English>Antistasi - Liberation of Altis (BLUFOR) - LCAS</English>
+        <Chinesesimp>Antistasi - 解放 Altis (蓝方) - LCAS</Chinesesimp>
       </Key>
       <Key ID="STR_antistasi_mission_info_stratis_mapname_short_text">
         <Original>Antistasi Stratis</Original>
@@ -1157,24 +1157,24 @@
         <Russian>Остерегайтесь: Санта-Клаус охотится на вас!</Russian>
       </Key>
       <Key ID="STR_antistasi_mission_info_kunduz_mapname_short_text">
-        <Original>Antistasi Kunduz</Original>
-        <English>Antistasi Kunduz</English>
-        <French>Antistasi Kanduz</French>
-        <Russian>Antistasi Кундуз</Russian>
-        <German>Antistasi Kunduz</German>
-        <Czech>Antistasi Kunduz</Czech>
-        <Korean>Antistasi Kunduz</Korean>
-        <Chinesesimp>Antistasi Kunduz</Chinesesimp>
+        <Original>Antistasi Kunduz - LCAS</Original>
+        <English>Antistasi Kunduz - LCAS</English>
+        <French>Antistasi Kanduz - LCAS</French>
+        <Russian>Antistasi Кундуз - LCAS</Russian>
+        <German>Antistasi Kunduz - LCAS</German>
+        <Czech>Antistasi Kunduz - LCAS</Czech>
+        <Korean>Antistasi Kunduz - LCAS</Korean>
+        <Chinesesimp>Antistasi Kunduz - LCAS</Chinesesimp>
       </Key>
       <Key ID="STR_antistasi_mission_info_kunduz_mapname_text">
-        <Original>Antistasi - Battle of Kunduz</Original>
-        <English>Antistasi - Battle of Kunduz</English>
-        <French>Antistasi - La Bataille de Kanduz</French>
-        <Russian>Antistasi - Битва за Кундуз</Russian>
-        <German>Antistasi - Battle of Kunduz</German>
-        <Czech>Antistasi - Bitva o Kunduz</Czech>
-        <Korean>Antistasi - Kunduz 전투</Korean>
-        <Chinesesimp>Antistasi - Kunduz 之战</Chinesesimp>
+        <Original>Antistasi - Battle of Kunduz - LCAS</Original>
+        <English>Antistasi - Battle of Kunduz - LCAS</English>
+        <French>Antistasi - La Bataille de Kanduz - LCAS</French>
+        <Russian>Antistasi - Битва за Кундуз - LCAS</Russian>
+        <German>Antistasi - Battle of Kunduz - LCAS</German>
+        <Czech>Antistasi - Bitva o Kunduz - LCAS</Czech>
+        <Korean>Antistasi - Kunduz 전투 - LCAS</Korean>
+        <Chinesesimp>Antistasi - Kunduz 之战 - LCAS</Chinesesimp>
       </Key>
       <Key ID="STR_antistasi_mission_info_kunduz_description_text">
         <Original>Be the Resistance Leader. Fight against a superior enemy in technology, number, assets and vehicles. Use guerrilla tactics in a totally dynamic world, with around 18 sidemissions, everywhere, anytime, anything.</Original>
@@ -1197,24 +1197,24 @@
         <Chinesesimp>沙砾与鲜血</Chinesesimp>
       </Key>
       <Key ID="STR_antistasi_mission_info_tembelan_mapname_short_text">
-        <Original>Antistasi Tembelan</Original>
-        <English>Antistasi Tembelan</English>
-        <French>Antistasi Tembelan</French>
-        <German>Antistasi Tembelan</German>
-        <Czech>Antistasi Tembelan</Czech>
-        <Korean>Antistasi Tembelan</Korean>
-        <Russian>Antistasi Тембелан</Russian>
-        <Chinesesimp>Antistasi Tembelan</Chinesesimp>
+        <Original>Antistasi Tembelan - LCAS</Original>
+        <English>Antistasi Tembelan - LCAS</English>
+        <French>Antistasi Tembelan - LCAS</French>
+        <German>Antistasi Tembelan - LCAS</German>
+        <Czech>Antistasi Tembelan - LCAS</Czech>
+        <Korean>Antistasi Tembelan - LCAS</Korean>
+        <Russian>Antistasi Тембелан - LCAS</Russian>
+        <Chinesesimp>Antistasi Tembelan - LCAS</Chinesesimp>
       </Key>
       <Key ID="STR_antistasi_mission_info_tembelan_mapname_text">
-        <Original>Antistasi - Liberation of Tembelan Island</Original>
-        <English>Antistasi - Liberation of Tembelan Island</English>
-        <French>Antistasi - Liberation de l'ile de Tembelan</French>
-        <German>Antistasi - Liberation of Tembelan Island</German>
-        <Czech>Antistasi - Osvobození Ostrova Tembelan</Czech>
-        <Korean>Antistasi - Tembelan 섬 해방</Korean>
-        <Chinesesimp>Antistasi - 解放 Tembelan</Chinesesimp>
-        <Russian>Antistasi - Освобождение острова Тембелан</Russian>
+        <Original>Antistasi - Liberation of Tembelan Island - LCAS</Original>
+        <English>Antistasi - Liberation of Tembelan Island - LCAS</English>
+        <French>Antistasi - Liberation de l'ile de Tembelan - LCAS</French>
+        <German>Antistasi - Liberation of Tembelan Island - LCAS</German>
+        <Czech>Antistasi - Osvobození Ostrova Tembelan - LCAS</Czech>
+        <Korean>Antistasi - Tembelan 섬 해방 - LCAS</Korean>
+        <Chinesesimp>Antistasi - 解放 Tembelan - LCAS</Chinesesimp>
+        <Russian>Antistasi - Освобождение острова Тембелан - LCAS</Russian>
       </Key>
       <Key ID="STR_antistasi_mission_info_tembelan_description_text">
         <Original>Be the Resistance Leader. Fight against a superior enemy in technology, number, assets and vehicles. Use guerrilla tactics in a totally dynamic world, with around 18 sidemissions, everywhere, anytime, anything.</Original>
@@ -1275,14 +1275,14 @@
         <Russian>Сражайся верхом на верблюде</Russian>
       </Key>
       <Key ID="STR_antistasi_mission_info_camlaonam_mapname_short_text">
-        <Original>Antistasi Cam Lao Nam</Original>
-        <English>Antistasi Cam Lao Nam</English>
-        <Chinesesimp>Antistasi Cam Lao Nam</Chinesesimp>
+        <Original>Antistasi Cam Lao Nam - lcas</Original>
+        <English>Antistasi Cam Lao Nam - lcas</English>
+        <Chinesesimp>Antistasi Cam Lao Nam - lcas</Chinesesimp>
       </Key>
       <Key ID="STR_antistasi_mission_info_camlaonam_mapname_text">
-        <Original>Antistasi - Liberation of Cam Lao Nam</Original>
-        <English>Antistasi - Liberation of Cam Lao Nam</English>
-        <Chinesesimp>Antistasi - 解放柬老南</Chinesesimp>
+        <Original>Antistasi - Liberation of Cam Lao Nam - lcas</Original>
+        <English>Antistasi - Liberation of Cam Lao Nam - lcas</English>
+        <Chinesesimp>Antistasi - 解放柬老南 - lcas</Chinesesimp>
       </Key>
       <Key ID="STR_antistasi_mission_info_camlaonam_description_text">
         <Original>Be the Resistance Leader. Fight against a superior enemy in technology, number, assets and vehicles. Use guerrilla tactics in a totally dynamic world, with around 18 sidemissions, everywhere, anytime, anything.</Original>
