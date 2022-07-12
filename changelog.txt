@@ -1,3 +1,20 @@
+Version 2.5.4 - 12th July 2022
+
+Changes from version 2.5.3 to 2.5.4 Antistasi Community Edition
+
+================ Template updates ================
+  - Vanilla templates overhaul #2302
+  - RHS templates overhaul #2333
+  - 3CB Factions templates overhaul #2009 & #2333 plus changes faction selection to spice up and increase use of unique weapons and vehicles
+  - SOG Prairie Fire templates overhaul (to 1.2 release)
+  
+================ Other ================
+  - Redid Western Sahara parameter
+
+================ DISCLAIMER ================
+  - Please note that this changelog may contain both spelling/grammatical errors and/or factual errors. Should any factual errors exist, we apologise but with the sheer number of changes made per version it can be easy to lose or mistake a change when writing up the changelog.
+  
+
 Version 2.5.3 - 11th October 2021
 
 Changes from version 2.5.2 to 2.5.3 Antistasi Community Edition

@@ -7,110 +7,106 @@
 //////////////////////////
 
 ["vehiclesCivCar", [
-    "C_Quadbike_01_F", 0.3
-    ,"C_Hatchback_01_F", 2.0
-    ,"C_Hatchback_01_sport_F", 0.3
-    ,"C_Offroad_01_F", 2.0
-    ,"C_SUV_01_F", 1.0
-    ,"C_Van_02_vehicle_F", 1.0                // van from Orange
-    ,"C_Van_02_transport_F", 0.2            // minibus
-    ,"C_Offroad_02_unarmed_F", 0.5            // Apex 4WD
-    ,"C_Offroad_01_comms_F", 0.1            // Contact
-    ,"C_Offroad_01_covered_F", 0.1]] call _fnc_saveToTemplate;
+    "UK3CB_CHC_C_Ikarus", 0                    // bus, dangerously large
+    ,"UK3CB_CHC_C_Datsun_Civ_Closed", 0.5
+    ,"UK3CB_CHC_C_Datsun_Civ_Open", 1.0            // cargo capable
+    ,"UK3CB_CHC_C_Hatchback", 0.5
+    ,"UK3CB_CHC_C_Hilux_Civ_Closed", 0.5
+    ,"UK3CB_CHC_C_Hilux_Civ_Open", 1.0            // cargo capable
+    ,"UK3CB_CHC_C_Lada", 0.5
+    ,"UK3CB_TKC_C_Lada_Taxi", 0.5
+    ,"UK3CB_CHC_C_LR_Closed", 0.5        // land rovers
+    ,"UK3CB_CHC_C_LR_Open", 0.5
+    ,"UK3CB_CHC_C_Sedan", 0.5
+    ,"UK3CB_CHC_C_Skoda", 0.5
+    ,"UK3CB_CHC_C_S1203", 0.5
+    ,"UK3CB_CHC_C_SUV", 0.3
+    ,"UK3CB_CHC_C_UAZ_Closed", 0.5
+    ,"UK3CB_CHC_C_UAZ_Open", 0.5
+    ,"UK3CB_CHC_C_Gaz24", 0.5
+    ,"UK3CB_CHC_C_Golf", 0.5
+    ,"UK3CB_CHC_C_Landcruiser",0.5
+    ,"UK3CB_CHC_C_Pickup",0.5]] call _fnc_saveToTemplate;
 
 ["vehiclesCivIndustrial", [
-    "C_Van_01_transport_F", 1.0
-    ,"C_Van_01_box_F", 0.8
-    ,"C_Truck_02_transport_F", 0.3
-    ,"C_Truck_02_covered_F", 0.3
-    ,"C_Tractor_01_F", 0.3                    // Contact
-    ,"RHS_Ural_Civ_01", 0.2
-    ,"RHS_Ural_Open_Civ_01", 0.2
-    ,"RHS_Ural_Civ_03", 0.2
-    ,"RHS_Ural_Open_Civ_03", 0.2
-    ,"RHS_Ural_Civ_02", 0.2
-    ,"RHS_Ural_Open_Civ_02", 0.2]] call _fnc_saveToTemplate;
+    "UK3CB_CHC_C_Tractor", 0.2
+    ,"UK3CB_CHC_C_Tractor_Old", 0.2
+    ,"UK3CB_CHC_C_Kamaz_Covered", 0.3
+    ,"UK3CB_CHC_C_Kamaz_Open", 0.3
+    ,"UK3CB_CHC_C_Ural", 0.3                // Urals
+    ,"UK3CB_CHC_C_Ural_Open", 0.3
+    ,"UK3CB_CHC_C_V3S_Closed", 0.3
+    ,"UK3CB_CHC_C_V3S_Open", 0.3]] call _fnc_saveToTemplate;
 
 ["vehiclesCivBoat", [
     "C_Boat_Civil_01_rescue_F", 0.1            // motorboats
     ,"C_Boat_Civil_01_police_F", 0.1
-    ,"C_Boat_Civil_01_F", 1.0
+    ,"UK3CB_C_Fishing_Boat", 0.3
+    ,"UK3CB_C_Fishing_Boat_Smuggler_VIV_FFV", 0.1
+    ,"UK3CB_C_Fishing_Boat_Smuggler", 0.2
+    ,"UK3CB_C_Fishing_Boat_VIV_FFV", 0.1
+    ,"UK3CB_C_Small_Boat_Closed", 0.7
+    ,"UK3CB_C_Small_Boat_Open", 0.8
+    ,"UK3CB_C_Small_Boat_Wood", 0.9
     ,"C_Rubberboat", 1.0                    // rescue boat
     ,"C_Boat_Transport_02_F", 1.0            // RHIB
     ,"C_Scooter_Transport_01_F", 0.5]] call _fnc_saveToTemplate;
 
 ["vehiclesCivRepair", [
-    "C_Offroad_01_repair_F", 0.3
-    ,"C_Van_02_service_F", 0.3                // orange
-    ,"C_Truck_02_box_F", 0.1]] call _fnc_saveToTemplate;
+    "UK3CB_CHC_C_Kamaz_Repair", 0.1
+    ,"UK3CB_CHC_C_Ural_Repair", 0.1
+    ,"UK3CB_CHC_C_V3S_Repair", 0.1]] call _fnc_saveToTemplate;
 
-["vehiclesCivMedical", ["C_Van_02_medevac_F", 0.1]] call _fnc_saveToTemplate;
+["vehiclesCivMedical", [
+    "UK3CB_CHC_C_S1203_Amb", 0.1
+    ,"UK3CB_C_Hilux_Ambulance", 0.1
+    ]] call _fnc_saveToTemplate;
 
 ["vehiclesCivFuel", [
-    "C_Van_01_fuel_F", 0.2
-    ,"C_Truck_02_fuel_F", 0.1]] call _fnc_saveToTemplate;
+    "UK3CB_CHC_C_Kamaz_Fuel", 0.1
+    ,"UK3CB_CHC_C_Ural_Fuel", 0.1                // Ural
+    ,"UK3CB_CHC_C_V3S_Refuel", 0.1]] call _fnc_saveToTemplate;
 
 //////////////////////////
 //       Loadouts       //
 //////////////////////////
 
 private _civUniforms = [
-    "U_C_Man_casual_1_F",
-    "U_C_Man_casual_2_F",
-    "U_C_Man_casual_3_F",
-    "U_C_Man_casual_4_F",
-    "U_C_Man_casual_5_F",
-    "U_C_Man_casual_6_F",
-    "U_C_ArtTShirt_01_v1_F",
-    "U_C_ArtTShirt_01_v2_F",
-    "U_C_ArtTShirt_01_v3_F",
-    "U_C_ArtTShirt_01_v4_F",
-    "U_C_ArtTShirt_01_v5_F",
-    "U_C_ArtTShirt_01_v6_F",
-    "U_NikosBody",
-    "U_NikosAgedBody",
-    "U_C_Poloshirt_blue",
-    "U_C_Poloshirt_burgundy",
-    "U_C_Poloshirt_stripped",
-    "U_C_Poloshirt_tricolour",
-    "U_C_Poloshirt_salmon",
-    "U_C_Poloshirt_redwhite",
-    "U_OrestesBody",
-    "U_C_Poor_1",
-    "U_C_HunterBody_grn",
-    "U_I_L_Uniform_01_tshirt_skull_F",
-    "U_I_L_Uniform_01_tshirt_black_F",
-    "U_I_L_Uniform_01_tshirt_sport_F",
-    "U_C_Scientist",
-    "U_C_Uniform_Scientist_02_formal_F",
-    "U_C_Uniform_Scientist_02_F",
-    "U_C_Uniform_Scientist_01_F"
+    "UK3CB_ADC_C_Shorts_U_05",
+    "UK3CB_ADC_C_Shorts_U_01",
+    "UK3CB_ADC_C_Shorts_U_06",
+    "UK3CB_ADC_C_Shorts_U_03",
+    "UK3CB_CHC_C_U_VILL_01",
+    "UK3CB_CHC_C_U_VILL_03",
+    "UK3CB_CHC_C_U_VILL_04",
+    "UK3CB_ADC_C_Hunter_U_06",
+    "UK3CB_ADC_C_Hunter_U_08",
+    "UK3CB_ADC_C_Hunter_U_07",
+    "UK3CB_CHC_C_U_DOC_01",
+    "UK3CB_CHC_C_U_PROF_04",
+    "UK3CB_CHC_C_U_PROF_01",
+    "UK3CB_CHC_C_U_COACH_03",
+    "UK3CB_CHC_C_U_COACH_05",
+    "UK3CB_CHC_C_U_COACH_02",
+    "UK3CB_CHC_C_U_COACH_04",
+    "UK3CB_CHC_C_U_CAN_01"
 ];
 
 private _pressUniforms = [
     "U_C_Journalist",
-    "U_Marshal"
+    "U_Marshal",
+    "UK3CB_CHC_C_U_POLITIC_01",
+    "UK3CB_CHC_C_U_POLITIC_02",
+    "UK3CB_CHC_C_U_POLITIC_03"
     ];
 
 private _workerUniforms = [
     "U_C_WorkerCoveralls",
-    "U_C_Uniform_Farmer_01_F"
+    "U_C_Uniform_Farmer_01_F",
+    "UK3CB_CHC_C_U_Overall_02"
     ];
 
-private _dlcUniforms = [];
-
-if (allowDLCExpansion) then {_dlcUniforms append [
-    "U_C_man_sport_1_F",
-    "U_C_man_sport_2_F",
-    "U_C_man_sport_3_F"];
-};
-
-if (allowDLCOrange) then {_dlcUniforms append [
-    "U_C_Paramedic_01_F",
-    "U_C_Mechanic_01_F"];
-};
-
-["uniforms", _civUniforms + _pressUniforms + _workerUniforms + _dlcUniforms] call _fnc_saveToTemplate;
+["uniforms", _civUniforms + _pressUniforms + _workerUniforms] call _fnc_saveToTemplate;
 
 private _civhats = [
     "H_Bandanna_blu",
