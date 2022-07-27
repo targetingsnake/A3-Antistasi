@@ -606,14 +606,14 @@
         <Korean>바닥부터 FIA 군을 일으켜 다이나믹 미션이 생성되는 맵 전체에서 AAF와 CSAT을 패퇴시키십시오.</Korean>
       </Key>
       <Key ID="STR_antistasi_credits_generic_missionname_text">
-        <Original>Antistasi Altis</Original>
-        <English>Antistasi Altis</English>
-        <French>Antistasi Altis</French>
-        <Russian>Antistasi Алтис</Russian>
-        <German>Antistasi Altis</German>
-        <Czech>Antistasi Altis</Czech>
-        <Korean>Antistasi Altis</Korean>
-        <Chinesesimp>Antistasi Altis</Chinesesimp>
+        <Original>Antistasi Altis - lcas</Original>
+        <English>Antistasi Altis - lcas</English>
+        <French>Antistasi Altis - lcas</French>
+        <Russian>Antistasi Алтис - lcas</Russian>
+        <German>Antistasi Altis - lcas</German>
+        <Czech>Antistasi Altis - lcas</Czech>
+        <Korean>Antistasi Altis - lcas</Korean>
+        <Chinesesimp>Antistasi Altis - lcas</Chinesesimp>
       </Key>
       <Key ID="STR_antistasi_credits_generic_missiondesc_text">
         <Original>Be a Resistance leader, be a hero.</Original>
