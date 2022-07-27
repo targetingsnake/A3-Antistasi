@@ -22,12 +22,12 @@
 ["vehiclesLightArmed", ["gm_ge_army_iltis_milan", "gm_ge_army_iltis_mg3"]] call _fnc_saveToTemplate; //this line determines light and armed vehicles -- Example: ["vehiclesLightArmed", ["B_MRAP_01_hmg_F", "B_MRAP_01_gmg_F"]] -- Array, can contain multiple assets
 ["vehiclesTrucks", ["gm_ge_army_u1300l_cargo", "gm_ge_army_u1300l_container", "gm_ge_army_kat1_451_cargo", "gm_ge_army_kat1_451_container"]] call _fnc_saveToTemplate;
 ["vehiclesCargoTrucks", ["gm_ge_army_kat1_454_cargo", "gm_ge_army_u1300l_container", "gm_ge_army_kat1_452_container", "gm_ge_army_kat1_451_container"]] call _fnc_saveToTemplate;
-["vehiclesAmmoTrucks", ["B_T_Truck_01_ammo_F"]] call _fnc_saveToTemplate;
-["vehiclesRepairTrucks", ["B_T_Truck_01_Repair_F"]] call _fnc_saveToTemplate;
-["vehiclesFuelTrucks", ["B_T_Truck_01_fuel_F"]] call _fnc_saveToTemplate;
-["vehiclesMedical", ["B_T_Truck_01_medical_F"]] call _fnc_saveToTemplate;
-["vehiclesTanks", ["B_T_MBT_01_TUSK_F", "B_T_MBT_01_cannon_F"]] call _fnc_saveToTemplate;
-["vehiclesAA", ["B_T_APC_Tracked_01_AA_F"]] call _fnc_saveToTemplate;
+["vehiclesAmmoTrucks", ["gm_ge_army_kat1_454_reammo", "gm_ge_army_kat1_451_reammo"]] call _fnc_saveToTemplate;
+["vehiclesRepairTrucks", ["gm_ge_army_u1300l_repair", "gm_ge_army_bpz2a0", "gm_dk_army_bpz2a0", "gm_ge_army_fuchsa0_engineer", "gm_dk_army_m113a1dk_engineer"]] call _fnc_saveToTemplate;
+["vehiclesFuelTrucks", ["gm_ge_army_kat1_451_refuel"]] call _fnc_saveToTemplate;
+["vehiclesMedical", ["gm_ge_army_u1300l_medic", "gm_ge_army_m113a1g_medic", "gm_dk_army_m113a1dk_medic"]] call _fnc_saveToTemplate;
+["vehiclesTanks", ["gm_ge_army_Leopard1a1", "gm_ge_army_Leopard1a1a1", "gm_ge_army_Leopard1a1a2", "gm_ge_army_Leopard1a3", "gm_ge_army_Leopard1a3a1", "gm_ge_army_Leopard1a5", "gm_dk_army_Leopard1a3"]] call _fnc_saveToTemplate;
+["vehiclesAA", ["gm_ge_army_gepard1a1"]] call _fnc_saveToTemplate;
 
 
 ["vehiclesTransportBoats", ["B_Boat_Transport_01_F"]] call _fnc_saveToTemplate;
