@@ -3,7 +3,7 @@
 //////////////////////////
 
 ["name", "AFRF"] call _fnc_saveToTemplate;
-["spawnMarkerName", "AFRF Support Corridor"] call _fnc_saveToTemplate;
+["spawnMarkerName", "NATO Support Corridor"] call _fnc_saveToTemplate;
 
 ["flag", "rhs_Flag_Russia_F"] call _fnc_saveToTemplate;
 ["flagTexture", "rhsafrf\addons\rhs_main\data\flag_rus_co.paa"] call _fnc_saveToTemplate;

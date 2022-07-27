@@ -66,7 +66,7 @@ if (
 ) then {A3A_hasCUP = true; Info("CUP Detected.") };
 
 // GM Detection
-if (allowDLCGlobMob && isClass (configFile >> "CfgPatches" >> "gm_weapons_items")) then {A3A_hasGM = true; Info("GM Detected");}
+if (allowDLCGlobMob && isClass (configFile >> "CfgPatches" >> "gm_weapons_items")) then {A3A_hasGM = true; Info("GM Detected");};
 
 //ADDONS BELOW 
 
@@ -89,5 +89,5 @@ if (isClass (configfile >> "CfgVehicles" >> "d3s_baumaschinen")) then {A3A_hasD3
 if (isClass (configfile >> "CfgPatches" >> "rds_A2_Civilians")) then {A3A_hasRDS = true; Info("RDS Cars Detected.") };
 
 //No Mods found logging
-if (!A3A_hasRHS && !A3A_hasFFAA && !A3A_hasIFA && !A3A_has3CBBAF) then { Info("No Side Replacement Mods Detected.") };
+if (!A3A_hasRHS && !A3A_hasFFAA && !A3A_hasIFA && !A3A_has3CBBAF && !A3A_hasGM) then { Info("No Side Replacement Mods Detected.") };
 if (!A3A_hasIvory && !A3A_hasTCGM && !A3A_hasADV && !A3A_hasKAT) then { Info("No Addon Mods Detected.") };

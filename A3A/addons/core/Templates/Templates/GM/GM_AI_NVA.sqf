@@ -2,12 +2,12 @@
 //   Side Information   //
 //////////////////////////
 
-["name", "CSAT"] call _fnc_saveToTemplate;
-["spawnMarkerName", "CSAT Support Corridor"] call _fnc_saveToTemplate;
+["name", "Nationale Volksarmee"] call _fnc_saveToTemplate;
+["spawnMarkerName", "warsaw pact support Corridor"] call _fnc_saveToTemplate;
 
-["flag", "Flag_CSAT_F"] call _fnc_saveToTemplate;
-["flagTexture", "A3\Data_F\Flags\Flag_CSAT_CO.paa"] call _fnc_saveToTemplate;
-["flagMarkerType", "flag_CSAT"] call _fnc_saveToTemplate;
+["flag", "gm_marker_flag_GC"] call _fnc_saveToTemplate;
+["flagTexture", "\gm\gm_core\data\flags\gm_flag_GC_marker_ca"] call _fnc_saveToTemplate;
+["flagMarkerType", "gm_marker_flag_GC"] call _fnc_saveToTemplate;
 
 //////////////////////////
 //       Vehicles       //

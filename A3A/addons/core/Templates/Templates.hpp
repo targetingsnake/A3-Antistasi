@@ -497,7 +497,7 @@ class Templates
         priorityReb = 7;
         priorityCiv = 7;
 
-        requiredAddons[] = {"vn_weapons"};
+        requiredAddons[] = {"gm_weapons_items"};
         path = QPATHTOFOLDER(Templates\Templates\GM);
 
         class AI
@@ -524,7 +524,6 @@ class Templates
             {
                 Occ = "BW";
                 Inv = "NVA";
-                Reb = "POF";
             };
         };
 
