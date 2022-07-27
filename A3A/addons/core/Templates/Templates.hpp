@@ -489,4 +489,45 @@ class Templates
 
         Nodes[] = {"CUP_Logistics_Nodes.sqf"};
     };
+
+    class GM
+    {
+        priorityOcc = 7;
+        priorityInv = 7;
+        priorityReb = 7;
+        priorityCiv = 7;
+
+        requiredAddons[] = {"vn_weapons"};
+        path = QPATHTOFOLDER(Templates\Templates\GM);
+
+        class AI
+        {
+            class NVA {};
+            class BW {};
+        };
+
+        class Reb
+        {};
+
+        class Civ {
+            class EG {
+                displayName = "Eastern Germans";
+            };
+            class WG {
+                displayName = "Western Germans";
+            };
+        };
+
+        class worldDefaults
+        {
+            class Default
+            {
+                Occ = "BW";
+                Inv = "NVA";
+                Reb = "POF";
+            };
+        };
+
+        Nodes[] = {"GM_Logistics_Nodes.sqf"};
+    };
 };

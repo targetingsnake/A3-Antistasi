@@ -24,6 +24,7 @@ A3A_hasD3S = false;
 A3A_hasRDS = false;
 A3A_hasKAT = false;
 A3A_hasCUP = false;
+A3A_hasGM = false;
 
 //Actual Detection
 //IFA Detection
@@ -63,6 +64,9 @@ if (
   isClass (configFile >> "cfgPatches" >> "CUP_BaseConfigs") &&                   // cup weapons
   isClass (configFile >> "cfgPatches" >> "CUP_AirVehicles_Core")                 // cup vehicles
 ) then {A3A_hasCUP = true; Info("CUP Detected.") };
+
+// GM Detection
+if (allowDLCGlobMob && isClass (configFile >> "CfgPatches" >> "gm_weapons_items")) then {A3A_hasGM = true; Info("GM Detected");}
 
 //ADDONS BELOW 
 
