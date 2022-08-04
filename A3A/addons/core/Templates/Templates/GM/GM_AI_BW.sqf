@@ -29,15 +29,15 @@
 ["vehiclesTanks", ["gm_ge_army_Leopard1a1", "gm_ge_army_Leopard1a1a1", "gm_ge_army_Leopard1a1a2", "gm_ge_army_Leopard1a3", "gm_ge_army_Leopard1a3a1", "gm_ge_army_Leopard1a5", "gm_dk_army_Leopard1a3", "gm_ge_army_bibera0", "gm_dk_army_bibera0"]] call _fnc_saveToTemplate;
 ["vehiclesAA", ["gm_ge_army_gepard1a1"]] call _fnc_saveToTemplate;
 
-["vehiclesAPCs", ["gm_ge_army_fuchsa0_reconnaissance", "gm_ge_army_m113a1g_apc_milan", "gm_ge_army_luchsa1", "gm_ge_army_luchsa2", "gm_dk_army_m113a1dk_apc", "gm_ge_army_m113a1g_apc", "gm_ge_army_m113a1g_command", "gm_ge_army_fuchsa0_command", "gm_dk_army_m113a1dk_command", "gm_ge_army_marder1a2", "gm_ge_army_marder1a1a", "gm_ge_army_marder1a1plus", "gm_dk_army_m113a2dk"]] call _fnc_saveToTemplate;
+["vehiclesAPCs", ["gm_ge_army_fuchsa0_reconnaissance", "gm_ge_army_m113a1g_apc_milan", "gm_ge_army_luchsa1", "gm_ge_army_luchsa2", "gm_dk_army_m113a1dk_apc", "gm_ge_army_m113a1g_apc", "gm_ge_army_m113a1g_command", "gm_ge_army_fuchsa0_command", "gm_dk_army_m113a1dk_command", ]] call _fnc_saveToTemplate;
 
 
-["vehiclesTransportBoats", []] call _fnc_saveToTemplate;
-["vehiclesGunBoats", []] call _fnc_saveToTemplate;
-["vehiclesAmphibious", []] call _fnc_saveToTemplate;
+["vehiclesTransportBoats", ["B_Boat_Transport_01_F"]] call _fnc_saveToTemplate;
+["vehiclesGunBoats", ["B_Boat_Armed_01_minigun_F"]] call _fnc_saveToTemplate;
+["vehiclesAmphibious", ["B_T_APC_Wheeled_01_cannon_F"]] call _fnc_saveToTemplate;
 
-["vehiclesPlanesCAS", []] call _fnc_saveToTemplate;
-["vehiclesPlanesAA", []] call _fnc_saveToTemplate;
+["vehiclesPlanesCAS", ["B_Plane_CAS_01_dynamicLoadout_F"]] call _fnc_saveToTemplate;
+["vehiclesPlanesAA", ["B_Plane_Fighter_01_F"]] call _fnc_saveToTemplate;
 ["vehiclesPlanesTransport", ["gm_ge_airforce_do28d2"]] call _fnc_saveToTemplate;
 
 ["vehiclesHelisLight", ["gm_ge_army_bo105m_vbh", "gm_ge_army_bo105p1m_vbh", "gm_ge_army_bo105p1m_vbh_swooper"]] call _fnc_saveToTemplate;
@@ -69,8 +69,8 @@
 
 //
 
-["uavsAttack", []] call _fnc_saveToTemplate;
-["uavsPortable", []] call _fnc_saveToTemplate;
+["uavsAttack", ["B_UAV_02_CAS_F"]] call _fnc_saveToTemplate;
+["uavsPortable", ["B_UAV_01_F"]] call _fnc_saveToTemplate;
 
 //Config special vehicles - militia vehicles are mostly used in the early game, police cars are being used by troops around cities -- Example:
 ["vehiclesMilitiaLightArmed", ["gm_ge_army_iltis_mg3"]] call _fnc_saveToTemplate;
@@ -95,18 +95,19 @@
 ///  Identities   ///
 /////////////////////
 
-["voices", ["gm_voice_male_deu_01","gm_voice_male_deu_02","gm_voice_male_deu_03","gm_voice_male_deu_04","gm_voice_male_deu_05","gm_voice_male_deu_06","gm_voice_male_deu_07","gm_voice_male_deu_08","gm_voice_male_deu_09"]] call _fnc_saveToTemplate;
-["faces", ["gm_face_whiteHead_01","gm_face_whiteHead_02","gm_WhiteHead_01_camo_01","gm_WhiteHead_01_camo_02",
-"gm_WhiteHead_02_camo_01","gm_WhiteHead_02_camo_02","gm_WhiteHead_03_camo_01","gm_WhiteHead_03_camo_02","gm_WhiteHead_04_camo_01",
-"gm_WhiteHead_04_camo_02","gm_WhiteHead_05_camo_01","gm_WhiteHead_05_camo_02","gm_WhiteHead_06_camo_01","gm_WhiteHead_06_camo_02",
-"gm_WhiteHead_07_camo_01","gm_WhiteHead_07_camo_02","gm_WhiteHead_08_camo_01","gm_WhiteHead_08_camo_02","gm_WhiteHead_09_camo_01",
-"gm_WhiteHead_09_camo_02","gm_WhiteHead_10_camo_01","gm_WhiteHead_10_camo_02","gm_WhiteHead_11_camo_01","gm_WhiteHead_11_camo_02",
-"gm_WhiteHead_12_camo_01", "gm_WhiteHead_12_camo_02", "gm_WhiteHead_13_camo_01", "gm_WhiteHead_13_camo_02",
-"gm_WhiteHead_14_camo_01", "gm_WhiteHead_14_camo_02", "gm_WhiteHead_15_camo_01", "gm_WhiteHead_15_camo_02",
-"gm_WhiteHead_16_camo_01", "gm_WhiteHead_16_camo_02", "gm_WhiteHead_17_camo_01", "gm_WhiteHead_17_camo_02",
-"gm_WhiteHead_18_camo_01", "gm_WhiteHead_18_camo_02", "gm_WhiteHead_19_camo_01", "gm_WhiteHead_19_camo_02",
-"gm_WhiteHead_20_camo_01", "gm_WhiteHead_20_camo_02", "gm_WhiteHead_21_camo_01", "gm_WhiteHead_21_camo_02"]] call _fnc_saveToTemplate;
+["voices", ["gm_voice_male_deu_05","gm_voice_male_deu_06","gm_voice_male_deu_07","gm_voice_male_deu_08","gm_voice_male_deu_09"]] call _fnc_saveToTemplate;
+["faces", ["gm_face_whiteHead_01","gm_face_whiteHead_02" ]] call _fnc_saveToTemplate;
 ["sfVoices", ["gm_voice_male_deu_01","gm_voice_male_deu_02","gm_voice_male_deu_03","gm_voice_male_deu_04"]] call _fnc_saveToTemplate;
+["sfFaces", ["gm_WhiteHead_01_camo_01","gm_WhiteHead_01_camo_02",
+    "gm_WhiteHead_02_camo_01","gm_WhiteHead_02_camo_02","gm_WhiteHead_03_camo_01","gm_WhiteHead_03_camo_02","gm_WhiteHead_04_camo_01",
+    "gm_WhiteHead_04_camo_02","gm_WhiteHead_05_camo_01","gm_WhiteHead_05_camo_02","gm_WhiteHead_06_camo_01","gm_WhiteHead_06_camo_02",
+    "gm_WhiteHead_07_camo_01","gm_WhiteHead_07_camo_02","gm_WhiteHead_08_camo_01","gm_WhiteHead_08_camo_02","gm_WhiteHead_09_camo_01",
+    "gm_WhiteHead_09_camo_02","gm_WhiteHead_10_camo_01","gm_WhiteHead_10_camo_02","gm_WhiteHead_11_camo_01","gm_WhiteHead_11_camo_02",
+    "gm_WhiteHead_12_camo_01", "gm_WhiteHead_12_camo_02", "gm_WhiteHead_13_camo_01", "gm_WhiteHead_13_camo_02",
+    "gm_WhiteHead_14_camo_01", "gm_WhiteHead_14_camo_02", "gm_WhiteHead_15_camo_01", "gm_WhiteHead_15_camo_02",
+    "gm_WhiteHead_16_camo_01", "gm_WhiteHead_16_camo_02", "gm_WhiteHead_17_camo_01", "gm_WhiteHead_17_camo_02",
+    "gm_WhiteHead_18_camo_01", "gm_WhiteHead_18_camo_02", "gm_WhiteHead_19_camo_01", "gm_WhiteHead_19_camo_02",
+    "gm_WhiteHead_20_camo_01", "gm_WhiteHead_20_camo_02", "gm_WhiteHead_21_camo_01", "gm_WhiteHead_21_camo_02" ]] call _fnc_saveToTemplate;
 
 //////////////////////////
 //       Loadouts       //
