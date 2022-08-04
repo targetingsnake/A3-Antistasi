@@ -5,7 +5,7 @@
 ["name", "Bundeswehr"] call _fnc_saveToTemplate;
 ["spawnMarkerName", "NATO support corridor"] call _fnc_saveToTemplate;
 
-["flag", "flag_germany"] call _fnc_saveToTemplate;
+["flag", "gm_flag_GE"] call _fnc_saveToTemplate;
 ["flagTexture", "\A3\ui_f\data\map\markers\flags\Germany_ca.paa"] call _fnc_saveToTemplate;
 ["flagMarkerType", "flag_germany"] call _fnc_saveToTemplate;
 
@@ -29,17 +29,15 @@
 ["vehiclesTanks", ["gm_ge_army_Leopard1a1", "gm_ge_army_Leopard1a1a1", "gm_ge_army_Leopard1a1a2", "gm_ge_army_Leopard1a3", "gm_ge_army_Leopard1a3a1", "gm_ge_army_Leopard1a5", "gm_dk_army_Leopard1a3", "gm_ge_army_bibera0", "gm_dk_army_bibera0"]] call _fnc_saveToTemplate;
 ["vehiclesAA", ["gm_ge_army_gepard1a1"]] call _fnc_saveToTemplate;
 
-["vehiclesAPCs", ["gm_ge_army_fuchsa0_reconnaissance", "gm_ge_army_m113a1g_apc_milan", "gm_ge_army_luchsa1", "gm_ge_army_luchsa2", "gm_dk_army_m113a1dk_apc"]] call _fnc_saveToTemplate;
-["vehiclesLightAPCs", ["gm_ge_army_m113a1g_apc", "gm_ge_army_m113a1g_command", "gm_ge_army_fuchsa0_command", "gm_dk_army_m113a1dk_command"]] call _fnc_saveToTemplate;            //this line determines light APCs
-["vehiclesIFVs", ["gm_ge_army_marder1a2", "gm_ge_army_marder1a1a", "gm_ge_army_marder1a1plus", "gm_dk_army_m113a2dk"]] call _fnc_saveToTemplate;                //this line determines IFVs
+["vehiclesAPCs", ["gm_ge_army_fuchsa0_reconnaissance", "gm_ge_army_m113a1g_apc_milan", "gm_ge_army_luchsa1", "gm_ge_army_luchsa2", "gm_dk_army_m113a1dk_apc", "gm_ge_army_m113a1g_apc", "gm_ge_army_m113a1g_command", "gm_ge_army_fuchsa0_command", "gm_dk_army_m113a1dk_command", "gm_ge_army_marder1a2", "gm_ge_army_marder1a1a", "gm_ge_army_marder1a1plus", "gm_dk_army_m113a2dk"]] call _fnc_saveToTemplate;
 
 
-["vehiclesTransportBoats", ["B_Boat_Transport_01_F"]] call _fnc_saveToTemplate;
-["vehiclesGunBoats", ["B_Boat_Armed_01_minigun_F"]] call _fnc_saveToTemplate;
-["vehiclesAmphibious", ["B_T_APC_Wheeled_01_cannon_F"]] call _fnc_saveToTemplate;
+["vehiclesTransportBoats", []] call _fnc_saveToTemplate;
+["vehiclesGunBoats", []] call _fnc_saveToTemplate;
+["vehiclesAmphibious", []] call _fnc_saveToTemplate;
 
-["vehiclesPlanesCAS", ["B_Plane_CAS_01_dynamicLoadout_F"]] call _fnc_saveToTemplate;
-["vehiclesPlanesAA", ["B_Plane_Fighter_01_F"]] call _fnc_saveToTemplate;
+["vehiclesPlanesCAS", []] call _fnc_saveToTemplate;
+["vehiclesPlanesAA", []] call _fnc_saveToTemplate;
 ["vehiclesPlanesTransport", ["gm_ge_airforce_do28d2"]] call _fnc_saveToTemplate;
 
 ["vehiclesHelisLight", ["gm_ge_army_bo105m_vbh", "gm_ge_army_bo105p1m_vbh", "gm_ge_army_bo105p1m_vbh_swooper"]] call _fnc_saveToTemplate;
@@ -71,8 +69,8 @@
 
 //
 
-["uavsAttack", ["B_UAV_02_CAS_F"]] call _fnc_saveToTemplate;
-["uavsPortable", ["B_UAV_01_F"]] call _fnc_saveToTemplate;
+["uavsAttack", []] call _fnc_saveToTemplate;
+["uavsPortable", []] call _fnc_saveToTemplate;
 
 //Config special vehicles - militia vehicles are mostly used in the early game, police cars are being used by troops around cities -- Example:
 ["vehiclesMilitiaLightArmed", ["gm_ge_army_iltis_mg3"]] call _fnc_saveToTemplate;
@@ -159,7 +157,7 @@ _loadoutData set ["compasses", ["gm_ge_army_conat2"]];
 _loadoutData set ["radios", ["ItemRadio"]];
 _loadoutData set ["gpses", ["ItemGPS"]];
 _loadoutData set ["NVGs", ["NVGoggles_INDEP"]];
-_loadoutData set ["binoculars", ["gm_df7x40_blk", "gm_df7x40_oli", "gm_df7x40_des", "gm_df7x40_win"]];
+_loadoutData set ["binoculars", ["gm_df7x40_blk", "gm_ferod16_des", "gm_ferod16_oli", "gm_ferod16_win"]];
 _loadoutData set ["rangefinders", ["Rangefinder"]];
 
 _loadoutData set ["uniforms", []];
@@ -378,7 +376,7 @@ _crewLoadoutData set ["helmets", ["gm_ge_headgear_headset_crew_oli", "gm_ge_head
 
 
 private _pilotLoadoutData = _militaryLoadoutData call _fnc_copyLoadoutData;
-_pilotLoadoutData set ["uniforms", ["gm_ge_pol_uniform_pilot_grn", "gm_ge_pol_uniform_pilot_rolled_grn", "gm_ge_army_uniform_pilot_oli", "gm_ge_army_uniform_pilot_rolled_oli", ]];
+_pilotLoadoutData set ["uniforms", ["gm_ge_pol_uniform_pilot_grn", "gm_ge_pol_uniform_pilot_rolled_grn", "gm_ge_army_uniform_pilot_oli", "gm_ge_army_uniform_pilot_rolled_oli"]];
 _pilotLoadoutData set ["vests", ["gm_ge_vest_90_crew_flk", "gm_ge_army_vest_80_bag", "gm_ge_army_vest_80_crew", "gm_dk_army_vest_54_crew"]];
 _pilotLoadoutData set ["helmets", ["gm_ge_headgear_sph4_oli"]];
 

@@ -5,7 +5,7 @@
 ["name", "Nationale Volksarmee"] call _fnc_saveToTemplate;
 ["spawnMarkerName", "warsaw pact support Corridor"] call _fnc_saveToTemplate;
 
-["flag", "gm_marker_flag_GC"] call _fnc_saveToTemplate;
+["flag", "gm_flag_GC"] call _fnc_saveToTemplate;
 ["flagTexture", "\gm\gm_core\data\flags\gm_flag_GC_marker_ca"] call _fnc_saveToTemplate;
 ["flagMarkerType", "gm_marker_flag_GC"] call _fnc_saveToTemplate;
 
