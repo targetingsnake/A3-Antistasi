@@ -509,14 +509,7 @@ class Templates
         class Reb
         {};
 
-        class Civ {
-            class EG {
-                displayName = "Eastern Germans";
-            };
-            class WG {
-                displayName = "Western Germans";
-            };
-        };
+        class Civ {};
 
         class worldDefaults
         {
