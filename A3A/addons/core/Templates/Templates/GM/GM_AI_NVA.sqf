@@ -120,7 +120,7 @@
 /////////////////////
 
 ["voices", ["gm_voice_male_deu_08","gm_voice_male_deu_09"]] call _fnc_saveToTemplate;
-["faces", ["AsianHead_A3_01","AsianHead_A3_02","AsianHead_A3_03","AsianHead_A3_04","AsianHead_A3_05","AsianHead_A3_06","AsianHead_A3_07"]] call _fnc_saveToTemplate;
+["faces", ["WhiteHead_01","WhiteHead_02","WhiteHead_03","WhiteHead_04"]] call _fnc_saveToTemplate;
 ["sfVoices", ["gm_voice_male_deu_03","gm_voice_male_deu_04"]] call _fnc_saveToTemplate;
 ["sfFaces", ["gm_WhiteHead_01_camo_02", "gm_WhiteHead_02_camo_02", "gm_WhiteHead_03_camo_02",
     "gm_WhiteHead_04_camo_02","gm_WhiteHead_05_camo_02","gm_WhiteHead_06_camo_02",
