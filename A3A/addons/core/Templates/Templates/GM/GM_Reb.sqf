@@ -8,41 +8,38 @@
 ["flagTexture", "a3\data_f\flags\flag_fia_co.paa"] call _fnc_saveToTemplate;
 ["flagMarkerType", "flag_FIA"] call _fnc_saveToTemplate;
 
-["vehicleBasic", "I_G_Quadbike_01_F"] call _fnc_saveToTemplate;
-["vehicleLightUnarmed", "I_G_Offroad_01_F"] call _fnc_saveToTemplate;
-["vehicleLightArmed", "I_G_Offroad_01_armed_F"] call _fnc_saveToTemplate;
-["vehicleTruck", "I_G_Van_01_transport_F"] call _fnc_saveToTemplate;
-["vehicleAT", "I_G_Offroad_01_AT_F"] call _fnc_saveToTemplate;
-private _vehicleAA = "";
+["vehicleBasic", "gm_ge_army_k125"] call _fnc_saveToTemplate;
+["vehicleLightUnarmed", "gm_ge_army_iltis_cargo"] call _fnc_saveToTemplate;
+["vehicleLightArmed", "gm_gc_army_uaz469_dshkm"] call _fnc_saveToTemplate;
+["vehicleTruck", "gm_ge_army_kat1_451_cargo"] call _fnc_saveToTemplate;
+["vehicleAT", "gm_gc_army_uaz469_spg9"] call _fnc_saveToTemplate;
 
 ["vehicleBoat", "I_C_Boat_Transport_02_F"] call _fnc_saveToTemplate;
 ["vehicleRepair", "I_G_Offroad_01_repair_F"] call _fnc_saveToTemplate;
 
-["vehiclePlane", "I_C_Plane_Civil_01_F"] call _fnc_saveToTemplate;
+["vehiclePlane", "gm_gc_civ_l410s_passenger"] call _fnc_saveToTemplate;
 
-["vehicleCivCar", "C_Offroad_01_F"] call _fnc_saveToTemplate;
-["vehicleCivTruck", "C_Van_01_transport_F"] call _fnc_saveToTemplate;
-["vehicleCivHeli", "C_Heli_Light_01_civil_F"] call _fnc_saveToTemplate;
+["vehicleCivCar", "gm_gc_civ_p601"] call _fnc_saveToTemplate;
+["vehicleCivTruck", "gm_gc_civ_ural375d_cargo"] call _fnc_saveToTemplate;
+["vehicleCivHeli", "gm_gc_civ_mi2p"] call _fnc_saveToTemplate;
 ["vehicleCivBoat", "C_Rubberboat"] call _fnc_saveToTemplate;
 
-["staticMG", "I_G_HMG_02_high_F"] call _fnc_saveToTemplate;
-["staticAT", "I_static_AT_F"] call _fnc_saveToTemplate;
+["staticMG", "gm_gc_army_dshkm_aatripod"] call _fnc_saveToTemplate;
+["staticAT", "gm_gc_army_spg9_tripod"] call _fnc_saveToTemplate;
+
 private _staticAA = "I_static_AA_F";
 ["staticMortar", "I_G_Mortar_01_F"] call _fnc_saveToTemplate;
 ["staticMortarMagHE", "8Rnd_82mm_Mo_shells"] call _fnc_saveToTemplate;
 ["staticMortarMagSmoke", "8Rnd_82mm_Mo_Smoke_white"] call _fnc_saveToTemplate;
 
-["mineAT", "ATMine_Range_Mag"] call _fnc_saveToTemplate;
-["mineAPERS", "APERSMine_Range_Mag"] call _fnc_saveToTemplate;
+["mineAT", ["gm_minestatic_at_dm21", "gm_minestatic_at_dm1233"]] call _fnc_saveToTemplate;
+["mineAPERS", ["gm_minestatic_ap_dm31"]] call _fnc_saveToTemplate;
 
 ["breachingExplosivesAPC", [["DemoCharge_Remote_Mag", 1]]] call _fnc_saveToTemplate;
-["breachingExplosivesTank", [["SatchelCharge_Remote_Mag", 1], ["DemoCharge_Remote_Mag", 2]]] call _fnc_saveToTemplate;
+["breachingExplosivesTank", [["gm_explosive_petn_charge", 1], ["DemoCharge_Remote_Mag", 2]]] call _fnc_saveToTemplate;
 
-if (allowDLCWS && A3A_hasWS) then {
-  _vehicleAA = "I_Tura_Truck_02_aa_lxWS";
-  _staticAA = "I_Tura_ZU23_lxWS";
-};
-["vehicleAA", _vehicleAA] call _fnc_saveToTemplate;
+
+["vehicleAA", ""] call _fnc_saveToTemplate;
 ["staticAA", _staticAA] call _fnc_saveToTemplate;
 
 ///////////////////////////
@@ -50,13 +47,12 @@ if (allowDLCWS && A3A_hasWS) then {
 ///////////////////////////
 
 private _initialRebelEquipment = [
-"hgun_Pistol_heavy_02_F","hgun_P07_F",
-"SMG_01_F","SMG_02_F",
-"6Rnd_45ACP_Cylinder","16Rnd_9x21_Mag","30Rnd_45ACP_Mag_SMG_01","30Rnd_9x21_Mag_SMG_02","MiniGrenade","SmokeShell",
+"gm_p1_blk","gm_pm_blk",
+"gm_mp2a1_blk","gm_pm63_blk",
+"gm_8Rnd_9x19mm_B_DM11_p1_blk","gm_8Rnd_9x18mm_B_pst_pm_blk","gm_32Rnd_9x19mm_B_DM51_mp2_blk","gm_15Rnd_9x18mm_B_pst_pm63_blk",
+"gm_handgrenade_frag_dm51","gm_smokeshell_wht_dm25", "gm_handgrenade_frag_rgd5",
 "B_FieldPack_oli","B_FieldPack_blk","B_FieldPack_ocamo","B_FieldPack_oucamo","B_FieldPack_cbr","B_FieldPack_khk",
-"V_Chestrig_blk","V_Chestrig_rgr","V_Chestrig_khk","V_Chestrig_oli","V_BandollierB_blk","V_BandollierB_cbr","V_BandollierB_rgr",
-"V_BandollierB_khk","V_BandollierB_oli","V_Rangemaster_belt",
-"Binocular",
+"gm_ge_bgs_vest_80_rifleman","gm_gc_bgs_vest_80_border_str","gm_gc_army_vest_80_at_str","Binocular",
 "acc_flashlight","acc_flashlight_smg_01","acc_flashlight_pistol"];
 
 if (A3A_hasTFAR) then {_initialRebelEquipment append ["tf_microdagr","tf_anprc154"]};
@@ -65,7 +61,10 @@ if (A3A_hasTFARBeta) then {_initialRebelEquipment append ["TFAR_microdagr","TFAR
 if (A3A_hasTFARBeta && startWithLongRangeRadio) then {_initialRebelEquipment append ["TFAR_anprc155","TFAR_anprc155_coyote"]};
 ["initialRebelEquipment", _initialRebelEquipment] call _fnc_saveToTemplate;
 
-private _rebUniforms = [
+_rebUniforms = [
+    "gm_gc_army_uniform_soldier_80_blk", 
+    "gm_ge_uniform_soldier_tshirt_90_flk", 
+    "gm_ge_bgs_uniform_soldier_80_smp",
     "U_IG_Guerilla1_1",
     "U_IG_Guerilla2_1",
     "U_IG_Guerilla2_2",
@@ -75,7 +74,8 @@ private _rebUniforms = [
     "U_IG_Guerrilla_6_1",
     "U_I_G_resistanceLeader_F",
     "U_I_L_Uniform_01_deserter_F"
-];
+    ];
+
 
 private _dlcUniforms = [];
 
@@ -99,31 +99,10 @@ if (allowDLCExpansion) then {_dlcUniforms append [
 ];
 };
 
-if (allowDLCWS && A3A_hasWS) then {_dlcUniforms append [
-    "U_lxWS_ION_Casual1",
-    "U_lxWS_ION_Casual2",
-    "U_lxWS_ION_Casual3",
-    "U_lxWS_ION_Casual4",
-    "U_lxWS_ION_Casual5",
-    "U_lxWS_SFIA_deserter"
-];
-};
-
 ["uniforms", _rebUniforms + _dlcUniforms] call _fnc_saveToTemplate;
 
-["headgear", [
-    "H_Booniehat_khk_hs",
-    "H_Booniehat_tan",
-    "H_Cap_tan",
-    "H_Cap_oli_hs",
-    "H_Cap_blk",
-    "H_Cap_headphones",
-    "H_ShemagOpen_tan",
-    "H_Shemag_olive_hs",
-    "H_Bandanna_khk_hs",
-    "H_Bandanna_sand",
-    "H_Bandanna_cbr"
-]] call _fnc_saveToTemplate;
+["headgear", ["gm_ge_headgear_hat_boonie_flk", "gm_dk_headgear_hat_boonie_m84", "gm_ge_headgear_hat_boonie_oli", "gm_ge_headgear_hat_boonie_wdl", 
+    "gm_ge_bgs_headgear_m35_53_blk", "gm_ge_bgs_headgear_m35_53_net_blk", "gm_dk_headgear_m52_oli"]] call _fnc_saveToTemplate;
 
 /////////////////////
 ///  Identities   ///
@@ -137,6 +116,8 @@ if (allowDLCWS && A3A_hasWS) then {_dlcUniforms append [
 //////////////////////////
 //       Loadouts       //
 //////////////////////////
+
+
 
 private _loadoutData = call _fnc_createLoadoutData;
 _loadoutData set ["maps", ["ItemMap"]];
