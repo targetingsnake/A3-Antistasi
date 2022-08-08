@@ -241,7 +241,7 @@ _sfLoadoutData set ["carbines", [
 ]];
 
 _sfLoadoutData set ["grenadeLaunchers", [
-    ["gm_hk69a1_blk", "", "", "", ["1Rnd_HE_Grenade_shell", "1Rnd_HE_Grenade_shell", "1Rnd_HE_Grenade_shell", "1Rnd_HE_Grenade_shell", "1Rnd_HE_Grenade_shell", "1Rnd_HE_Grenade_shell", "UGL_FlareGreen_F", "UGL_FlareCIR_F", "UGL_FlareRed_F", "UGL_FlareWhite_F", "UGL_FlareYellow_F", "1Rnd_SmokeBlue_Grenade_shell", "1Rnd_SmokeGreen_Grenade_shell", "1Rnd_SmokeOrange_Grenade_shell", "1Rnd_SmokePurple_Grenade_shell", "1Rnd_SmokeRed_Grenade_shell", "1Rnd_Smoke_Grenade_shell", "1Rnd_SmokeYellow_Grenade_shell"], [], ""],
+    ["gm_hk69a1_blk", "", "", "", ["1Rnd_HE_Grenade_shell"], [], ""],
     ["gm_g3a3_des", "muzzle_snds_B", "", "", ["gm_20Rnd_762x51mm_B_DM41_g3_des", "gm_20Rnd_762x51mm_B_DM41_g3_des", "gm_20Rnd_762x51mm_B_DM111_g3_des", "gm_20Rnd_762x51mm_B_DM111_g3_des", "gm_20Rnd_762x51mm_B_T_DM21A1_g3_des", "gm_20Rnd_762x51mm_B_T_DM21A2_g3_des", "gm_20Rnd_762x51mm_B_T_DM21_g3_des","gm_20Rnd_762x51mm_AP_DM151_g3_des"], ["gm_1rnd_67mm_heat_dm22a1_g3"], ""],
     ["gm_g3a3_blk", "muzzle_snds_B", "", "", ["gm_20Rnd_762x51mm_B_DM41_g3_blk", "gm_20Rnd_762x51mm_B_DM41_g3_blk", "gm_20Rnd_762x51mm_B_DM111_g3_blk", "gm_20Rnd_762x51mm_B_DM111_g3_blk", "gm_20Rnd_762x51mm_B_T_DM21A1_g3_blk", "gm_20Rnd_762x51mm_B_T_DM21A2_g3_blk", "gm_20Rnd_762x51mm_B_T_DM21_g3_blk","gm_20Rnd_762x51mm_AP_DM151_g3_blk"], ["gm_1rnd_67mm_heat_dm22a1_g3"], ""]
 ]];
