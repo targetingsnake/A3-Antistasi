@@ -394,7 +394,7 @@ _crewLoadoutData set ["helmets", ["gm_ge_headgear_headset_crew_oli", "gm_ge_head
 
 private _pilotLoadoutData = _militaryLoadoutData call _fnc_copyLoadoutData;
 _pilotLoadoutData set ["uniforms", ["gm_ge_army_uniform_pilot_oli", "gm_ge_army_uniform_pilot_rolled_oli"]];
-_pilotLoadoutData set ["vests", ["gm_ge_vest_90_crew_flk", "gm_ge_army_vest_80_bag", "gm_ge_army_vest_80_crew"]];
+_pilotLoadoutData set ["vests", ["gm_ge_vest_90_crew_flk"]];
 _pilotLoadoutData set ["helmets", ["gm_ge_headgear_sph4_oli"]];
 
 
