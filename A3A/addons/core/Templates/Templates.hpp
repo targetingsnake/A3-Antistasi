@@ -492,10 +492,10 @@ class Templates
 
     class GM
     {
-        priorityOcc = 7;
-        priorityInv = 7;
-        priorityReb = 7;
-        priorityCiv = 7;
+        priorityOcc = 8;
+        priorityInv = 8;
+        priorityReb = 8;
+        priorityCiv = 8;
 
         requiredAddons[] = {"gm_weapons_items"};
         path = QPATHTOFOLDER(Templates\Templates\GM);
