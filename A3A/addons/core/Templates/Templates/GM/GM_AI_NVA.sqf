@@ -18,19 +18,18 @@
 ["equipmentBox", "Box_NATO_Equip_F"] call _fnc_saveToTemplate; //Changeing this from default will require you to define logistics attachement offset for the box type
 
 ["vehiclesBasic", ["gm_gc_army_p601"]] call _fnc_saveToTemplate;
-["vehiclesLightUnarmed", ["gm_gc_army_uaz469_cargo", "gm_pl_army_uaz469_cargo"]] call _fnc_saveToTemplate;
-["vehiclesLightArmed",["gm_gc_army_uaz469_dshkm", "gm_pl_army_uaz469_dshkm"]] call _fnc_saveToTemplate;
-["vehiclesTrucks", ["gm_pl_army_ural4320_cargo", "gm_gc_army_ural4320_cargo", "gm_gc_army_ural375d_cargo"]] call _fnc_saveToTemplate;
-["vehiclesCargoTrucks", ["gm_pl_army_ural4320_cargo", "gm_gc_army_ural4320_cargo", "gm_gc_army_ural44202", "gm_gc_army_ural375d_cargo"]] call _fnc_saveToTemplate;
-["vehiclesAmmoTrucks", ["gm_gc_army_ural4320_reammo", "gm_pl_army_ural4320_reammo"]] call _fnc_saveToTemplate;
-["vehiclesRepairTrucks", ["gm_pl_army_ural4320_repair", "gm_gc_army_ural4320_repair"]] call _fnc_saveToTemplate;
-["vehiclesFuelTrucks", ["gm_gc_army_ural375d_refuel", "gm_pl_army_ural375d_refuel"]] call _fnc_saveToTemplate;
-["vehiclesMedical", ["gm_gc_army_ural375d_medic", "gm_pl_army_ural375d_medic"]] call _fnc_saveToTemplate;
-["vehiclesAPCs", ["gm_pl_army_brdm2", "gm_pl_army_bmp1sp2", "gm_pl_army_ot64a", "gm_gc_army_bmp1sp2", "gm_gc_army_brdm2", "gm_gc_army_brdm2um", 
+["vehiclesLightUnarmed", ["gm_gc_army_uaz469_cargo"]] call _fnc_saveToTemplate;
+["vehiclesLightArmed",["gm_gc_army_uaz469_dshkm"]] call _fnc_saveToTemplate;
+["vehiclesTrucks", ["gm_gc_army_ural4320_cargo", "gm_gc_army_ural375d_cargo"]] call _fnc_saveToTemplate;
+["vehiclesCargoTrucks", ["gm_gc_army_ural4320_cargo", "gm_gc_army_ural44202", "gm_gc_army_ural375d_cargo"]] call _fnc_saveToTemplate;
+["vehiclesAmmoTrucks", ["gm_gc_army_ural4320_reammo"]] call _fnc_saveToTemplate;
+["vehiclesRepairTrucks", ["gm_gc_army_ural4320_repair"]] call _fnc_saveToTemplate;
+["vehiclesFuelTrucks", ["gm_gc_army_ural375d_refuel"]] call _fnc_saveToTemplate;
+["vehiclesMedical", ["gm_gc_army_ural375d_medic"]] call _fnc_saveToTemplate;
+["vehiclesAPCs", ["gm_pl_army_ot64a", "gm_gc_army_bmp1sp2", "gm_gc_army_brdm2", "gm_gc_army_brdm2um", 
     "gm_gc_army_btr60pa", "gm_gc_army_btr60pb", "gm_gc_army_btr60pu12"]] call _fnc_saveToTemplate;
-["vehiclesTanks", ["gm_gc_army_pt76b", "gm_gc_army_t55", "gm_gc_army_t55a", "gm_gc_army_t55ak", "gm_gc_army_t55am2", "gm_gc_army_t55am2b", "gm_pl_army_pt76b", 
-    "gm_pl_army_t55", "gm_pl_army_t55a", "gm_pl_army_t55ak"]] call _fnc_saveToTemplate;
-["vehiclesAA", ["gm_gc_army_zsu234v1", "gm_pl_army_zsu234v1"]] call _fnc_saveToTemplate;
+["vehiclesTanks", ["gm_gc_army_pt76b", "gm_gc_army_t55", "gm_gc_army_t55a", "gm_gc_army_t55ak", "gm_gc_army_t55am2", "gm_gc_army_t55am2b"]] call _fnc_saveToTemplate;
+["vehiclesAA", ["gm_gc_army_zsu234v1"]] call _fnc_saveToTemplate;
 
 ["vehiclesTransportBoats", ["O_T_Boat_Transport_01_F"]] call _fnc_saveToTemplate;
 ["vehiclesGunBoats", ["O_T_Boat_Armed_01_hmg_F"]] call _fnc_saveToTemplate;
@@ -42,10 +41,9 @@
 
 ["vehiclesHelisLight", ["gm_gc_airforce_mi2p", "gm_pl_airforce_mi2p", "gm_pl_airforce_mi2platan", "gm_pl_airforce_mi2ch"]] call _fnc_saveToTemplate;
 ["vehiclesHelisTransport", ["gm_gc_airforce_mi2t", "gm_pl_airforce_mi2t"]] call _fnc_saveToTemplate;
-["vehiclesHelisAttack", ["gm_pl_airforce_mi2urn", "gm_pl_airforce_mi2urp", "gm_pl_airforce_mi2urpg", "gm_pl_airforce_mi2urs", "gm_pl_airforce_mi2us", 
-    "gm_gc_airforce_mi2urn", "gm_gc_airforce_mi2us"]] call _fnc_saveToTemplate;
+["vehiclesHelisAttack", ["gm_pl_airforce_mi2urn", "gm_pl_airforce_mi2urp", "gm_pl_airforce_mi2urpg", "gm_pl_airforce_mi2urs", "gm_gc_airforce_mi2us"]] call _fnc_saveToTemplate;
 
-["vehiclesArtillery", ["gm_gc_army_ural375d_mlrs", "gm_gc_army_2s1", "gm_gc_army_2p16", "gm_pl_army_2p16", "gm_pl_army_2s1", "gm_pl_army_ural375d_mlrs"]] call _fnc_saveToTemplate;
+["vehiclesArtillery", ["gm_gc_army_ural375d_mlrs", "gm_gc_army_2s1", "gm_gc_army_2p16"]] call _fnc_saveToTemplate;
 ["magazines", createHashMapFromArray [
     ["gm_gc_army_ural375d_mlrs", 
         [
@@ -67,28 +65,6 @@
         [
             "gm_1Rnd_luna_he_3r9",
             "gm_1Rnd_luna_nuc_3r10"
-        ]
-    ],
-    ["gm_pl_army_2p16", 
-        [
-            "gm_1Rnd_luna_he_3r9",
-            "gm_1Rnd_luna_nuc_3r10"
-        ]
-    ],
-    ["gm_pl_army_2s1", 
-        [
-            "gm_28Rnd_122x447mm_he_of462",
-            "gm_28Rnd_122x447mm_he_3of56",
-            "gm_28Rnd_122x447mm_heat_bk6m",
-            "gm_28Rnd_122x447mm_heat_t_bk13"
-        ]
-    ],
-    ["gm_gc_army_ural375d_mlrs", 
-        [
-            "gm_40Rnd_mlrs_122mm_he_9m22u",
-            "gm_40Rnd_mlrs_122mm_icm_9m218",
-            "gm_40Rnd_mlrs_122mm_mine_9m28k",
-            "gm_40Rnd_mlrs_122mm_mine_9m22k"
         ]
     ]
 ]] call _fnc_saveToTemplate;
