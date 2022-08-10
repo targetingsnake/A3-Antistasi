@@ -45,28 +45,9 @@
 
 ["vehiclesArtillery", ["gm_gc_army_ural375d_mlrs", "gm_gc_army_2s1", "gm_gc_army_2p16"]] call _fnc_saveToTemplate;
 ["magazines", createHashMapFromArray [
-    ["gm_gc_army_ural375d_mlrs", 
-        [
-            "gm_40Rnd_mlrs_122mm_he_9m22u",
-            "gm_40Rnd_mlrs_122mm_icm_9m218",
-            "gm_40Rnd_mlrs_122mm_mine_9m28k",
-            "gm_40Rnd_mlrs_122mm_mine_9m22k"
-        ]
-    ],
-    ["gm_gc_army_2s1", 
-        [
-            "gm_28Rnd_122x447mm_he_of462",
-            "gm_28Rnd_122x447mm_he_3of56",
-            "gm_28Rnd_122x447mm_heat_bk6m",
-            "gm_28Rnd_122x447mm_heat_t_bk13"
-        ]
-    ],
-    ["gm_gc_army_2p16", 
-        [
-            "gm_1Rnd_luna_he_3r9",
-            "gm_1Rnd_luna_nuc_3r10"
-        ]
-    ]
+    ["gm_gc_army_ural375d_mlrs", ["gm_40Rnd_mlrs_122mm_he_9m22u","gm_40Rnd_mlrs_122mm_icm_9m218","gm_40Rnd_mlrs_122mm_mine_9m28k","gm_40Rnd_mlrs_122mm_mine_9m22k"]],
+    ["gm_gc_army_2s1", ["gm_28Rnd_122x447mm_he_of462","gm_28Rnd_122x447mm_he_3of56","gm_28Rnd_122x447mm_heat_bk6m","gm_28Rnd_122x447mm_heat_t_bk13"]],
+    ["gm_gc_army_2p16", ["gm_1Rnd_luna_he_3r9","gm_1Rnd_luna_nuc_3r10"]]
 ]] call _fnc_saveToTemplate;
 
 ["uavsAttack", ["O_UAV_02_dynamicLoadout_F"]] call _fnc_saveToTemplate;

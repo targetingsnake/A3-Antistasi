@@ -47,29 +47,9 @@
 
 ["vehiclesArtillery", ["gm_ge_army_kat1_463_mlrs", "gm_ge_army_m109g", "gm_dk_army_m109"]] call _fnc_saveToTemplate;
 ["magazines", createHashMapFromArray [
-    ["gm_ge_army_kat1_463_mlrs", 
-        [
-            "gm_36Rnd_mlrs_110mm_he_dm21",
-            "gm_36Rnd_mlrs_110mm_icm_dm602",
-            "gm_36Rnd_mlrs_110mm_mine_dm711"
-        ]
-    ],
-    ["gm_ge_army_m109g", 
-        [
-            "gm_20Rnd_155mm_he_dm21",
-            "gm_20Rnd_155mm_he_dm111",
-            "gm_20Rnd_155mm_icm_dm602",
-            "gm_20Rnd_155mm_he_m107",
-            "gm_20Rnd_155mm_he_m795"]],
-    ["gm_dk_army_m109", 
-        [
-            "gm_20Rnd_155mm_he_m107",
-            "gm_20Rnd_155mm_he_m795",
-            "gm_20Rnd_155mm_he_dm21",
-            "gm_20Rnd_155mm_he_dm111",
-            "gm_20Rnd_155mm_icm_dm602"
-        ]
-    ]
+    ["gm_ge_army_kat1_463_mlrs",["gm_36Rnd_mlrs_110mm_he_dm21","gm_36Rnd_mlrs_110mm_icm_dm602","gm_36Rnd_mlrs_110mm_mine_dm711"]],
+    ["gm_ge_army_m109g",["gm_20Rnd_155mm_he_dm21","gm_20Rnd_155mm_he_dm111","gm_20Rnd_155mm_icm_dm602","gm_20Rnd_155mm_he_m107","gm_20Rnd_155mm_he_m795"]],
+    ["gm_dk_army_m109",["gm_20Rnd_155mm_he_m107","gm_20Rnd_155mm_he_m795","gm_20Rnd_155mm_he_dm21","gm_20Rnd_155mm_he_dm111","gm_20Rnd_155mm_icm_dm602"]]
 ]] call _fnc_saveToTemplate;
 
 //
