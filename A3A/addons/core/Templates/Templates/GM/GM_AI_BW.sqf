@@ -100,9 +100,8 @@
 ///  Identities   ///
 /////////////////////
 
-["voices", ["gm_voice_male_deu_05","gm_voice_male_deu_06","gm_voice_male_deu_07"]] call _fnc_saveToTemplate;
+["voices", ["gm_voice_male_deu_05","gm_voice_male_deu_06","gm_voice_male_deu_07", "gm_voice_male_deu_01","gm_voice_male_deu_02"]] call _fnc_saveToTemplate;
 ["faces", ["gm_face_whiteHead_01","gm_face_whiteHead_02" ]] call _fnc_saveToTemplate;
-["sfVoices", ["gm_voice_male_deu_01","gm_voice_male_deu_02"]] call _fnc_saveToTemplate;
 ["sfFaces", ["gm_WhiteHead_01_camo_01","gm_WhiteHead_02_camo_01","gm_WhiteHead_03_camo_01",
     "gm_WhiteHead_04_camo_01","gm_WhiteHead_05_camo_01","gm_WhiteHead_06_camo_01",
     "gm_WhiteHead_07_camo_01","gm_WhiteHead_08_camo_01","gm_WhiteHead_09_camo_01",
