@@ -27,7 +27,6 @@
 ["staticMG", "gm_gc_army_dshkm_aatripod"] call _fnc_saveToTemplate;
 ["staticAT", "gm_gc_army_spg9_tripod"] call _fnc_saveToTemplate;
 
-private _staticAA = "I_static_AA_F";
 ["staticMortar", "I_G_Mortar_01_F"] call _fnc_saveToTemplate;
 ["staticMortarMagHE", "8Rnd_82mm_Mo_shells"] call _fnc_saveToTemplate;
 ["staticMortarMagSmoke", "8Rnd_82mm_Mo_Smoke_white"] call _fnc_saveToTemplate;
@@ -40,7 +39,7 @@ private _staticAA = "I_static_AA_F";
 
 
 ["vehicleAA", ""] call _fnc_saveToTemplate;
-["staticAA", _staticAA] call _fnc_saveToTemplate;
+["staticAA", "I_static_AA_F"] call _fnc_saveToTemplate;
 
 ///////////////////////////
 //  Rebel Starting Gear  //
