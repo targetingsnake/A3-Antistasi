@@ -2,8 +2,8 @@
 //   Side Information   //
 //////////////////////////
 
-["name", "Nationale Volksarmee"] call _fnc_saveToTemplate;
-["spawnMarkerName", "warsaw pact support Corridor"] call _fnc_saveToTemplate;
+["name", "NVA"] call _fnc_saveToTemplate;
+["spawnMarkerName", "NVA support Corridor"] call _fnc_saveToTemplate;
 
 ["flag", "gm_flag_GC"] call _fnc_saveToTemplate;
 ["flagTexture", "\gm\gm_core\data\flags\gm_flag_GC_marker_ca"] call _fnc_saveToTemplate;
