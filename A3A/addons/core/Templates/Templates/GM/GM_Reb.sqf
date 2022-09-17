@@ -15,7 +15,7 @@
 ["vehicleAT", "gm_gc_army_uaz469_spg9"] call _fnc_saveToTemplate;
 
 ["vehicleBoat", "I_C_Boat_Transport_02_F"] call _fnc_saveToTemplate;
-["vehicleRepair", "I_G_Offroad_01_repair_F"] call _fnc_saveToTemplate;
+["vehicleRepair", "CUP_I_V3S_Repair_TKG"] call _fnc_saveToTemplate;
 
 ["vehiclePlane", "gm_gc_civ_l410s_passenger"] call _fnc_saveToTemplate;
 
@@ -38,8 +38,8 @@
 ["breachingExplosivesTank", [["gm_explosive_petn_charge", 1], ["DemoCharge_Remote_Mag", 2]]] call _fnc_saveToTemplate;
 
 
-["vehicleAA", ""] call _fnc_saveToTemplate;
-["staticAA", "I_static_AA_F"] call _fnc_saveToTemplate;
+["vehicleAA", "CUP_I_Ural_ZU23_NAPA"] call _fnc_saveToTemplate;
+["staticAA", "CUP_I_ZU23_NAPA"] call _fnc_saveToTemplate;
 
 ///////////////////////////
 //  Rebel Starting Gear  //

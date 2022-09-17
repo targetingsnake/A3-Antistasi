@@ -26,32 +26,37 @@
 ["vehiclesRepairTrucks", ["gm_gc_army_ural4320_repair"]] call _fnc_saveToTemplate;
 ["vehiclesFuelTrucks", ["gm_gc_army_ural375d_refuel"]] call _fnc_saveToTemplate;
 ["vehiclesMedical", ["gm_gc_army_ural375d_medic"]] call _fnc_saveToTemplate;
-["vehiclesAPCs", ["gm_pl_army_ot64a", "gm_gc_army_bmp1sp2", "gm_gc_army_brdm2", "gm_gc_army_brdm2um", 
-    "gm_gc_army_btr60pa", "gm_gc_army_btr60pb", "gm_gc_army_btr60pu12"]] call _fnc_saveToTemplate;
+["vehiclesAPCs", ["gm_pl_army_ot64a", "gm_gc_army_brdm2", "gm_gc_army_btr60pb", "CUP_O_BTR80_CAMO_RU", "CUP_O_GAZ_Vodnik_BPPU_RU", "CUP_O_GAZ_Vodnik_KPVT_RU"]] call _fnc_saveToTemplate;
+
+["vehiclesLightAPCs", ["gm_gc_army_brdm2um", "gm_gc_army_btr60pa", "gm_gc_army_btr60pu12", 
+    "CUP_O_GAZ_Vodnik_Unarmed_RU", "CUP_O_GAZ_Vodnik_PK_RU", "CUP_O_GAZ_Vodnik_AGS_RU"]] call _fnc_saveToTemplate;
+["vehiclesIFVs", ["gm_gc_army_bmp1sp2", "CUP_O_BMP2_RU", "CUP_O_BMP3_RU", "CUP_O_BTR80A_CAMO_RU"]] call _fnc_saveToTemplate;
+
 ["vehiclesTanks", ["gm_gc_army_pt76b", "gm_gc_army_t55", "gm_gc_army_t55a", "gm_gc_army_t55ak", "gm_gc_army_t55am2", "gm_gc_army_t55am2b"]] call _fnc_saveToTemplate;
 ["vehiclesAA", ["gm_gc_army_zsu234v1"]] call _fnc_saveToTemplate;
 
-["vehiclesTransportBoats", ["O_T_Boat_Transport_01_F"]] call _fnc_saveToTemplate;
-["vehiclesGunBoats", ["O_T_Boat_Armed_01_hmg_F"]] call _fnc_saveToTemplate;
-["vehiclesAmphibious", ["O_T_APC_Wheeled_02_rcws_v2_ghex_F"]] call _fnc_saveToTemplate;
+["vehiclesTransportBoats", ["CUP_O_PBX_RU"]] call _fnc_saveToTemplate;
+["vehiclesGunBoats", ["CUP_B_RHIB2Turret_USMC"]] call _fnc_saveToTemplate;
+["vehiclesAmphibious", ["gm_gc_army_bmp1sp2", "CUP_O_BMP2_RU", "CUP_O_BMP3_RU", "CUP_O_BTR80A_CAMO_RU","gm_gc_army_brdm2um", "gm_gc_army_btr60pa", 
+    "gm_gc_army_btr60pu12", "CUP_O_GAZ_Vodnik_Unarmed_RU"]] call _fnc_saveToTemplate;
 
-["vehiclesPlanesCAS", ["O_Plane_CAS_02_dynamicLoadout_F"]] call _fnc_saveToTemplate;
-["vehiclesPlanesAA", ["O_Plane_Fighter_02_F"]] call _fnc_saveToTemplate;
+["vehiclesPlanesCAS", ["CUP_O_Su25_Dyn_RU"]] call _fnc_saveToTemplate;
+["vehiclesPlanesAA", ["CUP_O_SU34_RU"]] call _fnc_saveToTemplate;
 ["vehiclesPlanesTransport", ["gm_gc_airforce_l410t"]] call _fnc_saveToTemplate;
 
-["vehiclesHelisLight", ["gm_gc_airforce_mi2p", "gm_pl_airforce_mi2p", "gm_pl_airforce_mi2platan", "gm_pl_airforce_mi2ch"]] call _fnc_saveToTemplate;
-["vehiclesHelisTransport", ["gm_gc_airforce_mi2t", "gm_pl_airforce_mi2t"]] call _fnc_saveToTemplate;
-["vehiclesHelisAttack", ["gm_pl_airforce_mi2urn", "gm_pl_airforce_mi2urp", "gm_pl_airforce_mi2urpg", "gm_pl_airforce_mi2urs", "gm_gc_airforce_mi2us"]] call _fnc_saveToTemplate;
+["vehiclesHelisLight", ["gm_gc_airforce_mi2p", "gm_pl_airforce_mi2ch"]] call _fnc_saveToTemplate;
+["vehiclesHelisTransport", ["gm_gc_airforce_mi2t", "gm_pl_airforce_mi2t", "CUP_O_Mi8AMT_RU"]] call _fnc_saveToTemplate;
+["vehiclesHelisAttack", ["CUP_O_Mi24_P_Dynamic_RU"]] call _fnc_saveToTemplate;
+["vehiclesHelisLightAttack", ["gm_gc_airforce_mi2urn", "gm_gc_airforce_mi2us", "gm_pl_airforce_mi2urp", "gm_pl_airforce_mi2urpg", "CUP_O_Mi8_RU"]] call _fnc_saveToTemplate;
 
 ["vehiclesArtillery", ["gm_gc_army_ural375d_mlrs", "gm_gc_army_2s1", "gm_gc_army_2p16"]] call _fnc_saveToTemplate;
 ["magazines", createHashMapFromArray [
     ["gm_gc_army_ural375d_mlrs", ["gm_40Rnd_mlrs_122mm_he_9m22u","gm_40Rnd_mlrs_122mm_icm_9m218","gm_40Rnd_mlrs_122mm_mine_9m28k","gm_40Rnd_mlrs_122mm_mine_9m22k"]],
-    ["gm_gc_army_2s1", ["gm_28Rnd_122x447mm_he_of462","gm_28Rnd_122x447mm_he_3of56","gm_28Rnd_122x447mm_heat_bk6m","gm_28Rnd_122x447mm_heat_t_bk13"]],
-    ["gm_gc_army_2p16", ["gm_1Rnd_luna_he_3r9","gm_1Rnd_luna_nuc_3r10"]]
+    ["gm_gc_army_2s1", ["gm_28Rnd_122x447mm_he_of462","gm_28Rnd_122x447mm_he_3of56","gm_28Rnd_122x447mm_heat_bk6m","gm_28Rnd_122x447mm_heat_t_bk13"]]
 ]] call _fnc_saveToTemplate;
 
-["uavsAttack", ["O_UAV_02_dynamicLoadout_F"]] call _fnc_saveToTemplate;
-["uavsPortable", ["O_UAV_01_F"]] call _fnc_saveToTemplate;
+["uavsAttack", []] call _fnc_saveToTemplate;
+["uavsPortable", []] call _fnc_saveToTemplate;
 
 //Config special vehicles - militia vehicles are mostly used in the early game, police cars are being used by troops around cities -- Example:
 ["vehiclesMilitiaLightArmed", ["gm_pl_army_uaz469_dshkm"]] call _fnc_saveToTemplate;
@@ -62,8 +67,8 @@
 
 ["staticMGs", ["gm_pl_army_dshkm_aatripod", "gm_gc_army_dshkm_aatripod"]] call _fnc_saveToTemplate;
 ["staticAT", ["gm_gc_army_spg9_tripod", "gm_gc_army_fagot_launcher_tripod", "gm_pl_army_fagot_launcher_tripod", "gm_pl_army_spg9_tripod"]] call _fnc_saveToTemplate;
-["staticAA", ["O_static_AA_F"]] call _fnc_saveToTemplate;
-["staticMortars", ["O_Mortar_01_F"]] call _fnc_saveToTemplate;
+["staticAA", ["CUP_O_Igla_AA_pod_RU", "CUP_O_ZU23_RU"]] call _fnc_saveToTemplate;
+["staticMortars", ["CUP_O_2b14_82mm_RU"]] call _fnc_saveToTemplate;
 
 ["mortarMagazineHE", "8Rnd_82mm_Mo_shells"] call _fnc_saveToTemplate;
 ["mortarMagazineSmoke", "8Rnd_82mm_Mo_Smoke_white"] call _fnc_saveToTemplate;

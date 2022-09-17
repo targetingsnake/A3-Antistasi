@@ -497,7 +497,7 @@ class Templates
         priorityReb = 8;
         priorityCiv = 8;
 
-        requiredAddons[] = {"gm_weapons_items"};
+        requiredAddons[] = {"gm_weapons_items","CUP_Creatures_People_Civil_Russia", "CUP_BaseConfigs", "CUP_AirVehicles_Core"};
         path = QPATHTOFOLDER(Templates\Templates\GM);
 
         class AI

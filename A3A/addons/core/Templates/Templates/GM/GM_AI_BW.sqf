@@ -23,27 +23,33 @@
 ["vehiclesTrucks", ["gm_ge_army_u1300l_cargo", "gm_ge_army_u1300l_container", "gm_ge_army_kat1_451_cargo", "gm_ge_army_kat1_451_container"]] call _fnc_saveToTemplate;
 ["vehiclesCargoTrucks", ["gm_ge_army_kat1_454_cargo", "gm_ge_army_u1300l_container", "gm_ge_army_kat1_452_container", "gm_ge_army_kat1_451_container"]] call _fnc_saveToTemplate;
 ["vehiclesAmmoTrucks", ["gm_ge_army_kat1_454_reammo", "gm_ge_army_kat1_451_reammo"]] call _fnc_saveToTemplate;
-["vehiclesRepairTrucks", ["gm_ge_army_u1300l_repair", "gm_ge_army_bpz2a0", "gm_ge_army_fuchsa0_engineer", "gm_dk_army_m113a1dk_engineer"]] call _fnc_saveToTemplate;
+["vehiclesRepairTrucks", ["gm_ge_army_u1300l_repair", "gm_ge_army_bpz2a0", "gm_ge_army_fuchsa0_engineer", "gm_dk_army_m113a1dk_engineer", "gm_ge_army_bibera0"]] call _fnc_saveToTemplate;
 ["vehiclesFuelTrucks", ["gm_ge_army_kat1_451_refuel"]] call _fnc_saveToTemplate;
 ["vehiclesMedical", ["gm_ge_army_u1300l_medic", "gm_ge_army_m113a1g_medic"]] call _fnc_saveToTemplate;
-["vehiclesTanks", ["gm_ge_army_Leopard1a1", "gm_ge_army_Leopard1a1a1", "gm_ge_army_Leopard1a1a2", "gm_ge_army_Leopard1a3", "gm_ge_army_Leopard1a3a1", "gm_ge_army_Leopard1a5", "gm_dk_army_Leopard1a3", "gm_ge_army_bibera0"]] call _fnc_saveToTemplate;
+["vehiclesTanks", ["gm_ge_army_Leopard1a1", "gm_ge_army_Leopard1a1a1", "gm_ge_army_Leopard1a1a2", "gm_ge_army_Leopard1a3", "gm_ge_army_Leopard1a3a1", "gm_ge_army_Leopard1a5", 
+    "gm_dk_army_Leopard1a3"]] call _fnc_saveToTemplate;
 ["vehiclesAA", ["gm_ge_army_gepard1a1"]] call _fnc_saveToTemplate;
 
-["vehiclesAPCs", ["gm_ge_army_fuchsa0_reconnaissance", "gm_ge_army_m113a1g_apc_milan", "gm_ge_army_luchsa1", "gm_ge_army_luchsa2", 
-    "gm_dk_army_m113a1dk_apc", "gm_ge_army_m113a1g_apc", "gm_ge_army_m113a1g_command", "gm_ge_army_fuchsa0_command"]] call _fnc_saveToTemplate;
+["vehiclesAPCs", ["gm_ge_army_m113a1g_apc_milan",
+    "gm_dk_army_m113a1dk_apc", "gm_ge_army_m113a1g_apc", "gm_ge_army_m113a1g_command"]] call _fnc_saveToTemplate;
 
+["vehiclesLightAPCs", ["gm_ge_army_fuchsa0_command", "gm_ge_army_fuchsa0_reconnaissance"]] call _fnc_saveToTemplate;
+["vehiclesIFVs", ["gm_ge_army_luchsa1", "gm_ge_army_luchsa2", "gm_dk_army_m113a2dk", "gm_ge_army_marder1a1plus", "gm_ge_army_marder1a1a", "gm_ge_army_marder1a2", "CUP_B_M2A3Bradley_USA_W", 
+    "CUP_B_M2Bradley_USA_W"]] call _fnc_saveToTemplate;
 
-["vehiclesTransportBoats", ["B_Boat_Transport_01_F"]] call _fnc_saveToTemplate;
-["vehiclesGunBoats", ["B_Boat_Armed_01_minigun_F"]] call _fnc_saveToTemplate;
+["vehiclesTransportBoats", ["CUP_B_Zodiac_USMC"]] call _fnc_saveToTemplate;
+["vehiclesGunBoats", ["CUP_B_RHIB_USMC"]] call _fnc_saveToTemplate;
 ["vehiclesAmphibious", ["B_T_APC_Wheeled_01_cannon_F"]] call _fnc_saveToTemplate;
 
-["vehiclesPlanesCAS", ["B_Plane_CAS_01_dynamicLoadout_F"]] call _fnc_saveToTemplate;
-["vehiclesPlanesAA", ["B_Plane_Fighter_01_F"]] call _fnc_saveToTemplate;
+["vehiclesPlanesCAS", ["CUP_B_A10_DYN_USA"]] call _fnc_saveToTemplate;
+["vehiclesPlanesAA", ["CUP_B_AV8B_DYN_USMC"]] call _fnc_saveToTemplate;
 ["vehiclesPlanesTransport", ["gm_ge_airforce_do28d2"]] call _fnc_saveToTemplate;
 
-["vehiclesHelisLight", ["gm_ge_army_bo105m_vbh", "gm_ge_army_bo105p1m_vbh", "gm_ge_army_bo105p1m_vbh_swooper"]] call _fnc_saveToTemplate;
-["vehiclesHelisTransport", ["gm_ge_army_ch53gs", "gm_ge_army_ch53g"]] call _fnc_saveToTemplate;
-["vehiclesHelisAttack", ["gm_ge_army_bo105p_pah1", "gm_ge_army_bo105p_pah1a1"]] call _fnc_saveToTemplate;
+["vehiclesHelisLight", ["gm_ge_army_bo105m_vbh", "gm_ge_army_bo105p1m_vbh", "gm_ge_army_bo105p1m_vbh_swooper", "CUP_B_MH6M_USA", "CUP_B_MH6J_USA"]] call _fnc_saveToTemplate;
+["vehiclesHelisTransport", ["gm_ge_army_ch53gs", "gm_ge_army_ch53g", "CUP_B_UH60M_FFV_US", "CUP_B_UH1D_GER_KSK", "CUP_B_UH1D_slick_GER_KSK", "CUP_B_AW159_Unarmed_GER"]] call _fnc_saveToTemplate;
+["vehiclesHelisAttack", ["CUP_B_AH64_DL_USA"]] call _fnc_saveToTemplate;
+["vehiclesHelisLightAttack", ["gm_ge_army_bo105p_pah1", "gm_ge_army_bo105p_pah1a1", "CUP_B_MH60L_DAP_2x_US", "CUP_B_MH60L_DAP_4x_US", "CUP_B_AH6J_USA", "CUP_B_AH6M_USA",
+    "CUP_B_UH1D_armed_GER_KSK", "CUP_B_UH1D_gunship_GER_KSK", "CUP_B_AW159_GER"]] call _fnc_saveToTemplate;
 
 ["vehiclesArtillery", ["gm_ge_army_kat1_463_mlrs", "gm_ge_army_m109g", "gm_dk_army_m109"]] call _fnc_saveToTemplate;
 ["magazines", createHashMapFromArray [
