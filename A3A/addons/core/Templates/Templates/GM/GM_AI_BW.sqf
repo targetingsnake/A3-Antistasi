@@ -60,8 +60,8 @@
 
 //
 
-["uavsAttack", ["B_UAV_02_CAS_F"]] call _fnc_saveToTemplate;
-["uavsPortable", ["B_UAV_01_F"]] call _fnc_saveToTemplate;
+["uavsAttack", []] call _fnc_saveToTemplate;
+["uavsPortable", []] call _fnc_saveToTemplate;
 
 //Config special vehicles - militia vehicles are mostly used in the early game, police cars are being used by troops around cities -- Example:
 ["vehiclesMilitiaLightArmed", ["gm_ge_army_iltis_mg3"]] call _fnc_saveToTemplate;
