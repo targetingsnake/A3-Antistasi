@@ -37,6 +37,6 @@ private _items = [];
 			[_CfgName, _CfgName call A3A_fnc_equipmentClassToCategories]
 		}; 
 	_items append _itemList;
-} forEach ["CfgWeapons", "CfgGlasses"];
+} forEach ["CfgWeapons", "CfgGlasses", "CfgMagazines"];
 
 _items
