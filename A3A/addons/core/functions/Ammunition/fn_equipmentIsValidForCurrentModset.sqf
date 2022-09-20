@@ -133,6 +133,12 @@ if (A3A_hasUNS && {(_itemIsVanilla || _itemMod in _acemods || _itemMod in _TFARm
 		default { true };
 	};
 };
+
+if (A3A_hasGM && A3A_hasCUP && {(_itemIsVanilla || _itemMod in _acemods || _itemMod in _TFARmods || _itemMod == "GM" || _itemMod == "@CUP Weapons")}) exitWith {
+	private _prohibited = ["gm_g36a1_blk", "gm_g36a1_des", "gm_g36e_blk"];
+	!((toLower _itemMod isEqualTo "gm" && (configName _configClass) in _prohibited) || (toLower _itemMod isNotEqualTo "gm"))
+};
+
 //no other CDLC content when using VN
 if (A3A_hasVN && {toLower _itemMod isNotEqualTo "vn"} && {toLower _itemMod in (allCDLC apply {toLower (_x#1)})}) exitWith {false};
 
