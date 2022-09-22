@@ -70,7 +70,7 @@ if (
 ) then {A3A_hasCUP = true; Info("CUP Detected.") };
 
 // GM Detection
-if (allowDLCGlobMob && isClass (configFile >> "CfgPatches" >> "gm_weapons_items")) then {A3A_hasGM = true; Info("GM Detected");};
+if (allowDLCGlobMob && isClass (configFile >> "CfgPatches" >> "gm_weapons_items") && A3A_hasCUP ) then {A3A_hasGM = true; Info("GM Detected");};
 
 //ADDONS BELOW 
 
