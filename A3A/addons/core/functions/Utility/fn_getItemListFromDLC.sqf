@@ -18,7 +18,6 @@ Examples:
     "GM" call A3A_fnc_getItemListFromDLC;
 
 Author: martin
-License: MIT License, Copyright (c) 2019 Barbolani & The Official AntiStasi Community
 */
 params["_mod"];
 
