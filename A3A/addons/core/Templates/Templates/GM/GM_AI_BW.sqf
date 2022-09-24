@@ -322,7 +322,7 @@ _policeLoadoutData set ["sidearms", [["gm_p1_blk", "", "", "", ["gm_8Rnd_9x19mm_
 
 private _militiaLoadoutData = _loadoutData call _fnc_copyLoadoutData; // touch and shit breaks
 _militiaLoadoutData set ["uniforms", ["gm_ge_army_uniform_soldier_80_ols", "gm_ge_army_uniform_soldier_80_oli", "gm_ge_army_uniform_soldier_gloves_80_ols", "gm_ge_army_uniform_soldier_parka_80_ols", "gm_ge_army_uniform_soldier_parka_80_oli"]];
-_militiaLoadoutData set ["vests", ["gm_ge_army_vest_80_belt", "gm_ge_vest_90_rifleman_flk", "gm_ge_army_vest_80_rifleman", "gm_ge_army_vest_80_rifleman_smg"]];
+_militiaLoadoutData set ["vests", ["gm_ge_vest_90_rifleman_flk", "gm_ge_army_vest_80_rifleman", "gm_ge_army_vest_80_rifleman_smg"]];
 _militiaLoadoutData set ["slVests", ["gm_ge_army_vest_80_leader", "gm_ge_army_vest_80_leader_smg"]];
 _militiaLoadoutData set ["medVests", ["gm_ge_army_vest_80_medic"]];
 _militiaLoadoutData set ["mgVests", ["gm_ge_army_vest_80_machinegunner"]];
