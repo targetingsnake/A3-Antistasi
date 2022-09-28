@@ -27,3 +27,8 @@ Map-Templates/Antistasi-TEST-**
 #Ignore Python bytecode files and bytecode-cache folder
 __pycache__/
 *.py[cod]
+
+# c# extensions
+
+A3A/extensions/*/obj/*
+A3A/extensions/*/bin/*
