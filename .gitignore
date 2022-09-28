@@ -22,3 +22,9 @@ PreparedMissions/
 
 #Ignore test templates
 Map-Templates/Antistasi-TEST-**
+
+
+# c# extensions
+
+A3A/extensions/*/obj/*
+A3A/extensions/*/bin/*
