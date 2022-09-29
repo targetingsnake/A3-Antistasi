@@ -84,12 +84,24 @@ namespace dcpr
                 return i_clientState;
             }
         }
+        public static void setServer(string[] input)
+        {
+            bool displayName = input[2] == "1";
+            int slotCount = 0;
+            int maxSlot = 0;
+            if (Int32.TryParse(input[5], out int sC))
+            {
+                slotCount = sC;
+            }
+            if (Int32.TryParse(input[6], out int cp))
+            {
+                maxSlot = cp;
+            }
+            setServer(input[1], displayName, input[3], input[4], slotCount, maxSlot);
+
+        }
         public static void setServer(string name, bool displayName, string missionName, string roleName, int slotCount, int playercount)
         {
-            if (i_clientState == clientInEditor)
-            {
-                return;
-            }
             i_server.joinTime = (int)DateTime.UtcNow.Subtract(new DateTime(1970, 1, 1)).TotalSeconds;
             i_server.displayName = displayName;
             i_server.Name = name;
@@ -104,7 +116,10 @@ namespace dcpr
             {
                 i_server.id = GetHash(sha512hash, name + missionName);
             }
-            i_clientState = clientOnServer;
+            if (i_clientState != clientInEditor)
+            {
+                i_clientState = clientOnServer;
+            }
         }
 
         private static string GetHash(HashAlgorithm hashAlgorithm, string input)
@@ -159,6 +174,32 @@ namespace dcpr
         public static void endTesting()
         {
             i_editor.testing = false;
+        }
+        public static bool setUnconState
+        {
+            set
+            {
+                i_server.isUncon = value;
+            }
+        }
+        public static bool setDeathState
+
+        {
+            set
+            {
+                i_server.isDead = value;
+            }            
+        }
+        public static bool setTest
+        {
+            set
+            {
+                i_editor.testing = value;
+            }
+        }
+        public static void inMenu()
+        {
+            i_clientState = clientInMenu;
         }
     }
 }

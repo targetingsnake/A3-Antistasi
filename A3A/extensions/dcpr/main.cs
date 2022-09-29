@@ -125,24 +125,47 @@ namespace dcpr
         private static void preConfiguration(string s)
         {
             string switchKey = s;
+            string[] expands = new string[] { };
             if (s.Contains("@@@"))
             {
-                string[] expands = s.Split(new string[] { "@@@" }, StringSplitOptions.None);
+                expands = s.Split(new string[] { "@@@" }, StringSplitOptions.None);
                 switchKey = expands[0];
             }
             bool update = true;
             switch (switchKey.ToLower())
             {
                 case "init":
+                    break;
                 case "missionstart":
+                    State.setServer(expands);
+                    break;
                 case "missionend":
+                    State.inMenu();
+                    break;
                 case "editorstart":
                 case "editorend":
+                    State.inMenu();
+                    break;
+                case "menu":
+                    State.inMenu();
+                    break;
                 case "teststart":
+                    State.setTest = true;
+                    break;
                 case "testend":
+                    State.setTest = false;
+                    break;
                 case "uncon":
+                    State.setUnconState = true;
+                    break;
                 case "respawn":
+                    State.setDeathState = false;
+                    break;
+                case "died":
+                    State.setDeathState = true;
+                    break;
                 case "wakeup":
+                    State.setUnconState = false;
                     break;
                 case "updatekill":
                     State.addKill();
@@ -175,25 +198,13 @@ namespace dcpr
                     };
                     break;
                 case State.clientOnServer:
-                    string detailsStement = (State.server.isUncon ? "Unconsicous as " : (State.server.isDead ? "Dead as " : "AS ")) + State.server.roleDescription;
+                    playOnServer();
+                    break;
+                case State.clientInEditor:
                     discordpresence = new Discord.Activity
                     {
-                        State = State.server.missionName,
-                        Details = detailsStement,
-                        Party =
-                    {
-                        Id = State.server.id,
-                        Size =
-                        {
-                            CurrentSize = State.server.currentPlayerCount,
-                            MaxSize = State.server.slotCount
-                        }
-                    },
-                        Timestamps =
-                    {
-                        Start = State.server.joinTime
-                    },
-                        Instance = true
+                        State = "In Menus",
+                        Instance = false
                     };
                     break;
                 default:
@@ -207,9 +218,38 @@ namespace dcpr
             UpdateActivity();
         }
 
-    public static void Connector(string s)
-    {
-        que.Enqueue(s);
+        private static void playOnServer()
+        {
+            string kda = State.server.stats.Kills + "/" + State.server.stats.Death + "/" + State.server.stats.Assists;
+            string detailsStement = (State.server.isUncon ? "Unconsicous as " : (State.server.isDead ? "Dead as " : "AS ")) + State.server.roleDescription + " " + kda;
+            discordpresence = new Discord.Activity
+            {
+                State = State.server.missionName,
+                Details = detailsStement,
+                Timestamps =
+                        {
+                            Start = State.server.joinTime
+                        },
+                Instance = true
+            };
+            if (State.server.slotCount > 0 && State.server.currentPlayerCount > 0)
+            {
+                Discord.ActivityParty p = new Discord.ActivityParty
+                {
+                    Id = State.server.id,
+                    Size =
+                            {
+                                CurrentSize = State.server.currentPlayerCount,
+                                MaxSize = State.server.slotCount
+                            }
+                };
+                discordpresence.Party = p;
+            }
+        }
+
+        public static void Connector(string s)
+        {
+            que.Enqueue(s);
+        }
     }
-}
 }
