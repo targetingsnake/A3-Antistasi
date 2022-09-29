@@ -120,6 +120,7 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>Resources.resx</DependentUpon>
     </Compile>
+    <Compile Include="State.cs" />
     <Compile Include="StorageManager.cs" />
     <Compile Include="StoreManager.cs" />
   </ItemGroup>
@@ -164,5 +165,10 @@
     <PostBuildEvent>IF $(PlatformName) == x64 (
     RENAME "$(TargetPath)" "$(TargetName)_x64$(TargetExt)"
 )</PostBuildEvent>
+  </PropertyGroup>
+  <PropertyGroup>
+    <PreBuildEvent>IF $(PlatformName) == x64 (
+    del "$(TargetName)_x64$(TargetExt)"
+)</PreBuildEvent>
   </PropertyGroup>
 </Project>
