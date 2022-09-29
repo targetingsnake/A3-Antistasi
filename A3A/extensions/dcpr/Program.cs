@@ -83,7 +83,7 @@ class Program
 
     static void Main(string[] args)
     {
-        dcpr.main.ThreadLoop();
+        dcpr.main.Connector("init");
         // Use your client ID from Discord's developer site.
         
 
