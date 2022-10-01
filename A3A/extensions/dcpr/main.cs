@@ -17,7 +17,7 @@ namespace dcpr
             que = new ConcurrentQueue<string>();
             discordpresence = new Discord.Activity
             {
-                State = "In Menus",
+                State = "Starting",
                 Instance = false
             };
         }
@@ -25,7 +25,6 @@ namespace dcpr
         private static ConcurrentQueue<string> que;
         private static Discord.Discord discord;
         private static Discord.Activity discordpresence;
-
 
         private static void UpdateActivity()
         {
@@ -143,6 +142,7 @@ namespace dcpr
                     State.inMenu();
                     break;
                 case "editorstart":
+                    break;
                 case "editorend":
                     State.inMenu();
                     break;
@@ -221,11 +221,11 @@ namespace dcpr
         private static void playOnServer()
         {
             string kda = State.server.stats.Kills + "/" + State.server.stats.Death + "/" + State.server.stats.Assists;
-            string detailsStement = (State.server.isUncon ? "Unconsicous as " : (State.server.isDead ? "Dead as " : "AS ")) + State.server.roleDescription + " " + kda;
+            string detailsStement = (State.server.isUncon ? "Unconsicous as " : (State.server.isDead ? "Dead as " : "As ")) + State.server.roleDescription + " " + kda;
             discordpresence = new Discord.Activity
             {
-                State = State.server.missionName,
-                Details = detailsStement,
+                State = detailsStement,
+                Details = State.server.missionName,
                 Timestamps =
                         {
                             Start = State.server.joinTime
