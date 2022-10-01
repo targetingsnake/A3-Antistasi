@@ -34,8 +34,6 @@ if (DCI_deactiavted) exitWith {
 };
 
 private _roleDescription = roleDescription player;
-_test = "DCPR class check " + typeOf player;
-diag_log _test;
 private _typeName = [configFile >> "CfgVehicles" >> typeOf player] call BIS_fnc_displayName;
 
 if (_roleDescription == "" && _typeName == "") exitWith {
