@@ -209,7 +209,7 @@ _loadoutData set ["items_unarmed_extras", []];
 ///////////////////////////////////////
 
 private _sfLoadoutData = _loadoutData call _fnc_copyLoadoutData; // touch and shit breaks
-_sfLoadoutData set ["uniforms", ["gm_ge_uniform_soldier_bdu_nogloves_80_wdl", "gm_ge_uniform_soldier_bdu_80_wdl", "gm_ge_uniform_soldier_bdu_rolled_80_wdl"]];
+_sfLoadoutData set ["uniforms", ["gm_ge_army_uniform_soldier_bdu_nogloves_80_wdl", "gm_ge_army_uniform_soldier_bdu_80_wdl", "gm_ge_army_uniform_soldier_bdu_rolled_80_wdl"]];
 _sfLoadoutData set ["vests", ["gm_dk_army_vest_m00_wdl_rifleman"]];
 _sfLoadoutData set ["backpacks", ["gm_dk_army_backpack_73_oli"]];
 _sfLoadoutData set ["helmets", ["gm_dk_headgear_m96_cover_wdl"]];
