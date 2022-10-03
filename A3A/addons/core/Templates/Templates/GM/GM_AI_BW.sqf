@@ -208,10 +208,7 @@ _loadoutData set ["items_unarmed_extras", []];
 
 private _sfLoadoutData = _loadoutData call _fnc_copyLoadoutData; // touch and shit breaks
 _sfLoadoutData set ["uniforms", ["gm_ge_uniform_soldier_bdu_nogloves_80_wdl", "gm_ge_uniform_soldier_bdu_80_wdl", "gm_ge_uniform_soldier_bdu_rolled_80_wdl"]];
-_sfLoadoutData set ["slVests", ["gm_ge_army_vest_80_leader", "gm_ge_army_vest_80_leader_smg"]];
-_sfLoadoutData set ["medVests", ["gm_ge_army_vest_80_medic"]];
-_sfLoadoutData set ["mgVests", ["gm_ge_army_vest_80_machinegunner"]];
-_sfLoadoutData set ["glVests", ["gm_ge_army_vest_80_demolition"]];
+_sfLoadoutData set ["vests", ["gm_dk_army_vest_m00_wdl_rifleman"]];
 _sfLoadoutData set ["backpacks", ["gm_dk_army_backpack_73_oli"]];
 _sfLoadoutData set ["helmets", ["gm_dk_headgear_m96_cover_wdl"]];
 _sfLoadoutData set ["sniHats", ["gm_ge_headgear_beret_bdx_specop"]];
