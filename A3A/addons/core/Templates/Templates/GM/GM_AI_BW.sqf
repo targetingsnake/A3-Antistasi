@@ -218,7 +218,7 @@ _sfLoadoutData set ["sniHats", ["gm_ge_headgear_beret_bdx_specop"]];
 _sfLoadoutData set ["binoculars", ["Laserdesignator_03"]];
 
 _sfLoadoutData set ["rifles", [
-    ["gm_g3a3_blk", "muzzle_snds_B", "", "", ["gm_20Rnd_762x51mm_B_T_DM21A2_g3_blk","gm_20Rnd_762x51mm_AP_DM151_g3_blk"], ["gm_1rnd_67mm_heat_dm22a1_g3"], ""]
+    ["gm_g3a3_blk", "muzzle_snds_B", "", "", ["gm_20Rnd_762x51mm_B_T_DM21A2_g3_blk","gm_20Rnd_762x51mm_AP_DM151_g3_blk", "gm_1rnd_67mm_heat_dm22a1_g3"], [], ""]
 ]];
 
 _sfLoadoutData set ["carbines", [
@@ -227,7 +227,7 @@ _sfLoadoutData set ["carbines", [
 
 _sfLoadoutData set ["grenadeLaunchers", [
     ["gm_hk69a1_blk", "", "", "", ["1Rnd_HE_Grenade_shell"], [], ""],
-    ["gm_g3a3_blk", "muzzle_snds_B", "", "", ["gm_20Rnd_762x51mm_B_T_DM21A2_g3_blk","gm_20Rnd_762x51mm_AP_DM151_g3_blk"], ["gm_1rnd_67mm_heat_dm22a1_g3"], ""]
+    ["gm_g3a3_blk", "muzzle_snds_B", "", "", ["gm_20Rnd_762x51mm_B_T_DM21A2_g3_blk","gm_20Rnd_762x51mm_AP_DM151_g3_blk", "gm_1rnd_67mm_heat_dm22a1_g3"], [], ""]
 ]];
 _sfLoadoutData set ["SMGs", [
     ["gm_mp5sd2_blk", "", "", "", ["gm_30Rnd_9x19mm_AP_DM91_mp5a3_blk", "gm_30Rnd_9x19mm_B_DM11_mp5a3_blk", "gm_30Rnd_9x19mm_B_DM51_mp5a3_blk"], [], ""],
@@ -260,7 +260,7 @@ _militaryLoadoutData set ["slVests", ["gm_ge_vest_armor_90_leader_flk", "gm_ge_v
 _militaryLoadoutData set ["medVests", ["gm_ge_vest_armor_90_medic_flk"]];
 _militaryLoadoutData set ["mgVests", ["gm_ge_vest_armor_90_machinegunner_flk"]];
 _militaryLoadoutData set ["glVests", ["gm_ge_vest_armor_90_demolition_flk"]];
-_militaryLoadoutData set ["backpacks", ["gm_ge_army_backpack_90_flk", "gm_dk_army_backpack_73_oli", "gm_ge_army_backpack_80_oli"]];
+_militaryLoadoutData set ["backpacks", ["gm_ge_army_backpack_90_flk", "gm_dk_army_backpack_73_oli"]];
 _militaryLoadoutData set ["helmets", ["gm_ge_headgear_m62", "gm_ge_headgear_m62_net", "gm_ge_headgear_m92_flk", "gm_ge_headgear_m92_glasses_flk"]];
 _militaryLoadoutData set ["binoculars", ["Laserdesignator_03"]];
 
@@ -279,7 +279,7 @@ _militaryLoadoutData set ["carbines", [
 ]];
 _militaryLoadoutData set ["grenadeLaunchers", [
     ["gm_hk69a1_blk", "", "", "", ["1Rnd_HE_Grenade_shell"], [], ""],
-    ["gm_g3a3_blk", "", "", "", ["gm_20Rnd_762x51mm_B_DM41_g3_blk", "gm_20Rnd_762x51mm_B_T_DM21A1_g3_blk"], ["gm_1rnd_67mm_heat_dm22a1_g3"], ""]
+    ["gm_g3a3_blk", "", "", "", ["gm_20Rnd_762x51mm_B_DM41_g3_blk", "gm_20Rnd_762x51mm_B_T_DM21A1_g3_blk", "gm_1rnd_67mm_heat_dm22a1_g3"], [], ""]
 ]];
 _militaryLoadoutData set ["SMGs", [
     ["gm_mp2a1_blk", "", "", "", ["gm_32Rnd_9x19mm_B_DM11_mp2_blk", "gm_32Rnd_9x19mm_B_DM51_mp2_blk", "gm_32Rnd_9x19mm_AP_DM91_mp2_blk"], [], ""],
