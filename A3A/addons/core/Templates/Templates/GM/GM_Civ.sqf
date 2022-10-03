@@ -59,8 +59,6 @@
 
 _uniforms = [
         "gm_ge_ff_uniform_man_80_orn",
-        "gm_ge_army_uniform_pilot_sar",
-        "gm_ge_army_uniform_pilot_rolled_sar",
         "gm_gc_civ_uniform_pilot_80_blk",
         "gm_gc_civ_uniform_man_03_80_blu",
         "gm_gc_civ_uniform_man_03_80_grn",
