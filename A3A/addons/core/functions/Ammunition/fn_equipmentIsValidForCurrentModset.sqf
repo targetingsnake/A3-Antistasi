@@ -137,7 +137,9 @@ if (A3A_hasUNS && {(_itemIsVanilla || _itemMod in _acemods || _itemMod in _TFARm
 if (A3A_hasGM && A3A_hasCUP) exitWith {
 //if (A3A_hasGM && A3A_hasCUP && {(_itemIsVanilla || _itemMod in _acemods || _itemMod in _TFARmods || _itemMod == "GM" || _itemMod == "@CUP Weapons")}) exitWith {
 	private _blacklist = ["gm_g36a1_blk", "gm_g36a1_des", "gm_g36e_blk", "gm_p2a1_launcher_blk"];
-	private _whitelist = ["DemoCharge_Remote_Mag", "ItemGPS", "ACE_ATragMX","ACE_Kestrel4500","ACE_DAGR","ACE_microDAGR","MineDetector","ACE_M26_Clacker","ACE_Clacker"];
+	private _whitelist = ["DemoCharge_Remote_Mag", "ItemGPS", "ACE_ATragMX","ACE_Kestrel4500","ACE_DAGR",
+		"ACE_microDAGR","MineDetector","ACE_M26_Clacker","ACE_Clacker", "CUP_srifle_G22_wdl", "CUP_muzzle_snds_AWM",
+		"CUP_optic_LeupoldMk4_10x40_LRT_Woodland_pip", "CUP_5Rnd_762x67_G22", "CUP_bipod_Harris_1A2_L_BLK"];
 	private _isProhbited = (toLower _itemMod isEqualTo "gm" && (configName _configClass) in _blacklist);
 	private _isItemBase = (toLower _itemMod isEqualTo "gm" && ["_base", (configName _configClass), false] call BIS_fnc_inString );
 	private _isNotFromGM = toLower _itemMod isNotEqualTo "gm" ;

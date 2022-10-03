@@ -208,14 +208,10 @@ _loadoutData set ["items_unarmed_extras", []];
 
 private _sfLoadoutData = _loadoutData call _fnc_copyLoadoutData; // touch and shit breaks
 _sfLoadoutData set ["uniforms", ["gm_ge_uniform_soldier_bdu_nogloves_80_wdl", "gm_ge_uniform_soldier_bdu_80_wdl", "gm_ge_uniform_soldier_bdu_rolled_80_wdl"]];
-_sfLoadoutData set ["vests", ["gm_ge_vest_armor_90_rifleman_flk"]];
-_sfLoadoutData set ["mgVests", ["gm_ge_vest_armor_90_machinegunner_flk"]];
-_sfLoadoutData set ["slVests", ["gm_ge_vest_armor_90_leader_flk"]];
-_sfLoadoutData set ["medVests", ["gm_ge_vest_armor_90_medic_flk"]];
-_sfLoadoutData set ["backpacks", ["gm_ge_army_backpack_90_flk"]];
+_sfLoadoutData set ["vests", ["gm_dk_army_vest_m00_wdl_rifleman"]];
 _sfLoadoutData set ["helmets", ["gm_dk_headgear_m96_cover_wdl"]];
 _sfLoadoutData set ["sniHats", ["gm_ge_headgear_beret_bdx_specop"]];
-_sfLoadoutData set ["binoculars", ["Laserdesignator_03"]];
+_sfLoadoutData set ["binoculars", ["Rangefinder"]];
 
 _sfLoadoutData set ["rifles", [
     ["gm_g3a3_blk", "muzzle_snds_B", "", "", ["gm_20Rnd_762x51mm_B_T_DM21A2_g3_blk","gm_20Rnd_762x51mm_AP_DM151_g3_blk", "gm_1rnd_67mm_heat_dm22a1_g3"], [], ""]
@@ -241,9 +237,7 @@ _sfLoadoutData set ["marksmanRifles", [
     ["gm_g3a3_dmr_blk", "muzzle_snds_B", "acc_pointer_IR", "gm_feroz24_blk", ["gm_20Rnd_762x51mm_B_T_DM21A2_g3_blk","gm_20Rnd_762x51mm_AP_DM151_g3_blk"], [], "bipod_01_F_blk"]
 ]];
 _sfLoadoutData set ["sniperRifles", [
-    ["srifle_LRR_F", "", "", "optic_LRPS", [], [], ""],
-    ["srifle_LRR_camo_F", "", "", "optic_LRPS", [], [], ""],
-    ["srifle_DMR_02_camo_F", "muzzle_snds_338_green", "", "optic_AMS_khk", [], [], "bipod_01_F_mtp"]
+    ["CUP_srifle_G22_wdl", "CUP_muzzle_snds_AWM", "", "CUP_optic_LeupoldMk4_10x40_LRT_Woodland_pip", ["CUP_5Rnd_762x67_G22"], [], "CUP_bipod_Harris_1A2_L_BLK"]
 ]];
 _sfLoadoutData set ["sidearms", [
     ["gm_p1_blk", "", "", "", ["gm_8Rnd_9x19mm_B_DM51_p1_blk", "gm_8Rnd_9x19mm_B_DM11_p1_blk"], [], ""]
@@ -262,7 +256,7 @@ _militaryLoadoutData set ["mgVests", ["gm_ge_vest_armor_90_machinegunner_flk"]];
 _militaryLoadoutData set ["glVests", ["gm_ge_vest_armor_90_demolition_flk"]];
 _militaryLoadoutData set ["backpacks", ["gm_ge_army_backpack_90_flk", "gm_dk_army_backpack_73_oli"]];
 _militaryLoadoutData set ["helmets", ["gm_ge_headgear_m62", "gm_ge_headgear_m62_net", "gm_ge_headgear_m92_flk", "gm_ge_headgear_m92_glasses_flk"]];
-_militaryLoadoutData set ["binoculars", ["Laserdesignator_03"]];
+_militaryLoadoutData set ["binoculars", ["Rangefinder"]];
 
 _militaryLoadoutData set ["slRifles", [
     ["gm_c7a1_blk", "", "", "gm_c79a1_blk", ["gm_30Rnd_556x45mm_B_M855_stanag_gry", "gm_30Rnd_556x45mm_B_T_M856_stanag_gry"], [], ""]
@@ -294,8 +288,7 @@ _militaryLoadoutData set ["marksmanRifles", [
     ["gm_g3a3_dmr_blk", "", "acc_pointer_IR", "gm_feroz24_blk", ["gm_20Rnd_762x51mm_B_DM41_g3_blk", "gm_20Rnd_762x51mm_B_T_DM21A1_g3_blk"], [], "bipod_01_F_blk"]
 ]];
 _militaryLoadoutData set ["sniperRifles", [
-    ["srifle_LRR_F", "", "", "optic_SOS", [], [], ""],
-    ["srifle_LRR_F", "", "", "optic_LRPS", [], [], ""]
+    ["CUP_srifle_G22_wdl", "", "", "CUP_optic_LeupoldMk4_10x40_LRT_Woodland_pip", ["CUP_5Rnd_762x67_G22"], [], "CUP_bipod_Harris_1A2_L_BLK"]
 ]];
 _militaryLoadoutData set ["sidearms", [
     ["gm_p1_blk", "", "", "", ["gm_8Rnd_9x19mm_B_DM51_p1_blk", "gm_8Rnd_9x19mm_B_DM11_p1_blk"], [], ""],
@@ -308,7 +301,7 @@ _militaryLoadoutData set ["sidearms", [
 private _policeLoadoutData = _loadoutData call _fnc_copyLoadoutData;
 
 _policeLoadoutData set ["uniforms", ["gm_ge_pol_uniform_suit_80_grn", "gm_ge_pol_uniform_blouse_80_blk"]];
-_policeLoadoutData set ["vests", ["gm_ge_pol_vest_80_wht", "gm_ge_army_vest_80_belt", "gm_ge_army_vest_80_mp_wht"]];
+_policeLoadoutData set ["vests", ["gm_ge_pol_vest_80_wht"]];
 _policeLoadoutData set ["helmets", ["gm_ge_pol_headgear_cap_80_grn", "gm_ge_pol_headgear_cap_80_wht"]];
 
 _policeLoadoutData set ["SMGs", [
@@ -361,7 +354,7 @@ _militiaLoadoutData set ["sidearms", [["gm_p1_blk", "", "", "", ["gm_8Rnd_9x19mm
 
 
 private _crewLoadoutData = _militaryLoadoutData call _fnc_copyLoadoutData; // touch and shit breaks
-_crewLoadoutData set ["uniforms", ["gm_ge_army_uniform_crew_80_oli", "gm_ge_army_uniform_crew_90_flk"]];
+_crewLoadoutData set ["uniforms", ["gm_ge_army_uniform_crew_90_flk"]];
 _crewLoadoutData set ["vests", ["gm_ge_vest_armor_90_crew_flk", "gm_ge_army_vest_80_crew"]];
 _crewLoadoutData set ["helmets", ["gm_ge_headgear_headset_crew_oli", "gm_ge_headgear_crewhat_80_blk"]];
 
@@ -690,7 +683,7 @@ private _sniperTemplate = {
     ["uniforms"] call _fnc_setUniform;
 
 
-    ["sniperRifles"] call _fnc_setPrimary;
+    [["sniperRifles", "marksmanRifles"] call _fnc_fallback] call _fnc_setPrimary;;
     ["primary", 7] call _fnc_addMagazines;
 
     ["sidearms"] call _fnc_setHandgun;
