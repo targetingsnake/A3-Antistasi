@@ -132,6 +132,8 @@ _loadoutData set ["AALaunchers", [
 ]];
 _loadoutData set ["sidearms", []];
 
+_loadoutData set ["NVGs", []];
+
 _loadoutData set ["ATMines", ["gm_mine_at_dm21", "gm_mine_at_dm1233"]];
 _loadoutData set ["APMines", ["gm_mine_ap_dm31"]];
 _loadoutData set ["lightExplosives", ["DemoCharge_Remote_Mag"]];
@@ -243,7 +245,7 @@ _sfLoadoutData set ["sniperRifles", [
 _sfLoadoutData set ["sidearms", [
     ["gm_p1_blk", "", "", "", ["gm_8Rnd_9x19mm_B_DM51_p1_blk", "gm_8Rnd_9x19mm_B_DM11_p1_blk"], [], ""]
 ]];
-
+_sfLoadoutData set ["NVGs", ["CUP_NVG_PVS7"]];
 /////////////////////////////////
 //    Military Loadout Data    //
 /////////////////////////////////
