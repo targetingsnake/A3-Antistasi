@@ -36,7 +36,7 @@ namespace dcpr
                 scenarioName = "",
                 testing = false
             };
-            i_clientState = clientInMenu;
+            i_clientState = clientStarting;
         }
         public struct KDA
         {
@@ -67,9 +67,10 @@ namespace dcpr
         private static int i_clientState;
         private static Editor i_editor;
         private static Server i_server;
-        public const int clientInMenu = 0;
-        public const int clientOnServer = 1;
-        public const int clientInEditor = 2;
+        public const int clientStarting = 0;
+        public const int clientInMenu = 1;
+        public const int clientOnServer = 2;
+        public const int clientInEditor = 3;
         public static Server server
         {
             get
