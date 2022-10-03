@@ -306,7 +306,9 @@ private _categoryOverrideTable = [
 ["gm_g3a3_dmr_oli",["SniperRifles","Weapons"]],
 ["gm_g3a3_dmr_blk",["SniperRifles","Weapons"]],
 ["gm_g3a3_dmr_des",["SniperRifles","Weapons"]],
-["gm_svd_wud",["SniperRifles","Weapons"]]	];
+["gm_svd_wud",["SniperRifles","Weapons"]],
+["gm_hk69a1_blk", ["GrenadeLaunchers","Weapons"]],
+["gm_pallad_d_brn", ["GrenadeLaunchers","Weapons"]]	];
 
 //Create a local namespace.
 A3A_categoryOverrides = false call A3A_fnc_createNamespace;
