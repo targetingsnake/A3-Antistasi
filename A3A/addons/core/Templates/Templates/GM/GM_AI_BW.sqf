@@ -207,7 +207,7 @@ _loadoutData set ["items_unarmed_extras", []];
 ///////////////////////////////////////
 
 private _sfLoadoutData = _loadoutData call _fnc_copyLoadoutData; // touch and shit breaks
-_sfLoadoutData set ["uniforms", ["gm_xx_uniform_soldier_bdu_nogloves_80_wdl", "gm_xx_uniform_soldier_bdu_80_wdl", "gm_xx_uniform_soldier_bdu_rolled_80_wdl"]];
+_sfLoadoutData set ["uniforms", ["gm_ge_uniform_soldier_bdu_nogloves_80_wdl", "gm_ge_uniform_soldier_bdu_80_wdl", "gm_ge_uniform_soldier_bdu_rolled_80_wdl"]];
 _sfLoadoutData set ["vests", ["gm_ge_vest_armor_90_rifleman_flk"]];
 _sfLoadoutData set ["mgVests", ["gm_ge_vest_armor_90_machinegunner_flk"]];
 _sfLoadoutData set ["slVests", ["gm_ge_vest_armor_90_leader_flk"]];
@@ -218,7 +218,6 @@ _sfLoadoutData set ["sniHats", ["gm_ge_headgear_beret_bdx_specop"]];
 _sfLoadoutData set ["binoculars", ["Laserdesignator_03"]];
 
 _sfLoadoutData set ["rifles", [
-    ["gm_g36a1_blk", "muzzle_snds_M", "", "", ["gm_30Rnd_556x45mm_B_DM11_g36_blk", "gm_30Rnd_556x45mm_B_T_DM21_g36_blk"], [], ""],
     ["gm_g3a3_blk", "muzzle_snds_B", "", "", ["gm_20Rnd_762x51mm_B_T_DM21A2_g3_blk","gm_20Rnd_762x51mm_AP_DM151_g3_blk"], ["gm_1rnd_67mm_heat_dm22a1_g3"], ""]
 ]];
 
@@ -266,12 +265,11 @@ _militaryLoadoutData set ["helmets", ["gm_ge_headgear_m62", "gm_ge_headgear_m62_
 _militaryLoadoutData set ["binoculars", ["Laserdesignator_03"]];
 
 _militaryLoadoutData set ["slRifles", [
-    ["gm_g36a1_blk", "", "", "", ["gm_30Rnd_556x45mm_B_DM11_g36_blk", "gm_30Rnd_556x45mm_B_T_DM21_g36_blk"], [], ""],
     ["gm_c7a1_blk", "", "", "gm_c79a1_blk", ["gm_30Rnd_556x45mm_B_M855_stanag_gry", "gm_30Rnd_556x45mm_B_T_M856_stanag_gry"], [], ""]
 ]];
 _militaryLoadoutData set ["rifles", [
-    ["gm_g3a3_blk", "", "acc_pointer_IR", "", ["gm_20Rnd_762x51mm_B_DM41_g3_blk", "gm_20Rnd_762x51mm_B_T_DM21A1_g3_blk"], ["gm_1rnd_67mm_heat_dm22a1_g3"], ""],
-    ["gm_g3a3_blk", "", "", "", ["gm_20Rnd_762x51mm_B_DM41_g3_blk", "gm_20Rnd_762x51mm_B_T_DM21A1_g3_blk"], ["gm_1rnd_67mm_heat_dm22a1_g3"], ""],
+    ["gm_g3a3_blk", "", "acc_pointer_IR", "", ["gm_20Rnd_762x51mm_B_DM41_g3_blk", "gm_20Rnd_762x51mm_B_T_DM21A1_g3_blk", "gm_1rnd_67mm_heat_dm22a1_g3"], [], ""],
+    ["gm_g3a3_blk", "", "", "", ["gm_20Rnd_762x51mm_B_DM41_g3_blk", "gm_20Rnd_762x51mm_B_T_DM21A1_g3_blk", "gm_1rnd_67mm_heat_dm22a1_g3"], [], ""],
     ["gm_c7a1_blk", "", "", "gm_c79a1_blk", ["gm_30Rnd_556x45mm_B_M855_stanag_gry", "gm_30Rnd_556x45mm_B_T_M856_stanag_gry"], [], ""],
     ["gm_m16a1_blk", "", "", "", ["gm_20Rnd_556x45mm_B_M855_stanag_gry", "gm_20Rnd_556x45mm_B_T_M856_stanag_gry"], [], ""]
 ]];
