@@ -248,7 +248,7 @@ _sfLoadoutData set ["sniperRifles", [
     ["srifle_GM6_ghex_F", "", "optic_SOS", "", ["5Rnd_127x108_Mag", "5Rnd_127x108_APDS_Mag"], [], ""]
 ]];
 _sfLoadoutData set ["sidearms", [
-    ["gm_pm_blk", "", "muzzle_snds_L", "gm_8Rnd_9x18mm_B_pst_pm_blk", [], [], ""]
+    ["gm_pm_blk", "", "muzzle_snds_L", "", ["gm_8Rnd_9x18mm_B_pst_pm_blk"], [], ""]
 ]];
 /////////////////////////////////
 //    Military Loadout Data    //
@@ -312,7 +312,7 @@ _policeLoadoutData set ["SMGs", [
     ["gm_pm63_blk", "", "", "", ["gm_25Rnd_9x18mm_B_pst_pm63_blk"], [], ""] 
 ]];
 _policeLoadoutData set ["sidearms", [
-    ["gm_pm_blk", "", "", "gm_8Rnd_9x18mm_B_pst_pm_blk", [], [], ""]
+    ["gm_pm_blk", "", "", "", ["gm_8Rnd_9x18mm_B_pst_pm_blk"], [], ""]
 ]];
 
 ////////////////////////////////
