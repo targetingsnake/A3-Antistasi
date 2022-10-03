@@ -244,8 +244,7 @@ _sfLoadoutData set ["marksmanRifles", [
 ]];
 
 _sfLoadoutData set ["sniperRifles", [
-    ["srifle_GM6_ghex_F", "", "optic_LRPS_ghex_F", "", ["5Rnd_127x108_Mag", "5Rnd_127x108_APDS_Mag"], [], ""],
-    ["srifle_GM6_ghex_F", "", "optic_SOS", "", ["5Rnd_127x108_Mag", "5Rnd_127x108_APDS_Mag"], [], ""]
+    ["CUP_srifle_Mosin_Nagant", "", "CUP_optic_PEM", "", ["CUP_5Rnd_762x54_Mosin_M"], [], ""]
 ]];
 _sfLoadoutData set ["sidearms", [
     ["gm_pm_blk", "", "muzzle_snds_L", "", ["gm_8Rnd_9x18mm_B_pst_pm_blk"], [], ""]
@@ -296,8 +295,7 @@ _militaryLoadoutData set ["marksmanRifles", [
     ["gm_akmn_wud", "gm_bayonet_6x3_blk", "", "gm_zfk4x25_blk", ["gm_30Rnd_762x39mm_B_57N231_ak47_blk", "gm_30Rnd_762x39mm_B_T_57N231P_ak47_blk"], [], ""]
 ]];
 _militaryLoadoutData set ["sniperRifles", [
-    ["srifle_GM6_ghex_F", "", "optic_LRPS_ghex_F", "", ["5Rnd_127x108_Mag", "5Rnd_127x108_APDS_Mag"], [], ""],
-    ["srifle_GM6_ghex_F", "", "optic_SOS", "", ["5Rnd_127x108_Mag", "5Rnd_127x108_APDS_Mag"], [], ""]
+    ["CUP_srifle_Mosin_Nagant", "", "CUP_optic_PEM", "", ["CUP_5Rnd_762x54_Mosin_M"], [], ""]
 ]];
 
 ///////////////////////////////
@@ -352,8 +350,7 @@ _militiaLoadoutData set ["marksmanRifles", [
     ["gm_akmn_wud", "gm_bayonet_6x3_blk", "", "gm_zfk4x25_blk", ["gm_30Rnd_762x39mm_B_57N231_ak47_blk", "gm_30Rnd_762x39mm_B_T_57N231P_ak47_blk"], [], ""]
 ]];
 _militiaLoadoutData set ["sniperRifles", [
-    ["srifle_GM6_ghex_F", "", "optic_Arco", "", ["5Rnd_127x108_Mag", "5Rnd_127x108_APDS_Mag"], [], ""],
-    ["srifle_GM6_ghex_F", "", "optic_Arco_blk_F", "", ["5Rnd_127x108_Mag", "5Rnd_127x108_APDS_Mag"], [], ""]
+    ["CUP_srifle_Mosin_Nagant", "", "CUP_optic_PEM", "", ["CUP_5Rnd_762x54_Mosin_M"], [], ""]
 ]];
 _militiaLoadoutData set ["sidearms", ["hgun_Rook40_F"]];
 //////////////////////////
