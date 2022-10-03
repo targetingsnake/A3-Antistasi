@@ -27,12 +27,12 @@
 ["staticMG", "gm_gc_army_dshkm_aatripod"] call _fnc_saveToTemplate;
 ["staticAT", "gm_gc_army_spg9_tripod"] call _fnc_saveToTemplate;
 
-["staticMortar", "I_G_Mortar_01_F"] call _fnc_saveToTemplate;
+["staticMortar", "CUP_O_2b14_82mm_RU"] call _fnc_saveToTemplate;
 ["staticMortarMagHE", "8Rnd_82mm_Mo_shells"] call _fnc_saveToTemplate;
 ["staticMortarMagSmoke", "8Rnd_82mm_Mo_Smoke_white"] call _fnc_saveToTemplate;
 
-["mineAT", ["gm_minestatic_at_dm21", "gm_minestatic_at_dm1233"]] call _fnc_saveToTemplate;
-["mineAPERS", ["gm_minestatic_ap_dm31"]] call _fnc_saveToTemplate;
+["mineAT", ["gm_mine_at_dm21", "gm_mine_at_dm1233"]] call _fnc_saveToTemplate;
+["mineAPERS", ["gm_mine_ap_dm31"]] call _fnc_saveToTemplate;
 
 ["breachingExplosivesAPC", [["DemoCharge_Remote_Mag", 1]]] call _fnc_saveToTemplate;
 ["breachingExplosivesTank", [["gm_explosive_petn_charge", 1], ["DemoCharge_Remote_Mag", 2]]] call _fnc_saveToTemplate;
@@ -46,9 +46,12 @@
 ///////////////////////////
 
 private _initialRebelEquipment = [
-"gm_p1_blk","gm_pm_blk",
-"gm_mp2a1_blk","gm_pm63_blk",
-"gm_8Rnd_9x19mm_B_DM11_p1_blk","gm_8Rnd_9x18mm_B_pst_pm_blk","gm_32Rnd_9x19mm_B_DM51_mp2_blk","gm_15Rnd_9x18mm_B_pst_pm63_blk",
+"gm_p1_blk","gm_pm_blk","gm_p2a1_blk",
+"CUP_srifle_Mosin_Nagant","CUP_srifle_LeeEnfield", "CUP_srifle_Remington700",
+"CUP_5Rnd_762x54_Mosin_M","CUP_10x_303_M","CUP_6Rnd_762x51_R700",
+"gm_8Rnd_9x18mm_B_pst_pm_blk", "gm_8Rnd_9x19mm_B_DM11_p1_blk",
+"gm_1Rnd_265mm_flare_single_red_gc", "gm_1Rnd_265mm_flare_single_wht_gc", "gm_1Rnd_265mm_flare_single_grn_DM11", 
+"gm_1Rnd_265mm_flare_single_wht_DM15", "gm_1Rnd_265mm_flare_multi_wht_DM25",
 "gm_handgrenade_frag_dm51","gm_smokeshell_wht_dm25", "gm_handgrenade_frag_rgd5",
 "B_FieldPack_oli","B_FieldPack_blk","B_FieldPack_ocamo","B_FieldPack_oucamo","B_FieldPack_cbr","B_FieldPack_khk",
 "gm_ge_bgs_vest_80_rifleman","gm_gc_bgs_vest_80_border_str","gm_gc_army_vest_80_at_str","Binocular",

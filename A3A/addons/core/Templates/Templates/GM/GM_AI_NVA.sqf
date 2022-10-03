@@ -352,7 +352,8 @@ _militiaLoadoutData set ["marksmanRifles", [
 _militiaLoadoutData set ["sniperRifles", [
     ["CUP_srifle_Mosin_Nagant", "", "CUP_optic_PEM", "", ["CUP_5Rnd_762x54_Mosin_M"], [], ""]
 ]];
-_militiaLoadoutData set ["sidearms", ["hgun_Rook40_F"]];
+_militiaLoadoutData set ["sidearms", 
+    ["gm_pm_blk", "", "", "", ["gm_8Rnd_9x18mm_B_pst_pm_blk"], [], ""]];
 //////////////////////////
 //    Misc Loadouts     //
 //////////////////////////
