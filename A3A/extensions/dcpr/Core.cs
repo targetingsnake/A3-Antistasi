@@ -904,8 +904,11 @@ namespace Discord
 
             internal UInt32 AchievementVersion;
         }
-
-        [DllImport("lib\\" + Constants.DllName, ExactSpelling = true, CallingConvention = CallingConvention.Winapi)]
+#if WIN64
+        [DllImport("lib\\x86_64\\" + Constants.DllName, ExactSpelling = true, CallingConvention = CallingConvention.Winapi)]
+#else
+        [DllImport("lib\\x86\\" + Constants.DllName, ExactSpelling = true, CallingConvention = CallingConvention.Winapi)]
+#endif
         private static extern Result DiscordCreate(UInt32 version, ref FFICreateParams createParams, out IntPtr manager);
 
         public delegate void SetLogHookHandler(LogLevel level, string message);

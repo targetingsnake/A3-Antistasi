@@ -5,6 +5,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Threading;
+using System.Diagnostics;
 
 namespace dcpr
 {
@@ -12,20 +13,26 @@ namespace dcpr
     {
         static main()
         {
-            t = new Thread(new ThreadStart(ThreadLoop));
-            t.Start();
             que = new ConcurrentQueue<string>();
+            queArgs = new ConcurrentQueue<CommandAndArgument>();
             discordpresence = new Discord.Activity
             {
-                State = "Starting",
+                State = "Starting Arma",
                 Instance = false
             };
+            t = new Thread(new ThreadStart(ThreadLoop));
+            t.Start();
         }
         private static Thread t;
         private static ConcurrentQueue<string> que;
+        private static ConcurrentQueue<CommandAndArgument> queArgs;
         private static Discord.Discord discord;
         private static Discord.Activity discordpresence;
-
+        private struct CommandAndArgument
+        {
+            public string command;
+            public string[] args;
+        }
         private static void UpdateActivity()
         {
             var activityManager = discord.GetActivityManager();
@@ -38,6 +45,81 @@ namespace dcpr
             });
         }
         public static void ThreadLoop()
+        {
+            bool changed = false;
+            bool discordDetected = false;
+            bool discordRunning = true;
+            while (true)
+            {
+                if (main.discordRunning())
+                {
+                    discordDetected = true;
+                }
+                else
+                {
+                    changed = true;
+                }
+                if (discordDetected)
+                {
+                    try
+                    {
+                        if (changed && !discordRunning)
+                        {
+                            Thread.Sleep(60000); // wait for discord to start so discord don't closes the application
+                            changed = false;
+                        }
+                        runDiscord(true);
+                    }
+                    catch
+                    {
+                        discordRunning = false;
+                    }
+                }
+                else
+                {
+                    Console.WriteLine("test");
+                    checkQuesForUpdate(false);
+                }
+                changed = true;
+                discordDetected = false;
+                Thread.Sleep(1000 / 60);
+            }
+
+        }
+
+        private static bool discordRunning()
+        {
+            Process[] procs = Process.GetProcesses();
+            foreach (Process p in procs)
+            {
+                if (p.ProcessName.IndexOf("discord", StringComparison.InvariantCultureIgnoreCase) >= 0)
+                {
+                    return true;
+                }
+            }
+            return false;
+
+        }
+        private static void checkQuesForUpdate()
+        {
+            checkQuesForUpdate(true);
+        }
+        private static void checkQuesForUpdate(bool UpdateDC)
+        {
+            if (que.TryDequeue(out string s))
+            {
+                preConfiguration(s, UpdateDC);
+            }
+            if (queArgs.TryDequeue(out CommandAndArgument t))
+            {
+                preConfigureAR(t.command, t.args, UpdateDC);
+            }
+        }
+        private static void runDiscord()
+        {
+            runDiscord(false);
+        }
+        private static void runDiscord(bool forceUpdate)
         {
             var clientID = Environment.GetEnvironmentVariable("DISCORD_CLIENT_ID");
             if (clientID == null)
@@ -55,26 +137,12 @@ namespace dcpr
             Console.WriteLine("Current Locale: {0}", applicationManager.GetCurrentLocale());
             // Get the current branch. For example alpha or beta.
             Console.WriteLine("Current Branch: {0}", applicationManager.GetCurrentBranch());
-            // If you want to verify information from your game's server then you can
-            // grab the access token and send it to your server.
-            //
-            // This automatically looks for an environment variable passed by the Discord client,
-            // if it does not exist the Discord client will focus itself for manual authorization.
-            //
-            // By-default the SDK grants the identify and rpc scopes.
-            // Read more at https://discordapp.com/developers/docs/topics/oauth2
-            // applicationManager.GetOAuth2Token((Discord.Result result, ref Discord.OAuth2Token oauth2Token) =>
-            // {
-            //     Console.WriteLine("Access Token {0}", oauth2Token.AccessToken);
-            // });
 
             var activityManager = discord.GetActivityManager();
 
             // This is used to register the game in the registry such that Discord can find it.
             // This is only needed by games acquired from other platforms, like Steam.
             // activityManager.RegisterCommand();
-
-            var imageManager = discord.GetImageManager();
 
             var userManager = discord.GetUserManager();
             // The auth manager fires events as information about the current user changes.
@@ -101,17 +169,17 @@ namespace dcpr
             {
                 Console.WriteLine("relationship updated: {0} {1} {2} {3}", r.Type, r.User.Username, r.Presence.Status, r.Presence.Activity.Name);
             };
-
+            if (forceUpdate)
+            {
+                updateDCPresence();
+            }
             // Pump the event look to ensure all callbacks continue to get fired.
             try
             {
                 while (true)
                 {
                     discord.RunCallbacks();
-                    if (que.TryDequeue(out string s))
-                    {
-                        preConfiguration(s);
-                    }
+                    checkQuesForUpdate();
                     Thread.Sleep(1000 / 60);
                 }
             }
@@ -121,22 +189,19 @@ namespace dcpr
             }
         }
 
-        private static void preConfiguration(string s)
+        private static void preConfigureAR(string s, string[] args)
         {
-            string switchKey = s;
-            string[] expands = new string[] { };
-            if (s.Contains("@@@"))
-            {
-                expands = s.Split(new string[] { "@@@" }, StringSplitOptions.None);
-                switchKey = expands[0];
-            }
+            preConfigureAR(s, args, true);
+        }
+        private static void preConfigureAR(string s, string[] args, bool UpdateDC)
+        {
             bool update = true;
-            switch (switchKey.ToLower())
+            switch (s.ToLower())
             {
                 case "init":
                     break;
                 case "missionstart":
-                    State.setServer(expands);
+                    State.setServer(args);
                     break;
                 case "missionend":
                     State.inMenu();
@@ -180,9 +245,28 @@ namespace dcpr
                     update = false;
                     break;
             }
-            if (update)
+            if (update && UpdateDC)
             {
                 updateDCPresence();
+            }
+        }
+        private static void preConfiguration(string s)
+        {
+            preConfiguration(s, true);
+        }
+        private static void preConfiguration(string s, bool Update)
+        {
+            string switchKey = s;
+            string[] expands = new string[] { };
+            if (s.Contains("@@@"))
+            {
+                expands = s.Split(new string[] { "@@@" }, StringSplitOptions.None);
+                switchKey = expands[0];
+                preConfigureAR(switchKey, expands.Where((val, idx) => idx != 0).ToArray(), Update);
+            }
+            else
+            {
+                preConfigureAR(switchKey, new string[] { }, Update);
             }
         }
 
@@ -190,6 +274,13 @@ namespace dcpr
         {
             switch (State.clientState)
             {
+                case State.clientStarting:
+                    discordpresence = new Discord.Activity
+                    {
+                        State = "Starting Arma 3",
+                        Instance = false
+                    };
+                    break;
                 case State.clientInMenu:
                     discordpresence = new Discord.Activity
                     {
@@ -250,6 +341,15 @@ namespace dcpr
         public static void Connector(string s)
         {
             que.Enqueue(s);
+        }
+
+        public static void Connector(string s, string[] argsInput)
+        {
+            queArgs.Enqueue(new CommandAndArgument
+            {
+                command = s,
+                args = argsInput
+            });
         }
     }
 }

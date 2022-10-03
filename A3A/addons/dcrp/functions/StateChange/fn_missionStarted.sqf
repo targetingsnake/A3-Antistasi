@@ -13,7 +13,8 @@ Examples:
     [] call DCI_fnc_missionStarted;
 Author: martin
 */
-
+#include "../../script_component.hpp"
+FIX_LINE_NUMBERS()
 diag_log "DCRP state changed to in mission";
 
 private _command = "missionstart";
@@ -22,7 +23,7 @@ private _command = "missionstart";
 private _productVersionArray = productVersion;
 if (_productVersionArray # 6 != "Windows") then {
     DCI_deactiavted = true;
-    diag_log "DCPR no windows detected";
+    diag_log  "DCPR no windows detected";
 };
 if (isDedicated || !hasInterface) then {
     DCI_deactiavted = true;
@@ -35,9 +36,10 @@ if (DCI_deactiavted) exitWith {
 
 private _roleDescription = roleDescription player;
 private _typeName = [configFile >> "CfgVehicles" >> typeOf player] call BIS_fnc_displayName;
+private _slotNumber = playableSlotsNumber independent + playableSlotsNumber west + playableSlotsNumber east;
 
-if (_roleDescription == "" && _typeName == "") exitWith {
-	diag_log "DCRP no role description detected should be game main menu";
+if (_slotNumber == 1 && ["intro", briefingName] call BIS_fnc_inString) exitWith {
+	diag_log  "DCRP no role description detected should be game main menu";
 	private _result = "dcpr" callExtension "menu";
 };
 
@@ -45,14 +47,14 @@ if (_roleDescription == "") then {
 	_roleDescription = _typeName;
 };
 
-_command = _command + "@@@" + serverName;
-_command = _command + "@@@1";
-_command = _command + "@@@" + briefingName;
-_command = _command + "@@@" + _roleDescription;
-private _slotNumber = playableSlotsNumber independent + playableSlotsNumber west + playableSlotsNumber east;
-_command = _command + "@@@" + str _slotNumber ;
 private _playerCount = playersNumber independent + playersNumber west + playersNumber east;
-_command = _command + "@@@" + str _playerCount;
+
+//_command = _command + "@@@" + serverName;
+//_command = _command + "@@@1";
+//_command = _command + "@@@" + briefingName;
+//_command = _command + "@@@" + _roleDescription;
+//_command = _command + "@@@" + str _slotNumber ;
+//_command = _command + "@@@" + str _playerCount;
 
 
-private _result = "dcpr" callExtension _command;
+private _result = "dcpr" callExtension ["missionstart", [serverName,1, briefingName, _roleDescription, _slotNumber, _playerCount]];

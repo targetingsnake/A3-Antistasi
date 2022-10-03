@@ -8,8 +8,7 @@ class CfgFunctions {
 			class initVars {};
 		};
 		class StateChange {
-			file = QPATHTOFOLDER(functions\StateChange);
-			
+			file = QPATHTOFOLDER(functions\StateChange);	
 			class missionStarted {
 				postInit = 1;
 			};

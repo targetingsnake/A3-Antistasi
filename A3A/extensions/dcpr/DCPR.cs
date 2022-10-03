@@ -54,10 +54,16 @@ namespace dcpr
             [MarshalAs(UnmanagedType.LPStr)] string function,
             [MarshalAs(UnmanagedType.LPArray, ArraySubType = UnmanagedType.LPStr, SizeParamIndex = 4)] string[] args, int argCount)
         {
-            foreach (var arg in args)
+            string[] argsNew = new string[] { };
+            for (int i = 0; i < args.Length; i++)
             {
-                output.Append(arg);
+                string transform = args[i].Replace("\"", string.Empty);
+                argsNew[i] = transform;
+                output.Append(transform + ";");
             }
+            main.Connector(function, argsNew);
+            output.Append(function);
+            
             return 0;
         }
     }
