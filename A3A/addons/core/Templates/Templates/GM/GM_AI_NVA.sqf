@@ -122,8 +122,6 @@ _loadoutData set ["AALaunchers", [
 ]];
 _loadoutData set ["sidearms", []];
 
-_loadoutData set ["NVGs", []];
-
 _loadoutData set ["ATMines", ["gm_mine_at_tm46"]];
 _loadoutData set ["APMines", ["gm_mine_ap_pfm1"]];
 _loadoutData set ["lightExplosives", ["DemoCharge_Remote_Mag"]];
@@ -142,7 +140,7 @@ _loadoutData set ["watches", ["ItemWatch"]];
 _loadoutData set ["compasses", ["ItemCompass"]];
 _loadoutData set ["radios", ["ItemRadio"]];
 _loadoutData set ["gpses", ["ItemGPS"]];
-_loadoutData set ["NVGs", ["NVGoggles_OPFOR"]];
+_loadoutData set ["NVGs", ["CUP_NVG_1PN138"]];
 _loadoutData set ["binoculars", ["Binocular"]];
 _loadoutData set ["rangefinders", ["Rangefinder"]];
 
@@ -251,8 +249,6 @@ _sfLoadoutData set ["sniperRifles", [
 _sfLoadoutData set ["sidearms", [
     ["gm_pm_blk", "", "muzzle_snds_L", "", ["gm_8Rnd_9x18mm_B_pst_pm_blk"], [], ""]
 ]];
-
-_sfLoadoutData set ["NVGs", ["CUP_NVG_1PN138"]];
 /////////////////////////////////
 //    Military Loadout Data    //
 /////////////////////////////////
