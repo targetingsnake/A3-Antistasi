@@ -34,27 +34,100 @@ if (DCI_deactiavted) exitWith {
 	diag_log "DCPR deactiavted";
 };
 
-private _roleDescription = roleDescription player;
-private _typeName = [configFile >> "CfgVehicles" >> typeOf player] call BIS_fnc_displayName;
-private _slotNumber = playableSlotsNumber independent + playableSlotsNumber west + playableSlotsNumber east;
+if (
+    (!isNil "ace_common_fnc_isModLoaded") && 
+    isClass (configFile >> "CfgSounds" >> "ACE_heartbeat_fast_3")
+) then {
+    DCI_detectAce = true;
+};
 
-if (_slotNumber == 1 && ["intro", briefingName] call BIS_fnc_inString) exitWith {
+if (["intro", briefingName] call BIS_fnc_inString) exitWith {
 	diag_log  "DCRP no role description detected should be game main menu";
 	private _result = "dcpr" callExtension "menu";
 };
 
-if (_roleDescription == "") then {
-	_roleDescription = _typeName;
-};
+[] spawn {
 
-private _playerCount = playersNumber independent + playersNumber west + playersNumber east;
+    waitUntil{!(isNil "BIS_fnc_init") && time > 0};
 
-//_command = _command + "@@@" + serverName;
-//_command = _command + "@@@1";
-//_command = _command + "@@@" + briefingName;
-//_command = _command + "@@@" + _roleDescription;
-//_command = _command + "@@@" + str _slotNumber ;
-//_command = _command + "@@@" + str _playerCount;
+    private _roleDescription = roleDescription player;
+    private _typeName = [configFile >> "CfgVehicles" >> typeOf player] call BIS_fnc_displayName;
+    private _slotNumber = playableSlotsNumber independent + playableSlotsNumber west + playableSlotsNumber east;
+    private _playerCount = playersNumber independent + playersNumber west + playersNumber east;
+    private _result = "dcpr" callExtension ["missionstart", [serverName,1, briefingName, _roleDescription, _slotNumber, _playerCount]];
 
+    if (_roleDescription == "") then {
+        _roleDescription = _typeName;
+    };
 
-private _result = "dcpr" callExtension ["missionstart", [serverName,1, briefingName, _roleDescription, _slotNumber, _playerCount]];
+    addMissionEventHandler ["EntityKilled", {
+        params ["_killed", "_killer", "_instigator"];
+        if (!hasInterface) exitWith {};
+        if (DCI_deactiavted) exitWith {};
+        private _stats = getPlayerScores player;
+        private _kills = _stats # 0 + _stats # 1 + _stats # 2 + _stats # 3;
+        if (isNull _instigator) then { _instigator = UAVControl vehicle _killer select 0 }; // UAV/UGV player operated road kill
+	    if (isNull _instigator) then { _instigator = _killer }; // player driven vehicle road kill
+        if (_instigator == player) then {
+            _kills = _kills + 1; //current kill happening not counted yet
+        } else {
+            private _assists = _killed getVariable ["DCI_assists",[]];
+            if (player in _assists) then {
+                "dcpr" callExtension "updateassist";        
+            };
+        };
+        if (_killed == player) then  {
+            "dcpr" callExtension "died";
+        };
+        private _death = _stats # 4;
+        "dcpr" callExtension ["updateScore", [_kills , _death]];
+    }];
+
+    player addEventHandler ["Respawn", {
+	    params ["_unit", "_corpse"];
+        if (DCI_deactiavted) exitWith {};
+        if (!hasInterface) exitWith {};
+        private _stats = getPlayerScores player;
+        private _kills = _stats # 0 + _stats # 1 + _stats # 2 + _stats # 3;
+        private _death = _stats # 4;
+        _death = _death + 1; //current death not counted
+        "dcpr" callExtension "respawn";
+        "dcpr" callExtension ["updateScore", [_kills , _death]];
+    }];
+
+    addMissionEventHandler ["EntityCreated", {
+	    params ["_entity"];
+        if (DCI_deactiavted) exitWith {};
+        if (isPlayer _entity) exitWith {};
+        if (
+            _entity isKindOf "Man" ||
+            _entity isKindOf "Car" ||
+            _entity isKindOf "Motorcycle" ||
+	        _entity isKindOf "Ship" ||
+	        _entity isKindOf "Helicopter" ||
+	        _entity isKindOf "StaticWeapon" ||
+	        _entity isKindOf "Plane"
+        ) then {
+            _entity setVariable ["DCI_assists",[],true];
+            _entity addMPEventHandler ["MPHit", {
+            	params ["_unit", "_causedBy", "_damage", "_instigator"];
+                private _var = _unit getVariable ["DCI_assists",[]];
+                _var pushBackUnique _instigator;
+                _unit setVariable ["DCI_assists", _var,true];
+            }];
+        }
+    }];
+
+    if(DCI_detectAce) then {
+        ["ace_unconscious", {
+            params ["_unit", "_state"];
+            if (_unit == player) then {
+                if (_state) then {
+                    "dcpr" callExtension "uncon";
+                } else {
+                    "dcpr" callExtension "wakeup";
+                };
+            };
+        }] call CBA_fnc_addEventHandler;
+    }
+}

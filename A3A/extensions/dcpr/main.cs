@@ -204,15 +204,11 @@ namespace dcpr
                     State.setServer(args);
                     break;
                 case "missionend":
+                case "editorend":
+                case "menu":
                     State.inMenu();
                     break;
                 case "editorstart":
-                    break;
-                case "editorend":
-                    State.inMenu();
-                    break;
-                case "menu":
-                    State.inMenu();
                     break;
                 case "teststart":
                     State.setTest = true;
@@ -232,11 +228,8 @@ namespace dcpr
                 case "wakeup":
                     State.setUnconState = false;
                     break;
-                case "updatekill":
-                    State.addKill();
-                    break;
-                case "updatedeath":
-                    State.addDeath();
+                case "updatescore":
+                    State.updateScore(args);
                     break;
                 case "updateassist":
                     State.addAssist();
