@@ -26,5 +26,5 @@ Map-Templates/Antistasi-TEST-**
 
 # c# extensions
 
-A3A/extensions/*/obj/*
-A3A/extensions/*/bin/*
+A3A/extensions/dcpr/obj/*
+A3A/extensions/dcpr/bin/*

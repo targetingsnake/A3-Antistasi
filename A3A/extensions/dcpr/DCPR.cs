@@ -4,6 +4,7 @@ using System;
 using System.Text;
 using System.Runtime.InteropServices;
 using RGiesecke.DllExport;
+using System.Collections.Generic;
 
 namespace dcpr
 {
@@ -54,7 +55,8 @@ namespace dcpr
             [MarshalAs(UnmanagedType.LPStr)] string function,
             [MarshalAs(UnmanagedType.LPArray, ArraySubType = UnmanagedType.LPStr, SizeParamIndex = 4)] string[] args, int argCount)
         {
-            string[] argsNew = new string[] { };
+            output.Append(function + ";");
+            string[] argsNew = new string[args.Length];
             for (int i = 0; i < args.Length; i++)
             {
                 string transform = args[i].Replace("\"", string.Empty);
@@ -62,8 +64,7 @@ namespace dcpr
                 output.Append(transform + ";");
             }
             main.Connector(function, argsNew);
-            output.Append(function);
-            
+
             return 0;
         }
     }

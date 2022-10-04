@@ -87,18 +87,18 @@ namespace dcpr
         }
         public static void setServer(string[] input)
         {
-            bool displayName = input[2] == "1";
+            bool displayName = input[1] == "1";
             int slotCount = 0;
             int maxSlot = 0;
-            if (Int32.TryParse(input[5], out int sC))
+            if (Int32.TryParse(input[4], out int sC))
             {
                 slotCount = sC;
             }
-            if (Int32.TryParse(input[6], out int cp))
+            if (Int32.TryParse(input[5], out int cp))
             {
                 maxSlot = cp;
             }
-            setServer(input[1], displayName, input[3], input[4], slotCount, maxSlot);
+            setServer(input[0], displayName, input[2], input[3], slotCount, maxSlot);
 
         }
         public static void setServer(string name, bool displayName, string missionName, string roleName, int slotCount, int playercount)
@@ -148,17 +148,27 @@ namespace dcpr
         {
             i_server.currentPlayerCount = playercount;
         }
-        public static void addKill()
+        public static void updateScore(string[] killsAndDeath)
         {
-            i_server.stats.Kills += 1;
+            int kills = 0;
+            int death = 0;
+            if (int.TryParse(killsAndDeath[0], out kills))
+            {
+                i_server.stats.Kills = kills;
+            }
+            if (int.TryParse(killsAndDeath[1], out death))
+            {
+                i_server.stats.Death = death;
+            }
+        }
+        public static void updateScore(int kills, int death)
+        {
+            i_server.stats.Kills = kills;
+            i_server.stats.Death = death;
         }
         public static void addAssist()
         {
             i_server.stats.Assists += 1;
-        }
-        public static void addDeath()
-        {
-            i_server.stats.Death += 1;
         }
         public static void leaveServer()
         {
