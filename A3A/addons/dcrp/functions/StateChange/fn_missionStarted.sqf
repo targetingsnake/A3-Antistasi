@@ -22,15 +22,15 @@ private _command = "missionstart";
 [] call DCI_fnc_initVars;
 private _productVersionArray = productVersion;
 if (_productVersionArray # 6 != "Windows") then {
-    DCI_deactiavted = true;
+    A3A_DCRP_deactiavted = true;
     diag_log  "DCPR no windows detected";
 };
 if (isDedicated || !hasInterface) then {
-    DCI_deactiavted = true;
+    A3A_DCRP_deactiavted = true;
     diag_log "DCPR dedicated or no display detected";
 };
 
-if (DCI_deactiavted) exitWith {
+if (A3A_DCRP_deactiavted) exitWith {
 	diag_log "DCPR deactiavted";
 };
 
@@ -38,7 +38,7 @@ if (
     (!isNil "ace_common_fnc_isModLoaded") && 
     isClass (configFile >> "CfgSounds" >> "ACE_heartbeat_fast_3")
 ) then {
-    DCI_detectAce = true;
+    A3A_DCRP_detectAce = true;
 };
 
 if (["intro", briefingName] call BIS_fnc_inString) exitWith {
@@ -63,7 +63,7 @@ if (["intro", briefingName] call BIS_fnc_inString) exitWith {
     addMissionEventHandler ["EntityKilled", {
         params ["_killed", "_killer", "_instigator"];
         if (!hasInterface) exitWith {};
-        if (DCI_deactiavted) exitWith {};
+        if (A3A_DCRP_deactiavted) exitWith {};
         private _stats = getPlayerScores player;
         private _kills = _stats # 0 + _stats # 1 + _stats # 2 + _stats # 3;
         if (isNull _instigator) then { _instigator = UAVControl vehicle _killer select 0 }; // UAV/UGV player operated road kill
@@ -85,7 +85,7 @@ if (["intro", briefingName] call BIS_fnc_inString) exitWith {
 
     player addEventHandler ["Respawn", {
 	    params ["_unit", "_corpse"];
-        if (DCI_deactiavted) exitWith {};
+        if (A3A_DCRP_deactiavted) exitWith {};
         if (!hasInterface) exitWith {};
         private _stats = getPlayerScores player;
         private _kills = _stats # 0 + _stats # 1 + _stats # 2 + _stats # 3;
@@ -97,7 +97,7 @@ if (["intro", briefingName] call BIS_fnc_inString) exitWith {
 
     addMissionEventHandler ["EntityCreated", {
 	    params ["_entity"];
-        if (DCI_deactiavted) exitWith {};
+        if (A3A_DCRP_deactiavted) exitWith {};
         if (isPlayer _entity) exitWith {};
         if (
             _entity isKindOf "Man" ||
@@ -118,7 +118,7 @@ if (["intro", briefingName] call BIS_fnc_inString) exitWith {
         }
     }];
 
-    if(DCI_detectAce) then {
+    if(A3A_DCRP_detectAce) then {
         ["ace_unconscious", {
             params ["_unit", "_state"];
             if (_unit == player) then {
@@ -129,5 +129,7 @@ if (["intro", briefingName] call BIS_fnc_inString) exitWith {
                 };
             };
         }] call CBA_fnc_addEventHandler;
-    }
+    };
+
+    [] execVM QPATHTOFOLDER(scripts\updatePlayercount.sqf);
 }

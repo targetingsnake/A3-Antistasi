@@ -143,7 +143,14 @@ namespace dcpr
             // Return the hexadecimal string.
             return sBuilder.ToString();
         }
-
+        public static void updatePlayercount(string[] args)
+        {
+            int players = 0;
+            if (int.TryParse(args[0], out players))
+            {
+                i_server.currentPlayerCount = players;
+            }
+        }
         public static void updatePlayercount(int playercount)
         {
             i_server.currentPlayerCount = playercount;

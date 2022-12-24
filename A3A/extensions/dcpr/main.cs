@@ -234,6 +234,9 @@ namespace dcpr
                 case "updateassist":
                     State.addAssist();
                     break;
+                case "updateplayercount":
+                    State.updatePlayercount(args);
+                    break;
                 default:
                     update = false;
                     break;
@@ -309,7 +312,7 @@ namespace dcpr
             discordpresence = new Discord.Activity
             {
                 State = detailsStement,
-                Details = State.server.missionName,
+                Details = State.server.Name,
                 Timestamps =
                         {
                             Start = State.server.joinTime

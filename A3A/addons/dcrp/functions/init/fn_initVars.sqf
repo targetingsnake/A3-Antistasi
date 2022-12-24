@@ -15,5 +15,5 @@ Author: martin
 */
 #include "../../script_component.hpp"
 FIX_LINE_NUMBERS()
-DCI_deactiavted = false;
-DCI_detectAce = false;
+A3A_DCRP_deactiavted = false;
+A3A_DCRP_detectAce = false;
