@@ -28,6 +28,7 @@ namespace dcpr
         private static ConcurrentQueue<CommandAndArgument> queArgs;
         private static Discord.Discord discord;
         private static Discord.Activity discordpresence;
+        public static string AssetLargeImage = "antistasi_the_mod_1024";
         private struct CommandAndArgument
         {
             public string command;
@@ -274,14 +275,24 @@ namespace dcpr
                     discordpresence = new Discord.Activity
                     {
                         State = "Starting Arma 3",
-                        Instance = false
+                        Instance = false,
+                        Assets =
+                            {
+                                LargeImage = AssetLargeImage,
+                                LargeText = "Antistasi - The Mod"
+                            }
                     };
                     break;
                 case State.clientInMenu:
                     discordpresence = new Discord.Activity
                     {
                         State = "In Menus",
-                        Instance = false
+                        Instance = false,
+                        Assets =
+                            {
+                                LargeImage = AssetLargeImage,
+                                LargeText = "Antistasi - The Mod"
+                            }
                     };
                     break;
                 case State.clientOnServer:
@@ -291,14 +302,24 @@ namespace dcpr
                     discordpresence = new Discord.Activity
                     {
                         State = "In Menus",
-                        Instance = false
+                        Instance = false,
+                        Assets =
+                            {
+                                LargeImage = AssetLargeImage,
+                                LargeText = "Antistasi - The Mod"
+                            }
                     };
                     break;
                 default:
                     discordpresence = new Discord.Activity
                     {
                         State = "In Menus",
-                        Instance = false
+                        Instance = false,
+                        Assets =
+                            {
+                                LargeImage = AssetLargeImage,
+                                LargeText = "Antistasi - The Mod"
+                            }
                     };
                     break;
             };
@@ -314,10 +335,15 @@ namespace dcpr
                 State = detailsStement,
                 Details = State.server.Name,
                 Timestamps =
-                        {
-                            Start = State.server.joinTime
-                        },
-                Instance = true
+                    {
+                        Start = State.server.joinTime
+                    },
+                Instance = true,
+                Assets =
+                    {
+                        LargeImage = AssetLargeImage,
+                        LargeText = "Antistasi - The Mod"
+                    }
             };
             if (State.server.slotCount > 0 && State.server.currentPlayerCount > 0)
             {
@@ -328,7 +354,7 @@ namespace dcpr
                             {
                                 CurrentSize = State.server.currentPlayerCount,
                                 MaxSize = State.server.slotCount
-                            }
+                            },
                 };
                 discordpresence.Party = p;
             }
