@@ -24,9 +24,11 @@ PreparedMissions/
 Map-Templates/Antistasi-TEST-**
 
 
+
 #Ignore Python bytecode files and bytecode-cache folder
 __pycache__/
 *.py[cod]
+
 
 # c# extensions
 
