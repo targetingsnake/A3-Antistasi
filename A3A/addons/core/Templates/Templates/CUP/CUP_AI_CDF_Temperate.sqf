@@ -246,7 +246,7 @@ _sfLoadoutData set ["sniperRifles", [
     ["CUP_srifle_SVD", "CUP_muzzle_snds_KZRZP_SVD", "CUP_SVD_camo_g", "CUP_optic_PSO_3", ["CUP_10Rnd_762x54_SVD_M"], [], ""]
 ]];
 _sfLoadoutData set ["lightATLaunchers", [
-    ["CUP_launch_M72A6", "", "", "", ["CUP_RPG18_M"], [], ""],
+    ["CUP_launch_M72A6", "", "", "", [""], [], ""],
     ["CUP_launch_M136", "", "", "", [""], [], ""]
 ]];
 _sfLoadoutData set ["sidearms", [
@@ -722,8 +722,7 @@ private _policeTemplate = {
     ["vests"] call _fnc_setVest;
     ["uniforms"] call _fnc_setUniform;
 
-
-    [selectRandom ["SMGs", "shotGuns"]] call _fnc_setPrimary;
+    ["SMGs"] call _fnc_setPrimary;
     ["primary", 5] call _fnc_addMagazines;
 
     ["sidearms"] call _fnc_setHandgun;

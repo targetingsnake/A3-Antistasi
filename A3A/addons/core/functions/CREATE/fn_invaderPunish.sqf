@@ -19,8 +19,9 @@ params ["_mrkDest", "_mrkOrigin", "_delay"];
 
 ServerInfo_2("Launching CSAT Punishment Against %1 from %2", _mrkDest, _mrkOrigin);
 
-bigAttackInProgress = true;
-publicVariable "bigAttackInProgress";
+// Mostly to prevent fast travel
+bigAttackInProgress = true; publicVariable "bigAttackInProgress";
+forcedSpawn pushBack _mrkDest; publicVariable "forcedSpawn";
 
 private _posDest = getMarkerPos _mrkDest;
 private _posOrigin = getMarkerPos _mrkOrigin;
@@ -32,8 +33,9 @@ private _taskId = "invaderPunish" + str A3A_taskCount;
 [_taskId, "invaderPunish", "CREATED"] remoteExecCall ["A3A_fnc_taskUpdate", 2];
 
 
-// Give smaller player groups a bit more time to respond
-if (isNil "_delay") then { _delay = 420 / A3A_balancePlayerScale };
+if (isNil "_delay") then {
+    _delay = 300 + 60 * (markerPos "Synd_HQ" distance2d _posDest) / 2000;            // +1 min per 2km
+};
 
 // Create the attacking force
 // probably doesn't make much sense to aggro-scale this one as it's not a response
@@ -72,14 +74,14 @@ while {count _civilians < _numCiv} do
     for "_i" from 1 to (4 min (_numCiv - count _civilians)) do
     {
         private _civ = [_groupCivil, FactionGet(reb, "unitUnarmed"), _pos, [], 0, "NONE"] call A3A_fnc_createUnit;
-        [_civ, selectRandom (A3A_faction_civ get "faces"), "NoVoice"] call BIS_fnc_setIdentity;
+        [_civ, selectRandom (A3A_faction_civ get "faces"), "NoVoice"] call A3A_fnc_setIdentity;
         _civ forceAddUniform selectRandom (A3A_faction_civ get "uniforms");
         _civ addHeadgear selectRandom (A3A_faction_civ get "headgear");
         [_civ, selectRandom _civWeapons, 5, 0] call BIS_fnc_addWeapon;
         _civ setSkill 0.5;
         _civilians pushBack _civ;
     };
-    [leader _groupCivil, _mrkDest, "AWARE","SPAWNED","NOVEH2"] execVM QPATHTOFOLDER(scripts\UPSMON.sqf);//TODO need delete UPSMON link
+    [leader _groupCivil, _mrkDest, "AWARE","SPAWNED","NOVEH2"] spawn UPSMON_fnc_UPSMON;//TODO need delete UPSMON link
 };
 
 
@@ -122,7 +124,7 @@ if (({_x call A3A_fnc_canFight} count _soldiers < count _soldiers / 3) or (time 
 
     // Invaders pay extra to destroy a city
     private _citypop = (server getVariable _mrkDest) select 0;
-    [-4 * _citypop, Invaders, "attack"] remoteExec ["A3A_fnc_addEnemyResources", 2];
+    [-4 * _citypop * A3A_balancePlayerScale, Invaders, "attack"] remoteExec ["A3A_fnc_addEnemyResources", 2];
 
     destroyedSites = destroyedSites + [_mrkDest];
     publicVariable "destroyedSites";
@@ -138,11 +140,11 @@ if (({_x call A3A_fnc_canFight} count _soldiers < count _soldiers / 3) or (time 
     [_mrkDest] call A3A_fnc_mrkUpdate;
 };
 
-sleep 15;
+sleep 60;
 [_taskId, "invaderPunish", 0] spawn A3A_fnc_taskDelete;
 
-bigAttackInProgress = false;
-publicVariable "bigAttackInProgress";
+bigAttackInProgress = false; publicVariable "bigAttackInProgress";
+forcedSpawn = forcedSpawn - [_mrkDest]; publicVariable "forcedSpawn";
 
 
 // Order remaining aggressor units back to base, hand them to the group despawner
