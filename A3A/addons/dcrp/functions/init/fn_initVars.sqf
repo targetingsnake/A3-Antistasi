@@ -14,6 +14,6 @@ Examples:
 Author: martin
 */
 #include "../../script_component.hpp"
-FIX_LINE_NUMBERS()
+//FIX_LINE_NUMBERS()
 A3A_DCRP_deactiavted = false;
 A3A_DCRP_detectAce = false;
