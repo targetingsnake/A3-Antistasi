@@ -202,6 +202,8 @@ namespace dcpr
                 case "init":
                     break;
                 case "missionstart":
+                    State.setUnconState = false;
+                    State.setDeathState = false;
                     State.setServer(args);
                     break;
                 case "missionend":

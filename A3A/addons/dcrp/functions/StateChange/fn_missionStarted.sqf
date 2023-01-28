@@ -54,11 +54,12 @@ if (["intro", briefingName] call BIS_fnc_inString) exitWith {
     private _typeName = [configFile >> "CfgVehicles" >> typeOf player] call BIS_fnc_displayName;
     private _slotNumber = playableSlotsNumber independent + playableSlotsNumber west + playableSlotsNumber east;
     private _playerCount = playersNumber independent + playersNumber west + playersNumber east;
-    private _result = "dcpr" callExtension ["missionstart", [serverName,1, briefingName, _roleDescription, _slotNumber, _playerCount]];
 
     if (_roleDescription == "") then {
         _roleDescription = _typeName;
     };
+
+    private _result = "dcpr" callExtension ["missionstart", [serverName,1, briefingName, _roleDescription, _slotNumber, _playerCount]];
 
     addMissionEventHandler ["EntityKilled", {
         params ["_killed", "_killer", "_instigator"];
@@ -68,12 +69,14 @@ if (["intro", briefingName] call BIS_fnc_inString) exitWith {
         private _kills = _stats # 0 + _stats # 1 + _stats # 2 + _stats # 3;
         if (isNull _instigator) then { _instigator = UAVControl vehicle _killer select 0 }; // UAV/UGV player operated road kill
 	    if (isNull _instigator) then { _instigator = _killer }; // player driven vehicle road kill
-        if (_instigator == player) then {
-            _kills = _kills + 1; //current kill happening not counted yet
-        } else {
-            private _assists = _killed getVariable ["DCI_assists",[]];
-            if (player in _assists) then {
-                "dcpr" callExtension "updateassist";        
+        if (_killed != player) then {
+            if (_instigator == player) then {
+                _kills = _kills + 1; //current kill happening not counted yet
+            } else {
+                private _assists = _killed getVariable ["DCI_assists",[]];
+                if (player in _assists) then {
+                    "dcpr" callExtension "updateassist";        
+                };
             };
         };
         if (_killed == player) then  {
@@ -83,17 +86,17 @@ if (["intro", briefingName] call BIS_fnc_inString) exitWith {
         "dcpr" callExtension ["updateScore", [_kills , _death]];
     }];
 
-    player addEventHandler ["Respawn", {
+    player addMPEventHandler ["MPRespawn", {
 	    params ["_unit", "_corpse"];
         if (A3A_DCRP_deactiavted) exitWith {};
         if (!hasInterface) exitWith {};
         private _stats = getPlayerScores player;
         private _kills = _stats # 0 + _stats # 1 + _stats # 2 + _stats # 3;
         private _death = _stats # 4;
-        _death = _death + 1; //current death not counted
         "dcpr" callExtension "respawn";
+        "dcpr" callExtension "wakeup";
         "dcpr" callExtension ["updateScore", [_kills , _death]];
-    }];
+    }];    
 
     addMissionEventHandler ["EntityCreated", {
 	    params ["_entity"];
